@@ -15,6 +15,8 @@
 		D33B08241E93FB650046E986 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B08221E93FB650046E986 /* LaunchScreen.storyboard */; };
 		D33B082F1E93FB650046E986 /* MakeUp_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B082E1E93FB650046E986 /* MakeUp_AppTests.swift */; };
 		D33B083A1E93FB650046E986 /* MakeUp_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08391E93FB650046E986 /* MakeUp_AppUITests.swift */; };
+		D33B084A1E9419130046E986 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08491E9419130046E986 /* Secrets.swift */; };
+		D33B084E1E942DCF0046E986 /* YoutubeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */; };
 		DA9339222F13F5231FCFD54E /* Pods_MakeUp_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A61DC710A697C9092B6EB698 /* Pods_MakeUp_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +55,8 @@
 		D33B08351E93FB650046E986 /* MakeUp AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MakeUp AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33B08391E93FB650046E986 /* MakeUp_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeUp_AppUITests.swift; sourceTree = "<group>"; };
 		D33B083B1E93FB650046E986 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D33B08491E9419130046E986 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeAPIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,7 @@
 		D33B08151E93FB650046E986 /* MakeUp App */ = {
 			isa = PBXGroup;
 			children = (
+				D33B084C1E942DB00046E986 /* Network */,
 				D33B08161E93FB650046E986 /* AppDelegate.swift */,
 				D33B08181E93FB650046E986 /* ViewController.swift */,
 				D33B081A1E93FB650046E986 /* Main.storyboard */,
@@ -130,6 +135,7 @@
 				D33B08221E93FB650046E986 /* LaunchScreen.storyboard */,
 				D33B08251E93FB650046E986 /* Info.plist */,
 				D33B081D1E93FB650046E986 /* MakeUp_App.xcdatamodeld */,
+				D33B08491E9419130046E986 /* Secrets.swift */,
 			);
 			path = "MakeUp App";
 			sourceTree = "<group>";
@@ -150,6 +156,14 @@
 				D33B083B1E93FB650046E986 /* Info.plist */,
 			);
 			path = "MakeUp AppUITests";
+			sourceTree = "<group>";
+		};
+		D33B084C1E942DB00046E986 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,8 +355,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D33B081F1E93FB650046E986 /* MakeUp_App.xcdatamodeld in Sources */,
+				D33B084A1E9419130046E986 /* Secrets.swift in Sources */,
 				D33B08191E93FB650046E986 /* ViewController.swift in Sources */,
 				D33B08171E93FB650046E986 /* AppDelegate.swift in Sources */,
+				D33B084E1E942DCF0046E986 /* YoutubeAPIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
