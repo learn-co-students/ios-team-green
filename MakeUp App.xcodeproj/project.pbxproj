@@ -15,6 +15,7 @@
 		D33B08241E93FB650046E986 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B08221E93FB650046E986 /* LaunchScreen.storyboard */; };
 		D33B082F1E93FB650046E986 /* MakeUp_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B082E1E93FB650046E986 /* MakeUp_AppTests.swift */; };
 		D33B083A1E93FB650046E986 /* MakeUp_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08391E93FB650046E986 /* MakeUp_AppUITests.swift */; };
+		DA9339222F13F5231FCFD54E /* Pods_MakeUp_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A61DC710A697C9092B6EB698 /* Pods_MakeUp_App.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6C97B014205069603AF2B928 /* Pods-MakeUp App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakeUp App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MakeUp App/Pods-MakeUp App.debug.xcconfig"; sourceTree = "<group>"; };
+		A61DC710A697C9092B6EB698 /* Pods_MakeUp_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MakeUp_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDFBEC101FECBE8E53105C3A /* Pods-MakeUp App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakeUp App.release.xcconfig"; path = "Pods/Target Support Files/Pods-MakeUp App/Pods-MakeUp App.release.xcconfig"; sourceTree = "<group>"; };
 		D33B08131E93FB650046E986 /* MakeUp App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MakeUp App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33B08161E93FB650046E986 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D33B08181E93FB650046E986 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA9339222F13F5231FCFD54E /* Pods_MakeUp_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +81,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11C87EF125671A547215E1A5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A61DC710A697C9092B6EB698 /* Pods_MakeUp_App.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5017D20D122DFF5DFFCA5D95 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6C97B014205069603AF2B928 /* Pods-MakeUp App.debug.xcconfig */,
+				BDFBEC101FECBE8E53105C3A /* Pods-MakeUp App.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D33B080A1E93FB650046E986 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +105,8 @@
 				D33B082D1E93FB650046E986 /* MakeUp AppTests */,
 				D33B08381E93FB650046E986 /* MakeUp AppUITests */,
 				D33B08141E93FB650046E986 /* Products */,
+				5017D20D122DFF5DFFCA5D95 /* Pods */,
+				11C87EF125671A547215E1A5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,9 +159,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D33B083E1E93FB650046E986 /* Build configuration list for PBXNativeTarget "MakeUp App" */;
 			buildPhases = (
+				833661C15E49E3FF4601F361 /* [CP] Check Pods Manifest.lock */,
 				D33B080F1E93FB650046E986 /* Sources */,
 				D33B08101E93FB650046E986 /* Frameworks */,
 				D33B08111E93FB650046E986 /* Resources */,
+				C4F979A0AD0DC37D96DD7B2D /* [CP] Embed Pods Frameworks */,
+				179908803E99A7847F51CA00 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -259,6 +286,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		179908803E99A7847F51CA00 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MakeUp App/Pods-MakeUp App-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		833661C15E49E3FF4601F361 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C4F979A0AD0DC37D96DD7B2D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MakeUp App/Pods-MakeUp App-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D33B080F1E93FB650046E986 /* Sources */ = {
@@ -415,6 +490,7 @@
 		};
 		D33B083F1E93FB650046E986 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6C97B014205069603AF2B928 /* Pods-MakeUp App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 56S3PA4JK8;
@@ -428,6 +504,7 @@
 		};
 		D33B08401E93FB650046E986 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BDFBEC101FECBE8E53105C3A /* Pods-MakeUp App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 56S3PA4JK8;
