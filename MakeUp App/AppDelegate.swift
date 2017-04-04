@@ -14,10 +14,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    //this userDefaults value can store if the user exists or not after they sign up / delete the app, etc.
+    var user: String? {
+        return UserDefaults.standard.string(forKey: "user")
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let initialView = user == nil ? SignUpViewController() : TabBarController()
+
+        setupWindow(with:initialView)
+        
         return true
+    }
+    
+    func setupWindow(with rootViewController: UIViewController) {
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = rootViewController
+        self.window?.makeKeyAndVisible()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
