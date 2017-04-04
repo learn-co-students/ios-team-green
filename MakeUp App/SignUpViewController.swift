@@ -77,11 +77,8 @@ class SignUpViewController: UIViewController {
     
     func emailSignUp() {
         print("+++ email sign up")
-        emailSignUp()
-        //name 
-        //email
-        //password
-        
+        let emailSignUpViewController = EmailUpViewController()
+        self.navigationController?.pushViewController(emailSignUpViewController, animated: true)  
     }
 
 

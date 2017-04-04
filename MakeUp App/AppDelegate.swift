@@ -21,8 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let initialView = user == nil ? SignUpViewController() : TabBarController()
+        let navViewController = UINavigationController()
+        navViewController.navigationBar.barTintColor = Palette.white.color
+        
+        
+        navViewController.viewControllers.append(initialView)
+        setupWindow(with:navViewController)
 
-        setupWindow(with:initialView)
         
         return true
     }
