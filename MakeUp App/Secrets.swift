@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+class Secrets {
+    static let youTubeID = "AIzaSyCdiR--f42-QzxNW_27YlcV2wXxkxGuPwI"
+}

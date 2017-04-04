@@ -15,6 +15,7 @@
 		D33B08241E93FB650046E986 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B08221E93FB650046E986 /* LaunchScreen.storyboard */; };
 		D33B082F1E93FB650046E986 /* MakeUp_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B082E1E93FB650046E986 /* MakeUp_AppTests.swift */; };
 		D33B083A1E93FB650046E986 /* MakeUp_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08391E93FB650046E986 /* MakeUp_AppUITests.swift */; };
+		D33B08481E9413040046E986 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08471E9413040046E986 /* Secrets.swift */; };
 		DA9339222F13F5231FCFD54E /* Pods_MakeUp_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A61DC710A697C9092B6EB698 /* Pods_MakeUp_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		D33B08351E93FB650046E986 /* MakeUp AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MakeUp AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33B08391E93FB650046E986 /* MakeUp_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeUp_AppUITests.swift; sourceTree = "<group>"; };
 		D33B083B1E93FB650046E986 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D33B08471E9413040046E986 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				D33B08161E93FB650046E986 /* AppDelegate.swift */,
+				D33B08471E9413040046E986 /* Secrets.swift */,
 				D33B08181E93FB650046E986 /* ViewController.swift */,
 				D33B081A1E93FB650046E986 /* Main.storyboard */,
 				D33B08201E93FB650046E986 /* Assets.xcassets */,
@@ -341,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D33B081F1E93FB650046E986 /* MakeUp_App.xcdatamodeld in Sources */,
+				D33B08481E9413040046E986 /* Secrets.swift in Sources */,
 				D33B08191E93FB650046E986 /* ViewController.swift in Sources */,
 				D33B08171E93FB650046E986 /* AppDelegate.swift in Sources */,
 			);
@@ -593,6 +597,7 @@
 				D33B08401E93FB650046E986 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D33B08411E93FB650046E986 /* Build configuration list for PBXNativeTarget "MakeUp AppTests" */ = {
 			isa = XCConfigurationList;
@@ -601,6 +606,7 @@
 				D33B08431E93FB650046E986 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D33B08441E93FB650046E986 /* Build configuration list for PBXNativeTarget "MakeUp AppUITests" */ = {
 			isa = XCConfigurationList;
@@ -609,6 +615,7 @@
 				D33B08461E93FB650046E986 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
