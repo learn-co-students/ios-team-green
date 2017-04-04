@@ -32,6 +32,12 @@ class SignUpViewController: UIViewController {
     let emailButton: UIButton = {
         return SignInButton(image: #imageLiteral(resourceName: "Message"), text: "   Email Sign In")
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
