@@ -17,6 +17,8 @@
 		D33B083A1E93FB650046E986 /* MakeUp_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08391E93FB650046E986 /* MakeUp_AppUITests.swift */; };
 		D33B084A1E9419130046E986 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08491E9419130046E986 /* Secrets.swift */; };
 		D33B084E1E942DCF0046E986 /* YoutubeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */; };
+		D33B08501E9537AC0046E986 /* YoutubeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B084F1E9537AC0046E986 /* YoutubeModel.swift */; };
+		D33B08521E9542D00046E986 /* YoutubeDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08511E9542D00046E986 /* YoutubeDataStore.swift */; };
 		DA9339222F13F5231FCFD54E /* Pods_MakeUp_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A61DC710A697C9092B6EB698 /* Pods_MakeUp_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,8 @@
 		D33B083B1E93FB650046E986 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D33B08491E9419130046E986 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeAPIClient.swift; sourceTree = "<group>"; };
+		D33B084F1E9537AC0046E986 /* YoutubeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeModel.swift; sourceTree = "<group>"; };
+		D33B08511E9542D00046E986 /* YoutubeDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeDataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +166,8 @@
 			isa = PBXGroup;
 			children = (
 				D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */,
+				D33B084F1E9537AC0046E986 /* YoutubeModel.swift */,
+				D33B08511E9542D00046E986 /* YoutubeDataStore.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -355,8 +361,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D33B081F1E93FB650046E986 /* MakeUp_App.xcdatamodeld in Sources */,
+				D33B08521E9542D00046E986 /* YoutubeDataStore.swift in Sources */,
 				D33B084A1E9419130046E986 /* Secrets.swift in Sources */,
 				D33B08191E93FB650046E986 /* ViewController.swift in Sources */,
+				D33B08501E9537AC0046E986 /* YoutubeModel.swift in Sources */,
 				D33B08171E93FB650046E986 /* AppDelegate.swift in Sources */,
 				D33B084E1E942DCF0046E986 /* YoutubeAPIClient.swift in Sources */,
 			);

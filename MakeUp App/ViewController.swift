@@ -9,10 +9,19 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    let store = YoutubeDataStore.sharedInstance
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        YoutubeAPIClient.searchYoutubeVideos(search: "kat von d tattoo liner", type: .tutorial)
+        store.getYouTubeVideos(search: "kate von d tattoo liner", videoType: .review)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print(store.youtubeReviewVideos)
+        print(store.youtubeTutorialVideos)
     }
 
     override func didReceiveMemoryWarning() {
