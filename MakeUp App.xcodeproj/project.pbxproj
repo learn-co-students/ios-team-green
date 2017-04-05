@@ -7,18 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B50E4C0F1E940F3C0004D8F7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C0E1E940F3C0004D8F7 /* TabBarController.swift */; };
+		B50E4C111E940F660004D8F7 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C101E940F660004D8F7 /* ResultsViewController.swift */; };
+		B50E4C131E940F790004D8F7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C121E940F790004D8F7 /* SearchViewController.swift */; };
+		B50E4C161E9410660004D8F7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C151E9410660004D8F7 /* Colors.swift */; };
+		B50E4C181E9411EF0004D8F7 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C171E9411EF0004D8F7 /* Fonts.swift */; };
+		B50E4C381E9419C10004D8F7 /* PlayfairDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B50E4C321E9419C10004D8F7 /* PlayfairDisplay-Black.ttf */; };
+		B50E4C391E9419C10004D8F7 /* PlayfairDisplay-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B50E4C331E9419C10004D8F7 /* PlayfairDisplay-BlackItalic.ttf */; };
+		B50E4C3A1E9419C10004D8F7 /* PlayfairDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B50E4C341E9419C10004D8F7 /* PlayfairDisplay-Bold.ttf */; };
+		B50E4C3B1E9419C10004D8F7 /* PlayfairDisplay-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B50E4C351E9419C10004D8F7 /* PlayfairDisplay-BoldItalic.ttf */; };
+		B50E4C3C1E9419C10004D8F7 /* PlayfairDisplay-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B50E4C361E9419C10004D8F7 /* PlayfairDisplay-Italic.ttf */; };
+		B50E4C3D1E9419C10004D8F7 /* PlayfairDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B50E4C371E9419C10004D8F7 /* PlayfairDisplay-Regular.ttf */; };
+		B50E4C401E94270C0004D8F7 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C3F1E94270C0004D8F7 /* SignInButton.swift */; };
+		B50E4C441E942DC20004D8F7 /* EmailSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C431E942DC20004D8F7 /* EmailSignUp.swift */; };
 		D33B08171E93FB650046E986 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08161E93FB650046E986 /* AppDelegate.swift */; };
-		D33B08191E93FB650046E986 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08181E93FB650046E986 /* ViewController.swift */; };
-		D33B081C1E93FB650046E986 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B081A1E93FB650046E986 /* Main.storyboard */; };
-		D33B081F1E93FB650046E986 /* MakeUp_App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D33B081D1E93FB650046E986 /* MakeUp_App.xcdatamodeld */; };
 		D33B08211E93FB650046E986 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D33B08201E93FB650046E986 /* Assets.xcassets */; };
 		D33B08241E93FB650046E986 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B08221E93FB650046E986 /* LaunchScreen.storyboard */; };
-		D33B082F1E93FB650046E986 /* MakeUp_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B082E1E93FB650046E986 /* MakeUp_AppTests.swift */; };
 		D33B083A1E93FB650046E986 /* MakeUp_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08391E93FB650046E986 /* MakeUp_AppUITests.swift */; };
 		D33B084A1E9419130046E986 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08491E9419130046E986 /* Secrets.swift */; };
 		D33B084E1E942DCF0046E986 /* YoutubeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */; };
 		D33B08501E9537AC0046E986 /* YoutubeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B084F1E9537AC0046E986 /* YoutubeModel.swift */; };
 		D33B08521E9542D00046E986 /* YoutubeDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08511E9542D00046E986 /* YoutubeDataStore.swift */; };
+		D39C583E1E95898C0078298B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08181E93FB650046E986 /* SignUpViewController.swift */; };
 		DA9339222F13F5231FCFD54E /* Pods_MakeUp_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A61DC710A697C9092B6EB698 /* Pods_MakeUp_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,18 +52,27 @@
 /* Begin PBXFileReference section */
 		6C97B014205069603AF2B928 /* Pods-MakeUp App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakeUp App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MakeUp App/Pods-MakeUp App.debug.xcconfig"; sourceTree = "<group>"; };
 		A61DC710A697C9092B6EB698 /* Pods_MakeUp_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MakeUp_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B50E4C0E1E940F3C0004D8F7 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		B50E4C101E940F660004D8F7 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		B50E4C121E940F790004D8F7 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		B50E4C151E9410660004D8F7 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		B50E4C171E9411EF0004D8F7 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		B50E4C321E9419C10004D8F7 /* PlayfairDisplay-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PlayfairDisplay-Black.ttf"; path = "../../../../Playfair_Display/PlayfairDisplay-Black.ttf"; sourceTree = "<group>"; };
+		B50E4C331E9419C10004D8F7 /* PlayfairDisplay-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PlayfairDisplay-BlackItalic.ttf"; path = "../../../../Playfair_Display/PlayfairDisplay-BlackItalic.ttf"; sourceTree = "<group>"; };
+		B50E4C341E9419C10004D8F7 /* PlayfairDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PlayfairDisplay-Bold.ttf"; path = "../../../../Playfair_Display/PlayfairDisplay-Bold.ttf"; sourceTree = "<group>"; };
+		B50E4C351E9419C10004D8F7 /* PlayfairDisplay-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PlayfairDisplay-BoldItalic.ttf"; path = "../../../../Playfair_Display/PlayfairDisplay-BoldItalic.ttf"; sourceTree = "<group>"; };
+		B50E4C361E9419C10004D8F7 /* PlayfairDisplay-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PlayfairDisplay-Italic.ttf"; path = "../../../../Playfair_Display/PlayfairDisplay-Italic.ttf"; sourceTree = "<group>"; };
+		B50E4C371E9419C10004D8F7 /* PlayfairDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PlayfairDisplay-Regular.ttf"; path = "../../../../Playfair_Display/PlayfairDisplay-Regular.ttf"; sourceTree = "<group>"; };
+		B50E4C3F1E94270C0004D8F7 /* SignInButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
+		B50E4C431E942DC20004D8F7 /* EmailSignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignUp.swift; sourceTree = "<group>"; };
 		BDFBEC101FECBE8E53105C3A /* Pods-MakeUp App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakeUp App.release.xcconfig"; path = "Pods/Target Support Files/Pods-MakeUp App/Pods-MakeUp App.release.xcconfig"; sourceTree = "<group>"; };
 		D33B08131E93FB650046E986 /* MakeUp App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MakeUp App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33B08161E93FB650046E986 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D33B08181E93FB650046E986 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D33B081B1E93FB650046E986 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D33B081E1E93FB650046E986 /* MakeUp_App.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MakeUp_App.xcdatamodel; sourceTree = "<group>"; };
+		D33B08181E93FB650046E986 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		D33B08201E93FB650046E986 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D33B08231E93FB650046E986 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D33B08251E93FB650046E986 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D33B082A1E93FB650046E986 /* MakeUp AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MakeUp AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D33B082E1E93FB650046E986 /* MakeUp_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeUp_AppTests.swift; sourceTree = "<group>"; };
-		D33B08301E93FB650046E986 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D33B08351E93FB650046E986 /* MakeUp AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MakeUp AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33B08391E93FB650046E986 /* MakeUp_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeUp_AppUITests.swift; sourceTree = "<group>"; };
 		D33B083B1E93FB650046E986 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -106,11 +125,68 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B50E4C0C1E940EF90004D8F7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B50E4C421E942DB80004D8F7 /* SignUp */,
+				B50E4C0E1E940F3C0004D8F7 /* TabBarController.swift */,
+				B50E4C101E940F660004D8F7 /* ResultsViewController.swift */,
+				B50E4C121E940F790004D8F7 /* SearchViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B50E4C0D1E940EFF0004D8F7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		B50E4C141E9410280004D8F7 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				B50E4C151E9410660004D8F7 /* Colors.swift */,
+				B50E4C171E9411EF0004D8F7 /* Fonts.swift */,
+				B50E4C191E94122B0004D8F7 /* Fonts */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		B50E4C191E94122B0004D8F7 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B50E4C321E9419C10004D8F7 /* PlayfairDisplay-Black.ttf */,
+				B50E4C331E9419C10004D8F7 /* PlayfairDisplay-BlackItalic.ttf */,
+				B50E4C341E9419C10004D8F7 /* PlayfairDisplay-Bold.ttf */,
+				B50E4C351E9419C10004D8F7 /* PlayfairDisplay-BoldItalic.ttf */,
+				B50E4C361E9419C10004D8F7 /* PlayfairDisplay-Italic.ttf */,
+				B50E4C371E9419C10004D8F7 /* PlayfairDisplay-Regular.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		B50E4C3E1E9426F50004D8F7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B50E4C3F1E94270C0004D8F7 /* SignInButton.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		B50E4C421E942DB80004D8F7 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				D33B08181E93FB650046E986 /* SignUpViewController.swift */,
+				B50E4C431E942DC20004D8F7 /* EmailSignUp.swift */,
+			);
+			name = SignUp;
+			sourceTree = "<group>";
+		};
 		D33B080A1E93FB650046E986 = {
 			isa = PBXGroup;
 			children = (
 				D33B08151E93FB650046E986 /* MakeUp App */,
-				D33B082D1E93FB650046E986 /* MakeUp AppTests */,
 				D33B08381E93FB650046E986 /* MakeUp AppUITests */,
 				D33B08141E93FB650046E986 /* Products */,
 				5017D20D122DFF5DFFCA5D95 /* Pods */,
@@ -132,25 +208,17 @@
 			isa = PBXGroup;
 			children = (
 				D33B084C1E942DB00046E986 /* Network */,
+				B50E4C141E9410280004D8F7 /* Library */,
+				B50E4C0D1E940EFF0004D8F7 /* Models */,
+				B50E4C3E1E9426F50004D8F7 /* Views */,
+				B50E4C0C1E940EF90004D8F7 /* ViewControllers */,
 				D33B08161E93FB650046E986 /* AppDelegate.swift */,
-				D33B08181E93FB650046E986 /* ViewController.swift */,
-				D33B081A1E93FB650046E986 /* Main.storyboard */,
 				D33B08201E93FB650046E986 /* Assets.xcassets */,
 				D33B08221E93FB650046E986 /* LaunchScreen.storyboard */,
 				D33B08251E93FB650046E986 /* Info.plist */,
-				D33B081D1E93FB650046E986 /* MakeUp_App.xcdatamodeld */,
 				D33B08491E9419130046E986 /* Secrets.swift */,
 			);
 			path = "MakeUp App";
-			sourceTree = "<group>";
-		};
-		D33B082D1E93FB650046E986 /* MakeUp AppTests */ = {
-			isa = PBXGroup;
-			children = (
-				D33B082E1E93FB650046E986 /* MakeUp_AppTests.swift */,
-				D33B08301E93FB650046E986 /* Info.plist */,
-			);
-			path = "MakeUp AppTests";
 			sourceTree = "<group>";
 		};
 		D33B08381E93FB650046E986 /* MakeUp AppUITests */ = {
@@ -286,8 +354,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D33B08241E93FB650046E986 /* LaunchScreen.storyboard in Resources */,
+				B50E4C391E9419C10004D8F7 /* PlayfairDisplay-BlackItalic.ttf in Resources */,
 				D33B08211E93FB650046E986 /* Assets.xcassets in Resources */,
-				D33B081C1E93FB650046E986 /* Main.storyboard in Resources */,
+				B50E4C3A1E9419C10004D8F7 /* PlayfairDisplay-Bold.ttf in Resources */,
+				B50E4C3D1E9419C10004D8F7 /* PlayfairDisplay-Regular.ttf in Resources */,
+				B50E4C3B1E9419C10004D8F7 /* PlayfairDisplay-BoldItalic.ttf in Resources */,
+				B50E4C381E9419C10004D8F7 /* PlayfairDisplay-Black.ttf in Resources */,
+				B50E4C3C1E9419C10004D8F7 /* PlayfairDisplay-Italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,13 +433,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D33B081F1E93FB650046E986 /* MakeUp_App.xcdatamodeld in Sources */,
 				D33B08521E9542D00046E986 /* YoutubeDataStore.swift in Sources */,
 				D33B084A1E9419130046E986 /* Secrets.swift in Sources */,
-				D33B08191E93FB650046E986 /* ViewController.swift in Sources */,
 				D33B08501E9537AC0046E986 /* YoutubeModel.swift in Sources */,
-				D33B08171E93FB650046E986 /* AppDelegate.swift in Sources */,
 				D33B084E1E942DCF0046E986 /* YoutubeAPIClient.swift in Sources */,
+				B50E4C181E9411EF0004D8F7 /* Fonts.swift in Sources */,
+				B50E4C131E940F790004D8F7 /* SearchViewController.swift in Sources */,
+				B50E4C161E9410660004D8F7 /* Colors.swift in Sources */,
+				B50E4C0F1E940F3C0004D8F7 /* TabBarController.swift in Sources */,
+				B50E4C111E940F660004D8F7 /* ResultsViewController.swift in Sources */,
+				B50E4C401E94270C0004D8F7 /* SignInButton.swift in Sources */,
+				D33B08171E93FB650046E986 /* AppDelegate.swift in Sources */,
+				D39C583E1E95898C0078298B /* SignUpViewController.swift in Sources */,
+				B50E4C441E942DC20004D8F7 /* EmailSignUp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,7 +453,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D33B082F1E93FB650046E986 /* MakeUp_AppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,14 +480,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D33B081A1E93FB650046E986 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D33B081B1E93FB650046E986 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D33B08221E93FB650046E986 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -638,19 +708,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		D33B081D1E93FB650046E986 /* MakeUp_App.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				D33B081E1E93FB650046E986 /* MakeUp_App.xcdatamodel */,
-			);
-			currentVersion = D33B081E1E93FB650046E986 /* MakeUp_App.xcdatamodel */;
-			path = MakeUp_App.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = D33B080B1E93FB650046E986 /* Project object */;
 }
