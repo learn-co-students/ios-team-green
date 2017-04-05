@@ -13,22 +13,21 @@ class SignInButton: UIButton {
     init(image: UIImage, text: String) {
         super.init(frame: CGRect())
 
-        let googleString = NSMutableAttributedString()
+        let returnString = NSMutableAttributedString()
         
-        let googleImage = NSTextAttachment()
-        googleImage.image = image
-        googleImage.bounds = CGRect(x: 0, y: -10, width: 30, height: 30)
-        let googlePictureString = NSAttributedString(attachment: googleImage)
+        let imageAttachment = NSTextAttachment()
+        imageAttachment.image = image
+        imageAttachment.bounds = CGRect(x: 0, y: -10, width: 30, height: 30)
+        let imageString = NSAttributedString(attachment: imageAttachment)
         
-        googleString.append(googlePictureString)
+        returnString.append(imageString)
         
-        let googleSignIn = NSMutableAttributedString(string: text, attributes: [NSForegroundColorAttributeName: Palette.white.color])
-        googleString.append(googleSignIn)
+        let signIn = NSMutableAttributedString(string: text, attributes: [NSForegroundColorAttributeName: Palette.white.color])
+        returnString.append(signIn)
         
-        self.setAttributedTitle(googleString, for: .normal)
+        self.setAttributedTitle(returnString, for: .normal)
         
         self.titleLabel?.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 16)
-//        self.titleLabel?.textAlignment = .right
         self.backgroundColor = Palette.beige.color
         
     }
