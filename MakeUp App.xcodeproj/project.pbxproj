@@ -139,6 +139,7 @@
 		B50E4C0D1E940EFF0004D8F7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D33B084F1E9537AC0046E986 /* YoutubeModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -234,7 +235,6 @@
 			isa = PBXGroup;
 			children = (
 				D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */,
-				D33B084F1E9537AC0046E986 /* YoutubeModel.swift */,
 				D33B08511E9542D00046E986 /* YoutubeDataStore.swift */,
 			);
 			name = Network;
