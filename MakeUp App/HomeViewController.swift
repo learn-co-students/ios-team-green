@@ -11,10 +11,10 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    var myProductsLabel: UILabel()
+    var myProductsLabel = UILabel()
     var myProducts = MediaCollectionView(frame: CGRect.zero)
     
-    var myMediaLabel: UILabel()
+    var myMediaLabel = UILabel()
     var myMedia = MediaCollectionView(frame: CGRect.zero)
     
     override func viewDidLoad() {
@@ -43,7 +43,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         view.addSubview(myMedia)
         
         myProductsLabel.translatesAutoresizingMaskIntoConstraints = false
-        myProductsLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        myProductsLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
         myProductsLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
         myProductsLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
         myProductsLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
