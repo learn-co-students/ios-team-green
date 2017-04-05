@@ -28,10 +28,14 @@
 		B5D3A5541E959B5700D808B7 /* MediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3A5531E959B5700D808B7 /* MediaItem.swift */; };
 		B5D3A5561E95A56300D808B7 /* MediaViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3A5551E95A56300D808B7 /* MediaViewCell.swift */; };
 		D33B08171E93FB650046E986 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08161E93FB650046E986 /* AppDelegate.swift */; };
-		D33B08191E93FB650046E986 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08181E93FB650046E986 /* SignUpViewController.swift */; };
 		D33B08211E93FB650046E986 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D33B08201E93FB650046E986 /* Assets.xcassets */; };
 		D33B08241E93FB650046E986 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B08221E93FB650046E986 /* LaunchScreen.storyboard */; };
 		D33B083A1E93FB650046E986 /* MakeUp_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08391E93FB650046E986 /* MakeUp_AppUITests.swift */; };
+		D33B084A1E9419130046E986 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08491E9419130046E986 /* Secrets.swift */; };
+		D33B084E1E942DCF0046E986 /* YoutubeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */; };
+		D33B08501E9537AC0046E986 /* YoutubeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B084F1E9537AC0046E986 /* YoutubeModel.swift */; };
+		D33B08521E9542D00046E986 /* YoutubeDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08511E9542D00046E986 /* YoutubeDataStore.swift */; };
+		D39C583E1E95898C0078298B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08181E93FB650046E986 /* SignUpViewController.swift */; };
 		DA9339222F13F5231FCFD54E /* Pods_MakeUp_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A61DC710A697C9092B6EB698 /* Pods_MakeUp_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +90,10 @@
 		D33B08351E93FB650046E986 /* MakeUp AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MakeUp AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33B08391E93FB650046E986 /* MakeUp_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeUp_AppUITests.swift; sourceTree = "<group>"; };
 		D33B083B1E93FB650046E986 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D33B08491E9419130046E986 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeAPIClient.swift; sourceTree = "<group>"; };
+		D33B084F1E9537AC0046E986 /* YoutubeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeModel.swift; sourceTree = "<group>"; };
+		D33B08511E9542D00046E986 /* YoutubeDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeDataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +228,7 @@
 		D33B08151E93FB650046E986 /* MakeUp App */ = {
 			isa = PBXGroup;
 			children = (
+				D33B084C1E942DB00046E986 /* Network */,
 				B50E4C141E9410280004D8F7 /* Library */,
 				B50E4C0D1E940EFF0004D8F7 /* Models */,
 				B50E4C3E1E9426F50004D8F7 /* Views */,
@@ -228,6 +237,7 @@
 				D33B08201E93FB650046E986 /* Assets.xcassets */,
 				D33B08221E93FB650046E986 /* LaunchScreen.storyboard */,
 				D33B08251E93FB650046E986 /* Info.plist */,
+				D33B08491E9419130046E986 /* Secrets.swift */,
 			);
 			path = "MakeUp App";
 			sourceTree = "<group>";
@@ -239,6 +249,16 @@
 				D33B083B1E93FB650046E986 /* Info.plist */,
 			);
 			path = "MakeUp AppUITests";
+			sourceTree = "<group>";
+		};
+		D33B084C1E942DB00046E986 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */,
+				D33B084F1E9537AC0046E986 /* YoutubeModel.swift */,
+				D33B08511E9542D00046E986 /* YoutubeDataStore.swift */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -434,6 +454,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D33B08521E9542D00046E986 /* YoutubeDataStore.swift in Sources */,
+				D33B084A1E9419130046E986 /* Secrets.swift in Sources */,
+				D33B08501E9537AC0046E986 /* YoutubeModel.swift in Sources */,
+				D33B084E1E942DCF0046E986 /* YoutubeAPIClient.swift in Sources */,
 				B50E4C181E9411EF0004D8F7 /* Fonts.swift in Sources */,
 				B50E4C131E940F790004D8F7 /* SearchViewController.swift in Sources */,
 				B5D3A5541E959B5700D808B7 /* MediaItem.swift in Sources */,
@@ -441,13 +465,13 @@
 				B50E4C161E9410660004D8F7 /* Colors.swift in Sources */,
 				B5D3A54F1E9596FA00D808B7 /* MediaCollectionView.swift in Sources */,
 				B50E4C0F1E940F3C0004D8F7 /* TabBarController.swift in Sources */,
-				D33B08191E93FB650046E986 /* SignUpViewController.swift in Sources */,
 				B53E9BBC1E953AF00017E3E9 /* HomeViewController.swift in Sources */,
 				B5D3A5561E95A56300D808B7 /* MediaViewCell.swift in Sources */,
 				B50E4C111E940F660004D8F7 /* ResultsViewController.swift in Sources */,
 				B53E9BBE1E9546F80017E3E9 /* NavBar.swift in Sources */,
 				B50E4C401E94270C0004D8F7 /* SignInButton.swift in Sources */,
 				D33B08171E93FB650046E986 /* AppDelegate.swift in Sources */,
+				D39C583E1E95898C0078298B /* SignUpViewController.swift in Sources */,
 				B50E4C441E942DC20004D8F7 /* EmailSignUp.swift in Sources */,
 				B5D3A5521E959B3600D808B7 /* Product.swift in Sources */,
 			);
