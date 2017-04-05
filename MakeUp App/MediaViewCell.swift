@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-class ProductViewCell: UICollectionViewCell {
-    static let reuseIdentifier = "productCell"
+class MediaViewCell: UICollectionViewCell {
+    static let reuseIdentifier = "mediaCell"
     
     var heartImage = UIImageView()
     var imageView = UIImageView()
     var titleView = UILabel()
     
-    var product: Product? {
+    var product: MediaItem? {
         didSet {
             setUpCell()
         }
@@ -37,7 +37,7 @@ class ProductViewCell: UICollectionViewCell {
         titleView.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 16)
         titleView.numberOfLines = 0
         titleView.textAlignment = .left
-        titleView.text = "Diorshow Mascara"
+        titleView.text = "These Lashes Are Smoky AF"
         titleView.textColor = Palette.darkGrey.color
         
         let items = [heartImage, imageView]
@@ -45,9 +45,8 @@ class ProductViewCell: UICollectionViewCell {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.contentView.addSubview($0)
         }
-        
-       
-        imageView.image = #imageLiteral(resourceName: "DIORSHOW")
+
+        imageView.image = #imageLiteral(resourceName: "REVIEW")
         imageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8).isActive = true

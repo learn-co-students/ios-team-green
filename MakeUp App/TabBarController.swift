@@ -14,8 +14,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
         setupLayout()
         setupViewControllers()
-        
-       
+  
     }
     
     override func viewWillAppear(_ animated: Bool) {
