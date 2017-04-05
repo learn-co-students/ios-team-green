@@ -17,7 +17,7 @@ DerivedData/
 !default.perspectivev3
 xcuserdata/
 .DS_Store
-Secrets.swift
+MakeUp\ App/Secrets.swift
 
 ## Other
 *.moved-aside
