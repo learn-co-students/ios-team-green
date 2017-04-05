@@ -24,8 +24,6 @@ extension UIViewController {
         
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: Fonts.Playfair(withStyle: .black, sizeLiteral: 16), NSForegroundColorAttributeName: Palette.black.color], for: .normal)
 
-        
-        
         navigationController?.navigationBar.tintColor = Palette.beige.color
         navigationController?.navigationBar.isTranslucent = false
     }

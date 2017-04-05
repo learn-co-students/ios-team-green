@@ -12,12 +12,6 @@
 		B50E4C131E940F790004D8F7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C121E940F790004D8F7 /* SearchViewController.swift */; };
 		B50E4C161E9410660004D8F7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C151E9410660004D8F7 /* Colors.swift */; };
 		B50E4C181E9411EF0004D8F7 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C171E9411EF0004D8F7 /* Fonts.swift */; };
-		B50E4C381E9419C10004D8F7 /* PlayfairDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B50E4C321E9419C10004D8F7 /* PlayfairDisplay-Black.ttf */; };
-		B50E4C391E9419C10004D8F7 /* PlayfairDisplay-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B50E4C331E9419C10004D8F7 /* PlayfairDisplay-BlackItalic.ttf */; };
-		B50E4C3A1E9419C10004D8F7 /* PlayfairDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B50E4C341E9419C10004D8F7 /* PlayfairDisplay-Bold.ttf */; };
-		B50E4C3B1E9419C10004D8F7 /* PlayfairDisplay-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B50E4C351E9419C10004D8F7 /* PlayfairDisplay-BoldItalic.ttf */; };
-		B50E4C3C1E9419C10004D8F7 /* PlayfairDisplay-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B50E4C361E9419C10004D8F7 /* PlayfairDisplay-Italic.ttf */; };
-		B50E4C3D1E9419C10004D8F7 /* PlayfairDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B50E4C371E9419C10004D8F7 /* PlayfairDisplay-Regular.ttf */; };
 		B50E4C401E94270C0004D8F7 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C3F1E94270C0004D8F7 /* SignInButton.swift */; };
 		B50E4C441E942DC20004D8F7 /* EmailSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C431E942DC20004D8F7 /* EmailSignUp.swift */; };
 		B53E9BBC1E953AF00017E3E9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E9BBB1E953AF00017E3E9 /* HomeViewController.swift */; };
@@ -55,12 +49,6 @@
 		B50E4C121E940F790004D8F7 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B50E4C151E9410660004D8F7 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		B50E4C171E9411EF0004D8F7 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
-		B50E4C321E9419C10004D8F7 /* PlayfairDisplay-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PlayfairDisplay-Black.ttf"; path = "../../../../Playfair_Display/PlayfairDisplay-Black.ttf"; sourceTree = "<group>"; };
-		B50E4C331E9419C10004D8F7 /* PlayfairDisplay-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PlayfairDisplay-BlackItalic.ttf"; path = "../../../../Playfair_Display/PlayfairDisplay-BlackItalic.ttf"; sourceTree = "<group>"; };
-		B50E4C341E9419C10004D8F7 /* PlayfairDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PlayfairDisplay-Bold.ttf"; path = "../../../../Playfair_Display/PlayfairDisplay-Bold.ttf"; sourceTree = "<group>"; };
-		B50E4C351E9419C10004D8F7 /* PlayfairDisplay-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PlayfairDisplay-BoldItalic.ttf"; path = "../../../../Playfair_Display/PlayfairDisplay-BoldItalic.ttf"; sourceTree = "<group>"; };
-		B50E4C361E9419C10004D8F7 /* PlayfairDisplay-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PlayfairDisplay-Italic.ttf"; path = "../../../../Playfair_Display/PlayfairDisplay-Italic.ttf"; sourceTree = "<group>"; };
-		B50E4C371E9419C10004D8F7 /* PlayfairDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PlayfairDisplay-Regular.ttf"; path = "../../../../Playfair_Display/PlayfairDisplay-Regular.ttf"; sourceTree = "<group>"; };
 		B50E4C3F1E94270C0004D8F7 /* SignInButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
 		B50E4C431E942DC20004D8F7 /* EmailSignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignUp.swift; sourceTree = "<group>"; };
 		B53E9BBB1E953AF00017E3E9 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -153,12 +141,6 @@
 		B50E4C191E94122B0004D8F7 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				B50E4C321E9419C10004D8F7 /* PlayfairDisplay-Black.ttf */,
-				B50E4C331E9419C10004D8F7 /* PlayfairDisplay-BlackItalic.ttf */,
-				B50E4C341E9419C10004D8F7 /* PlayfairDisplay-Bold.ttf */,
-				B50E4C351E9419C10004D8F7 /* PlayfairDisplay-BoldItalic.ttf */,
-				B50E4C361E9419C10004D8F7 /* PlayfairDisplay-Italic.ttf */,
-				B50E4C371E9419C10004D8F7 /* PlayfairDisplay-Regular.ttf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -340,13 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D33B08241E93FB650046E986 /* LaunchScreen.storyboard in Resources */,
-				B50E4C391E9419C10004D8F7 /* PlayfairDisplay-BlackItalic.ttf in Resources */,
 				D33B08211E93FB650046E986 /* Assets.xcassets in Resources */,
-				B50E4C3A1E9419C10004D8F7 /* PlayfairDisplay-Bold.ttf in Resources */,
-				B50E4C3D1E9419C10004D8F7 /* PlayfairDisplay-Regular.ttf in Resources */,
-				B50E4C3B1E9419C10004D8F7 /* PlayfairDisplay-BoldItalic.ttf in Resources */,
-				B50E4C381E9419C10004D8F7 /* PlayfairDisplay-Black.ttf in Resources */,
-				B50E4C3C1E9419C10004D8F7 /* PlayfairDisplay-Italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
