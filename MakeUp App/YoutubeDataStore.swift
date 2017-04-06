@@ -17,7 +17,7 @@ final class YoutubeDataStore {
     var youtubeTutorialVideos:[YoutubeModel] = []
     
     
-    func getYouTubeVideos(search: String, videoType: YoutubeSearch) {
+    func getYouTubeVideos(search: String, videoType: YoutubeSearch, completion: @escaping () -> ()) {
         YoutubeAPIClient.searchYoutubeVideos(search: search, type: videoType) { (youtubeVideosDictionary, typeString) in
             if typeString == "review" {
                 self.youtubeReviewVideos.removeAll()
@@ -25,12 +25,14 @@ final class YoutubeDataStore {
                     let youtubeVideo = YoutubeModel(dictionary: video, videoType: typeString)
                     self.youtubeReviewVideos.append(youtubeVideo)
                 }
+                completion()
             } else {
                self.youtubeTutorialVideos.removeAll()
                 for video in youtubeVideosDictionary {
                     let youtubeVideo = YoutubeModel(dictionary: video, videoType: typeString)
                     self.youtubeTutorialVideos.append(youtubeVideo)
                 }
+                completion()
             }
         }
     }

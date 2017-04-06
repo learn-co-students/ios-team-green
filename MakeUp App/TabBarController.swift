@@ -12,10 +12,10 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = Palette.white.color
         setupLayout()
         setupViewControllers()
-  
-    }
+      }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)

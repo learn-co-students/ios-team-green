@@ -160,6 +160,8 @@
 		B50E4C0D1E940EFF0004D8F7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+
+				D33B084F1E9537AC0046E986 /* YoutubeModel.swift */,
 				B5D3A5511E959B3600D808B7 /* Product.swift */,
 				B5D3A5531E959B5700D808B7 /* MediaItem.swift */,
 				B54F1C2B1E9684F800360CB3 /* User.swift */,
@@ -264,7 +266,6 @@
 			isa = PBXGroup;
 			children = (
 				D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */,
-				D33B084F1E9537AC0046E986 /* YoutubeModel.swift */,
 				D33B08511E9542D00046E986 /* YoutubeDataStore.swift */,
 			);
 			name = Network;

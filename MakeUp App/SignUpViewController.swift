@@ -42,7 +42,9 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
-        setupComponents() 
+        setupComponents()
+        //FOR TESTING 
+        //present(ResultsViewController(), animated: true, completion: nil)
     }
 
 
