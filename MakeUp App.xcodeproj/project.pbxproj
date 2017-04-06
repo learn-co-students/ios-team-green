@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4056D7D41E96E26800AF6727 /* ItemDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4056D7D31E96E26800AF6727 /* ItemDetails.swift */; };
+		4056D7D61E96E2BA00AF6727 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4056D7D51E96E2BA00AF6727 /* GoogleService-Info.plist */; };
+		4056D7D81E96E66300AF6727 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4056D7D71E96E66300AF6727 /* Secrets.swift */; };
 		B50E4C0F1E940F3C0004D8F7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C0E1E940F3C0004D8F7 /* TabBarController.swift */; };
 		B50E4C111E940F660004D8F7 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C101E940F660004D8F7 /* ResultsViewController.swift */; };
 		B50E4C131E940F790004D8F7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C121E940F790004D8F7 /* SearchViewController.swift */; };
@@ -16,7 +19,6 @@
 		B50E4C441E942DC20004D8F7 /* EmailSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C431E942DC20004D8F7 /* EmailSignUp.swift */; };
 		B53E9BBC1E953AF00017E3E9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E9BBB1E953AF00017E3E9 /* HomeViewController.swift */; };
 		B53E9BBE1E9546F80017E3E9 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E9BBD1E9546F80017E3E9 /* NavBar.swift */; };
-		B54F1C2A1E96729600360CB3 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F1C291E96729600360CB3 /* Secrets.swift */; };
 		B54F1C2C1E9684F800360CB3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F1C2B1E9684F800360CB3 /* User.swift */; };
 		B54F1C2E1E96863F00360CB3 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F1C2D1E96863F00360CB3 /* DataStore.swift */; };
 		B54F1C301E96A53F00360CB3 /* HorizontalRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F1C2F1E96A53F00360CB3 /* HorizontalRule.swift */; };
@@ -62,6 +64,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4056D7D31E96E26800AF6727 /* ItemDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetails.swift; sourceTree = "<group>"; };
+		4056D7D51E96E2BA00AF6727 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4056D7D71E96E66300AF6727 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		6C97B014205069603AF2B928 /* Pods-MakeUp App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakeUp App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MakeUp App/Pods-MakeUp App.debug.xcconfig"; sourceTree = "<group>"; };
 		A61DC710A697C9092B6EB698 /* Pods_MakeUp_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MakeUp_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B50E4C0E1E940F3C0004D8F7 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -73,7 +78,6 @@
 		B50E4C431E942DC20004D8F7 /* EmailSignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignUp.swift; sourceTree = "<group>"; };
 		B53E9BBB1E953AF00017E3E9 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B53E9BBD1E9546F80017E3E9 /* NavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
-		B54F1C291E96729600360CB3 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		B54F1C2B1E9684F800360CB3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B54F1C2D1E96863F00360CB3 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		B54F1C2F1E96A53F00360CB3 /* HorizontalRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalRule.swift; sourceTree = "<group>"; };
@@ -166,10 +170,10 @@
 			children = (
 				D33B084F1E9537AC0046E986 /* Youtube.swift */,
 				B5D3A5511E959B3600D808B7 /* Product.swift */,
+				4056D7D31E96E26800AF6727 /* ItemDetails.swift */,
 				B5D3A5531E959B5700D808B7 /* MediaItem.swift */,
 				B54F1C2B1E9684F800360CB3 /* User.swift */,
 				B54F1C2D1E96863F00360CB3 /* DataStore.swift */,
-
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -253,8 +257,9 @@
 				D33B08161E93FB650046E986 /* AppDelegate.swift */,
 				D33B08201E93FB650046E986 /* Assets.xcassets */,
 				D33B08221E93FB650046E986 /* LaunchScreen.storyboard */,
+				4056D7D71E96E66300AF6727 /* Secrets.swift */,
+				4056D7D51E96E2BA00AF6727 /* GoogleService-Info.plist */,
 				D33B08251E93FB650046E986 /* Info.plist */,
-				B54F1C291E96729600360CB3 /* Secrets.swift */,
 			);
 			path = "MakeUp App";
 			sourceTree = "<group>";
@@ -348,7 +353,7 @@
 				TargetAttributes = {
 					D33B08121E93FB650046E986 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 56S3PA4JK8;
+						DevelopmentTeam = 3J6EPP8283;
 						ProvisioningStyle = Automatic;
 					};
 					D33B08291E93FB650046E986 = {
@@ -392,6 +397,7 @@
 			files = (
 				D33B08241E93FB650046E986 /* LaunchScreen.storyboard in Resources */,
 				B5D3A5461E9585E800D808B7 /* PlayfairDisplay-BlackItalic.ttf in Resources */,
+				4056D7D61E96E2BA00AF6727 /* GoogleService-Info.plist in Resources */,
 				D33B08211E93FB650046E986 /* Assets.xcassets in Resources */,
 				B5D3A5471E9585E800D808B7 /* PlayfairDisplay-Bold.ttf in Resources */,
 				B5D3A54A1E9585E800D808B7 /* PlayfairDisplay-Regular.ttf in Resources */,
@@ -471,8 +477,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D33B08521E9542D00046E986 /* YoutubeDataStore.swift in Sources */,
-				D33B084A1E9419130046E986 /* Secrets.swift in Sources */,
 				D3DBC65A1E96C80100D0F711 /* ProductDisplayCell.swift in Sources */,
+				4056D7D41E96E26800AF6727 /* ItemDetails.swift in Sources */,
 				D33B08501E9537AC0046E986 /* Youtube.swift in Sources */,
 				D33B084E1E942DCF0046E986 /* YoutubeAPIClient.swift in Sources */,
 				B50E4C181E9411EF0004D8F7 /* Fonts.swift in Sources */,
@@ -481,6 +487,7 @@
 				B5D3A54D1E958ADF00D808B7 /* ProductViewCell.swift in Sources */,
 				B50E4C161E9410660004D8F7 /* Colors.swift in Sources */,
 				B5D3A54F1E9596FA00D808B7 /* MediaCollectionView.swift in Sources */,
+				4056D7D81E96E66300AF6727 /* Secrets.swift in Sources */,
 				B50E4C0F1E940F3C0004D8F7 /* TabBarController.swift in Sources */,
 				B53E9BBC1E953AF00017E3E9 /* HomeViewController.swift in Sources */,
 				B5D3A5561E95A56300D808B7 /* MediaViewCell.swift in Sources */,
@@ -636,10 +643,10 @@
 			baseConfigurationReference = 6C97B014205069603AF2B928 /* Pods-MakeUp App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 56S3PA4JK8;
+				DEVELOPMENT_TEAM = 3J6EPP8283;
 				INFOPLIST_FILE = "MakeUp App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "rrahmey-aol.com.MakeUp-App";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ItemScanner.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -650,10 +657,10 @@
 			baseConfigurationReference = BDFBEC101FECBE8E53105C3A /* Pods-MakeUp App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 56S3PA4JK8;
+				DEVELOPMENT_TEAM = 3J6EPP8283;
 				INFOPLIST_FILE = "MakeUp App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "rrahmey-aol.com.MakeUp-App";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ItemScanner.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
