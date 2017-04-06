@@ -9,66 +9,115 @@
 import UIKit
 
 
-class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ResultsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     let store = YoutubeDataStore.sharedInstance
-    let reviewVideoTableView = UITableView()
-    let thumbnailImage = UIImageView()
-    var image = UIImage() {
-        didSet {
-            thumbnailImage.image = self.image
-        }
-    }
-//    let tutorialVideoTableView = UITableView()
+    
+    let youtubeReviewLabel = UILabel()
+    let youtubeReviewVideos = MediaCollectionView(frame: CGRect.zero)
+    
+    let youtubeTutorialLabel = UILabel()
+    let youtubeTutorialVideos = MediaCollectionView(frame: CGRect.zero)
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        reviewVideoTableView.delegate = self
-        reviewVideoTableView.dataSource = self
-//        tutorialVideoTableView.delegate = self
-//        tutorialVideoTableView.dataSource = self
-        view.backgroundColor = UIColor.green
-       
+        view.backgroundColor = Palette.white.color
+        navBar(title: "Results", leftButton:  nil, rightButton: nil)
+       setUpLabels()
+        
+        setUpCollectionViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setUpView()
         super.viewWillAppear(animated)
-        YoutubeAPIClient.getYoutubeThumbnailImage(with: "https://i.ytimg.com/vi/zqwurtVUOME/hqdefault.jpg") { (productImage) in
-            DispatchQueue.main.async {
-                self.image = productImage
-            }
+
+        
+    }
+    
+    
+    func setUpLabels() {
+        
+        youtubeTutorialLabel.text = "Tutorials"
+        youtubeTutorialLabel.textColor = Palette.darkGrey.color
+        youtubeTutorialLabel.font = Fonts.Playfair(withStyle: .italic, sizeLiteral: 30)
+        youtubeTutorialLabel.textAlignment = .left
+        
+        youtubeReviewLabel.text = "Reviews"
+        youtubeReviewLabel.textColor = Palette.darkGrey.color
+        youtubeReviewLabel.font = Fonts.Playfair(withStyle: .italic, sizeLiteral: 30)
+        youtubeReviewLabel.textAlignment = .left
+        
+        view.addSubview(youtubeTutorialLabel)
+        view.addSubview(youtubeReviewLabel)
+        view.addSubview(youtubeReviewVideos)
+        view.addSubview(youtubeTutorialVideos)
+        
+        youtubeTutorialLabel.translatesAutoresizingMaskIntoConstraints = false
+        youtubeTutorialLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
+        youtubeTutorialLabel.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        youtubeTutorialLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
+        youtubeTutorialLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1)
+        
+        youtubeReviewLabel.translatesAutoresizingMaskIntoConstraints = false
+        youtubeReviewLabel.topAnchor.constraint(equalTo: youtubeTutorialVideos.bottomAnchor).isActive = true
+        youtubeReviewLabel.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        youtubeReviewLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
+        youtubeReviewLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
+    }
+    
+    func setUpCollectionViews() {
+       youtubeTutorialVideos.register(YoutubePreviewCell.self, forCellWithReuseIdentifier: "tutorialCell")
+        youtubeReviewVideos.register(YoutubePreviewCell.self, forCellWithReuseIdentifier: "reviewCell")
+        
+        youtubeReviewVideos.delegate = self
+        youtubeReviewVideos.dataSource = self
+        
+        youtubeTutorialVideos.delegate = self
+        youtubeTutorialVideos.dataSource = self 
+        
+        youtubeTutorialVideos.translatesAutoresizingMaskIntoConstraints = false
+        youtubeTutorialVideos.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        youtubeTutorialVideos.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2).isActive = true
+        youtubeTutorialVideos.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        youtubeTutorialVideos.topAnchor.constraint(equalTo: youtubeTutorialLabel.bottomAnchor).isActive = true
+        
+        youtubeReviewVideos.translatesAutoresizingMaskIntoConstraints = false
+        youtubeReviewVideos.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        youtubeReviewVideos.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2).isActive = true
+        youtubeReviewVideos.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        youtubeReviewVideos.topAnchor.constraint(equalTo: youtubeReviewLabel.bottomAnchor).isActive = true
+        
+    }
+    
+    //Mark: COLLECTION VIEW METHODS
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch collectionView {
+        case self.youtubeReviewVideos:
+            return store.youtubeReviewVideos.count
             
-        }
-        store.getYouTubeVideos(search: "kat von d tattoo liner", videoType: .review) {
-            DispatchQueue.main.async {
-                self.reviewVideoTableView.reloadData()
-            }
+        default:
+            return store.youtubeTutorialVideos.count
         }
     }
     
-    
-    func setUpView() {
-        reviewVideoTableView.frame = CGRect(x: 0, y: 50, width: view.frame.width, height: (view.frame.height/2))
-        reviewVideoTableView.backgroundColor = UIColor.blue
-        reviewVideoTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        thumbnailImage.frame = CGRect(x: 0, y: 350, width: view.frame.width, height: (view.frame.height/2))
-        view.addSubview(reviewVideoTableView)
-        view.addSubview(thumbnailImage)
-
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch collectionView {
+        case self.youtubeReviewVideos:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reviewCell", for: indexPath) as! YoutubePreviewCell
+            cell.backgroundColor = Palette.white.color
+            cell.youTube = store.youtubeReviewVideos[indexPath.item]
+            return cell
+        default:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tutorialCell", for: indexPath) as! YoutubePreviewCell
+            cell.youTube = store.youtubeTutorialVideos[indexPath.item]
+            return cell
+        }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return store.youtubeReviewVideos.count
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 300, height: collectionView.frame.height)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let reviewVideo = store.youtubeReviewVideos[indexPath.row]
-        cell.textLabel?.text = reviewVideo.title
-        return cell
-    }
     
-
 }

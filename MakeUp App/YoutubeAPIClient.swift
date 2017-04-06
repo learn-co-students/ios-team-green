@@ -33,7 +33,6 @@ final class YoutubeAPIClient {
     
     class func getYoutubeThumbnailImage(with imageUrlString: String, completion: @escaping (UIImage)-> ()) {
         Alamofire.request(imageUrlString, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).validate().responseJSON { (response) in
-            print("reached api client for image")
             if let data = response.data {
                 if let image = UIImage(data: data) {
                     completion(image)

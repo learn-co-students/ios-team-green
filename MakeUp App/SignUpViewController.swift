@@ -10,6 +10,10 @@ import UIKit
 
 class SignUpViewController: UIViewController {
     
+    
+    //testing 
+    let store = YoutubeDataStore.sharedInstance
+    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Contour"
@@ -43,8 +47,14 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         setupComponents()
-        //FOR TESTING 
-        //present(ResultsViewController(), animated: true, completion: nil)
+        store.getYouTubeVideos(search: "kat von d tattoo liner", videoType: .review) {
+            print("completed")
+            print(self.store.youtubeReviewVideos)
+        }
+        store.getYouTubeVideos(search: "kat von d tattoo liner", videoType: .tutorial) { 
+            print("tutorial completed")
+        }
+        
     }
 
 

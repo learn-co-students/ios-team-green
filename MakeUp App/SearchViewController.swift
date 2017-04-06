@@ -14,6 +14,8 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
         print("search view")
+        
+        navigationController?.present(UINavigationController(rootViewController: ResultsViewController()), animated: true, completion: nil)
     }
 
 }
