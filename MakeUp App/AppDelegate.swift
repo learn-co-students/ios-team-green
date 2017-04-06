@@ -20,15 +20,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         let initialView = user == nil ? SignUpViewController() : TabBarController()
-        let navViewController = UINavigationController()
+        let navViewController = UINavigationController(rootViewController: initialView)
+        
+        setupWindow(with:navViewController)
         
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: Fonts.Playfair(withStyle: .black, sizeLiteral: 16), NSForegroundColorAttributeName: Palette.black.color], for: .normal)
         
         UIApplication.shared.statusBarStyle = .lightContent
         
-        navViewController.viewControllers.append(initialView)
-        setupWindow(with:navViewController)
+       
 
         return true
     }

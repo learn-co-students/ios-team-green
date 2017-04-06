@@ -29,7 +29,9 @@ class ProductViewCell: UICollectionViewCell {
     }
     
     func setUpCell() {
-        //
+        titleView.text = product?.title
+        imageView.image = product?.image
+
     }
     
     func setupConstraints() {
@@ -37,7 +39,7 @@ class ProductViewCell: UICollectionViewCell {
         titleView.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 16)
         titleView.numberOfLines = 0
         titleView.textAlignment = .left
-        titleView.text = "Diorshow Mascara"
+        titleView.text = "No Title"
         titleView.textColor = Palette.darkGrey.color
         
         let items = [heartImage, imageView]
