@@ -16,7 +16,7 @@ class MediaViewCell: UICollectionViewCell {
     var imageView = UIImageView()
     var titleView = UILabel()
     
-    var product: MediaItem? {
+    var mediaItem: MediaItem? {
         didSet {
             setUpCell()
         }
@@ -29,7 +29,8 @@ class MediaViewCell: UICollectionViewCell {
     }
     
     func setUpCell() {
-        //
+        titleView.text = mediaItem?.title
+        imageView.image = mediaItem?.image
     }
     
     func setupConstraints() {
@@ -37,7 +38,7 @@ class MediaViewCell: UICollectionViewCell {
         titleView.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 16)
         titleView.numberOfLines = 0
         titleView.textAlignment = .left
-        titleView.text = "These Lashes Are Smoky AF"
+        titleView.text = "No Title"
         titleView.textColor = Palette.darkGrey.color
         
         let items = [heartImage, imageView]

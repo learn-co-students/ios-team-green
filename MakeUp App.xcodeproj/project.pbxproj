@@ -16,6 +16,10 @@
 		B50E4C441E942DC20004D8F7 /* EmailSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C431E942DC20004D8F7 /* EmailSignUp.swift */; };
 		B53E9BBC1E953AF00017E3E9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E9BBB1E953AF00017E3E9 /* HomeViewController.swift */; };
 		B53E9BBE1E9546F80017E3E9 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E9BBD1E9546F80017E3E9 /* NavBar.swift */; };
+		B54F1C2A1E96729600360CB3 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F1C291E96729600360CB3 /* Secrets.swift */; };
+		B54F1C2C1E9684F800360CB3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F1C2B1E9684F800360CB3 /* User.swift */; };
+		B54F1C2E1E96863F00360CB3 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F1C2D1E96863F00360CB3 /* DataStore.swift */; };
+		B54F1C301E96A53F00360CB3 /* HorizontalRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F1C2F1E96A53F00360CB3 /* HorizontalRule.swift */; };
 		B5D3A5451E9585E800D808B7 /* PlayfairDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5D3A53F1E9585E800D808B7 /* PlayfairDisplay-Black.ttf */; };
 		B5D3A5461E9585E800D808B7 /* PlayfairDisplay-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5D3A5401E9585E800D808B7 /* PlayfairDisplay-BlackItalic.ttf */; };
 		B5D3A5471E9585E800D808B7 /* PlayfairDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5D3A5411E9585E800D808B7 /* PlayfairDisplay-Bold.ttf */; };
@@ -32,7 +36,6 @@
 		D33B08211E93FB650046E986 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D33B08201E93FB650046E986 /* Assets.xcassets */; };
 		D33B08241E93FB650046E986 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33B08221E93FB650046E986 /* LaunchScreen.storyboard */; };
 		D33B083A1E93FB650046E986 /* MakeUp_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08391E93FB650046E986 /* MakeUp_AppUITests.swift */; };
-		D33B084A1E9419130046E986 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08491E9419130046E986 /* Secrets.swift */; };
 		D33B084E1E942DCF0046E986 /* YoutubeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */; };
 		D33B08501E9537AC0046E986 /* Youtube.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B084F1E9537AC0046E986 /* Youtube.swift */; };
 		D33B08521E9542D00046E986 /* YoutubeDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08511E9542D00046E986 /* YoutubeDataStore.swift */; };
@@ -70,6 +73,10 @@
 		B50E4C431E942DC20004D8F7 /* EmailSignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignUp.swift; sourceTree = "<group>"; };
 		B53E9BBB1E953AF00017E3E9 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B53E9BBD1E9546F80017E3E9 /* NavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
+		B54F1C291E96729600360CB3 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		B54F1C2B1E9684F800360CB3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B54F1C2D1E96863F00360CB3 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		B54F1C2F1E96A53F00360CB3 /* HorizontalRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalRule.swift; sourceTree = "<group>"; };
 		B5D3A53F1E9585E800D808B7 /* PlayfairDisplay-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-Black.ttf"; sourceTree = "<group>"; };
 		B5D3A5401E9585E800D808B7 /* PlayfairDisplay-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-BlackItalic.ttf"; sourceTree = "<group>"; };
 		B5D3A5411E9585E800D808B7 /* PlayfairDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-Bold.ttf"; sourceTree = "<group>"; };
@@ -93,7 +100,6 @@
 		D33B08351E93FB650046E986 /* MakeUp AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MakeUp AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33B08391E93FB650046E986 /* MakeUp_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeUp_AppUITests.swift; sourceTree = "<group>"; };
 		D33B083B1E93FB650046E986 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D33B08491E9419130046E986 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeAPIClient.swift; sourceTree = "<group>"; };
 		D33B084F1E9537AC0046E986 /* Youtube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Youtube.swift; sourceTree = "<group>"; };
 		D33B08511E9542D00046E986 /* YoutubeDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeDataStore.swift; sourceTree = "<group>"; };
@@ -161,6 +167,9 @@
 				D33B084F1E9537AC0046E986 /* Youtube.swift */,
 				B5D3A5511E959B3600D808B7 /* Product.swift */,
 				B5D3A5531E959B5700D808B7 /* MediaItem.swift */,
+				B54F1C2B1E9684F800360CB3 /* User.swift */,
+				B54F1C2D1E96863F00360CB3 /* DataStore.swift */,
+
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -187,6 +196,7 @@
 				B50E4C3F1E94270C0004D8F7 /* SignInButton.swift */,
 				B53E9BBD1E9546F80017E3E9 /* NavBar.swift */,
 				B5D3A54E1E9596FA00D808B7 /* MediaCollectionView.swift */,
+				B54F1C2F1E96A53F00360CB3 /* HorizontalRule.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -244,7 +254,7 @@
 				D33B08201E93FB650046E986 /* Assets.xcassets */,
 				D33B08221E93FB650046E986 /* LaunchScreen.storyboard */,
 				D33B08251E93FB650046E986 /* Info.plist */,
-				D33B08491E9419130046E986 /* Secrets.swift */,
+				B54F1C291E96729600360CB3 /* Secrets.swift */,
 			);
 			path = "MakeUp App";
 			sourceTree = "<group>";
@@ -476,12 +486,15 @@
 				B5D3A5561E95A56300D808B7 /* MediaViewCell.swift in Sources */,
 				B50E4C111E940F660004D8F7 /* ResultsViewController.swift in Sources */,
 				B53E9BBE1E9546F80017E3E9 /* NavBar.swift in Sources */,
+				B54F1C2E1E96863F00360CB3 /* DataStore.swift in Sources */,
 				B50E4C401E94270C0004D8F7 /* SignInButton.swift in Sources */,
 				D32E5F491E96885D0025D613 /* YoutubePreviewCell.swift in Sources */,
+				B54F1C301E96A53F00360CB3 /* HorizontalRule.swift in Sources */,
 				D33B08171E93FB650046E986 /* AppDelegate.swift in Sources */,
 				D39C583E1E95898C0078298B /* SignUpViewController.swift in Sources */,
 				B50E4C441E942DC20004D8F7 /* EmailSignUp.swift in Sources */,
 				B5D3A5521E959B3600D808B7 /* Product.swift in Sources */,
+				B54F1C2C1E9684F800360CB3 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
