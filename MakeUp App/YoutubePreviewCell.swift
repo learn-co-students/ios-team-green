@@ -55,9 +55,6 @@ class YoutubePreviewCell:UICollectionViewCell {
         
         imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
         imageView.leftAnchor.constraint(equalTo: heartImage.rightAnchor, constant: 10).isActive = true
-        //imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        //imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8).isActive = true
-        //imageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.8).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 90).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 120).isActive = true
         

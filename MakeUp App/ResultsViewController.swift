@@ -16,6 +16,8 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
     let youtubeReviewLabel = UILabel()
     let youtubeReviewVideos = MediaCollectionView(frame: CGRect.zero)
     
+    let productDisplay = ProductDisplayCell()
+    
     let youtubeTutorialLabel = UILabel()
     let youtubeTutorialVideos = MediaCollectionView(frame: CGRect.zero)
     
@@ -23,7 +25,7 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
-        navBar(title: "Results", leftButton:  nil, rightButton: nil)
+        navBar(title: "Results", leftButton:  .back, rightButton: .favorite)
        setUpLabels()
         
         setUpCollectionViews()
@@ -38,6 +40,14 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     func setUpLabels() {
         
+        view.addSubview(youtubeTutorialLabel)
+        view.addSubview(youtubeReviewLabel)
+        view.addSubview(youtubeReviewVideos)
+        view.addSubview(youtubeTutorialVideos)
+        view.addSubview(productDisplay)
+        
+        
+        
         youtubeTutorialLabel.text = "Tutorials"
         youtubeTutorialLabel.textColor = Palette.darkGrey.color
         youtubeTutorialLabel.font = Fonts.Playfair(withStyle: .italic, sizeLiteral: 30)
@@ -48,13 +58,9 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
         youtubeReviewLabel.font = Fonts.Playfair(withStyle: .italic, sizeLiteral: 30)
         youtubeReviewLabel.textAlignment = .left
         
-        view.addSubview(youtubeTutorialLabel)
-        view.addSubview(youtubeReviewLabel)
-        view.addSubview(youtubeReviewVideos)
-        view.addSubview(youtubeTutorialVideos)
         
         youtubeTutorialLabel.translatesAutoresizingMaskIntoConstraints = false
-        youtubeTutorialLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
+        youtubeTutorialLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
         youtubeTutorialLabel.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         youtubeTutorialLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
         youtubeTutorialLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1)
@@ -74,7 +80,13 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
         youtubeReviewVideos.dataSource = self
         
         youtubeTutorialVideos.delegate = self
-        youtubeTutorialVideos.dataSource = self 
+        youtubeTutorialVideos.dataSource = self
+        
+        productDisplay.translatesAutoresizingMaskIntoConstraints = false
+        productDisplay.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
+        productDisplay.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        productDisplay.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        productDisplay.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2).isActive = true
         
         youtubeTutorialVideos.translatesAutoresizingMaskIntoConstraints = false
         youtubeTutorialVideos.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true

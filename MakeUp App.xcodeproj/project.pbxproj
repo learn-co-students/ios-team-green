@@ -16,7 +16,6 @@
 		B50E4C441E942DC20004D8F7 /* EmailSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C431E942DC20004D8F7 /* EmailSignUp.swift */; };
 		B53E9BBC1E953AF00017E3E9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E9BBB1E953AF00017E3E9 /* HomeViewController.swift */; };
 		B53E9BBE1E9546F80017E3E9 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E9BBD1E9546F80017E3E9 /* NavBar.swift */; };
-		B54F1C2A1E96729600360CB3 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F1C291E96729600360CB3 /* Secrets.swift */; };
 		B54F1C2C1E9684F800360CB3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F1C2B1E9684F800360CB3 /* User.swift */; };
 		B54F1C2E1E96863F00360CB3 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F1C2D1E96863F00360CB3 /* DataStore.swift */; };
 		B54F1C301E96A53F00360CB3 /* HorizontalRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F1C2F1E96A53F00360CB3 /* HorizontalRule.swift */; };
@@ -40,6 +39,8 @@
 		D33B08501E9537AC0046E986 /* Youtube.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B084F1E9537AC0046E986 /* Youtube.swift */; };
 		D33B08521E9542D00046E986 /* YoutubeDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08511E9542D00046E986 /* YoutubeDataStore.swift */; };
 		D39C583E1E95898C0078298B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08181E93FB650046E986 /* SignUpViewController.swift */; };
+		D3AABBA01E96CD9D00590E96 /* ProductAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AABB9F1E96CD9D00590E96 /* ProductAPIClient.swift */; };
+		D3AABBA21E96D12F00590E96 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AABBA11E96D12F00590E96 /* Secrets.swift */; };
 		D3DBC65A1E96C80100D0F711 /* ProductDisplayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DBC6591E96C80100D0F711 /* ProductDisplayCell.swift */; };
 		DA9339222F13F5231FCFD54E /* Pods_MakeUp_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A61DC710A697C9092B6EB698 /* Pods_MakeUp_App.framework */; };
 /* End PBXBuildFile section */
@@ -73,7 +74,6 @@
 		B50E4C431E942DC20004D8F7 /* EmailSignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignUp.swift; sourceTree = "<group>"; };
 		B53E9BBB1E953AF00017E3E9 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B53E9BBD1E9546F80017E3E9 /* NavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
-		B54F1C291E96729600360CB3 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		B54F1C2B1E9684F800360CB3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B54F1C2D1E96863F00360CB3 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		B54F1C2F1E96A53F00360CB3 /* HorizontalRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalRule.swift; sourceTree = "<group>"; };
@@ -103,6 +103,8 @@
 		D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeAPIClient.swift; sourceTree = "<group>"; };
 		D33B084F1E9537AC0046E986 /* Youtube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Youtube.swift; sourceTree = "<group>"; };
 		D33B08511E9542D00046E986 /* YoutubeDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeDataStore.swift; sourceTree = "<group>"; };
+		D3AABB9F1E96CD9D00590E96 /* ProductAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductAPIClient.swift; sourceTree = "<group>"; };
+		D3AABBA11E96D12F00590E96 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		D3DBC6591E96C80100D0F711 /* ProductDisplayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDisplayCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,7 +171,6 @@
 				B5D3A5531E959B5700D808B7 /* MediaItem.swift */,
 				B54F1C2B1E9684F800360CB3 /* User.swift */,
 				B54F1C2D1E96863F00360CB3 /* DataStore.swift */,
-
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -254,7 +255,7 @@
 				D33B08201E93FB650046E986 /* Assets.xcassets */,
 				D33B08221E93FB650046E986 /* LaunchScreen.storyboard */,
 				D33B08251E93FB650046E986 /* Info.plist */,
-				B54F1C291E96729600360CB3 /* Secrets.swift */,
+				D3AABBA11E96D12F00590E96 /* Secrets.swift */,
 			);
 			path = "MakeUp App";
 			sourceTree = "<group>";
@@ -273,6 +274,7 @@
 			children = (
 				D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */,
 				D33B08511E9542D00046E986 /* YoutubeDataStore.swift */,
+				D3AABB9F1E96CD9D00590E96 /* ProductAPIClient.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -471,9 +473,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D33B08521E9542D00046E986 /* YoutubeDataStore.swift in Sources */,
-				D33B084A1E9419130046E986 /* Secrets.swift in Sources */,
 				D3DBC65A1E96C80100D0F711 /* ProductDisplayCell.swift in Sources */,
 				D33B08501E9537AC0046E986 /* Youtube.swift in Sources */,
+				D3AABBA01E96CD9D00590E96 /* ProductAPIClient.swift in Sources */,
 				D33B084E1E942DCF0046E986 /* YoutubeAPIClient.swift in Sources */,
 				B50E4C181E9411EF0004D8F7 /* Fonts.swift in Sources */,
 				B50E4C131E940F790004D8F7 /* SearchViewController.swift in Sources */,
@@ -481,6 +483,7 @@
 				B5D3A54D1E958ADF00D808B7 /* ProductViewCell.swift in Sources */,
 				B50E4C161E9410660004D8F7 /* Colors.swift in Sources */,
 				B5D3A54F1E9596FA00D808B7 /* MediaCollectionView.swift in Sources */,
+				D3AABBA21E96D12F00590E96 /* Secrets.swift in Sources */,
 				B50E4C0F1E940F3C0004D8F7 /* TabBarController.swift in Sources */,
 				B53E9BBC1E953AF00017E3E9 /* HomeViewController.swift in Sources */,
 				B5D3A5561E95A56300D808B7 /* MediaViewCell.swift in Sources */,

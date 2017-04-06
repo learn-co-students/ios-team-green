@@ -12,6 +12,8 @@ import UIKit
 struct Product {
     var title: String
     var image: UIImage
+    var imageURL: String
+    var price: Double
     
     init() {
         // Random Product Name Initializer for Testing
@@ -28,6 +30,8 @@ struct Product {
 
         }
         self.image = #imageLiteral(resourceName: "DIORSHOW")
+        self.imageURL = "https://img1.r10.io/PIC/75877290/0/1/250/75877290.jpg"
+        self.price = 20.00
     }
    
 }
