@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let store = YoutubeDataStore.sharedInstance
@@ -69,5 +70,5 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
-    
+
 }

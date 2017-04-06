@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navViewController = UINavigationController()
         
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: Fonts.Playfair(withStyle: .black, sizeLiteral: 16), NSForegroundColorAttributeName: Palette.black.color], for: .normal)
-                
+        
         UIApplication.shared.statusBarStyle = .lightContent
         
         navViewController.viewControllers.append(initialView)

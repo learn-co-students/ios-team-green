@@ -86,7 +86,7 @@ class EmailUpViewController: UIViewController {
         //present tabbarcontroller ...
         print("submitted sign in button")
         let tabBarController = TabBarController()
-        self.navigationController?.present(tabBarController, animated: true, completion: nil)
+        present(tabBarController, animated: true, completion: nil)
     }
 
 }

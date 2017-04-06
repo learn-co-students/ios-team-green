@@ -21,16 +21,16 @@ class SignUpViewController: UIViewController {
     }()
     
     let googleButton: UIButton = {
-        return SignInButton(image: #imageLiteral(resourceName: "Google"), text: "   Google Sign In")
+        return SignInButton(image: #imageLiteral(resourceName: "Google"), text: "\tGoogle Sign In")
     }()
     
     let facebookButtton: UIButton = {
-       return SignInButton(image: #imageLiteral(resourceName: "Facebook"), text: "  Facebook Sign In")
+       return SignInButton(image: #imageLiteral(resourceName: "Facebook"), text: "\tFacebook Sign In")
    
     }()
     
     let emailButton: UIButton = {
-        return SignInButton(image: #imageLiteral(resourceName: "Message"), text: "   Email Sign In")
+        return SignInButton(image: #imageLiteral(resourceName: "Message"), text: "\tEmail Sign In")
     }()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,7 +43,8 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         setupComponents()
-        present(ResultsViewController(), animated: true, completion: nil)
+        //FOR TESTING 
+        //present(ResultsViewController(), animated: true, completion: nil)
     }
 
 
