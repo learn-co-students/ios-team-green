@@ -15,7 +15,7 @@ class YoutubePreviewCell:UICollectionViewCell {
     var heartImage = UIImageView()
     var imageView = UIImageView()
     var titleView = UILabel()
-    var youTube: YoutubeModel? {
+    var youtube: Youtube? {
         didSet {
             setUpCell()
         }
@@ -29,14 +29,15 @@ class YoutubePreviewCell:UICollectionViewCell {
     }
     
     func setUpCell() {
-        YoutubeAPIClient.getYoutubeThumbnailImage(with: (youTube?.thumbnailURL)!) { (thumbnailImage) in
+        guard let youtube = youtube else { print("could not get youtube"); return }
+        ImageAPIClient.getProductImage(with: (youtube.thumbnailURL)) { (thumbnailImage) in
             DispatchQueue.main.async {
                 self.imageView.image = thumbnailImage
                 self.imageView.sizeToFit()
         
             }
         }
-        titleView.text = youTube?.title
+        titleView.text = youtube.title
     }
 
     func setupConstraints() {
@@ -47,7 +48,7 @@ class YoutubePreviewCell:UICollectionViewCell {
         }
         
         titleView.textAlignment = .left
-        titleView.text = youTube?.title
+        titleView.text = youtube?.title
         titleView.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 15)
         titleView.textColor = Palette.darkGrey.color
         titleView.numberOfLines = 0

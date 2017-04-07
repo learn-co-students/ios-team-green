@@ -9,30 +9,29 @@
 import Foundation
 import UIKit
 
-class ProductDisplayCell: UIView {
+class ProductDisplayView: UIView {
     
     var imageView = UIImageView()
     var productTitle = UILabel()
-    var productPrice = UILabel()
     var heartImage = UIImageView()
-    var product = Product()
-//        didSet{
-//            setUpView()
-//        }
+    var product: Product? {
+        didSet{
+            setUpView()
+        }
+    }
 
-    
+    let resultStore = ResultStore.sharedInstance
     
     
     override init(frame:CGRect) {
         super.init(frame: frame)
         self.backgroundColor = Palette.white.color
-        print("the product is ", product.imageURL)
-        setUpView()
         setupConstraints()
     }
     
     func setUpView() {
-        ProductAPIClient.getProductImage(with: (product.imageURL)) { (productImage) in
+        guard let product = product else { print("could not get product"); return }
+        ImageAPIClient.getProductImage(with: (product.imageURL)) { (productImage) in
             print("i have suucessfully come back from the internet")
             DispatchQueue.main.async {
                 self.imageView.image = productImage
@@ -42,12 +41,13 @@ class ProductDisplayCell: UIView {
     }
     
     func setupConstraints() {
+        guard let product = product else { print("could not get product"); return }
         let imageItems = [imageView, heartImage]
         imageItems.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview($0)
         }
-        let labelItems = [productPrice, productTitle]
+        let labelItems = [productTitle]
         labelItems.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview($0)
@@ -59,12 +59,6 @@ class ProductDisplayCell: UIView {
         productTitle.textColor = Palette.black.color
         productTitle.numberOfLines = 0
         
-        productPrice.text = "$" + String(product.price)
-        productPrice.textAlignment = .left
-        productPrice.font = Fonts.Playfair(withStyle: .regular, sizeLiteral: 15)
-        productPrice.textColor = Palette.darkGrey.color
-        productPrice.numberOfLines = 0
-        
         imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         imageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
         imageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8).isActive = true
@@ -74,9 +68,6 @@ class ProductDisplayCell: UIView {
         productTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
         productTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
         
-        productPrice.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 20).isActive = true
-        productPrice.topAnchor.constraint(equalTo: productTitle.bottomAnchor, constant: 10).isActive = true
-        productPrice.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true 
         
         
         

@@ -9,12 +9,14 @@
 import Foundation
 
 
-final class YoutubeDataStore {
-    static let sharedInstance = YoutubeDataStore()
+final class ResultStore {
+    static let sharedInstance = ResultStore()
     private init() {}
     
-    var youtubeReviewVideos:[YoutubeModel] = []
-    var youtubeTutorialVideos:[YoutubeModel] = []
+    var youtubeReviewVideos:[Youtube] = []
+    var youtubeTutorialVideos:[Youtube] = []
+    var product: Product?
+
     
     
     func getYouTubeVideos(search: String, videoType: YoutubeSearch, completion: @escaping () -> ()) {
@@ -22,14 +24,14 @@ final class YoutubeDataStore {
             if typeString == "review" {
                 self.youtubeReviewVideos.removeAll()
                 for video in youtubeVideosDictionary {
-                    let youtubeVideo = YoutubeModel(dictionary: video, videoType: typeString)
+                    let youtubeVideo = Youtube(dictionary: video, videoType: typeString)
                     self.youtubeReviewVideos.append(youtubeVideo)
                 }
                 completion()
             } else {
                self.youtubeTutorialVideos.removeAll()
                 for video in youtubeVideosDictionary {
-                    let youtubeVideo = YoutubeModel(dictionary: video, videoType: typeString)
+                    let youtubeVideo = Youtube(dictionary: video, videoType: typeString)
                     self.youtubeTutorialVideos.append(youtubeVideo)
                 }
                 completion()

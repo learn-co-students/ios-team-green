@@ -16,7 +16,7 @@ class MediaViewCell: UICollectionViewCell {
     var imageView = UIImageView()
     var titleView = UILabel()
     
-    var mediaItem: MediaItem? {
+    var youtube: Youtube? {
         didSet {
             setUpCell()
         }
@@ -29,8 +29,13 @@ class MediaViewCell: UICollectionViewCell {
     }
     
     func setUpCell() {
-        titleView.text = mediaItem?.title
-        imageView.image = mediaItem?.image
+        guard let youtube = youtube else {print("could not get youtube"); return}
+        titleView.text = youtube.title
+        ImageAPIClient.getProductImage(with: youtube.thumbnailURL) { (image) in
+            DispatchQueue.main.async {
+                self.imageView.image = image
+            }
+        }
     }
     
     func setupConstraints() {
@@ -47,7 +52,6 @@ class MediaViewCell: UICollectionViewCell {
             self.contentView.addSubview($0)
         }
 
-        imageView.image = #imageLiteral(resourceName: "REVIEW")
         imageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8).isActive = true

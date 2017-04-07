@@ -11,7 +11,7 @@ import SwiftyJSON
 
 
 
-class YoutubeModel {
+class Youtube {
     var eTag:String
     var videoID:String
     var channelID:String

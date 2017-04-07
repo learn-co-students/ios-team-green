@@ -11,9 +11,6 @@ import UIKit
 class SignUpViewController: UIViewController {
     
     
-    //testing 
-    let store = YoutubeDataStore.sharedInstance
-    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Contour"

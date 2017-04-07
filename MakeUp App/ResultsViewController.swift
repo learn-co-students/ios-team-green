@@ -11,13 +11,12 @@ import UIKit
 
 class ResultsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    let store = YoutubeDataStore.sharedInstance
-    let dataStore = DataStore.sharedInstance
-    
+    let resultStore = ResultStore.sharedInstance
+
     let youtubeReviewLabel = UILabel()
     let youtubeReviewVideos = MediaCollectionView(frame: CGRect.zero)
     
-    let productDisplay = ProductDisplayCell()
+    let productDisplay = ProductDisplayView()
     
     let youtubeTutorialLabel = UILabel()
     let youtubeTutorialVideos = MediaCollectionView(frame: CGRect.zero)
@@ -27,15 +26,15 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
         view.backgroundColor = Palette.white.color
         navBar(title: "Results", leftButton: .back, rightButton: .favorite)
         
-        if let itemTitle = dataStore.searchedItem?.title {
-            self.store.getYouTubeVideos(search: itemTitle, videoType: .review) {
+        if let itemTitle = resultStore.product?.title {
+            self.resultStore.getYouTubeVideos(search: itemTitle, videoType: .review) {
                 DispatchQueue.main.async {
                     print("review videos fetched")
                     self.youtubeReviewVideos.reloadData()
                 }
                 
             }
-            self.store.getYouTubeVideos(search: itemTitle, videoType: .tutorial) {
+            self.resultStore.getYouTubeVideos(search: itemTitle, videoType: .tutorial) {
                 DispatchQueue.main.async {
                     print("tutorial videos fetched")
                     self.youtubeTutorialVideos.reloadData()
@@ -53,7 +52,6 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("results video store.youtubeReviewVideos.count", store.youtubeReviewVideos.count)
     }
     
     
@@ -122,10 +120,10 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case self.youtubeReviewVideos:
-            return store.youtubeReviewVideos.count
+            return resultStore.youtubeReviewVideos.count
             
         default:
-            return store.youtubeTutorialVideos.count
+            return resultStore.youtubeTutorialVideos.count
         }
     }
     
@@ -134,11 +132,11 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
         case self.youtubeReviewVideos:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reviewCell", for: indexPath) as! YoutubePreviewCell
             cell.backgroundColor = Palette.white.color
-            cell.youTube = store.youtubeReviewVideos[indexPath.item]
+            cell.youtube = resultStore.youtubeReviewVideos[indexPath.item]
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tutorialCell", for: indexPath) as! YoutubePreviewCell
-            cell.youTube = store.youtubeTutorialVideos[indexPath.item]
+            cell.youtube = resultStore.youtubeTutorialVideos[indexPath.item]
             return cell
         }
     }

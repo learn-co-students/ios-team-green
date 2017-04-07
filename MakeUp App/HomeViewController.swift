@@ -16,7 +16,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var myProductsSearch = UITextField()
     var horizontalRuleMyProducts = HorizontalRule()
 
-    var allProducts = UserData.shared.dataStore.myProducts
+    var allProducts = UserStore.sharedInstance.myProducts
     var displayProducts = [Product]()
     
     var myMediaLabel = UILabel()
@@ -24,8 +24,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var myMediaSearch = UITextField()
     var horizontalRuleMyMedia = HorizontalRule()
 
-    var allMedia = UserData.shared.dataStore.myMedia
-    var displayMedia = [MediaItem]()
+    var allMedia = UserStore.sharedInstance.myMedia
+    var displayMedia = [Youtube]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -196,7 +196,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mediaCell", for: indexPath as IndexPath) as! MediaViewCell
-            cell.mediaItem = displayMedia[indexPath.item]
+            cell.youtube = displayMedia[indexPath.item]
             
             return cell
         }

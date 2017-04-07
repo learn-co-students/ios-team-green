@@ -16,11 +16,10 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
     
-    let store = YoutubeDataStore.sharedInstance
-    let dataStore = DataStore.sharedInstance
+    let resultStore = ResultStore.sharedInstance
     
     var finishedSearch = false
-
+    
     
     //for barCodeDetails & DB addition
     var apiData:[String:Any] = [:]
@@ -150,15 +149,14 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                     else if self.finishedSearch == false {
                         self.finishedSearch = true
                         print("about to do a barcode search")
-                        self.barCodeSearch(barCode: metadataObj.stringValue!, completion: { (itemDetails) in
+                        self.barCodeSearch(barCode: metadataObj.stringValue!, completion: { (Product) in
+                            self.resultStore.product = Product
                             DispatchQueue.main.async {
-                                self.dataStore.searchedItem = itemDetails
-                                print("itemdetails title is now", itemDetails.title)
                                 self.navigationController?.pushViewController(ResultsViewController(), animated: true)
                             }
                             
                         }
-                    )}
+                        )}
                     else {
                         print("not searching")
                     }
@@ -168,7 +166,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         }
     }
     
-    func barCodeSearch(barCode:String, completion: @escaping (ItemDetails) -> Void) {
+    func barCodeSearch(barCode:String, completion: @escaping (Product) -> Void) {
         //https://api.upcitemdb.com/prod/trial/lookup?upc=searchText
         print("In barCodeSearch barCode: \(barCode)")
         
@@ -188,14 +186,14 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                     }
                     print("targetdata=\(targetdata[0])")
                     self.apiData = targetdata[0]
-
+                    
                     let ean = self.apiData["ean"] as? String ?? "Invalid EAN"
                     let brand = self.apiData["brand"] as? String ?? "Invalid Brand"
                     self.outPutStr +=  "EAN: " + ean + "\n" +
                         "Brand: " + brand + "\n"
-     
+                    
                     print("self.outPutStr= \(self.outPutStr)")
-                    let itemDet = ItemDetails(dict:self.apiData)
+                    let itemDet = Product(dict:self.apiData)
                     print("itemDet brand=\(itemDet.brand)")
                     self.addToDB(itemDet)
                     completion(itemDet)
@@ -208,7 +206,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     } //func barCodeSearch
     
     //add dictionary item to DB
-    func addToDB(_ itemDet:ItemDetails) {
+    func addToDB(_ itemDet:Product) {
         let itemRef = self.ref.child(itemDet.upc)
         itemRef.setValue(itemDet.toDict())   //convert to desired dict obj
         

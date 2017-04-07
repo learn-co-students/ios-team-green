@@ -1,37 +1,60 @@
 //
-//  Product.swift
-//  MakeUp App
+//  ItemDetails.swift
+//  ItemScanner
 //
-//  Created by Benjamin Bernstein on 4/5/17.
-//  Copyright © 2017 Raquel Rahmey. All rights reserved.
+//  Created by ac on 4/4/17.
+//  Copyright © 2017 amitc. All rights reserved.
 //
 
 import Foundation
-import UIKit
 
-struct Product {
-    var title: String
-    var image: UIImage
-    var imageURL: String
-    var price: Double
+class Product {
+    let upc: String
+    let ean: String
+    let title: String
+    let description: String
+    let brand: String
+    let model: String
+    let color: String
+    let size: String
+    let dimension: String
+    let weight: String
+    let currency: String
+    let imageURL: String
     
-    init() {
-        // Random Product Name Initializer for Testing
-        let randomNumber = arc4random_uniform(3)
-        switch randomNumber {
-        case 1:
-            self.title = "Diorshow Mascara"
-        case 2:
-            self.title = "Naked Palette"
-        case 3:
-            self.title = "Glamglow"
-        default:
-            self.title = "Bobbi Brown Intensive Skin"
-
-        }
-        self.image = #imageLiteral(resourceName: "DIORSHOW")
-        self.imageURL = "https://img1.r10.io/PIC/75877290/0/1/250/75877290.jpg"
-        self.price = 20.00
+    init(dict:[String:Any]) {
+        ean = dict["ean"] as? String ?? ""
+        title = dict["title"] as? String ?? ""
+        description = dict["description"] as? String ?? ""
+        upc = dict["upc"] as? String ?? ""
+        brand = dict["brand"] as? String ?? ""
+        model = dict["model"] as? String ?? ""
+        color = dict["color"] as? String ?? ""
+        size = dict["size"] as? String ?? ""
+        dimension = dict["dimension"] as? String ?? ""
+        weight = dict["weight"] as? String ?? ""
+        currency = dict["currency"] as? String ?? ""
+        imageURL = dict["image"] as? String ?? ""
+        
     }
-   
+    
+    func toDict()->[String:Any] {
+        var dict:[String:Any] = [:]
+
+        dict["ean"] = self.ean
+        dict["title"] = self.title
+        dict["description"] = self.description
+        dict["upc"] = self.upc
+        dict["brand"] = self.brand
+        dict["model"] = self.model
+        dict["color"] = self.color
+        dict["size"] = self.size
+        dict["dimension"] = self.dimension
+        dict["weight"] = self.weight
+        dict["currency"] = self.currency
+        dict["image"] = self.imageURL
+    
+        return dict
+    }
+    
 }

@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class ProductAPIClient {
+class ImageAPIClient {
     
     class func getProductImage(with imageUrlString: String, completion: @escaping (UIImage)-> ()) {
         Alamofire.request(imageUrlString, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).validate().responseJSON { (response) in
@@ -21,6 +21,7 @@ class ProductAPIClient {
         }
         
     }
+    
 
 }
 

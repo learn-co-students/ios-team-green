@@ -29,8 +29,13 @@ class ProductViewCell: UICollectionViewCell {
     }
     
     func setUpCell() {
-        titleView.text = product?.title
-        imageView.image = product?.image
+        guard let product = product else {print("could not get product"); return}
+        titleView.text = product.title
+        ImageAPIClient.getProductImage(with: product.imageURL) { (productImage) in
+            DispatchQueue.main.async {
+                self.imageView.image = productImage
+            }
+        }
 
     }
     
@@ -49,7 +54,6 @@ class ProductViewCell: UICollectionViewCell {
         }
         
        
-        imageView.image = #imageLiteral(resourceName: "DIORSHOW")
         imageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8).isActive = true
