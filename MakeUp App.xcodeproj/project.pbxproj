@@ -43,7 +43,6 @@
 		D33B08521E9542D00046E986 /* YoutubeDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08511E9542D00046E986 /* YoutubeDataStore.swift */; };
 		D39C583E1E95898C0078298B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08181E93FB650046E986 /* SignUpViewController.swift */; };
 		D3AABBA01E96CD9D00590E96 /* ProductAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AABB9F1E96CD9D00590E96 /* ProductAPIClient.swift */; };
-		D3AABBA21E96D12F00590E96 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AABBA11E96D12F00590E96 /* Secrets.swift */; };
 		D3DBC65A1E96C80100D0F711 /* ProductDisplayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DBC6591E96C80100D0F711 /* ProductDisplayCell.swift */; };
 		DA9339222F13F5231FCFD54E /* Pods_MakeUp_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A61DC710A697C9092B6EB698 /* Pods_MakeUp_App.framework */; };
 /* End PBXBuildFile section */
@@ -359,7 +358,7 @@
 				TargetAttributes = {
 					D33B08121E93FB650046E986 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 3J6EPP8283;
+						DevelopmentTeam = R2Y4F8J6CR;
 						ProvisioningStyle = Automatic;
 					};
 					D33B08291E93FB650046E986 = {
@@ -494,7 +493,6 @@
 				B5D3A54D1E958ADF00D808B7 /* ProductViewCell.swift in Sources */,
 				B50E4C161E9410660004D8F7 /* Colors.swift in Sources */,
 				B5D3A54F1E9596FA00D808B7 /* MediaCollectionView.swift in Sources */,
-
 				4056D7D81E96E66300AF6727 /* Secrets.swift in Sources */,
 				B50E4C0F1E940F3C0004D8F7 /* TabBarController.swift in Sources */,
 				B53E9BBC1E953AF00017E3E9 /* HomeViewController.swift in Sources */,
@@ -651,11 +649,13 @@
 			baseConfigurationReference = 6C97B014205069603AF2B928 /* Pods-MakeUp App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3J6EPP8283;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = R2Y4F8J6CR;
 				INFOPLIST_FILE = "MakeUp App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ItemScanner.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ItemScanner3.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -665,11 +665,13 @@
 			baseConfigurationReference = BDFBEC101FECBE8E53105C3A /* Pods-MakeUp App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3J6EPP8283;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = R2Y4F8J6CR;
 				INFOPLIST_FILE = "MakeUp App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ItemScanner.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ItemScanner3.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

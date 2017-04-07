@@ -26,7 +26,7 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
         navBar(title: "Results", leftButton:  .back, rightButton: .favorite)
-       setUpLabels()
+        setUpLabels()
         
         setUpCollectionViews()
     }

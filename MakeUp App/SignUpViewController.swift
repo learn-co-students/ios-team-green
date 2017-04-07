@@ -47,14 +47,7 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         setupComponents()
-        store.getYouTubeVideos(search: "kat von d tattoo liner", videoType: .review) {
-            print("completed")
-            print(self.store.youtubeReviewVideos)
-        }
-        store.getYouTubeVideos(search: "kat von d tattoo liner", videoType: .tutorial) { 
-            print("tutorial completed")
-        }
-        
+     
     }
 
 

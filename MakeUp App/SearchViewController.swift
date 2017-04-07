@@ -10,13 +10,15 @@ import UIKit
 import AVFoundation
 import FirebaseDatabase
 
-
 class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDelegate {
     
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
+    
+    let store = YoutubeDataStore.sharedInstance
 
+    
     //for barCodeDetails & DB addition
     var apiData:[String:Any] = [:]
     var outPutStr = String()
@@ -31,7 +33,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                               AVMetadataObjectTypeEAN13Code,
                               AVMetadataObjectTypeAztecCode,
                               AVMetadataObjectTypePDF417Code /*,
-                              AVMetadataObjectTypeQRCode*/]
+         AVMetadataObjectTypeQRCode*/]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +44,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         print("search view")
         
         let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-
+        
         do {
             // Get an instance of the AVCaptureDeviceInput class using the previous device object.
             let input = try AVCaptureDeviceInput(device: captureDevice)
@@ -90,17 +92,14 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
             print(error)
             return
         }
-
-        
-        /*navigationController?.present(UINavigationController(rootViewController: ResultsViewController()), animated: true, completion: nil) */
         
     } //func viewDidLoad()
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         
         // Check if the metadataObjects array is not nil and it contains at least one object.
@@ -125,26 +124,36 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
             if metadataObj.stringValue != nil {
                 //messageLabel.text = metadataObj.stringValue
                 print("Barcode value:\(metadataObj.stringValue)")
+                
                 //save the last barcode scanned
+                
                 /*if metadataObj.stringValue != lastMessageLabel.text {
-                    
-                    lastMessageLabel.text = "Last code scanned:\(metadataObj.stringValue!)"
-                }*/
+                 
+                 lastMessageLabel.text = "Last code scanned:\(metadataObj.stringValue!)"
+                 }*/
                 
                 searchDB(barCode: metadataObj.stringValue!) { (val) in
                     if val != nil {
                         print("Value found in DB")
                     }
                     else {
-                        self.barCodeSearch(barCode: metadataObj.stringValue!)
-                    }
-                } //searchDB(...
+                        self.barCodeSearch(barCode: metadataObj.stringValue, completion: { (itemDetails) in
+                            self.store.getYouTubeVideos(search: "kat von d tattoo liner", videoType: .review) {
+                                print("completed")
+                                print(self.store.youtubeReviewVideos)
+                            }
+                            self.store.getYouTubeVideos(search: "kat von d tattoo liner", videoType: .tutorial) {
+                                print("tutorial completed")
+                            }
+                        }
+                    )}
+                }
             }
             
         }
-    } // func captureOutput
-
-    func barCodeSearch(barCode:String) {
+    }
+    
+    func barCodeSearch(barCode:String, completion: @escaping (ItemDetails) -> Void) {
         //https://api.upcitemdb.com/prod/trial/lookup?upc=searchText
         print("In barCodeSearch barCode: \(barCode)")
         
@@ -183,6 +192,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                     let itemDet = ItemDetails(dict:self.apiData)
                     print("itemDet brand=\(itemDet.brand)")
                     self.addToDB(itemDet)
+                    completion(itemDet)
                 } catch {  }
             }
             
@@ -209,6 +219,6 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         })
         
     } // func searchDB
-
+    
     
 }
