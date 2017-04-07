@@ -18,7 +18,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     
     let resultStore = ResultStore.sharedInstance
     
-    var finishedSearch = false
+    //var finishedSearch = false
     var lastBarCodevalue:String?
     
     
@@ -41,8 +41,9 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     override func viewWillAppear(_ animated: Bool) {
         print("view appeared at 42")
         super.viewWillAppear(true)
-        finishedSearch = false
-        print("finished search is", finishedSearch)
+        lastBarCodevalue = nil
+        //finishedSearch = false
+        //print("finished search is", finishedSearch)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,8 +157,8 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                             self.navigationController?.pushViewController(ResultsViewController(), animated: true)
                         }
                     }
-                    else if self.finishedSearch == false {
-                        self.finishedSearch = true
+                    else /*if self.finishedSearch == false*/ {
+                        //self.finishedSearch = true
                         print("Searching barcode on internet")
                         self.barCodeSearch(barCode: newBarCodeValue, completion: { (Product) in
                             self.resultStore.product = Product
@@ -167,9 +168,9 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                             
                         }
                         )}
-                    else {
+                    /*else {
                         print("Not searching")
-                    }
+                    }*/
                 }
             } //if let barCodeValue = metadataObj.stringValue
             else {
