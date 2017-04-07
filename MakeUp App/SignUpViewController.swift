@@ -47,7 +47,7 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         setupComponents()
-
+    }
 
     func setupComponents() {
         let components = [googleButton, facebookButtton, emailButton, titleLabel]
@@ -89,6 +89,7 @@ class SignUpViewController: UIViewController {
         let emailSignUpViewController = EmailUpViewController()
         self.navigationController?.pushViewController(emailSignUpViewController, animated: true)  
     }
+
 
 
 }
