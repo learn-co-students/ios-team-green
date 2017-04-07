@@ -29,13 +29,18 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         if let itemTitle = dataStore.searchedItem?.title {
             self.store.getYouTubeVideos(search: itemTitle, videoType: .review) {
-                print("review videos fetched")
-                self.youtubeReviewVideos.reloadData()
+                DispatchQueue.main.async {
+                    print("review videos fetched")
+                    self.youtubeReviewVideos.reloadData()
+                }
                 
             }
             self.store.getYouTubeVideos(search: itemTitle, videoType: .tutorial) {
-                print("tutorial videos fetched")
-                self.youtubeTutorialVideos.reloadData()
+                DispatchQueue.main.async {
+                    print("tutorial videos fetched")
+                    self.youtubeTutorialVideos.reloadData()
+                }
+                
             }
             
         }

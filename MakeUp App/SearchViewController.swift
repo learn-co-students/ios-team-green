@@ -141,6 +141,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                  lastMessageLabel.text = "Last code scanned:\(metadataObj.stringValue!)"
                  }*/
                 
+                //Search Firebase
                 searchDB(barCode: metadataObj.stringValue!) { (val) in
                     if val != nil {
                         print("Value found in DB")
