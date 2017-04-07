@@ -12,23 +12,28 @@ import SwiftyJSON
 
 final class YoutubeAPIClient {
     
-    
     class func searchYoutubeVideos(search: String, type: YoutubeSearch, completion: @escaping ([JSON], String) -> ()) {
         let baseUrl = "https://www.googleapis.com/youtube/v3/search?key=\(Secrets.youTubeKey)&part=snippet&type=video&maxResults=50&q="
         let tutorialSearch = search + type.rawValue
         let validSearch = tutorialSearch.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        guard let searchQuery = validSearch else {print("search could not be converted"); return }
+        
+        //Make max length 50 characters
+        guard var shorterSearch = validSearch else { return }
+        let lowBound = shorterSearch.startIndex
+        let hiBound = shorterSearch.index(shorterSearch.startIndex, offsetBy: 50)
+        let midRange = lowBound ..< hiBound
+        shorterSearch.removeSubrange(midRange)
+        
+        let searchQuery = shorterSearch
         let url = baseUrl + searchQuery
+        print("url", url)
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).validate().responseJSON { (response) in
             if let data = response.data {
                 let json = JSON(data: data)
                 let itemsArray = json["items"].arrayValue
                 completion(itemsArray, type.rawValue)
             }
-            
         }
-        
-        
     }
     
     class func getYoutubeThumbnailImage(with imageUrlString: String, completion: @escaping (UIImage)-> ()) {
@@ -43,7 +48,8 @@ final class YoutubeAPIClient {
     }
     
 }
-enum YoutubeSearch: String{
+
+enum YoutubeSearch: String {
     
     case review, tutorial
     

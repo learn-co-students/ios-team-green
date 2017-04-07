@@ -21,20 +21,17 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
     let youtubeTutorialLabel = UILabel()
     let youtubeTutorialVideos = MediaCollectionView(frame: CGRect.zero)
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
         navBar(title: "Results", leftButton:  .back, rightButton: .favorite)
         setUpLabels()
-        
         setUpCollectionViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        
+        print("results video store.youtubeReviewVideos.count", store.youtubeReviewVideos.count)
     }
     
     
@@ -45,9 +42,7 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
         view.addSubview(youtubeReviewVideos)
         view.addSubview(youtubeTutorialVideos)
         view.addSubview(productDisplay)
-        
-        
-        
+
         youtubeTutorialLabel.text = "Tutorials"
         youtubeTutorialLabel.textColor = Palette.darkGrey.color
         youtubeTutorialLabel.font = Fonts.Playfair(withStyle: .italic, sizeLiteral: 30)
@@ -57,7 +52,6 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
         youtubeReviewLabel.textColor = Palette.darkGrey.color
         youtubeReviewLabel.font = Fonts.Playfair(withStyle: .italic, sizeLiteral: 30)
         youtubeReviewLabel.textAlignment = .left
-        
         
         youtubeTutorialLabel.translatesAutoresizingMaskIntoConstraints = false
         youtubeTutorialLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true

@@ -13,7 +13,7 @@ class ItemDetails {
     let ean:String
     let title:String
     let description:String
-    let brand:String
+    let brand:String?
     let model:String
     let color:String
     let size:String

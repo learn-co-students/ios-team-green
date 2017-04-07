@@ -137,13 +137,13 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                         print("Value found in DB")
                     }
                     else {
-                        self.barCodeSearch(barCode: metadataObj.stringValue, completion: { (itemDetails) in
-                            self.store.getYouTubeVideos(search: "kat von d tattoo liner", videoType: .review) {
-                                print("completed")
-                                print(self.store.youtubeReviewVideos)
+                        self.barCodeSearch(barCode: metadataObj.stringValue!, completion: { (itemDetails) in
+                            self.store.getYouTubeVideos(search: itemDetails.title, videoType: .review) {
+                                print("review videos fetched")
+                                self.navigationController?.present(UINavigationController(rootViewController: ResultsViewController()), animated: true, completion: nil)
                             }
-                            self.store.getYouTubeVideos(search: "kat von d tattoo liner", videoType: .tutorial) {
-                                print("tutorial completed")
+                            self.store.getYouTubeVideos(search: itemDetails.title, videoType: .tutorial) {
+                                print("tutorial videos fetched")
                             }
                         }
                     )}
@@ -173,21 +173,12 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                     }
                     print("targetdata=\(targetdata[0])")
                     self.apiData = targetdata[0]
-                    
-                    //print("EAN=\(self.apiData["ean"])")
-                    //print("Brand=\(self.apiData["brand"])")
+
                     let ean = self.apiData["ean"] as? String ?? "Invalid EAN"
                     let brand = self.apiData["brand"] as? String ?? "Invalid Brand"
                     self.outPutStr +=  "EAN: " + ean + "\n" +
                         "Brand: " + brand + "\n"
-                    //print("EAN=\(ean)")
-                    //print("Brand=\(brand)")
-                    //self.textLabelOutlet.text?.append(ean)
-                    //self.textLabelOutlet.text?.append(brand)
-                    /*DispatchQueue.main.async {
-                     self.textLabelOutlet.text = self.outPutStr
-                     }*/
-                    
+     
                     print("self.outPutStr= \(self.outPutStr)")
                     let itemDet = ItemDetails(dict:self.apiData)
                     print("itemDet brand=\(itemDet.brand)")
@@ -213,8 +204,6 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         
         self.ref.child(barCode).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? [String:Any] //else {print("Cannot convert snapshot to [String:Any]"); return  }
-            print("Value for snapshot= \(value)")
-            
             completion(value)
         })
         
