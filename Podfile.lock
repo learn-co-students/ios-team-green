@@ -30,6 +30,7 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.9)
   - SwiftyJSON (3.1.4)
+  - youtube-ios-player-helper (0.1.6)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - FirebaseAuth
   - FirebaseDatabase
   - SwiftyJSON
+  - youtube-ios-player-helper (~> 0.1.4)
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
@@ -49,7 +51,10 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 7bb81a53acbdae6ffccddbbc697f0e063aedfe8d
+
+PODFILE CHECKSUM: 66219836707fb55dccfb6fa5ed2066c7bacb9033
+
 
 COCOAPODS: 1.2.0
