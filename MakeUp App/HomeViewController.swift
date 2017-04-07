@@ -15,7 +15,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var myProducts = MediaCollectionView(frame: CGRect.zero)
     var myProductsSearch = UITextField()
     var horizontalRuleMyProducts = HorizontalRule()
-
+    
     var allProducts = UserStore.sharedInstance.myProducts
     var displayProducts = [Product]()
     
@@ -23,12 +23,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var myMedia = MediaCollectionView(frame: CGRect.zero)
     var myMediaSearch = UITextField()
     var horizontalRuleMyMedia = HorizontalRule()
-
+    
     var allMedia = UserStore.sharedInstance.myMedia
     var displayMedia = [Youtube]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //testing data takes your last results and puts them as your favorites
         
         displayProducts = allProducts
         displayMedia = allMedia
@@ -39,6 +41,25 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         setupLabels()
         setupCollectionViews()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        makeTestData()
+    }
+    
+    func makeTestData() {
+        guard let product = ResultStore.sharedInstance.product else { print("no product"); return }
+        allProducts.append(product)
+        allMedia = ResultStore.sharedInstance.youtubeReviewVideos // + ResultStore.sharedInstance.youtubeTutorialVideos
+        
+        displayProducts = allProducts
+        displayMedia = allMedia
+        
+        myProducts.reloadData()
+        myMedia.reloadData()
+        
+    }
+    
     
     //MARK: - UI SetUp
     
@@ -81,9 +102,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         horizontalRuleMyProducts.topAnchor.constraint(equalTo: myProductsLabel.bottomAnchor).isActive = true
         horizontalRuleMyProducts.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
         horizontalRuleMyProducts.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-
+        
         // MY MEDIA
-    
+        
         myMediaLabel.text = "My Media"
         myMediaLabel.textColor = Palette.darkGrey.color
         myMediaLabel.font = Fonts.Playfair(withStyle: .italic, sizeLiteral: 30)
@@ -135,6 +156,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     // MARK: - Search Methods
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         var currentSearch = textField.text! as NSString

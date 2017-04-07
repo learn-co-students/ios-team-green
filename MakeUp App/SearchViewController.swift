@@ -189,14 +189,15 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                     
                     let ean = self.apiData["ean"] as? String ?? "Invalid EAN"
                     let brand = self.apiData["brand"] as? String ?? "Invalid Brand"
+                    let imageArray = self.apiData["images"] as? [String] ?? ["No image"]
+                    let image = imageArray[0] as? String ?? "No image"
                     self.outPutStr +=  "EAN: " + ean + "\n" +
                         "Brand: " + brand + "\n"
-                    
-                    print("self.outPutStr= \(self.outPutStr)")
-                    let itemDet = Product(dict:self.apiData)
-                    print("itemDet brand=\(itemDet.brand)")
-                    self.addToDB(itemDet)
-                    completion(itemDet)
+                    self.apiData["image"] = image
+                    print("THE DICITONARY IMAGES IS", self.apiData["images"]!)
+                    let product = Product(dict:self.apiData)
+                    self.addToDB(product)
+                    completion(product)
                 } catch {  }
             }
             

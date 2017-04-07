@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class Product {
     let upc: String
     let ean: String
@@ -52,7 +53,7 @@ class Product {
         dict["dimension"] = self.dimension
         dict["weight"] = self.weight
         dict["currency"] = self.currency
-        dict["image"] = self.imageURL
+        dict["images"] = self.imageURL
     
         return dict
     }
