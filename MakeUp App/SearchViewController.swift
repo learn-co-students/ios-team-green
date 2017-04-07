@@ -140,7 +140,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                         self.barCodeSearch(barCode: metadataObj.stringValue!, completion: { (itemDetails) in
                             self.store.getYouTubeVideos(search: itemDetails.title, videoType: .review) {
                                 print("review videos fetched")
-                                self.navigationController?.present(UINavigationController(rootViewController: ResultsViewController()), animated: true, completion: nil)
+                                self.parent?.present(UINavigationController(rootViewController: ResultsViewController()), animated: true, completion: nil)
                             }
                             self.store.getYouTubeVideos(search: itemDetails.title, videoType: .tutorial) {
                                 print("tutorial videos fetched")

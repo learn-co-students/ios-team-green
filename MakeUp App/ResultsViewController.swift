@@ -24,7 +24,7 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
-        navBar(title: "Results", leftButton:  .back, rightButton: .favorite)
+        navBar(title: "Results", leftButton: nil, rightButton: .favorite)
         setUpLabels()
         setUpCollectionViews()
     }
