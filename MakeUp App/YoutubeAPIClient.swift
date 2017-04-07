@@ -17,12 +17,14 @@ final class YoutubeAPIClient {
         let tutorialSearch = search + type.rawValue
         let validSearch = tutorialSearch.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
-        //Make max length 50 characters
+        //Make max length 70 characters
         guard var shorterSearch = validSearch else { return }
-        let lowBound = shorterSearch.startIndex
-        let hiBound = shorterSearch.index(shorterSearch.startIndex, offsetBy: 50)
-        let midRange = lowBound ..< hiBound
-        shorterSearch.removeSubrange(midRange)
+        if shorterSearch.characters.count > 70 {
+            let lowBound = shorterSearch.startIndex
+            let hiBound = shorterSearch.index(shorterSearch.startIndex, offsetBy: 70)
+            let midRange = lowBound ..< hiBound
+            shorterSearch.removeSubrange(midRange)
+        }
         
         let searchQuery = shorterSearch
         let url = baseUrl + searchQuery

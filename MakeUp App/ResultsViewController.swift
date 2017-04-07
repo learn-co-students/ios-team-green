@@ -12,6 +12,7 @@ import UIKit
 class ResultsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     let store = YoutubeDataStore.sharedInstance
+    let dataStore = DataStore.sharedInstance
     
     let youtubeReviewLabel = UILabel()
     let youtubeReviewVideos = MediaCollectionView(frame: CGRect.zero)
@@ -24,7 +25,23 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
-        navBar(title: "Results", leftButton: nil, rightButton: .favorite)
+        navBar(title: "Results", leftButton: .back, rightButton: .favorite)
+        
+        if let itemTitle = dataStore.searchedItem?.title {
+            self.store.getYouTubeVideos(search: itemTitle, videoType: .review) {
+                print("review videos fetched")
+                self.youtubeReviewVideos.reloadData()
+                
+            }
+            self.store.getYouTubeVideos(search: itemTitle, videoType: .tutorial) {
+                print("tutorial videos fetched")
+                self.youtubeTutorialVideos.reloadData()
+            }
+            
+        }
+      
+        
+        
         setUpLabels()
         setUpCollectionViews()
     }

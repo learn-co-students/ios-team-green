@@ -17,6 +17,9 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     var qrCodeFrameView:UIView?
     
     let store = YoutubeDataStore.sharedInstance
+    let dataStore = DataStore.sharedInstance
+    
+    var finishedSearch = false
 
     
     //for barCodeDetails & DB addition
@@ -35,6 +38,12 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                               AVMetadataObjectTypePDF417Code /*,
          AVMetadataObjectTypeQRCode*/]
     
+    override func viewWillAppear(_ animated: Bool) {
+        print("view appeared at 42")
+        super.viewWillAppear(true)
+        finishedSearch = false
+        print("finished search is", finishedSearch)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -135,18 +144,23 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                 searchDB(barCode: metadataObj.stringValue!) { (val) in
                     if val != nil {
                         print("Value found in DB")
+                        self.navigationController?.pushViewController(ResultsViewController(), animated: true)
                     }
-                    else {
+                    else if self.finishedSearch == false {
+                        self.finishedSearch = true
+                        print("about to do a barcode search")
                         self.barCodeSearch(barCode: metadataObj.stringValue!, completion: { (itemDetails) in
-                            self.store.getYouTubeVideos(search: itemDetails.title, videoType: .review) {
-                                print("review videos fetched")
-                                self.parent?.present(UINavigationController(rootViewController: ResultsViewController()), animated: true, completion: nil)
+                            DispatchQueue.main.async {
+                                self.dataStore.searchedItem = itemDetails
+                                print("itemdetails title is now", itemDetails.title)
+                                self.navigationController?.pushViewController(ResultsViewController(), animated: true)
                             }
-                            self.store.getYouTubeVideos(search: itemDetails.title, videoType: .tutorial) {
-                                print("tutorial videos fetched")
-                            }
+                            
                         }
                     )}
+                    else {
+                        print("not searching")
+                    }
                 }
             }
             

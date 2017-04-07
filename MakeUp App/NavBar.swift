@@ -18,7 +18,7 @@ extension UIViewController {
             case "mirror":
                 return UIBarButtonItem(title: "Mirror", style: .plain, target: self, action: nil)
             case "back":
-                return UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(dismiss(animated:completion:)))
+                return UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(popLast(_:)))
             case "favorite":
                 return UIBarButtonItem(image: #imageLiteral(resourceName: "Heart"), landscapeImagePhone: #imageLiteral(resourceName: "Heart"), style: .plain, target: self, action: nil)
             default:
@@ -26,7 +26,7 @@ extension UIViewController {
             }
        
         }
-        
+    
         UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Fonts.Playfair(withStyle: .regular, sizeLiteral: 10)], for: .normal)
         
         if let leftButton = leftButton {
@@ -50,8 +50,14 @@ extension UIViewController {
         navigationController?.navigationBar.tintColor = Palette.beige.color
         navigationController?.navigationBar.isTranslucent = false
     }
+    
+    func popLast(_ sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
+
 
 enum ButtonType: String {
     case mirror, back, favorite
 }
+

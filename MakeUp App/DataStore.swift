@@ -8,10 +8,13 @@
 
 import Foundation
 
-struct DataStore {
+class DataStore {
     
+    static let sharedInstance = DataStore()
+
     var myProducts = [Product]()
     var myMedia = [MediaItem]()
+    var searchedItem: ItemDetails?
     
     init() {
         // Make 5 Products for Testing
