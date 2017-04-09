@@ -150,8 +150,9 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                         self.finishedSearch = true
                         print("about to do a barcode search")
                         self.barCodeSearch(barCode: metadataObj.stringValue!, completion: { (Product) in
-                            self.resultStore.product = Product
                             DispatchQueue.main.async {
+                                
+                                self.resultStore.product = Product
                                 self.navigationController?.pushViewController(ResultsViewController(), animated: true)
                             }
                             

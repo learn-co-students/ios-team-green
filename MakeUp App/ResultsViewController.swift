@@ -26,15 +26,16 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
         view.backgroundColor = Palette.white.color
         navBar(title: "Results", leftButton: .back, rightButton: .favorite)
         
-        if let itemTitle = resultStore.product?.title {
-            self.resultStore.getYouTubeVideos(search: itemTitle, videoType: .review) {
+        if let product = resultStore.product {
+            print("product title right before I do a youtube search", product.title)
+            self.resultStore.getYouTubeVideos(search: product.title, videoType: .review) {
                 DispatchQueue.main.async {
                     print("review videos fetched")
                     self.youtubeReviewVideos.reloadData()
                 }
                 
             }
-            self.resultStore.getYouTubeVideos(search: itemTitle, videoType: .tutorial) {
+            self.resultStore.getYouTubeVideos(search: product.title, videoType: .tutorial) {
                 DispatchQueue.main.async {
                     print("tutorial videos fetched")
                     self.youtubeTutorialVideos.reloadData()
@@ -62,6 +63,8 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
         view.addSubview(youtubeReviewVideos)
         view.addSubview(youtubeTutorialVideos)
         view.addSubview(productDisplay)
+        
+        productDisplay.product = resultStore.product
 
         youtubeTutorialLabel.text = "Tutorials"
         youtubeTutorialLabel.textColor = Palette.darkGrey.color

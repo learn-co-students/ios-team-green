@@ -74,6 +74,16 @@ class YoutubePreviewCell:UICollectionViewCell {
         
     }
     
+    func setUpGestureRecognizer() {
+//        let gestureRecognizer = UITapGestureRecognizer(target: self, action:"imageTapped:")
+//        gestureRecognizer.delegate = resu
+//        imageView.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    func imageTapped(gestureRecognizer: UITapGestureRecognizer) {
+        
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
