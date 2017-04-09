@@ -18,7 +18,8 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     
     let resultStore = ResultStore.sharedInstance
     
-    var finishedSearch = false
+    //var finishedSearch = false
+    var lastBarCodevalue:String?
     
     
     //for barCodeDetails & DB addition
@@ -40,8 +41,9 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     override func viewWillAppear(_ animated: Bool) {
         print("view appeared at 42")
         super.viewWillAppear(true)
-        finishedSearch = false
-        print("finished search is", finishedSearch)
+        lastBarCodevalue = nil
+        //finishedSearch = false
+        //print("finished search is", finishedSearch)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,27 +131,38 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                 print("Cannot create barCodeObject")
             }
             
-            if metadataObj.stringValue != nil {
+            if let barCodeValue = metadataObj.stringValue {
                 //messageLabel.text = metadataObj.stringValue
-                print("Barcode value:\(metadataObj.stringValue)")
-                
-                //save the last barcode scanned
-                
-                /*if metadataObj.stringValue != lastMessageLabel.text {
-                 
-                 lastMessageLabel.text = "Last code scanned:\(metadataObj.stringValue!)"
-                 }*/
+                print("Barcode value:\(barCodeValue)")
+                if lastBarCodevalue == barCodeValue { return } else {
+                    lastBarCodevalue = barCodeValue
+                }
+                //let index = barCodeValue.index(barCodeValue.startIndex, offsetBy: 0)
+                let startIndex = barCodeValue.startIndex
+                var newBarCodeValue:String
+                if barCodeValue[startIndex] == "0" {
+                    let index = barCodeValue.index(startIndex, offsetBy: 1)
+                    newBarCodeValue = barCodeValue.substring(from: index)
+                } else {
+                    newBarCodeValue = barCodeValue
+                }
+                print("New Barcode value:\(newBarCodeValue)")
                 
                 //Search Firebase
-                searchDB(barCode: metadataObj.stringValue!) { (val) in
+                searchDB(barCode: newBarCodeValue) { (val) in
                     if val != nil {
                         print("Value found in DB")
-                        self.navigationController?.pushViewController(ResultsViewController(), animated: true)
+                        self.resultStore.product = Product(dict: val!)
+                        DispatchQueue.main.async {
+                            self.navigationController?.pushViewController(ResultsViewController(), animated: true)
+                        }
                     }
-                    else if self.finishedSearch == false {
-                        self.finishedSearch = true
-                        print("about to do a barcode search")
-                        self.barCodeSearch(barCode: metadataObj.stringValue!, completion: { (Product) in
+
+                    else /*if self.finishedSearch == false*/ {
+                        //self.finishedSearch = true
+                        print("Searching barcode on internet")
+                        self.barCodeSearch(barCode: newBarCodeValue, completion: { (Product) in
+                            self.resultStore.product = Product
                             DispatchQueue.main.async {
                                 
                                 self.resultStore.product = Product
@@ -158,21 +171,21 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                             
                         }
                         )}
-                    else {
-                        print("not searching")
-                    }
+                    /*else {
+                        print("Not searching")
+                    }*/
                 }
+            } //if let barCodeValue = metadataObj.stringValue
+            else {
+                print("Scanned barcode value is nil")
             }
             
         }
     }
     
     func barCodeSearch(barCode:String, completion: @escaping (Product) -> Void) {
-        //https://api.upcitemdb.com/prod/trial/lookup?upc=searchText
         print("In barCodeSearch barCode: \(barCode)")
         
-        //textLabelOutlet.text = "Searched BarCode \(barCode)\n\n"
-        outPutStr = "Searched BarCode \(barCode)\n\n"
         let url = URL(string: "https://api.upcitemdb.com/prod/trial/lookup?upc=\(barCode)")
         guard let unwrappedUrl = url else { print("Invalid Url"); return }
         let task = URLSession.shared.dataTask(with: unwrappedUrl) { (data, response, error) in
@@ -188,12 +201,8 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                     print("targetdata=\(targetdata[0])")
                     self.apiData = targetdata[0]
                     
-                    let ean = self.apiData["ean"] as? String ?? "Invalid EAN"
-                    let brand = self.apiData["brand"] as? String ?? "Invalid Brand"
                     let imageArray = self.apiData["images"] as? [String] ?? ["No image"]
-                    let image = imageArray[0] as? String ?? "No image"
-                    self.outPutStr +=  "EAN: " + ean + "\n" +
-                        "Brand: " + brand + "\n"
+                    let image = imageArray[0]
                     self.apiData["image"] = image
                     print("THE DICITONARY IMAGES IS", self.apiData["images"]!)
                     let product = Product(dict:self.apiData)
@@ -224,5 +233,8 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         
     } // func searchDB
     
+   
     
 }
+
+
