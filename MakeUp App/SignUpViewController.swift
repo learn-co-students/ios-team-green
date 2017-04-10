@@ -98,16 +98,14 @@ class SignUpViewController: UIViewController, FBSDKLoginButtonDelegate {
     //    }
     
     func googleSignUp() {
-        print("+++ FIREBASE google sign up")
+        print("TODO: FIREBASE google sign up")
     }
     
     func emailSignUp() {
-        print("+++ email sign up")
+        print("TODO: email sign up")
         let emailSignUpViewController = EmailUpViewController()
         self.navigationController?.pushViewController(emailSignUpViewController, animated: true)
     }
-    
-    
     
 }
 
@@ -129,19 +127,13 @@ extension FacebookLoginManager {
     
     func validateLogin() {
         let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-        let currentToken = FBSDKAccessToken.current().tokenString
         FIRAuth.auth()?.signIn(with: credential) { (user, error) in
             if let validationError = error {
                 print("Validate Login -> error validating login: %@", validationError)
-            } else if let user = user, let userId = currentToken {
-                //
-                // We are re-setting the user's name and profile photo every login, the userId "should" stay the same
-                //
-                UserDefaults.standard.set(userId, forKey: "userId")
-                
+            } else if let user = user {
+                UserDefaults.standard.set(user.uid, forKey: "userID")
                 FirebaseManager.shared.createOrUpdate(user)
-                
-                
+
                 // go to Home View
                 self.present(TabBarController(), animated: true, completion: nil)
             } else {

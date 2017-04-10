@@ -35,7 +35,7 @@ class Product {
         dimension = dict["dimension"] as? String ?? ""
         weight = dict["weight"] as? String ?? ""
         currency = dict["currency"] as? String ?? ""
-        imageURL = dict["image"] as? String ?? ""
+        imageURL = dict["images"] as? String ?? ""
         
     }
     

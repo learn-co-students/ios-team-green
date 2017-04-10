@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     //this userDefaults value can store if the user exists or not after they sign up / delete the app, etc.
     var user: String? {
+        print("User Token at launch:", UserDefaults.standard.string(forKey: "userID") as Any)
         return UserDefaults.standard.string(forKey: "userID")
     }
 
