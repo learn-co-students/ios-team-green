@@ -81,13 +81,13 @@ class YoutubePreviewCell:UICollectionViewCell {
     
     //finish up title truncation 
     func fixTitle(title: String)-> String {
-        guard let youtubeTitle = youtube?.title else {return}
+        guard let youtubeTitle = youtube?.title else { return ""}
         let numberOfWords = youtubeTitle.components(separatedBy: " ")
         if numberOfWords.count > 5 {
-            
         } else {
             return youtubeTitle
         }
+        return ""
     }
     
     
