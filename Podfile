@@ -6,7 +6,12 @@ target 'MakeUp App' do
 	pod 'Firebase'
   	pod 'FirebaseAuth'
  	pod 'FirebaseDatabase'
-    pod 'Alamofire', '~> 4.4'
-		pod "youtube-ios-player-helper", "~> 0.1.4"
+	pod 'FBSDKCoreKit'
+	pod 'FBSDKLoginKit'
+	pod 'FBSDKShareKit'
+   	pod 'Alamofire', '~> 4.4'
+	pod "youtube-ios-player-helper", "~> 0.1.4"
 
 end
+
+
