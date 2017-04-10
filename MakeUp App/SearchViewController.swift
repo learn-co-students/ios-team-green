@@ -163,7 +163,6 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                         self.barCodeSearch(barCode: newBarCodeValue, completion: { (Product) in
                             self.resultStore.product = Product
                             DispatchQueue.main.async {
-                                
                                 self.resultStore.product = Product
                                 self.navigationController?.pushViewController(ResultsViewController(), animated: true)
                             }

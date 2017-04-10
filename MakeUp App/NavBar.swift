@@ -23,22 +23,19 @@ extension UIViewController {
                 return UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(popLast(_:)))
             case "favorite":
                 let heartImage = #imageLiteral(resourceName: "Heart").withRenderingMode(.alwaysOriginal)
-                return UIBarButtonItem(image: heartImage, landscapeImagePhone: heartImage, style: .plain, target: self, action: nil)
+                return UIBarButtonItem(image: heartImage, landscapeImagePhone: heartImage, style: .plain, target: self, action: #selector(toggleFavorite))
             default:
                 return nil
             }
        
         }
     
-        
-        
         if let leftButton = leftButton {
             self.navigationItem.leftBarButtonItem = determineButton(type: leftButton)
         }
         
         if let rightButton = rightButton {
             self.navigationItem.rightBarButtonItem = determineButton(type: rightButton)
-            
         }
         
         navigationItem.title = title
@@ -46,7 +43,6 @@ extension UIViewController {
         let navigationTitleFont = Fonts.Playfair(withStyle: .black, sizeLiteral: 18)
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: navigationTitleFont, NSForegroundColorAttributeName: Palette.white.color]
         navigationController?.navigationBar.barTintColor = Palette.beige.color
-        
         
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: Fonts.Playfair(withStyle: .black, sizeLiteral: 16), NSForegroundColorAttributeName: Palette.black.color], for: .normal)
         
@@ -57,6 +53,13 @@ extension UIViewController {
     func popLast(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    func toggleFavorite() {
+        guard let product = ResultStore.sharedInstance.product else { return }
+        FirebaseManager.shared.toggleFavorite(product)
+        print("toggled Favoirite")
+    }
+    
 }
 
 

@@ -24,10 +24,10 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
-        navBar(title: "Results", leftButton: .back, rightButton: .favorite)
+        guard let product = resultStore.product else { return }
+        navBar(title: product.title, leftButton: .back, rightButton: .favorite)
         
         if let product = resultStore.product {
-            print("product title right before I do a youtube search", product.title)
             self.resultStore.getYouTubeVideos(search: product.title, videoType: .review) {
                 DispatchQueue.main.async {
                     print("review videos fetched")
@@ -119,7 +119,7 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
         
     }
     
-    //Mark: COLLECTION VIEW METHODS
+    //MARK: -COLLECTION VIEW METHODS
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case self.youtubeReviewVideos:

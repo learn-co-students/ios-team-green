@@ -17,7 +17,6 @@ final class ResultStore {
     var youtubeTutorialVideos:[Youtube] = []
     var product: Product? {
         didSet {
-            print("set my product:", product?.title, product?.imageURL)
         }
     }
 

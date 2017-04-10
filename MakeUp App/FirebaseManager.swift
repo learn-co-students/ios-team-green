@@ -31,7 +31,6 @@ final class FirebaseManager {
     /// User Functions ///
     
     func loadUser(_ userID: String, completion: @escaping () -> ()) {
-        print("called load user")
         _ = FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
             self.currentUser = user
             completion()
@@ -43,10 +42,13 @@ final class FirebaseManager {
         currentUser = user
     }
     
-    func addFavorite(_ product: Product) {
-        currentUserNode.updateChildValues(["product" : product])
-        
-        
+    func toggleFavorite(_ product: Product) {
+        let productRecord = currentUserNode.child((currentUser?.uid)!).child("favorites")
+        if productRecord.value(forKey: product.upc) as! Bool == false || productRecord.value(forKey: product.upc) == nil {
+            productRecord.updateChildValues([product.upc : true])
+        } else {
+            productRecord.updateChildValues([product.upc : false])
+        }
     }
     
 }
