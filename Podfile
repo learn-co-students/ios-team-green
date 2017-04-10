@@ -9,6 +9,7 @@ target 'MakeUp App' do
 	pod 'FBSDKCoreKit'
 	pod 'FBSDKLoginKit'
 	pod 'FBSDKShareKit'
+	pod 'FacebookLogin'
    	pod 'Alamofire', '~> 4.4'
 	pod "youtube-ios-player-helper", "~> 0.1.4"
 

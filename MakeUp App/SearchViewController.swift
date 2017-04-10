@@ -39,7 +39,6 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
          AVMetadataObjectTypeQRCode*/]
     
     override func viewWillAppear(_ animated: Bool) {
-        print("view appeared at 42")
         super.viewWillAppear(true)
         lastBarCodevalue = nil
         //finishedSearch = false

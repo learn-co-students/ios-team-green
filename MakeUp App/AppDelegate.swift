@@ -18,17 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     //this userDefaults value can store if the user exists or not after they sign up / delete the app, etc.
     var user: String? {
-        return UserDefaults.standard.string(forKey: "user")
+        return UserDefaults.standard.string(forKey: "userID")
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        //MARK: - Firebase and Facebook Login
-        
+        //MARK: - Firebase and Facebook Config
         FIRApp.configure()
+        
+        // Initialize Facebook SDK and login User on the basis of persisted data
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         //MARK: - Initial View Determine
+        
         let initialView = user == nil ? SignUpViewController() : TabBarController()
         let navViewController = UINavigationController(rootViewController: initialView)
         

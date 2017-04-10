@@ -10,6 +10,7 @@
 		4056D7D41E96E26800AF6727 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4056D7D31E96E26800AF6727 /* Product.swift */; };
 		4056D7D61E96E2BA00AF6727 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4056D7D51E96E2BA00AF6727 /* GoogleService-Info.plist */; };
 		B508FB251E9BB7BA0049B424 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB241E9BB7BA0049B424 /* Secrets.swift */; };
+		B508FB271E9BCC640049B424 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB261E9BCC640049B424 /* FirebaseManager.swift */; };
 		B50E4C0F1E940F3C0004D8F7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C0E1E940F3C0004D8F7 /* TabBarController.swift */; };
 		B50E4C111E940F660004D8F7 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C101E940F660004D8F7 /* ResultsViewController.swift */; };
 		B50E4C131E940F790004D8F7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C121E940F790004D8F7 /* SearchViewController.swift */; };
@@ -68,6 +69,7 @@
 		6C97B014205069603AF2B928 /* Pods-MakeUp App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakeUp App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MakeUp App/Pods-MakeUp App.debug.xcconfig"; sourceTree = "<group>"; };
 		A61DC710A697C9092B6EB698 /* Pods_MakeUp_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MakeUp_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B508FB241E9BB7BA0049B424 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		B508FB261E9BCC640049B424 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		B50E4C0E1E940F3C0004D8F7 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		B50E4C101E940F660004D8F7 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		B50E4C121E940F790004D8F7 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */,
 				D3AABB9F1E96CD9D00590E96 /* ImageAPIClient.swift */,
 				B508FB241E9BB7BA0049B424 /* Secrets.swift */,
+				B508FB261E9BCC640049B424 /* FirebaseManager.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B508FB271E9BCC640049B424 /* FirebaseManager.swift in Sources */,
 				D33B08521E9542D00046E986 /* ResultStore.swift in Sources */,
 				D3DBC65A1E96C80100D0F711 /* ProductDisplayView.swift in Sources */,
 				4056D7D41E96E26800AF6727 /* Product.swift in Sources */,

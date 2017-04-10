@@ -6,6 +6,14 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - FacebookCore (0.2.0):
+    - Bolts (~> 1.8)
+    - FBSDKCoreKit (~> 4.15)
+  - FacebookLogin (0.2.0):
+    - Bolts (~> 1.8)
+    - FacebookCore (~> 0.2)
+    - FBSDKCoreKit (~> 4.15)
+    - FBSDKLoginKit (~> 4.15)
   - FBSDKCoreKit (4.21.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.21.0):
@@ -46,6 +54,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
+  - FacebookLogin
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
@@ -58,6 +67,8 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
+  FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
   FBSDKCoreKit: 8a372ab194b5c7c26355c1920ef52dbeb44bc222
   FBSDKLoginKit: a1a5f4b4ac445823a020fbeeaf5f03714a67ff9c
   FBSDKShareKit: 649a7acfd01a3e056a33994c1bfbb997814cc8a2
@@ -72,6 +83,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 75e4c7e271fd0d5ad3f6a0ba79c4e15aa4798d1c
+PODFILE CHECKSUM: 16262284993026c0df459e733f08f4c143403303
 
 COCOAPODS: 1.2.0

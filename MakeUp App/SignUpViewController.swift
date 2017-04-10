@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
+import FacebookLogin
+import FirebaseAuth
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, FBSDKLoginButtonDelegate {
     
+    //let loginButton = FBSDKLoginButton()
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -25,9 +30,10 @@ class SignUpViewController: UIViewController {
         return SignInButton(image: #imageLiteral(resourceName: "Google"), text: "\tGoogle Sign In")
     }()
     
-    let facebookButtton: UIButton = {
-       return SignInButton(image: #imageLiteral(resourceName: "Facebook"), text: "\tFacebook Sign In")
-   
+    let facebookButtton: FBSDKLoginButton = {
+        return FBSDKLoginButton()
+        //SignInButton(image: #imageLiteral(resourceName: "Facebook"), text: "\tFacebook Sign In")
+        
     }()
     
     let emailButton: UIButton = {
@@ -39,18 +45,18 @@ class SignUpViewController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         setupComponents()
     }
-
+    
     func setupComponents() {
         let components = [googleButton, facebookButtton, emailButton, titleLabel]
         components.forEach {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview($0)
             $0.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
             $0.heightAnchor.constraint(equalToConstant: 60).isActive = true
             $0.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -60,22 +66,36 @@ class SignUpViewController: UIViewController {
     
     func setupUniqueConstraints() {
         
+        facebookButtton.delegate = self
         facebookButtton.centerYAnchor.constraint(equalTo: googleButton.centerYAnchor, constant: -80).isActive = true
-        facebookButtton.addTarget(self, action: #selector(facebookSignUp), for: .touchUpInside)
+        //facebookButtton.addTarget(self, action: #selector(facebookSignUp), for: .touchUpInside)
         
         googleButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         googleButton.addTarget(self, action: #selector(googleSignUp), for: .touchUpInside)
- 
+        
         emailButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 80).isActive = true
         emailButton.addTarget(self, action: #selector(emailSignUp), for: .touchUpInside)
         
         titleLabel.bottomAnchor.constraint(equalTo: facebookButtton.topAnchor, constant: -40).isActive = true
-    
+        
     }
+
     
-    func facebookSignUp() {
-        print("+++ FIREBASE facebook sign up")
-    }
+    
+    //    func facebookSignUp() {
+    
+    //
+    //        loginManager.logIn(withReadPermissions: .PublicProfile, from: self) { (loginResult, error) in
+    //            switch loginResult {
+    //            case .Failed(let error):
+    //                print("Facebook login error:", error)
+    //            case .Cancelled:
+    //                print("user cancelled the facebook login")
+    //            case .Success(let grantedPermissions, let declinedPermissions, let accessToken):
+    //                print("Logged in!")
+    //            }
+    //        }
+    //    }
     
     func googleSignUp() {
         print("+++ FIREBASE google sign up")
@@ -84,10 +104,59 @@ class SignUpViewController: UIViewController {
     func emailSignUp() {
         print("+++ email sign up")
         let emailSignUpViewController = EmailUpViewController()
-        self.navigationController?.pushViewController(emailSignUpViewController, animated: true)  
+        self.navigationController?.pushViewController(emailSignUpViewController, animated: true)
     }
+    
+    
+    
+}
 
-
-
+private typealias FacebookLoginManager = SignUpViewController
+extension FacebookLoginManager {
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        if error != nil {
+            print("Facebook error -> while logging in")
+        }
+        else if result.isCancelled {
+            print("Facebook sign in -> user cancelled login")
+        }
+        else {
+            print("Facebook -> user logged in")
+            validateLogin()
+        }
+    }
+    
+    func validateLogin() {
+        let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+        let currentToken = FBSDKAccessToken.current().tokenString
+        FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+            if let validationError = error {
+                print("Validate Login -> error validating login: %@", validationError)
+            } else if let user = user, let userId = currentToken {
+                //
+                // We are re-setting the user's name and profile photo every login, the userId "should" stay the same
+                //
+                UserDefaults.standard.set(userId, forKey: "userId")
+                
+                FirebaseManager.shared.createOrUpdate(user)
+                
+                
+                // go to Home View
+                self.present(TabBarController(), animated: true, completion: nil)
+            } else {
+                print("LoginVC -> error validating login")
+            }
+        }
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        do {
+            try FIRAuth.auth()?.signOut()
+            print("LoginVC -> user logged out")
+        } catch let signOutError as NSError {
+            print ("LoginVC -> error while signing out: %@", signOutError)
+        }
+    }
 }
 
