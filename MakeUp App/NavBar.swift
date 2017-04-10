@@ -13,6 +13,8 @@ extension UIViewController {
     
     func navBar(title: String, leftButton: ButtonType?, rightButton: ButtonType?) {
         
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Fonts.Playfair(withStyle: .regular, sizeLiteral: 10)], for: .normal)
+        
         func determineButton(type: ButtonType) -> UIBarButtonItem? {
             switch type.rawValue {
             case "mirror":
@@ -20,14 +22,15 @@ extension UIViewController {
             case "back":
                 return UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(popLast(_:)))
             case "favorite":
-                return UIBarButtonItem(image: #imageLiteral(resourceName: "Heart"), landscapeImagePhone: #imageLiteral(resourceName: "Heart"), style: .plain, target: self, action: nil)
+                let heartImage = #imageLiteral(resourceName: "Heart").withRenderingMode(.alwaysOriginal)
+                return UIBarButtonItem(image: heartImage, landscapeImagePhone: heartImage, style: .plain, target: self, action: nil)
             default:
                 return nil
             }
        
         }
     
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Fonts.Playfair(withStyle: .regular, sizeLiteral: 10)], for: .normal)
+        
         
         if let leftButton = leftButton {
             self.navigationItem.leftBarButtonItem = determineButton(type: leftButton)
