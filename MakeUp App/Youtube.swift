@@ -29,7 +29,7 @@ class Youtube {
         channelID = dictionary["snippet"]["channelId"].stringValue
         channelTitle = dictionary["snippet"]["channelTitle"].stringValue
         title = dictionary["snippet"]["title"].stringValue
-        thumbnailURL = dictionary["snippet"]["thumbnails"]["medium"]["url"].stringValue
+        thumbnailURL = dictionary["snippet"]["thumbnails"]["high"]["url"].stringValue
         thumbnailWidth = dictionary["snippet"]["thumbnails"]["default"]["width"].intValue
         thumbnailHeight = dictionary["snippet"]["thumbnails"]["default"]["height"].intValue
         self.videoType = videoType

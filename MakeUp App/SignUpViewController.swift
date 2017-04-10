@@ -10,7 +10,7 @@ import UIKit
 
 class SignUpViewController: UIViewController {
     
-    
+
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Contour"
@@ -45,6 +45,7 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         setupComponents()
+
         
     }
 
