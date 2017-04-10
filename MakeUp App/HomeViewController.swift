@@ -47,7 +47,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        makeTestData()
+        FirebaseManager.shared.fetchUserFavorites {
+           print("line 51")
+        }
     }
     
     func makeTestData() {

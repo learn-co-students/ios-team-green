@@ -26,8 +26,6 @@ final class FirebaseManager {
     
     static private let ref = FIRDatabase.database().reference()
     
-    private let currentUserID = UserDefaults.standard.string(forKey: "userID") ?? "No User Id"
-    
     /// User Functions ///
     
     func loadUser(_ userID: String, completion: @escaping () -> ()) {
@@ -57,7 +55,13 @@ final class FirebaseManager {
     }
     
     func fetchUserFavorites(completion: () -> Void) {
-        
+        let userFavorites = currentUserNode.child((currentUser?.uid)!).child("favorites")
+        print("user favorites is", userFavorites)
+        userFavorites.observe(.value, with: { (snapshot) in
+            guard let favoriteRecord = snapshot.value as? [String:Any] else { print("couldn't get snapshot"); return }
+            print("favoritrecord", favoriteRecord)
+      
+        })
         
         // get all the favorite IDS
         // look in Products for all the IDS, and get the dictionaries
