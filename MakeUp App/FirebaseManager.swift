@@ -44,11 +44,25 @@ final class FirebaseManager {
     
     func toggleFavorite(_ product: Product) {
         let productRecord = currentUserNode.child((currentUser?.uid)!).child("favorites")
-        if productRecord.value(forKey: product.upc) as! Bool == false || productRecord.value(forKey: product.upc) == nil {
-            productRecord.updateChildValues([product.upc : true])
-        } else {
-            productRecord.updateChildValues([product.upc : false])
-        }
+        let productID = product.upc
+        productRecord.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let favoriteRecord = snapshot.value as? [String:Any] else { print("couldn't cast snapshot"); return }
+            if favoriteRecord[productID] as? Bool == true {
+                productRecord.updateChildValues([productID: false])
+            } else {
+                productRecord.updateChildValues([productID: true])
+
+            }
+        })
+    }
+    
+    func fetchUserFavorites(completion: () -> Void) {
+        
+        
+        // get all the favorite IDS
+        // look in Products for all the IDS, and get the dictionaries
+        // Make products out of them
+        // put them in allProducts
     }
     
 }

@@ -202,7 +202,6 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                     let imageArray = self.apiData["images"] as? [String] ?? ["No image"]
                     let image = imageArray[0]
                     self.apiData["image"] = image
-                    print("THE DICITONARY IMAGES IS", self.apiData["images"]!)
                     let product = Product(dict:self.apiData)
                     self.addToDB(product)
                     completion(product)

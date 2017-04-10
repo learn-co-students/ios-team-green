@@ -30,7 +30,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //testing data takes your last results and puts them as your favorites
+        //get all the favorite IDS
+        // look in Products for all the IDS, and get the dictionaries
+        // Make products out of them
+        //put them in allProducts
         
         displayProducts = allProducts
         displayMedia = allMedia

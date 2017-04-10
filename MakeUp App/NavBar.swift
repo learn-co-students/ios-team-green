@@ -57,7 +57,6 @@ extension UIViewController {
     func toggleFavorite() {
         guard let product = ResultStore.sharedInstance.product else { return }
         FirebaseManager.shared.toggleFavorite(product)
-        print("toggled Favoirite")
     }
     
 }
