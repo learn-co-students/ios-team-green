@@ -17,11 +17,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         setupViewControllers()
       }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        //Fetch user records from Firebase and put in Datastore probably goes here
-    }
-    
 }
 
 

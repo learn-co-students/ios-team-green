@@ -14,7 +14,13 @@ final class FirebaseManager {
     
     static let shared = FirebaseManager()
     
+    var ref = FIRDatabase.database().reference()
+    
     var currentUser: FIRUser?
+
+    var currentUserNode: FIRDatabaseReference {
+        return ref.child("Users")
+    }
     
     private init() {}
     
@@ -24,10 +30,23 @@ final class FirebaseManager {
     
     /// User Functions ///
     
+    func loadUser(_ userID: String, completion: @escaping () -> ()) {
+        print("called load user")
+        _ = FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
+            self.currentUser = user
+            completion()
+        })
+    }
     func createOrUpdate(_ user: FIRUser) {
         let name = user.displayName ?? "No name"
-        FIRDatabase.database().reference().child("Users").child(user.uid).updateChildValues(["name": name])
+        currentUserNode.child(user.uid).updateChildValues(["name": name])
         currentUser = user
+    }
+    
+    func addFavorite(_ product: Product) {
+        currentUserNode.updateChildValues(["product" : product])
+        
+        
     }
     
 }

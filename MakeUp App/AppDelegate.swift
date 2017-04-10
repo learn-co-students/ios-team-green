@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    //this userDefaults value can store if the user exists or not after they sign up / delete the app, etc.
     var user: String? {
         print("User Token at launch:", UserDefaults.standard.string(forKey: "userID") as Any)
         return UserDefaults.standard.string(forKey: "userID")
@@ -30,14 +29,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize Facebook SDK and login User on the basis of persisted data
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        //MARK: - Initial View Determine
-        
-        let initialView = user == nil ? SignUpViewController() : TabBarController()
-        
-        let navViewController = UINavigationController(rootViewController: initialView)
-        
-        setupWindow(with:navViewController)
-        
+        //MARK: - Initial View Determine and Present
+        if user == nil {
+            let signupViewController = SignUpViewController()
+            setupWindow(with: UINavigationController(rootViewController: signupViewController))
+        } else {
+            guard let userID = user else { return false } // make sure user exists
+            FirebaseManager.shared.loadUser(userID, completion: { () in
+                let tabBarViewController = TabBarController()
+                self.setupWindow(with: tabBarViewController)
+            })
+        }
+       
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: Fonts.Playfair(withStyle: .black, sizeLiteral: 16), NSForegroundColorAttributeName: Palette.black.color], for: .normal)
         UIApplication.shared.statusBarStyle = .lightContent
         

@@ -14,8 +14,6 @@ import FirebaseAuth
 
 class SignUpViewController: UIViewController {
     
-    //let loginButton = FBSDKLoginButton()
-    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Contour"
@@ -65,7 +63,6 @@ class SignUpViewController: UIViewController {
     
     func setupUniqueConstraints() {
         
-        
         facebookButtton.centerYAnchor.constraint(equalTo: googleButton.centerYAnchor, constant: -80).isActive = true
         facebookButtton.addTarget(self, action: #selector(facebookLogin(_:didCompleteWith:error:)), for: .touchUpInside)
         
@@ -79,8 +76,6 @@ class SignUpViewController: UIViewController {
         
     }
 
-    
-    
     func googleSignUp() {
         print("TODO: FIREBASE google sign up")
     }
