@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //MARK: - Initial View Determine
         
         let initialView = user == nil ? SignUpViewController() : TabBarController()
+        
         let navViewController = UINavigationController(rootViewController: initialView)
         
         setupWindow(with:navViewController)

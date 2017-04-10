@@ -37,7 +37,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         view.backgroundColor = Palette.white.color
         
-        navBar(title: "Raquel Rahmey", leftButton: nil, rightButton: nil)
+        guard let username = FirebaseManager.shared.currentUser?.displayName else { print("loaded tab bar controller and there's no username"); return }
+        navBar(title: username, leftButton: nil, rightButton: nil)
         setupLabels()
         setupCollectionViews()
     }

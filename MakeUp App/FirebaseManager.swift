@@ -14,6 +14,8 @@ final class FirebaseManager {
     
     static let shared = FirebaseManager()
     
+    var currentUser: FIRUser?
+    
     private init() {}
     
     static private let ref = FIRDatabase.database().reference()
@@ -23,8 +25,9 @@ final class FirebaseManager {
     /// User Functions ///
     
     func createOrUpdate(_ user: FIRUser) {
-        let email = user.email ?? "No email"
         let name = user.displayName ?? "No name"
-        FIRDatabase.database().reference().child("Users").child(user.uid).updateChildValues(["name": name, "email": email])
+        FIRDatabase.database().reference().child("Users").child(user.uid).updateChildValues(["name": name])
+        currentUser = user
     }
+    
 }

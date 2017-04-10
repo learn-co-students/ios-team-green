@@ -12,7 +12,7 @@ import FBSDKLoginKit
 import FacebookLogin
 import FirebaseAuth
 
-class SignUpViewController: UIViewController, FBSDKLoginButtonDelegate {
+class SignUpViewController: UIViewController {
     
     //let loginButton = FBSDKLoginButton()
     
@@ -30,9 +30,8 @@ class SignUpViewController: UIViewController, FBSDKLoginButtonDelegate {
         return SignInButton(image: #imageLiteral(resourceName: "Google"), text: "\tGoogle Sign In")
     }()
     
-    let facebookButtton: FBSDKLoginButton = {
-        return FBSDKLoginButton()
-        //SignInButton(image: #imageLiteral(resourceName: "Facebook"), text: "\tFacebook Sign In")
+    let facebookButtton: UIButton = {
+        return SignInButton(image: #imageLiteral(resourceName: "Facebook"), text: "\tFacebook Sign In")
         
     }()
     
@@ -66,9 +65,9 @@ class SignUpViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     func setupUniqueConstraints() {
         
-        facebookButtton.delegate = self
+        
         facebookButtton.centerYAnchor.constraint(equalTo: googleButton.centerYAnchor, constant: -80).isActive = true
-        //facebookButtton.addTarget(self, action: #selector(facebookSignUp), for: .touchUpInside)
+        facebookButtton.addTarget(self, action: #selector(facebookLogin(_:didCompleteWith:error:)), for: .touchUpInside)
         
         googleButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         googleButton.addTarget(self, action: #selector(googleSignUp), for: .touchUpInside)
@@ -81,21 +80,6 @@ class SignUpViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
 
     
-    
-    //    func facebookSignUp() {
-    
-    //
-    //        loginManager.logIn(withReadPermissions: .PublicProfile, from: self) { (loginResult, error) in
-    //            switch loginResult {
-    //            case .Failed(let error):
-    //                print("Facebook login error:", error)
-    //            case .Cancelled:
-    //                print("user cancelled the facebook login")
-    //            case .Success(let grantedPermissions, let declinedPermissions, let accessToken):
-    //                print("Logged in!")
-    //            }
-    //        }
-    //    }
     
     func googleSignUp() {
         print("TODO: FIREBASE google sign up")
@@ -112,11 +96,13 @@ class SignUpViewController: UIViewController, FBSDKLoginButtonDelegate {
 private typealias FacebookLoginManager = SignUpViewController
 extension FacebookLoginManager {
     
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+    func facebookLogin(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        let fbLoginManager: FBSDKLoginManager = FBSDKLoginManager()
+        fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
         if error != nil {
             print("Facebook error -> while logging in")
         }
-        else if result.isCancelled {
+        else if (result?.isCancelled)! {
             print("Facebook sign in -> user cancelled login")
         }
         else {
@@ -152,3 +138,4 @@ extension FacebookLoginManager {
     }
 }
 
+}
