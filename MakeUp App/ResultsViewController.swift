@@ -1,4 +1,4 @@
-//
+      //
 //  ResultsViewController.swift
 //  MakeUp App
 //
@@ -145,8 +145,35 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 300, height: collectionView.frame.height)
+        return CGSize(width: 310, height: collectionView.frame.height)
     }
+    
+    
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch collectionView {
+        case self.youtubeReviewVideos:
+            print("I was tapped")
+            let destinationVC = YouTubePlayerViewViewController()
+            let cell = resultStore.youtubeReviewVideos[indexPath.item]
+            destinationVC.youtubeID = cell.videoID
+            destinationVC.modalPresentationStyle = .overCurrentContext
+            destinationVC.modalTransitionStyle = .crossDissolve
+            present(destinationVC, animated: true, completion: {
+                print("youtube video player was displayed with ", cell.videoID)
+            })
+        default:
+            let destinationVC = YouTubePlayerViewViewController()
+            let cell = resultStore.youtubeTutorialVideos[indexPath.item]
+            destinationVC.youtubeID = cell.videoID
+            destinationVC.modalPresentationStyle = .overCurrentContext
+            destinationVC.modalTransitionStyle = .crossDissolve
+            present(destinationVC, animated: true, completion: {
+                print("youtube video player was displayed with ", cell.videoID)
+            })
+        }
+    }
+    
     
     
 }
