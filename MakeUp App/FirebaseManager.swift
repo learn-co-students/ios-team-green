@@ -16,12 +16,12 @@ final class FirebaseManager {
     
     private init() {}
     
-    static private let db = FIRDatabase.database().reference()
+    static private let ref = FIRDatabase.database().reference()
     
     private let currentUserID = UserDefaults.standard.string(forKey: "userId") ?? "No User Id"
     
     private enum Child {
-        static var users: FIRDatabaseReference { return db.child("users") }
+        static var users: FIRDatabaseReference { return ref.child("Users") }
     }
     
     private var currentUserNode: FIRDatabaseReference {
@@ -32,6 +32,8 @@ final class FirebaseManager {
     
     func createOrUpdate(_ user: FIRUser) {
         let name = user.displayName
+        FIRDatabase.database().reference(withPath: "Users").updateChildValues(["name": name])
+    
         print("user name is", name)
         //create or update user
     }
