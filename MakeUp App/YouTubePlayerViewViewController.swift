@@ -9,14 +9,21 @@
 import UIKit
 import youtube_ios_player_helper
 
-class youTubePlayerViewViewController: UIViewController {
+class YouTubePlayerViewViewController: UIViewController {
     
     let playerView = YTPlayerView()
+    var youtubeID = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Palette.white.color
-        self.playerView.load(withVideoId: "zqwurtVUOME")
+//        let blurEffect = UIBlurEffect(style: .extraLight)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = view.bounds
+//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        view.addSubview(blurEffectView)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.85)
+        setUpGestureRecognizer()
+        self.playerView.load(withVideoId: youtubeID)
         setUpConstraints()
     }
 
@@ -28,11 +35,20 @@ class youTubePlayerViewViewController: UIViewController {
     func setUpConstraints() {
         self.view.addSubview(playerView)
         playerView.translatesAutoresizingMaskIntoConstraints = false
-        playerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        playerView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        playerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        playerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        playerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        playerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
         playerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true
     }
 
+    func setUpGestureRecognizer() {
+        let gestureRecog = UITapGestureRecognizer(target: self, action: #selector(dismissView(tap:)))
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(gestureRecog)
+    }
+    
+    func dismissView(tap: UITapGestureRecognizer) {
+        self.dismiss(animated: true, completion: nil)
+    }
 
 }

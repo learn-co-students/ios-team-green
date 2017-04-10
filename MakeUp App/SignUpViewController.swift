@@ -13,7 +13,7 @@ import FacebookLogin
 import FirebaseAuth
 
 class SignUpViewController: UIViewController {
-    
+
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Contour"
@@ -41,12 +41,15 @@ class SignUpViewController: UIViewController {
         super.viewWillAppear(true)
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         setupComponents()
+
+        
     }
     
     func setupComponents() {

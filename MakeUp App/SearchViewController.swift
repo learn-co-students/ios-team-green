@@ -189,6 +189,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         let task = URLSession.shared.dataTask(with: unwrappedUrl) { (data, response, error) in
             if let unwrappedData = data {
                 do {
+                    print("I got to this point in the search")
                     guard let json = try JSONSerialization.jsonObject(with: unwrappedData, options: []) as? [String:Any] else {
                         print("Invalid JSONSerialization"); return
                     }
