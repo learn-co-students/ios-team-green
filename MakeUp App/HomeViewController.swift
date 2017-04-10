@@ -29,14 +29,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //get all the favorite IDS
-        // look in Products for all the IDS, and get the dictionaries
-        // Make products out of them
-        //put them in allProducts
-        
-        displayProducts = allProducts
-        displayMedia = allMedia
+
+        FirebaseManager.shared.fetchUserFavorites {
+            self.allProducts = UserStore.sharedInstance.myProducts
+            print("line 35 hi", self.allProducts.forEach {$0.title })
+            self.myProducts.reloadData()
+        }
         
         view.backgroundColor = Palette.white.color
         guard let username = FirebaseManager.shared.currentUser?.displayName else { print("loaded home view controller but dang, there's no username"); return }
@@ -45,12 +43,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         setupCollectionViews()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        FirebaseManager.shared.fetchUserFavorites {
-           print("line 51")
-        }
-    }
+
     
     func makeTestData() {
         guard let product = ResultStore.sharedInstance.product else { print("no product"); return }

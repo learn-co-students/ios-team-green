@@ -17,7 +17,7 @@ final class FirebaseManager {
     var ref = FIRDatabase.database().reference()
     
     var currentUser: FIRUser?
-
+    
     var currentUserNode: FIRDatabaseReference {
         return ref.child("Users")
     }
@@ -49,24 +49,39 @@ final class FirebaseManager {
                 productRecord.updateChildValues([productID: false])
             } else {
                 productRecord.updateChildValues([productID: true])
-
+                
             }
         })
     }
     
-    func fetchUserFavorites(completion: () -> Void) {
-        let userFavorites = currentUserNode.child((currentUser?.uid)!).child("favorites")
+    func fetchUserFavorites(completion: @escaping () -> Void) {
+        //hard code ben bernstein user id for testing
+        let userFavorites = currentUserNode.child(("7wETgHKfefaQzL8155WWbI3lkuj2")).child("favorites")
         print("user favorites is", userFavorites)
         userFavorites.observe(.value, with: { (snapshot) in
             guard let favoriteRecord = snapshot.value as? [String:Any] else { print("couldn't get snapshot"); return }
             print("favoritrecord", favoriteRecord)
-      
+            var idsToCheck = [String]()
+            for key in favoriteRecord.keys {
+                idsToCheck.append(key)
+            }
+            print("ids to retrieve", idsToCheck)
+            var i = 1
+            idsToCheck.forEach({ (id) in
+                self.ref.child("Products").child(id).observe(.value, with: { (snapshot) in
+                    guard let dict = snapshot.value as? [String:Any] else { print("no dict snapshot"); return }
+                    let newproduct = Product(dict: dict)
+                    print(" is", newproduct.title)
+                    UserStore.sharedInstance.myProducts.append(newproduct)
+                    i += i
+                    if i == idsToCheck.count {
+                        print("hit completion...")
+                        UserStore.sharedInstance.myProducts.forEach { print($0.title) }
+                        completion()
+                    }
+                })
+            })
+            
         })
-        
-        // get all the favorite IDS
-        // look in Products for all the IDS, and get the dictionaries
-        // Make products out of them
-        // put them in allProducts
     }
-    
 }
