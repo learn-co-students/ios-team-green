@@ -79,7 +79,7 @@ class MediaViewCell: UICollectionViewCell {
 
     func toggleMediaFavorite() {
         guard let youtube = youtube else { return }
-        FirebaseManager.shared.toggleProductFavorite(youtube)
+        FirebaseManager.shared.toggleMediaFavorite(youtube)
     }
     
     

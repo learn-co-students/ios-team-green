@@ -38,11 +38,18 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        FirebaseManager.shared.fetchUserFavorites { (products) in
+        FirebaseManager.shared.fetchUserProducts { (products) in
             self.allProducts.removeAll()
             self.allProducts = products
             self.displayProducts = products
             self.myProducts.reloadData()
+        }
+        FirebaseManager.shared.fetchUserMedia { (media) in
+            print("media out of firebase fetchuser media is", media)
+            self.allMedia.removeAll()
+            self.allMedia = media
+            self.displayMedia = media
+            self.myMedia.reloadData()
         }
     }
     
@@ -190,9 +197,22 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! ProductViewCell
-        ResultStore.sharedInstance.product = cell.product
-        self.navigationController?.pushViewController(ResultsViewController(), animated: true)
+        if collectionView == self.myProducts {
+            let cell = collectionView.cellForItem(at: indexPath) as! ProductViewCell
+            ResultStore.sharedInstance.product = cell.product
+            self.navigationController?.pushViewController(ResultsViewController(), animated: true)
+        } else {
+            let destinationVC = YouTubePlayerViewViewController()
+            let cell = displayMedia[indexPath.item]
+            destinationVC.youtubeID = cell.videoID
+            destinationVC.modalPresentationStyle = .overCurrentContext
+            destinationVC.modalTransitionStyle = .crossDissolve
+            present(destinationVC, animated: true, completion: {
+                print("youtube video player was displayed with ", cell.videoID)
+            })
+
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

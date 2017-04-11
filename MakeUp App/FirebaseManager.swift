@@ -56,8 +56,6 @@ final class FirebaseManager {
             } else {
                 productRecord.updateChildValues([productID: true])
                 print("added favorite")
-
-                
             }
         })
     }
@@ -65,15 +63,16 @@ final class FirebaseManager {
     func toggleMediaFavorite(_ youtube: Youtube) {
         
         guard let user = currentUser else { print("no user"); return }
-        let productRecord = currentUserNode.child(user.uid).child("favorites").child("media")
-        let productID = youtube
-        productRecord.observeSingleEvent(of: .value, with: { (snapshot) in
+        let mediaRecord = currentUserNode.child(user.uid).child("favorites").child("media")
+        let videoID = youtube.videoID
+        print("videoID is ", videoID)
+        mediaRecord.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let favoriteRecord = snapshot.value as? [String:Any] else { print("couldn't cast snapshot"); return }
-            if favoriteRecord[productID] as? Bool == true {
-                productRecord.updateChildValues([productID: false])
+            if favoriteRecord[videoID] as? Bool == true {
+                mediaRecord.updateChildValues([videoID: false])
                 print("removed youtube favorite")
             } else {
-                productRecord.updateChildValues([productID: true])
+                mediaRecord.updateChildValues([videoID: true])
                 print("added youtube favorite")
                 
                 
@@ -82,8 +81,7 @@ final class FirebaseManager {
     }
     
     
-    func fetchUserFavorites(completion: @escaping ([Product]) -> Void) {
-        
+    func fetchUserProducts(completion: @escaping ([Product]) -> Void) {
         guard let user = currentUser else { print("no user"); return }
         let userFavorites = currentUserNode.child(user.uid).child("favorites").child("products")
         userFavorites.observe(.value, with: { (snapshot) in
@@ -106,6 +104,35 @@ final class FirebaseManager {
                         completion(products)
                     }
                 })
+            })
+            
+        })
+    }
+    
+    func fetchUserMedia(completion: @escaping ([Youtube]) -> Void) {
+        guard let user = currentUser else { print("no user"); return }
+        let userMedia = currentUserNode.child(user.uid).child("favorites").child("media")
+        userMedia.observe(.value, with: { (snapshot) in
+            guard let favoriteRecord = snapshot.value as? [String:Any] else { print("the user has no media favorites"); return }
+            var idsToRetrieve = [String]()
+            for key in favoriteRecord.keys {
+                if favoriteRecord[key] as? Bool == true {
+                    idsToRetrieve.append(key)
+                }
+            }
+            var youtubes = [Youtube]()
+            var i = 1
+            idsToRetrieve.forEach({ (id) in
+                // hit youtube API with the ID
+                YoutubeAPIClient.getSingleYoutubeVideo(etag: id, completion: { (video) in
+                    youtubes.append(video)
+                    i += 1                    
+                    // exit the whole thing when we get all the youtubes back
+                    if i >= idsToRetrieve.count {
+                        completion(youtubes)
+                    }
+                })
+                
             })
             
         })
