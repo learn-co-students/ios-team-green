@@ -134,11 +134,10 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
             cell.backgroundColor = Palette.white.color
             cell.youtube = resultStore.youtubeReviewVideos[indexPath.item]
             
-            // see if the cell video is already a favorite from the user stor
+            // see if the cell video is already a favorite from the user store, then make it a favorite if so
             if UserStore.sharedInstance.favoriteMedia.contains(where: { (video) -> Bool in
                 video.videoID == cell.youtube?.videoID
             }) {
-                print("favorited the cell at 141")
                 cell.isFavorite = true
             }
             
@@ -147,11 +146,10 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tutorialCell", for: indexPath) as! YoutubePreviewCell
             cell.youtube = resultStore.youtubeTutorialVideos[indexPath.item]
             
-            // see if the cell video is already a favorite from the user stor
+            // see if the cell video is already a favorite from the user store, then make it a favorite if so
             if UserStore.sharedInstance.favoriteMedia.contains(where: { (video) -> Bool in
                 video.videoID == cell.youtube?.videoID
             }) {
-                print("favorited the cell at 154")
                 cell.isFavorite = true
             }
             
@@ -168,14 +166,12 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
         case self.youtubeReviewVideos:
-            print("I was tapped")
             let destinationVC = YouTubePlayerViewViewController()
             let cell = resultStore.youtubeReviewVideos[indexPath.item]
             destinationVC.youtubeID = cell.videoID
             destinationVC.modalPresentationStyle = .overCurrentContext
             destinationVC.modalTransitionStyle = .crossDissolve
             present(destinationVC, animated: true, completion: {
-                print("youtube video player was displayed with ", cell.videoID)
             })
         default:
             let destinationVC = YouTubePlayerViewViewController()
@@ -184,7 +180,6 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
             destinationVC.modalPresentationStyle = .overCurrentContext
             destinationVC.modalTransitionStyle = .crossDissolve
             present(destinationVC, animated: true, completion: {
-                print("youtube video player was displayed with ", cell.videoID)
             })
         }
     }

@@ -61,9 +61,6 @@ final class FirebaseManager {
     }
     
     func toggleMediaFavorite(_ youtube: Youtube) {
-        print("when you called toggle media favorite, the youtube id is", youtube.videoID)
-        print("when you called toggle media favorite, the youtube video is", youtube)
-
         guard let user = currentUser else { print("no user"); return }
         let mediaRecord = currentUserNode.child(user.uid).child("favorites").child("media")
         let videoID = youtube.videoID
