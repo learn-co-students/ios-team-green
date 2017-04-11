@@ -17,7 +17,7 @@ final class YoutubeAPIClient {
         
         let checkedSearch = truncateStringAfterWhiteSpace(string: search, words: 4)
         
-        let combinedSearch = checkedSearch + type.rawValue
+        let combinedSearch = checkedSearch + " " + type.rawValue
         print("combinedSearch is", combinedSearch)
         
         let validSearch = combinedSearch.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
@@ -39,13 +39,13 @@ final class YoutubeAPIClient {
 }
 
 func truncateStringAfterWhiteSpace(string: String, words: Int) -> String {
-    var whiteCount = 0
+    var spaceCount = 0
     var whiteSpacePosition = 0
     var shouldBeCut = false
     for (index, value) in Array(string.characters).enumerated() {
         if value == " " {
-            whiteCount += 1
-            if whiteCount == words {
+            spaceCount += 1
+            if spaceCount == words {
                 whiteSpacePosition = index
                 shouldBeCut = true
             }
@@ -55,7 +55,6 @@ func truncateStringAfterWhiteSpace(string: String, words: Int) -> String {
     let endIndex = string.index(startIndex, offsetBy: whiteSpacePosition)
     if shouldBeCut {
         return string[startIndex...endIndex]
-        
     } else {
         return string
     }
