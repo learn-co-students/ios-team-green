@@ -34,8 +34,8 @@ final class YoutubeAPIClient {
         }
     }
     
-    class func getSingleYoutubeVideo(etag: String, completion: @escaping (Youtube) -> ()) {
-        let baseUrl = "https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM&key=\(Secrets.youTubeKey)&part=snippet"
+    class func getSingleYoutubeVideo(id: String, completion: @escaping (Youtube) -> ()) {
+        let baseUrl = "https://www.googleapis.com/youtube/v3/videos?id=\(id)&key=\(Secrets.youTubeKey)&part=snippet"
         
         Alamofire.request(baseUrl, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).validate().responseJSON { (response) in
             if let data = response.data {

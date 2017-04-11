@@ -207,10 +207,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             destinationVC.youtubeID = cell.videoID
             destinationVC.modalPresentationStyle = .overCurrentContext
             destinationVC.modalTransitionStyle = .crossDissolve
-            present(destinationVC, animated: true, completion: {
-                print("youtube video player was displayed with ", cell.videoID)
-            })
-
+            present(destinationVC, animated: true, completion: nil )
         }
         
     }

@@ -124,7 +124,7 @@ final class FirebaseManager {
             var i = 1
             idsToRetrieve.forEach({ (id) in
                 // hit youtube API with the ID
-                YoutubeAPIClient.getSingleYoutubeVideo(etag: id, completion: { (video) in
+                YoutubeAPIClient.getSingleYoutubeVideo(id: id, completion: { (video) in
                     youtubes.append(video)
                     i += 1                    
                     // exit the whole thing when we get all the youtubes back
