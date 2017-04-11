@@ -12,7 +12,7 @@ import UIKit
 class ProductViewCell: UICollectionViewCell {
     static let reuseIdentifier = "productCell"
     
-    var heartImage = UIImageView()
+    var favoriteButton = UIButton()
     var imageView = UIImageView()
     var titleView = UILabel()
     
@@ -33,7 +33,9 @@ class ProductViewCell: UICollectionViewCell {
         titleView.text = myProduct.title
         ImageAPIClient.getProductImage(with: myProduct.imageURL) { (productImage) in
             DispatchQueue.main.async {
-                self.imageView.image = productImage
+                UIView.animate(withDuration: 0.2, animations: { 
+                    self.imageView.image = productImage
+                })
             }
         }
 
@@ -47,31 +49,39 @@ class ProductViewCell: UICollectionViewCell {
         titleView.text = "No Title"
         titleView.textColor = Palette.darkGrey.color
         
-        let items = [heartImage, imageView]
+        let items = [imageView]
         items.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.contentView.addSubview($0)
         }
         
+        contentView.addSubview(favoriteButton)
        
         imageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8).isActive = true
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
         
-        heartImage.image = #imageLiteral(resourceName: "Heart")
-        heartImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
-        heartImage.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
-        heartImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.15).isActive = true
-        heartImage.heightAnchor.constraint(equalTo: heartImage.widthAnchor).isActive = true
+        favoriteButton.translatesAutoresizingMaskIntoConstraints = false
+        favoriteButton.setImage(#imageLiteral(resourceName: "Heart"), for: .normal)
+        favoriteButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
+        favoriteButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
+        favoriteButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.15).isActive = true
+        favoriteButton.heightAnchor.constraint(equalTo: favoriteButton.widthAnchor).isActive = true
+        favoriteButton.addTarget(self, action: #selector(toggleFavorite), for: .touchUpInside)
         
         titleView.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(titleView)
         
         titleView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
-        titleView.leftAnchor.constraint(equalTo: heartImage.rightAnchor, constant: 10).isActive = true
+        titleView.leftAnchor.constraint(equalTo: favoriteButton.rightAnchor, constant: 10).isActive = true
         titleView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 10).isActive = true
         
+    }
+    
+    func toggleFavorite() {
+        guard let product = product else { return }
+        FirebaseManager.shared.toggleFavorite(product)
     }
     
     

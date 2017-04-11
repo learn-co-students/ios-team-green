@@ -15,14 +15,14 @@ final class YoutubeAPIClient {
     class func searchYoutubeVideos(search: String, type: YoutubeSearch, completion: @escaping ([JSON], String) -> ()) {
         let baseUrl = "https://www.googleapis.com/youtube/v3/search?key=\(Secrets.youTubeKey)&part=snippet&type=video&maxResults=50&q="
         
-        let checkedSearch = truncateStringAfterWhiteSpace(string: search, words: 4)
+        let checkedSearch = truncateStringAfterNumberofWords(string: search, words: 4)
         
         let combinedSearch = checkedSearch + " " + type.rawValue
         print("combinedSearch is", combinedSearch)
         
         let validSearch = combinedSearch.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
-        print("valid search is", validSearch)
+        print("valid search is", validSearch ?? "no search")
         
         let url = baseUrl + validSearch!
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).validate().responseJSON { (response) in
@@ -38,7 +38,7 @@ final class YoutubeAPIClient {
     
 }
 
-func truncateStringAfterWhiteSpace(string: String, words: Int) -> String {
+func truncateStringAfterNumberofWords(string: String, words: Int) -> String {
     var spaceCount = 0
     var whiteSpacePosition = 0
     var shouldBeCut = false

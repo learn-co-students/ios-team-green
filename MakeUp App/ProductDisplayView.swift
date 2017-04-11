@@ -14,6 +14,7 @@ class ProductDisplayView: UIView {
     var imageView = UIImageView()
     var productTitle = UILabel()
     var heartImage = UIImageView()
+    var favoriteButton = UIButton()
     var product: Product? {
         didSet{
             setUpView()
