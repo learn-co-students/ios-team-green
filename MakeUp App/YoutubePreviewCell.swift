@@ -20,6 +20,7 @@ class YoutubePreviewCell:UICollectionViewCell {
             setUpCell()
         }
     }
+    var isFavorite = false
     
     
     override init(frame:CGRect) {
@@ -67,23 +68,29 @@ class YoutubePreviewCell:UICollectionViewCell {
         favoriteButton.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(favoriteButton)
         
-        favoriteButton.setImage(#imageLiteral(resourceName: "Heart"), for: .normal)
+        favoriteButton.setImage(#imageLiteral(resourceName: "Empty-Heart"), for: .normal)
+
         favoriteButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5).isActive = true
         favoriteButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5).isActive = true
         favoriteButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.07).isActive = true
         favoriteButton.heightAnchor.constraint(equalTo: favoriteButton.widthAnchor).isActive = true
         favoriteButton.addTarget(self, action: #selector(toggleMediaFavorite), for: .touchUpInside)
-        
 
-
-        
-         titleView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant:5).isActive = true
+        titleView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant:5).isActive = true
         titleView.leftAnchor.constraint(equalTo: favoriteButton.rightAnchor, constant: 5).isActive = true
          titleView.centerYAnchor.constraint(equalTo: favoriteButton.centerYAnchor).isActive = true
         titleView.heightAnchor.constraint(greaterThanOrEqualTo: favoriteButton.heightAnchor, multiplier: 1.0).isActive = true
     }
     
     func toggleMediaFavorite() {
+        if !isFavorite {
+            favoriteButton.setImage(#imageLiteral(resourceName: "Heart"), for: .normal)
+            isFavorite = true
+        } else {
+            favoriteButton.setImage(#imageLiteral(resourceName: "Empty-Heart"), for: .normal)
+            isFavorite = false
+
+        }
         guard let youtube = youtube else { return }
         FirebaseManager.shared.toggleMediaFavorite(youtube)
     }

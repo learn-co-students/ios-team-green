@@ -30,7 +30,7 @@ class ProductViewCell: UICollectionViewCell {
     
     func setUpCell() {
         guard let myProduct = product else { print("could not get product"); return  }
-        titleView.text = myProduct.title
+        titleView.text = truncateStringAfterNumberofWords(string: myProduct.title, words: 3)
         ImageAPIClient.getProductImage(with: myProduct.imageURL) { (productImage) in
             DispatchQueue.main.async {
                 UIView.animate(withDuration: 0.2, animations: { 
@@ -44,9 +44,8 @@ class ProductViewCell: UICollectionViewCell {
     func setupConstraints() {
         titleView = UILabel()
         titleView.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 16)
-        titleView.numberOfLines = 0
+        titleView.numberOfLines = 2
         titleView.textAlignment = .left
-        titleView.text = "No Title"
         titleView.textColor = Palette.darkGrey.color
         
         let items = [imageView]

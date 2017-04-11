@@ -27,7 +27,7 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         guard let product = resultStore.product else { return }
 
-        navBar(title: product.title, leftButton: .back, rightButton: .favorite)
+        navBar(title: truncateStringAfterNumberofWords(string: product.title, words: 3), leftButton: .back, rightButton: .favorite)
         
         if let product = resultStore.product {
             self.resultStore.getYouTubeVideos(search: product.title, videoType: .review) {

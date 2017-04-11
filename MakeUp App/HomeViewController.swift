@@ -45,7 +45,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             self.myProducts.reloadData()
         }
         FirebaseManager.shared.fetchUserMedia { (media) in
-            print("media out of firebase fetchuser media is", media)
             self.allMedia.removeAll()
             self.allMedia = media
             self.displayMedia = media
