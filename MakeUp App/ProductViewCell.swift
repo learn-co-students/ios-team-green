@@ -31,10 +31,8 @@ class ProductViewCell: UICollectionViewCell {
     func setUpCell() {
         guard let myProduct = product else { print("could not get product"); return  }
         titleView.text = myProduct.title
-        print("line 34, product is", myProduct.title, myProduct.imageURL)
         ImageAPIClient.getProductImage(with: myProduct.imageURL) { (productImage) in
             DispatchQueue.main.async {
-                print("hi there i am printing and my product is", myProduct.title, myProduct.imageURL)
                 self.imageView.image = productImage
             }
         }

@@ -40,31 +40,35 @@ final class FirebaseManager {
         currentUser = user
     }
     
+    /// App Functions //
+
+    
     func toggleFavorite(_ product: Product) {
         
         guard let user = currentUser else { print("no user"); return }
         let productRecord = currentUserNode.child(user.uid).child("favorites")
         let productID = product.upc
-        print(productRecord)
         productRecord.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let favoriteRecord = snapshot.value as? [String:Any] else { print("couldn't cast snapshot"); return }
             if favoriteRecord[productID] as? Bool == true {
                 productRecord.updateChildValues([productID: false])
+                print("removed favorite")
             } else {
                 productRecord.updateChildValues([productID: true])
+                print("added favorite")
+
                 
             }
         })
     }
     
-    /// App Functions //
     
     func fetchUserFavorites(completion: @escaping ([Product]) -> Void) {
         
         guard let user = currentUser else { print("no user"); return }
         let userFavorites = currentUserNode.child(user.uid).child("favorites")
         userFavorites.observe(.value, with: { (snapshot) in
-            guard let favoriteRecord = snapshot.value as? [String:Any] else { print("couldn't get snapshot... there might be none"); return }
+            guard let favoriteRecord = snapshot.value as? [String:Any] else { print("the user has no favorites"); return }
             var idsToRetrieve = [String]()
             for key in favoriteRecord.keys {
                 if favoriteRecord[key] as? Bool == true {

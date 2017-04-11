@@ -29,18 +29,21 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        FirebaseManager.shared.fetchUserFavorites { (products) in
-            self.allProducts = products
-            self.displayProducts = products
-            self.myProducts.reloadData()
-        }
-        
         view.backgroundColor = Palette.white.color
         guard let username = FirebaseManager.shared.currentUser?.displayName else { print("loaded home view controller but dang, there's no username"); return }
         navBar(title: username, leftButton: nil, rightButton: nil)
         setupLabels()
         setupCollectionViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        FirebaseManager.shared.fetchUserFavorites { (products) in
+            self.allProducts.removeAll()
+            self.allProducts = products
+            self.displayProducts = products
+            self.myProducts.reloadData()
+        }
     }
     
     //MARK: - UI SetUp
