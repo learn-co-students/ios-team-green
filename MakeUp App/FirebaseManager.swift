@@ -65,18 +65,20 @@ final class FirebaseManager {
         guard let user = currentUser else { print("no user"); return }
         let mediaRecord = currentUserNode.child(user.uid).child("favorites").child("media")
         let videoID = youtube.videoID
-        print("videoID is ", videoID)
         mediaRecord.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let favoriteRecord = snapshot.value as? [String:Any] else { print("couldn't cast snapshot"); return }
-            if favoriteRecord[videoID] as? Bool == true {
-                mediaRecord.updateChildValues([videoID: false])
-                print("removed youtube favorite")
-            } else {
-                mediaRecord.updateChildValues([videoID: true])
-                print("added youtube favorite")
-                
-                
+            print("videoID at 71 is", videoID)
+            for key in favoriteRecord.keys {
+                if favoriteRecord[videoID] as? Bool == true {
+                    mediaRecord.updateChildValues([videoID: false])
+                    print("removed youtube favorite")
+                } else {
+                    mediaRecord.updateChildValues([videoID: true])
+                    print("added youtube favorite")
+  
+                }
             }
+           
         })
     }
     

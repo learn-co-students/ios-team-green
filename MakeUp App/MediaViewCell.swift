@@ -79,6 +79,7 @@ class MediaViewCell: UICollectionViewCell {
 
     func toggleMediaFavorite() {
         guard let youtube = youtube else { return }
+        print("line 82 is real")
         FirebaseManager.shared.toggleMediaFavorite(youtube)
     }
     
