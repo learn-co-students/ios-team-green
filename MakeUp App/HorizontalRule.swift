@@ -15,7 +15,6 @@ class HorizontalRule: UIView {
         super.init(frame: frame)
         self.backgroundColor = Palette.beige.color
         self.heightAnchor.constraint(equalToConstant: 2).isActive = true
-
         self.frame = frame
         
     }

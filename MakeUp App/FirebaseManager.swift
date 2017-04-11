@@ -43,10 +43,10 @@ final class FirebaseManager {
     /// App Functions //
 
     
-    func toggleFavorite(_ product: Product) {
+    func toggleProductFavorite(_ product: Product) {
         
         guard let user = currentUser else { print("no user"); return }
-        let productRecord = currentUserNode.child(user.uid).child("favorites")
+        let productRecord = currentUserNode.child(user.uid).child("favorites").child("products")
         let productID = product.upc
         productRecord.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let favoriteRecord = snapshot.value as? [String:Any] else { print("couldn't cast snapshot"); return }
@@ -62,11 +62,30 @@ final class FirebaseManager {
         })
     }
     
+    func toggleMediaFavorite(_ product: Product) {
+        
+        guard let user = currentUser else { print("no user"); return }
+        let productRecord = currentUserNode.child(user.uid).child("favorites").child("media")
+        let productID = product.upc
+        productRecord.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let favoriteRecord = snapshot.value as? [String:Any] else { print("couldn't cast snapshot"); return }
+            if favoriteRecord[productID] as? Bool == true {
+                productRecord.updateChildValues([productID: false])
+                print("removed favorite")
+            } else {
+                productRecord.updateChildValues([productID: true])
+                print("added favorite")
+                
+                
+            }
+        })
+    }
+    
     
     func fetchUserFavorites(completion: @escaping ([Product]) -> Void) {
         
         guard let user = currentUser else { print("no user"); return }
-        let userFavorites = currentUserNode.child(user.uid).child("favorites")
+        let userFavorites = currentUserNode.child(user.uid).child("favorites").child("products")
         userFavorites.observe(.value, with: { (snapshot) in
             guard let favoriteRecord = snapshot.value as? [String:Any] else { print("the user has no favorites"); return }
             var idsToRetrieve = [String]()

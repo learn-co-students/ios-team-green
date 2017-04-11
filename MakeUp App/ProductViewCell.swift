@@ -68,7 +68,7 @@ class ProductViewCell: UICollectionViewCell {
         favoriteButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
         favoriteButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.15).isActive = true
         favoriteButton.heightAnchor.constraint(equalTo: favoriteButton.widthAnchor).isActive = true
-        favoriteButton.addTarget(self, action: #selector(toggleFavorite), for: .touchUpInside)
+        favoriteButton.addTarget(self, action: #selector(toggleProductFavorite), for: .touchUpInside)
         
         titleView.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(titleView)
@@ -79,9 +79,9 @@ class ProductViewCell: UICollectionViewCell {
         
     }
     
-    func toggleFavorite() {
+    func toggleProductFavorite() {
         guard let product = product else { return }
-        FirebaseManager.shared.toggleFavorite(product)
+        FirebaseManager.shared.toggleProductFavorite(product)
     }
     
     

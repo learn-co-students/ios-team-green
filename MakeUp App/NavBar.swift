@@ -23,7 +23,7 @@ extension UIViewController {
                 return UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(popLast(_:)))
             case "favorite":
                 let heartImage = #imageLiteral(resourceName: "Heart").withRenderingMode(.alwaysOriginal)
-                return UIBarButtonItem(image: heartImage, landscapeImagePhone: heartImage, style: .plain, target: self, action: #selector(toggleFavorite))
+                return UIBarButtonItem(image: heartImage, landscapeImagePhone: heartImage, style: .plain, target: self, action: #selector(toggleProductFavorite))
             default:
                 return nil
             }
@@ -54,9 +54,9 @@ extension UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func toggleFavorite() {
+    func toggleProductFavorite() {
         guard let product = ResultStore.sharedInstance.product else { return }
-        FirebaseManager.shared.toggleFavorite(product)
+        FirebaseManager.shared.toggleProductFavorite(product)
     }
     
 }
