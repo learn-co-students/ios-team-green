@@ -30,32 +30,22 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        FirebaseManager.shared.fetchUserFavorites {
+        FirebaseManager.shared.fetchUserFavorites { (products) in
+            
+            // Hm, this could be simpler
+            UserStore.sharedInstance.myProducts.removeAll()
+            UserStore.sharedInstance.myProducts = products
             self.allProducts = UserStore.sharedInstance.myProducts
-            print("line 35 hi", self.allProducts.forEach {$0.title })
+            self.displayProducts = self.allProducts
             self.myProducts.reloadData()
+            print("line 39")
+            
         }
-        
         view.backgroundColor = Palette.white.color
         guard let username = FirebaseManager.shared.currentUser?.displayName else { print("loaded home view controller but dang, there's no username"); return }
         navBar(title: username, leftButton: nil, rightButton: nil)
         setupLabels()
         setupCollectionViews()
-    }
-    
-
-    
-    func makeTestData() {
-        guard let product = ResultStore.sharedInstance.product else { print("no product"); return }
-        allProducts.append(product)
-        allMedia = ResultStore.sharedInstance.youtubeReviewVideos // + ResultStore.sharedInstance.youtubeTutorialVideos
-        
-        displayProducts = allProducts
-        displayMedia = allMedia
-        
-        myProducts.reloadData()
-        myMedia.reloadData()
-        
     }
     
     
