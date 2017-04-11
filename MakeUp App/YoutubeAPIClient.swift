@@ -34,6 +34,10 @@ final class YoutubeAPIClient {
         }
     }
     
+    class func getSingleYoutubeVideo(etag: String, completion: @escaping (Youtube) -> ()) {
+        // get single youtube video from an etag
+    }
+    
     
     
 }

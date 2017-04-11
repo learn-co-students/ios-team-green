@@ -62,19 +62,19 @@ final class FirebaseManager {
         })
     }
     
-    func toggleMediaFavorite(_ product: Product) {
+    func toggleMediaFavorite(_ youtube: Youtube) {
         
         guard let user = currentUser else { print("no user"); return }
         let productRecord = currentUserNode.child(user.uid).child("favorites").child("media")
-        let productID = product.upc
+        let productID = youtube
         productRecord.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let favoriteRecord = snapshot.value as? [String:Any] else { print("couldn't cast snapshot"); return }
             if favoriteRecord[productID] as? Bool == true {
                 productRecord.updateChildValues([productID: false])
-                print("removed favorite")
+                print("removed youtube favorite")
             } else {
                 productRecord.updateChildValues([productID: true])
-                print("added favorite")
+                print("added youtube favorite")
                 
                 
             }

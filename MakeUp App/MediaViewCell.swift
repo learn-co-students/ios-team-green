@@ -12,7 +12,7 @@ import UIKit
 class MediaViewCell: UICollectionViewCell {
     static let reuseIdentifier = "mediaCell"
     
-    var heartImage = UIImageView()
+    var favoriteButton = UIButton()
     var imageView = UIImageView()
     var titleView = UILabel()
     
@@ -46,7 +46,7 @@ class MediaViewCell: UICollectionViewCell {
         titleView.text = "No Title"
         titleView.textColor = Palette.darkGrey.color
         
-        let items = [heartImage, imageView]
+        let items = [imageView]
         items.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.contentView.addSubview($0)
@@ -57,19 +57,29 @@ class MediaViewCell: UICollectionViewCell {
         imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8).isActive = true
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
         
-        heartImage.image = #imageLiteral(resourceName: "Heart")
-        heartImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
-        heartImage.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
-        heartImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.15).isActive = true
-        heartImage.heightAnchor.constraint(equalTo: heartImage.widthAnchor).isActive = true
+        favoriteButton.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(favoriteButton)
+        
+        favoriteButton.setImage(#imageLiteral(resourceName: "Heart"), for: .normal)
+        favoriteButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
+        favoriteButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
+        favoriteButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.15).isActive = true
+        favoriteButton.heightAnchor.constraint(equalTo: favoriteButton.widthAnchor).isActive = true
+        favoriteButton.addTarget(self, action: #selector(toggleMediaFavorite), for: .touchUpInside)
+
         
         titleView.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(titleView)
         
         titleView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
-        titleView.leftAnchor.constraint(equalTo: heartImage.rightAnchor, constant: 10).isActive = true
+        titleView.leftAnchor.constraint(equalTo: favoriteButton.rightAnchor, constant: 10).isActive = true
         titleView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 10).isActive = true
         
+    }
+
+    func toggleMediaFavorite() {
+        guard let youtube = youtube else { return }
+        FirebaseManager.shared.toggleProductFavorite(youtube)
     }
     
     
