@@ -9,15 +9,13 @@
 import Foundation
 import SwiftyJSON
 
-
-
 class Youtube {
-    var eTag:String
-    var videoID:String
-    var channelID:String
-    var channelTitle:String
-    var title:String
-    var thumbnailURL:String
+    var eTag: String
+    var videoID: String
+    var channelID: String
+    var channelTitle: String
+    var title: String
+    var thumbnailURL: String
     var thumbnailWidth: Int
     var thumbnailHeight: Int
     var videoType: String
@@ -25,7 +23,13 @@ class Youtube {
     
     init(dictionary:JSON, videoType:String) {
         eTag = dictionary["etag"].stringValue
+        
+        // account for two methods of retrieving youtube, maybe there's a better way to do this but probably not
         videoID = dictionary["id"]["videoId"].stringValue
+        if videoID == "" {
+            videoID = dictionary["id"].stringValue
+        }
+        
         channelID = dictionary["snippet"]["channelId"].stringValue
         channelTitle = dictionary["snippet"]["channelTitle"].stringValue
         title = dictionary["snippet"]["title"].stringValue

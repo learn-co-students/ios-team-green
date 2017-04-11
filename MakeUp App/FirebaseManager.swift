@@ -61,23 +61,26 @@ final class FirebaseManager {
     }
     
     func toggleMediaFavorite(_ youtube: Youtube) {
-        
+        print("when you called toggle media favorite, the youtube id is", youtube.videoID)
+        print("when you called toggle media favorite, the youtube video is", youtube)
+
         guard let user = currentUser else { print("no user"); return }
         let mediaRecord = currentUserNode.child(user.uid).child("favorites").child("media")
         let videoID = youtube.videoID
         mediaRecord.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let favoriteRecord = snapshot.value as? [String:Any] else { print("couldn't cast snapshot"); return }
             print("videoID at 71 is", videoID)
-            for key in favoriteRecord.keys {
+            favoriteRecord.keys.forEach {_ in 
                 if favoriteRecord[videoID] as? Bool == true {
                     mediaRecord.updateChildValues([videoID: false])
                     print("removed youtube favorite")
                 } else {
                     mediaRecord.updateChildValues([videoID: true])
                     print("added youtube favorite")
-  
+                    
                 }
             }
+
            
         })
     }
