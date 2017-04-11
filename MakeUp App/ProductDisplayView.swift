@@ -34,7 +34,6 @@ class ProductDisplayView: UIView {
     func setUpView() {
         guard let product = product else { print("could not get product"); return }
         ImageAPIClient.getProductImage(with: (product.imageURL)) { (productImage) in
-            print("i have suucessfully come back from the internet")
             DispatchQueue.main.async {
                 self.imageView.image = productImage
                 

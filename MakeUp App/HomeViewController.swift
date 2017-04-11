@@ -42,12 +42,16 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             self.allProducts.removeAll()
             self.allProducts = products
             self.displayProducts = products
+            //  also save in user store for local checking against other products ...
+            UserStore.sharedInstance.favoriteProducts = products
             self.myProducts.reloadData()
         }
         FirebaseManager.shared.fetchUserMedia { (media) in
             self.allMedia.removeAll()
             self.allMedia = media
             self.displayMedia = media
+            //  also save in user store for local checking against other media ...
+            UserStore.sharedInstance.favoriteMedia = media
             self.myMedia.reloadData()
         }
     }

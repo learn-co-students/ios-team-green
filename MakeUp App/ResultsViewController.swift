@@ -32,14 +32,12 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
         if let product = resultStore.product {
             self.resultStore.getYouTubeVideos(search: product.title, videoType: .review) {
                 DispatchQueue.main.async {
-                    print("review videos fetched")
                     self.youtubeReviewVideos.reloadData()
                 }
                 
             }
             self.resultStore.getYouTubeVideos(search: product.title, videoType: .tutorial) {
                 DispatchQueue.main.async {
-                    print("tutorial videos fetched")
                     self.youtubeTutorialVideos.reloadData()
                 }
                 
@@ -135,10 +133,28 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reviewCell", for: indexPath) as! YoutubePreviewCell
             cell.backgroundColor = Palette.white.color
             cell.youtube = resultStore.youtubeReviewVideos[indexPath.item]
+            
+            // see if the cell video is already a favorite from the user stor
+            if UserStore.sharedInstance.favoriteMedia.contains(where: { (video) -> Bool in
+                video.videoID == cell.youtube?.videoID
+            }) {
+                print("favorited the cell at 141")
+                cell.isFavorite = true
+            }
+            
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tutorialCell", for: indexPath) as! YoutubePreviewCell
             cell.youtube = resultStore.youtubeTutorialVideos[indexPath.item]
+            
+            // see if the cell video is already a favorite from the user stor
+            if UserStore.sharedInstance.favoriteMedia.contains(where: { (video) -> Bool in
+                video.videoID == cell.youtube?.videoID
+            }) {
+                print("favorited the cell at 154")
+                cell.isFavorite = true
+            }
+            
             return cell
         }
     }

@@ -69,15 +69,11 @@ final class FirebaseManager {
         let videoID = youtube.videoID
         mediaRecord.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let favoriteRecord = snapshot.value as? [String:Any] else { print("couldn't cast snapshot"); return }
-            print("videoID at 71 is", videoID)
-            favoriteRecord.keys.forEach {_ in 
+            favoriteRecord.keys.forEach {_ in
                 if favoriteRecord[videoID] as? Bool == true {
                     mediaRecord.updateChildValues([videoID: false])
-                    print("removed youtube favorite")
                 } else {
                     mediaRecord.updateChildValues([videoID: true])
-                    print("added youtube favorite")
-                    
                 }
             }
 

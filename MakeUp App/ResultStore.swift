@@ -20,8 +20,6 @@ final class ResultStore {
         }
     }
 
-    
-    
     func getYouTubeVideos(search: String, videoType: YoutubeSearch, completion: @escaping () -> ()) {
         YoutubeAPIClient.searchYoutubeVideos(search: search, type: videoType) { (youtubeVideosDictionary, typeString) in
             if typeString == "review" {

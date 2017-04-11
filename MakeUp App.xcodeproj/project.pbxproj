@@ -11,6 +11,7 @@
 		4056D7D61E96E2BA00AF6727 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4056D7D51E96E2BA00AF6727 /* GoogleService-Info.plist */; };
 		B508FB251E9BB7BA0049B424 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB241E9BB7BA0049B424 /* Secrets.swift */; };
 		B508FB271E9BCC640049B424 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB261E9BCC640049B424 /* FirebaseManager.swift */; };
+		B508FB291E9D71A20049B424 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB281E9D71A20049B424 /* UserStore.swift */; };
 		B50E4C0F1E940F3C0004D8F7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C0E1E940F3C0004D8F7 /* TabBarController.swift */; };
 		B50E4C111E940F660004D8F7 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C101E940F660004D8F7 /* ResultsViewController.swift */; };
 		B50E4C131E940F790004D8F7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C121E940F790004D8F7 /* SearchViewController.swift */; };
@@ -69,6 +70,7 @@
 		A61DC710A697C9092B6EB698 /* Pods_MakeUp_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MakeUp_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B508FB241E9BB7BA0049B424 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		B508FB261E9BCC640049B424 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		B508FB281E9D71A20049B424 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		B50E4C0E1E940F3C0004D8F7 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		B50E4C101E940F660004D8F7 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		B50E4C121E940F790004D8F7 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				D33B08511E9542D00046E986 /* ResultStore.swift */,
+				B508FB281E9D71A20049B424 /* UserStore.swift */,
 			);
 			name = DataStores;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				B5D3A54D1E958ADF00D808B7 /* ProductViewCell.swift in Sources */,
 				B50E4C161E9410660004D8F7 /* Colors.swift in Sources */,
 				B5D3A54F1E9596FA00D808B7 /* MediaCollectionView.swift in Sources */,
+				B508FB291E9D71A20049B424 /* UserStore.swift in Sources */,
 				B50E4C0F1E940F3C0004D8F7 /* TabBarController.swift in Sources */,
 				B53E9BBC1E953AF00017E3E9 /* HomeViewController.swift in Sources */,
 				B5D3A5561E95A56300D808B7 /* MediaViewCell.swift in Sources */,

@@ -20,7 +20,12 @@ class YoutubePreviewCell:UICollectionViewCell {
             setUpCell()
         }
     }
-    var isFavorite = false
+    
+    var isFavorite = false {
+        didSet {
+          determineFavorite()
+        }
+    }
     
     
     override init(frame:CGRect) {
@@ -67,9 +72,9 @@ class YoutubePreviewCell:UICollectionViewCell {
         
         favoriteButton.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(favoriteButton)
-        
-        favoriteButton.setImage(#imageLiteral(resourceName: "Empty-Heart"), for: .normal)
 
+
+        favoriteButton.setImage(#imageLiteral(resourceName: "Empty-Heart"), for: .normal)
         favoriteButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5).isActive = true
         favoriteButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5).isActive = true
         favoriteButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.07).isActive = true
@@ -78,8 +83,16 @@ class YoutubePreviewCell:UICollectionViewCell {
 
         titleView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant:5).isActive = true
         titleView.leftAnchor.constraint(equalTo: favoriteButton.rightAnchor, constant: 5).isActive = true
-         titleView.centerYAnchor.constraint(equalTo: favoriteButton.centerYAnchor).isActive = true
+        titleView.centerYAnchor.constraint(equalTo: favoriteButton.centerYAnchor).isActive = true
         titleView.heightAnchor.constraint(greaterThanOrEqualTo: favoriteButton.heightAnchor, multiplier: 1.0).isActive = true
+    }
+    
+    func determineFavorite() {
+        if self.isFavorite {
+            favoriteButton.setImage(#imageLiteral(resourceName: "Heart"), for: .normal)
+        } else {
+            favoriteButton.setImage(#imageLiteral(resourceName: "Empty-Heart"), for: .normal)
+        }
     }
     
     func toggleMediaFavorite() {
