@@ -16,7 +16,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var myProductsSearch = UITextField()
     var horizontalRuleMyProducts = HorizontalRule()
     
-    var allProducts = UserStore.sharedInstance.myProducts
+    var allProducts = [Product]()
     var displayProducts = [Product]()
     
     var myMediaLabel = UILabel()
@@ -24,23 +24,18 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var myMediaSearch = UITextField()
     var horizontalRuleMyMedia = HorizontalRule()
     
-    var allMedia = UserStore.sharedInstance.myMedia
+    var allMedia = [Youtube]()
     var displayMedia = [Youtube]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         FirebaseManager.shared.fetchUserFavorites { (products) in
-            
-            // Hm, this could be simpler
-            UserStore.sharedInstance.myProducts.removeAll()
-            UserStore.sharedInstance.myProducts = products
-            self.allProducts = UserStore.sharedInstance.myProducts
-            self.displayProducts = self.allProducts
+            self.allProducts = products
+            self.displayProducts = products
             self.myProducts.reloadData()
-            print("line 39")
-            
         }
+        
         view.backgroundColor = Palette.white.color
         guard let username = FirebaseManager.shared.currentUser?.displayName else { print("loaded home view controller but dang, there's no username"); return }
         navBar(title: username, leftButton: nil, rightButton: nil)
