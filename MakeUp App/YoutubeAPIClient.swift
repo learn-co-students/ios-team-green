@@ -19,19 +19,6 @@ final class YoutubeAPIClient {
         
         print("valid search is", validSearch)
         
-//        //Make max length 70 characters
-//        guard var shorterSearch = validSearch else { return }
-//        if shorterSearch.characters.count > 70 {
-//            print("i'm making the search shorter")
-//            let lowBound = shorterSearch.index(shorterSearch.startIndex, offsetBy: 70)
-//            let hiBound = shorterSearch.endIndex
-//            let midRange = lowBound ..< hiBound
-//            print("this is what i'm removing", midRange)
-//            shorterSearch.removeSubrange(midRange)
-//        }
-//        
-////        guard let searchQuery = shorterSearch else { return }
-        
         let url = baseUrl + validSearch!
         print("url", url)
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).validate().responseJSON { (response) in

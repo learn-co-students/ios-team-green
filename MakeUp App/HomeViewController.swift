@@ -43,9 +43,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         setupCollectionViews()
     }
     
-    
     //MARK: - UI SetUp
-    
     func setupLabels() {
         
         myProductsSearch.delegate = self
@@ -188,13 +186,18 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! ProductViewCell
+        ResultStore.sharedInstance.product = cell.product
+        self.navigationController?.pushViewController(ResultsViewController(), animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.myProducts {
             return displayProducts.count
         } else {
             return displayMedia.count
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell

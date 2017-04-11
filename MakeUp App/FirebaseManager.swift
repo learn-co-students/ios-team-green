@@ -41,8 +41,11 @@ final class FirebaseManager {
     }
     
     func toggleFavorite(_ product: Product) {
-        let productRecord = currentUserNode.child((currentUser?.uid)!).child("favorites")
+        
+        guard let user = currentUser else { print("no user"); return }
+        let productRecord = currentUserNode.child(user.uid).child("favorites")
         let productID = product.upc
+        print(productRecord)
         productRecord.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let favoriteRecord = snapshot.value as? [String:Any] else { print("couldn't cast snapshot"); return }
             if favoriteRecord[productID] as? Bool == true {
@@ -54,26 +57,29 @@ final class FirebaseManager {
         })
     }
     
+    /// App Functions //
+    
     func fetchUserFavorites(completion: @escaping ([Product]) -> Void) {
         
-        //hard code ben bernstein user id for testing
-        let userFavorites = currentUserNode.child(("7wETgHKfefaQzL8155WWbI3lkuj2")).child("favorites")
+        guard let user = currentUser else { print("no user"); return }
+        let userFavorites = currentUserNode.child(user.uid).child("favorites")
         userFavorites.observe(.value, with: { (snapshot) in
-            guard let favoriteRecord = snapshot.value as? [String:Any] else { print("couldn't get snapshot"); return }
-            var idsToCheck = [String]()
+            guard let favoriteRecord = snapshot.value as? [String:Any] else { print("couldn't get snapshot... there might be none"); return }
+            var idsToRetrieve = [String]()
             for key in favoriteRecord.keys {
-                idsToCheck.append(key)
+                if favoriteRecord[key] as? Bool == true {
+                    idsToRetrieve.append(key)
+                }
             }
             var products = [Product]()
             var i = 1
-            idsToCheck.forEach({ (id) in
+            idsToRetrieve.forEach({ (id) in
                 self.ref.child("Products").child(id).observe(.value, with: { (snapshot) in
                     guard let dict = snapshot.value as? [String:Any] else { print("no dict snapshot"); return }
                     let newproduct = Product(dict: dict)
                     products.append(newproduct)
                     i += i
-                    if i >= idsToCheck.count {
-                        print("hit completion...")
+                    if i >= idsToRetrieve.count {
                         completion(products)
                     }
                 })
