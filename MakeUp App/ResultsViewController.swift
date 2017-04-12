@@ -74,7 +74,7 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
         youtubeReviewLabel.textAlignment = .left
         
         youtubeTutorialLabel.translatesAutoresizingMaskIntoConstraints = false
-        youtubeTutorialLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
+        youtubeTutorialLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
         youtubeTutorialLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
         youtubeTutorialLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1)
         
@@ -104,7 +104,7 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
         youtubeTutorialVideos.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         youtubeTutorialVideos.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4).isActive = true
         youtubeTutorialVideos.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        youtubeTutorialVideos.topAnchor.constraint(equalTo: youtubeTutorialLabel.bottomAnchor, constant: 20).isActive = true
+        youtubeTutorialVideos.topAnchor.constraint(equalTo: youtubeTutorialLabel.bottomAnchor, constant: 10).isActive = true
         
         youtubeReviewVideos.translatesAutoresizingMaskIntoConstraints = false
         youtubeReviewVideos.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
@@ -124,6 +124,8 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
             return resultStore.youtubeTutorialVideos.count
         }
     }
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {

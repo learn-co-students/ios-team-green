@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class YoutubePreviewCell:UICollectionViewCell {
-    static let reuseIdentifier = "youtubePreviewCell"
     
     var favoriteButton = UIButton()
     var imageView = UIImageView()
@@ -35,6 +34,7 @@ class YoutubePreviewCell:UICollectionViewCell {
     }
     
     func setUpCell() {
+        self.layoutIfNeeded()
         contentView.backgroundColor = Palette.white.color
         guard let youtube = youtube else { print("could not get youtube"); return }
         ImageAPIClient.getProductImage(with: (youtube.thumbnailURL)) { (thumbnailImage) in
@@ -108,6 +108,9 @@ class YoutubePreviewCell:UICollectionViewCell {
         FirebaseManager.shared.toggleMediaFavorite(youtube)
     }
     
+    override func prepareForReuse() {
+        self.isFavorite = false
+    }
     
     
     required init?(coder aDecoder: NSCoder) {
