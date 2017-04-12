@@ -34,27 +34,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         navBar(title: username, leftButton: nil, rightButton: nil)
         setupLabels()
         setupCollectionViews()
+        databaseMethods()
+        
+    
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        FirebaseManager.shared.fetchUserProducts { (products) in
-            self.allProducts.removeAll()
-            self.allProducts = products
-            self.displayProducts = products
-            //  also save in user store for local checking against other products ...
-            UserStore.sharedInstance.favoriteProducts = products
-            self.myProducts.reloadData()
-        }
-        FirebaseManager.shared.fetchUserMedia { (media) in
-            self.allMedia.removeAll()
-            self.allMedia = media
-            self.displayMedia = media
-            //  also save in user store for local checking against other media ...
-            UserStore.sharedInstance.favoriteMedia = media
-            self.myMedia.reloadData()
-        }
-    }
     
     //MARK: - UI SetUp
     func setupLabels() {
@@ -246,6 +230,30 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 150, height: collectionView.frame.height)
     }
+    
+    // MARK: - Database Methods
+    
+    func databaseMethods() {
+        FirebaseManager.shared.fetchUserProducts { (products) in
+            self.allProducts.removeAll()
+            self.allProducts = products
+            self.displayProducts = products
+            //  also save in user store for local checking against other products ...
+            UserStore.sharedInstance.favoriteProducts = products
+            self.myProducts.reloadData()
+            
+        }
+        FirebaseManager.shared.fetchUserMedia { (media) in
+            self.allMedia.removeAll()
+            self.allMedia = media
+            self.displayMedia = media
+            //  also save in user store for local checking against other media ...
+            UserStore.sharedInstance.favoriteMedia = media
+            self.myMedia.reloadData()
+        }
+    }
+    
+
     
     
 }
