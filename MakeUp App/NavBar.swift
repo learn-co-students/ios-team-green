@@ -57,6 +57,7 @@ extension UIViewController {
     func toggleProductFavorite() {
         guard let product = ResultStore.sharedInstance.product else { return }
         FirebaseManager.shared.toggleProductFavorite(product)
+        self.navigationController?.popViewController(animated: true)
     }
     
 }

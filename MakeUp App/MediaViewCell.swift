@@ -30,7 +30,7 @@ class MediaViewCell: UICollectionViewCell {
     
     func setUpCell() {
         guard let youtube = youtube else {print("could not get youtube"); return}
-        titleView.text = youtube.title
+        titleView.text = truncateStringAfterNumberofWords(string: youtube.title, words: 5)
         ImageAPIClient.getProductImage(with: youtube.thumbnailURL) { (image) in
             DispatchQueue.main.async {
                 self.imageView.image = image
@@ -40,8 +40,8 @@ class MediaViewCell: UICollectionViewCell {
     
     func setupConstraints() {
         titleView = UILabel()
-        titleView.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 16)
-        titleView.numberOfLines = 0
+        titleView.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 14)
+        titleView.numberOfLines = 2
         titleView.textAlignment = .left
         titleView.text = "No Title"
         titleView.textColor = Palette.darkGrey.color

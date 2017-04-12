@@ -41,10 +41,8 @@ final class FirebaseManager {
     }
     
     /// App Functions //
-
     
     func toggleProductFavorite(_ product: Product) {
-        
         guard let user = currentUser else { print("no user"); return }
         let productRecord = currentUserNode.child(user.uid).child("favorites").child("products")
         let productID = product.upc
@@ -73,11 +71,8 @@ final class FirebaseManager {
                     mediaRecord.updateChildValues([videoID: true])
                 }
             }
-
-           
         })
     }
-    
     
     func fetchUserProducts(completion: @escaping ([Product]) -> Void) {
         guard let user = currentUser else { print("no user"); return }
@@ -91,19 +86,16 @@ final class FirebaseManager {
                 }
             }
             var products = [Product]()
-            var i = 1
             idsToRetrieve.forEach({ (id) in
                 self.ref.child("Products").child(id).observe(.value, with: { (snapshot) in
                     guard let dict = snapshot.value as? [String:Any] else { print("no dict snapshot"); return }
                     let newproduct = Product(dict: dict)
                     products.append(newproduct)
-                    i += i
-                    if i >= idsToRetrieve.count {
-                        completion(products)
-                    }
+                    completion(products)
                 })
             })
-            
+            // get here if there are no products...
+            completion(products)
         })
     }
     
@@ -119,19 +111,20 @@ final class FirebaseManager {
                 }
             }
             var youtubes = [Youtube]()
-            var i = 1
+            var i = 0
+            if idsToRetrieve.count == 0 {
+                completion(youtubes)
+            }
             idsToRetrieve.forEach({ (id) in
-                // hit youtube API with the ID
                 YoutubeAPIClient.getSingleYoutubeVideo(id: id, completion: { (video) in
                     youtubes.append(video)
-                    i += 1                    
-                    // exit the whole thing when we get all the youtubes back
-                    if i >= idsToRetrieve.count {
+                    i += 1
+                    if i == idsToRetrieve.count {
                         completion(youtubes)
                     }
                 })
-                
             })
+           
             
         })
     }

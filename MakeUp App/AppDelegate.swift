@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     var user: String? {
-        print("User Token at launch:", UserDefaults.standard.string(forKey: "userID") as Any)
         return UserDefaults.standard.string(forKey: "userID")
     }
 
