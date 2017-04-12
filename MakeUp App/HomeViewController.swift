@@ -11,7 +11,6 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
     
-    var myProductsLabel = UILabel()
     var myProducts = MediaCollectionView(frame: CGRect.zero)
     var myProductsSearch = UITextField()
     var horizontalRuleMyProducts = HorizontalRule()
@@ -19,7 +18,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var allProducts = [Product]()
     var displayProducts = [Product]()
     
-    var myMediaLabel = UILabel()
     var myMedia = MediaCollectionView(frame: CGRect.zero)
     var myMediaSearch = UITextField()
     var horizontalRuleMyMedia = HorizontalRule()
@@ -46,63 +44,45 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         myProductsSearch.delegate = self
         myMediaSearch.delegate = self
         
-        view.addSubview(myProductsLabel)
         view.addSubview(myProductsSearch)
         view.addSubview(horizontalRuleMyProducts)
         view.addSubview(myProducts)
         
-        view.addSubview(myMediaLabel)
         view.addSubview(myMediaSearch)
         view.addSubview(horizontalRuleMyMedia)
         view.addSubview(myMedia)
         
-        myProductsLabel.text = "My Products"
-        myProductsLabel.textColor = Palette.darkGrey.color
-        myProductsLabel.font = Fonts.Playfair(withStyle: .italic, sizeLiteral: 30)
-        myProductsLabel.textAlignment = .left
-        
-        myProductsLabel.translatesAutoresizingMaskIntoConstraints = false
-        myProductsLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
-        myProductsLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
-        myProductsLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
-        
-        myProductsSearch.placeholder = "Search..."
+        myProductsSearch.attributedPlaceholder = NSAttributedString(string: "My Products", attributes: [NSForegroundColorAttributeName: Palette.darkGrey.color])
+        myProductsSearch.textColor = Palette.darkGrey.color
         myProductsSearch.backgroundColor = Palette.white.color
-        myProductsSearch.font = Fonts.Playfair(withStyle: .italic, sizeLiteral: 16)
+        myProductsSearch.font = Fonts.Playfair(withStyle: .italic, sizeLiteral: 30)
         
         myProductsSearch.translatesAutoresizingMaskIntoConstraints = false
-        myProductsSearch.leftAnchor.constraint(equalTo: myProductsLabel.rightAnchor, constant: 15).isActive = true
-        myProductsSearch.centerYAnchor.constraint(equalTo: myProductsLabel.centerYAnchor, constant: 5).isActive = true
-        myProductsSearch.heightAnchor.constraint(equalTo: myProductsLabel.heightAnchor).isActive = true
-        myProductsSearch.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
+        myProductsSearch.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        myProductsSearch.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
+        myProductsSearch.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
+        myProductsSearch.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         
         horizontalRuleMyProducts.translatesAutoresizingMaskIntoConstraints = false
-        horizontalRuleMyProducts.topAnchor.constraint(equalTo: myProductsLabel.bottomAnchor).isActive = true
+        horizontalRuleMyProducts.topAnchor.constraint(equalTo: myProductsSearch.bottomAnchor).isActive = true
         horizontalRuleMyProducts.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
         horizontalRuleMyProducts.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         // MY MEDIA
         
-        myMediaLabel.text = "My Media"
-        myMediaLabel.textColor = Palette.darkGrey.color
-        myMediaLabel.font = Fonts.Playfair(withStyle: .italic, sizeLiteral: 30)
-        
-        myMediaLabel.translatesAutoresizingMaskIntoConstraints = false
-        myMediaLabel.topAnchor.constraint(equalTo: myProducts.bottomAnchor).isActive = true
-        myMediaLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
-        myMediaLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
-        
-        myMediaSearch.placeholder = "Search..."
+      
+        myMediaSearch.attributedPlaceholder = NSAttributedString(string: "My Media", attributes: [NSForegroundColorAttributeName: Palette.darkGrey.color])
+        myMediaSearch.textColor = Palette.darkGrey.color
         myMediaSearch.backgroundColor = Palette.white.color
-        myMediaSearch.font = Fonts.Playfair(withStyle: .italic, sizeLiteral: 16)
+        myMediaSearch.font = Fonts.Playfair(withStyle: .italic, sizeLiteral: 30)
         
         myMediaSearch.translatesAutoresizingMaskIntoConstraints = false
-        myMediaSearch.leftAnchor.constraint(equalTo: myMediaLabel.rightAnchor, constant: 15).isActive = true
-        myMediaSearch.topAnchor.constraint(equalTo: myMediaLabel.topAnchor).isActive = true
-        myMediaSearch.heightAnchor.constraint(equalTo: myMediaLabel.heightAnchor).isActive = true
+        myMediaSearch.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        myMediaSearch.topAnchor.constraint(equalTo: myProducts.bottomAnchor).isActive = true
+        myMediaSearch.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
         
         horizontalRuleMyMedia.translatesAutoresizingMaskIntoConstraints = false
-        horizontalRuleMyMedia.topAnchor.constraint(equalTo: myMediaLabel.bottomAnchor).isActive = true
+        horizontalRuleMyMedia.topAnchor.constraint(equalTo: myMediaSearch.bottomAnchor).isActive = true
         horizontalRuleMyMedia.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
         horizontalRuleMyMedia.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
@@ -129,7 +109,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         myMedia.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         myMedia.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3).isActive = true
         myMedia.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        myMedia.topAnchor.constraint(equalTo: myMediaLabel.bottomAnchor, constant: 15).isActive = true
+        myMedia.topAnchor.constraint(equalTo: myMediaSearch.bottomAnchor, constant: 15).isActive = true
         
     }
     
