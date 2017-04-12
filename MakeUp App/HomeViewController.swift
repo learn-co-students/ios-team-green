@@ -149,13 +149,19 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
     }
     
+
     // MARK: - Search Methods
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
+        textField.resignFirstResponder()
         return true
     }
     
+    // If you touch outside of a text field, it ends ending
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         var currentSearch = textField.text! as NSString
         currentSearch = currentSearch.replacingCharacters(in: range, with: string) as NSString

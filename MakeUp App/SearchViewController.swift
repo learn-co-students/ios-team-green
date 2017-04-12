@@ -18,9 +18,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     
     let resultStore = ResultStore.sharedInstance
     
-    //var finishedSearch = false
     var lastBarCodevalue:String?
-    
     
     //for barCodeDetails & DB addition
     var apiData:[String:Any] = [:]

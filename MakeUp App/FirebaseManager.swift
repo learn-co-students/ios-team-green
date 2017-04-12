@@ -111,14 +111,20 @@ final class FirebaseManager {
                 }
             }
             var youtubes = [Youtube]()
+            var i = 0
+            if idsToRetrieve.count == 0 {
+                completion(youtubes)
+            }
             idsToRetrieve.forEach({ (id) in
-                // hit youtube API with the ID
                 YoutubeAPIClient.getSingleYoutubeVideo(id: id, completion: { (video) in
                     youtubes.append(video)
-                    completion(youtubes)
+                    i += 1
+                    if i == idsToRetrieve.count {
+                        completion(youtubes)
+                    }
                 })
             })
-            completion(youtubes)
+           
             
         })
     }
