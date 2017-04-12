@@ -48,11 +48,11 @@ class ProductCell: UITableViewCell {
     
     func setupConstraints() {
         
-        titleLabel.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 10)
+        titleLabel.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 16)
         titleLabel.numberOfLines = 3
         titleLabel.textAlignment = .left
         titleLabel.text = "No Title"
-        titleLabel.textColor = Palette.darkGrey.color
+        titleLabel.textColor = Palette.black.color
         
         //set AutoresizingMask  & add to subView before setting constraints
         productImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -80,7 +80,7 @@ class ProductCell: UITableViewCell {
         titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: productImageView.rightAnchor, constant: 10).isActive = true
         titleLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
-        
+        //titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor , constant: -2).isActive = true
     }
     
 

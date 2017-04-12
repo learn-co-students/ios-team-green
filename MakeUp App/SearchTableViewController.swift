@@ -15,6 +15,11 @@ class SearchTableViewController: UITableViewController {
     //var productAPIClient:ProductAPIClient!
     var productArray:[Product] = []
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tableView.rowHeight = 80
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     
@@ -73,7 +78,6 @@ class SearchTableViewController: UITableViewController {
         return cell
     }
     
-
 
     /*
     // MARK: - Navigation
