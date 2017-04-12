@@ -16,14 +16,22 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var horizontalRuleMyProducts = HorizontalRule()
     
     var allProducts = [Product]()
-    var displayProducts = [Product]()
-    
+    var displayProducts = [Product]() {
+        didSet {
+            displayProducts.sort { $0.0.title < $0.1.title }
+        }
+    }
+
     var myMedia = MediaCollectionView(frame: CGRect.zero)
     var myMediaSearch = UITextField()
     var horizontalRuleMyMedia = HorizontalRule()
     
     var allMedia = [Youtube]()
-    var displayMedia = [Youtube]()
+    var displayMedia = [Youtube]() {
+        didSet {
+            displayMedia.sort { $0.0.title < $0.1.title }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,8 +77,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         horizontalRuleMyProducts.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         // MY MEDIA
-        
-      
         myMediaSearch.attributedPlaceholder = NSAttributedString(string: "My Media", attributes: [NSForegroundColorAttributeName: Palette.darkGrey.color])
         myMediaSearch.textColor = Palette.darkGrey.color
         myMediaSearch.backgroundColor = Palette.white.color
