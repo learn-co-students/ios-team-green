@@ -2,7 +2,7 @@
 //  SearchViewController.swift
 //  MakeUp App
 //
-//  Created by Benjamin Bernstein on 4/4/17.
+//  Created by Amit Chadha on 4/4/17.
 //  Copyright © 2017 Raquel Rahmey. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import FirebaseDatabase
 
-class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDelegate {
+class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDelegate, UISearchBarDelegate {
     
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
@@ -36,17 +36,23 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                               AVMetadataObjectTypeEAN13Code,
                               AVMetadataObjectTypeAztecCode,
                               AVMetadataObjectTypePDF417Code /*,
-         AVMetadataObjectTypeQRCode*/]
+                              AVMetadataObjectTypeQRCode*/]
+    
+    //SearchBar
+    var searchBar:UISearchBar!
+    
+    //SearchTableView
+    let searchTableView = SearchTableViewController()
+    
     
     override func viewWillAppear(_ animated: Bool) {
-        print("view appeared at 42")
         super.viewWillAppear(true)
         lastBarCodevalue = nil
-        //finishedSearch = false
-        //print("finished search is", finishedSearch)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navBar(title: "Search or Scan", leftButton: nil, rightButton: nil)
         
         ref = FIRDatabase.database().reference(withPath: "Products")
         
@@ -82,10 +88,6 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
             // Start video capture.
             captureSession?.startRunning()
             
-            // Move the message label and top bar to the front
-            //view.bringSubview(toFront: messageLabel)
-            //view.bringSubview(toFront: lastMessageLabel)
-            //view.bringSubview(toFront: topbar)
             
             // Initialize QR Code Frame to highlight the QR code
             qrCodeFrameView = UIView()
@@ -103,11 +105,39 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
             return
         }
         
+
+        configureSearchController()
+        
+        
     } //func viewDidLoad()
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func configureSearchController() {
+
+        searchBar = UISearchBar()
+        searchBar.delegate = self
+        searchBar.frame.size = CGSize(width: (navigationController?.navigationBar.frame.width)!, height: (navigationController?.navigationBar.frame.height)!)
+        searchBar.showsCancelButton = true
+
+        view.addSubview(searchBar)
+        print("In configureSearchController:x:\(searchBar.frame.debugDescription)")
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("In searchBarSearchButtonClicked:text:\(searchBar.text)")
+        // push to new view controller
+        searchTableView.searchString = searchBar.text
+        self.navigationController?.pushViewController(searchTableView, animated: true)
+        
+    }
+    
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
     }
     
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
@@ -196,7 +226,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                     }
                     //print("json=\(json)")
                     guard let targetdata = json["items"] as? [[String:Any]] else {
-                        print("targetdata is nil. Cannot convert json to dictionary array"); return
+                        print("Cannot convert json to dictionary array"); return
                     }
                     print("targetdata=\(targetdata[0])")
                     self.apiData = targetdata[0]
