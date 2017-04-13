@@ -119,7 +119,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         searchBar = UISearchBar()
         searchBar.delegate = self
         searchBar.frame.size = CGSize(width: (navigationController?.navigationBar.frame.width)!, height: (navigationController?.navigationBar.frame.height)!)
-        searchBar.showsCancelButton = true
+        
 
         view.addSubview(searchBar)
         print("In configureSearchController:x:\(searchBar.frame.debugDescription)")
@@ -133,8 +133,13 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         
     }
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+       searchBar.showsCancelButton = true
+    }
+
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
         searchBar.endEditing(true)
     }
     
@@ -230,8 +235,8 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                     self.apiData = targetdata[0]
                     
                     let imageArray = self.apiData["images"] as? [String] ?? ["No image"]
-                    let image = imageArray[0]
-                    self.apiData["image"] = image
+                    let imageUrl = imageArray[0]
+                    self.apiData["image"] = imageUrl
                     let product = Product(dict:self.apiData)
                     self.addToDB(product)
                     completion(product)

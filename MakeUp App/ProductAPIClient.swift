@@ -14,10 +14,12 @@ class ProductAPIClient {
     
     func stringSearch(searchString:String, completion:@escaping ([Product])->()) {
         var result:[Product] = []
-        print("In ProductAPIClient:stringSearch string: \(searchString)")
+        let escapedSearchString = searchString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "Url string conversion failed"
         
-        let url = URL(string: "https://api.upcitemdb.com/prod/trial/search?s=\(searchString)&match_mode=0&type=product")
-        guard let unwrappedUrl = url else { print("Invalid Url"); return }
+        print("**In ProductAPIClient:stringSearch string: \(searchString) escapedSearchString:\(escapedSearchString)")
+
+        let url = URL(string: "https://api.upcitemdb.com/prod/trial/search?s=\(escapedSearchString)&match_mode=0&type=product")
+        guard let unwrappedUrl = url else { print("Invalid Url \(url?.absoluteString)"); return }
         let task = URLSession.shared.dataTask(with: unwrappedUrl) { (data, response, error) in
             if let unwrappedData = data {
                 do {
@@ -33,11 +35,18 @@ class ProductAPIClient {
                         print("**item=\(item)")
                         var targetData:[String:Any]
                         
-                        let imageArray = item["images"] as? [String] ?? ["No image"]
-                        //let image = imageArray[0]
                         targetData = item
-                        targetData["image"] = imageArray[0]
-                        print("THE DICITONARY IMAGE IS", targetData["image"]!)
+                        print("item[images]:", item["images"] ?? "No Image")
+                        let imageArray = item["images"] as? [String] ?? ["No Image"]
+                        //let image = imageArray[0]
+                        if !(imageArray.isEmpty) {
+                            targetData["image"] = imageArray[0]
+                        } else {
+                            targetData["image"] = "No Image" ;
+                            print("imageArray is empty")
+                        }
+                        
+                        print("THE DICITONARY IMAGE IS", targetData["image"] ?? "No Image" )
                         let product = Product(dict:targetData)
                         result.append(product)
                     }
