@@ -94,6 +94,23 @@ class SignUpViewController: UIViewController {
 private typealias FacebookLoginManager = SignUpViewController
 extension FacebookLoginManager {
     
+    func validateLogin() {
+        let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+        FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+            if let validationError = error {
+                print("Validate Login -> error validating login: %@", validationError)
+            } else if let user = user {
+                UserDefaults.standard.set(user.uid, forKey: "userID")
+                FirebaseManager.shared.createOrUpdate(user)
+                
+                // go to Home View
+                self.present(TabBarController(), animated: true, completion: nil)
+            } else {
+                print("LoginVC -> error validating login")
+            }
+        }
+    }
+    
     func facebookLogin(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         let fbLoginManager: FBSDKLoginManager = FBSDKLoginManager()
         fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
@@ -105,26 +122,11 @@ extension FacebookLoginManager {
         }
         else {
             print("Facebook -> user logged in")
-            validateLogin()
+            self.validateLogin()
         }
     }
     
-    func validateLogin() {
-        let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-        FIRAuth.auth()?.signIn(with: credential) { (user, error) in
-            if let validationError = error {
-                print("Validate Login -> error validating login: %@", validationError)
-            } else if let user = user {
-                UserDefaults.standard.set(user.uid, forKey: "userID")
-                FirebaseManager.shared.createOrUpdate(user)
-
-                // go to Home View
-                self.present(TabBarController(), animated: true, completion: nil)
-            } else {
-                print("LoginVC -> error validating login")
-            }
-        }
-    }
+   
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         do {
