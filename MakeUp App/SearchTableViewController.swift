@@ -74,7 +74,7 @@ class SearchTableViewController: UITableViewController {
         //cell.myImageView = productArray[indexPath.row].
         
         cell.product = productArray[indexPath.row]
-        print("In SearchTableViewController:tableView:cell:\(cell.product?.description) ")
+        print("In SearchTableViewController:tableView:row \(indexPath.row):\(cell.product?.description) ")
         return cell
     }
     

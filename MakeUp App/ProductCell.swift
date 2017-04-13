@@ -23,7 +23,7 @@ class ProductCell: UITableViewCell {
     func setUpCell() {
         guard let myProduct = product else { print("could not get product"); return  }
         titleLabel.text = myProduct.description
-        print("product is", myProduct.description, myProduct.imageURL)
+        print("product desp: \(myProduct.description) imageURL: \(myProduct.imageURL)")
         ImageAPIClient.getProductImage(with: myProduct.imageURL) { (productImage) in
             DispatchQueue.main.async {
                 print("product is", myProduct.title, myProduct.imageURL)
