@@ -1,18 +1,16 @@
-      //
-//  ResultsViewController.swift
+//  TutorialsViewController.swift
 //  MakeUp App
 //
 //  Created by Benjamin Bernstein on 4/4/17.
-//  Copyright © 2017 Raquel Rahmey. All rights reserved.
+//  Copyright © 2017 Benjamin Bernstein. All rights reserved.
 //
 
 import UIKit
 
-
-class ResultsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class TutorialsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     let resultStore = ResultStore.sharedInstance
-
+    
     let youtubeReviewLabel = UILabel()
     let youtubeReviewVideos = MediaCollectionView(frame: CGRect.zero)
     
@@ -26,8 +24,8 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
         view.backgroundColor = Palette.white.color
         
         guard let product = resultStore.product else { return }
-
-        navBar(title: truncateStringAfterNumberofWords(string: product.title, words: 3), leftButton: .back, rightButton: .favorite)
+        
+        navBar(title: truncateStringAfterNumberofWords(string: product.title, words: 3), leftButton: .favorite, rightButton: .buy)
         
         if let product = resultStore.product {
             self.resultStore.getYouTubeVideos(search: product.title, videoType: .review) {
@@ -62,7 +60,7 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
         view.addSubview(productDisplay)
         
         productDisplay.product = resultStore.product
-
+        
         youtubeTutorialLabel.text = "Tutorials"
         youtubeTutorialLabel.textColor = Palette.darkGrey.color
         youtubeTutorialLabel.font = Fonts.Playfair(withStyle: .italic, sizeLiteral: 30)
@@ -162,7 +160,7 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
         case self.youtubeReviewVideos:

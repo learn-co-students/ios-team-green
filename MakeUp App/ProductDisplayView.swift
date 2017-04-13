@@ -36,7 +36,7 @@ class ProductDisplayView: UIView {
         ImageAPIClient.getProductImage(with: (product.imageURL)) { (productImage) in
             DispatchQueue.main.async {
                 self.imageView.image = productImage
-                
+                print("image is", productImage)
             }
         }
     }

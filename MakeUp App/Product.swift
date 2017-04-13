@@ -35,8 +35,7 @@ class Product {
         dimension = dict["dimension"] as? String ?? ""
         weight = dict["weight"] as? String ?? ""
         currency = dict["currency"] as? String ?? ""
-        imageURL = dict["images"] as? String ?? ""
-        
+        imageURL = dict["image"] as? String ?? ""
     }
     
     func toDict()->[String:Any] {
@@ -53,7 +52,7 @@ class Product {
         dict["dimension"] = self.dimension
         dict["weight"] = self.weight
         dict["currency"] = self.currency
-        dict["images"] = self.imageURL
+        dict["image"] = self.imageURL
     
         return dict
     }
