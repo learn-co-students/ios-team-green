@@ -43,18 +43,25 @@ final class FirebaseManager {
     /// App Functions //
     
     func toggleProductFavorite(_ product: Product) {
+        print("line 46")
         guard let user = currentUser else { print("no user"); return }
-        let productRecord = currentUserNode.child(user.uid).child("favorites").child("products")
         let productID = product.upc
-        productRecord.observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let favoriteRecord = snapshot.value as? [String:Any] else { print("couldn't cast snapshot"); return }
-            if favoriteRecord[productID] as? Bool == true {
-                productRecord.updateChildValues([productID: false])
-                print("removed favorite")
-            } else {
-                productRecord.updateChildValues([productID: true])
-                print("added favorite")
-            }
+        let productRecord = currentUserNode.child(user.uid).child("favorites").child("products")
+        
+        
+            productRecord.observeSingleEvent(of: .value, with: { (snapshot) in
+                if let favoriteRecord = snapshot.value as? [String:Any] {
+                    if favoriteRecord[productID] as? Bool == false {
+                        productRecord.updateChildValues([productID: true])
+                        print("added favorite")
+                    } else  {
+                        productRecord.updateChildValues([productID: false])
+                        print("removed favorite")
+                    }
+                } else {
+                    productRecord.updateChildValues([productID: true])
+                }
+           
         })
     }
     
@@ -124,7 +131,7 @@ final class FirebaseManager {
                     }
                 })
             })
-           
+            
             
         })
     }
