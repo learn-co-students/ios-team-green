@@ -50,10 +50,7 @@ class ProductAPIClient {
                         let product = Product(dict:targetData)
                         result.append(product)
                     }
-                    
-                    //self.apiData = itemsData[0]
-                    
-                    //self.addToDB(product)
+                
                     completion(result)
                 } catch {  }
             }

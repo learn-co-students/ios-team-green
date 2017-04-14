@@ -187,7 +187,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                         print("Value found in DB")
                         self.resultStore.product = Product(dict: val!)
                         DispatchQueue.main.async {
-                            self.navigationController?.pushViewController(ResultsViewController(), animated: true)
+                            self.navigationController?.pushViewController(ProductViewController(), animated: true)
                         }
                     }
 
@@ -198,7 +198,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                             self.resultStore.product = Product
                             DispatchQueue.main.async {
                                 self.resultStore.product = Product
-                                self.navigationController?.pushViewController(ResultsViewController(), animated: true)
+                                self.navigationController?.pushViewController(ProductViewController(), animated: true)
                             }
                             
                         }

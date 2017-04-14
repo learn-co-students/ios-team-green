@@ -21,8 +21,13 @@ extension UIViewController {
                 return UIBarButtonItem(title: "Mirror", style: .plain, target: self, action: nil)
             case "back":
                 return UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(popLast(_:)))
+            case "buy":
+                return UIBarButtonItem(title: "Buy", style: .plain, target: self, action: #selector(buy(_:)))
             case "favorite":
                 let heartImage = #imageLiteral(resourceName: "Heart").withRenderingMode(.alwaysOriginal)
+                return UIBarButtonItem(image: heartImage, landscapeImagePhone: heartImage, style: .plain, target: self, action: #selector(toggleProductFavorite))
+            case "notFavorite":
+                let heartImage = #imageLiteral(resourceName: "Empty-Heart").withRenderingMode(.alwaysOriginal)
                 return UIBarButtonItem(image: heartImage, landscapeImagePhone: heartImage, style: .plain, target: self, action: #selector(toggleProductFavorite))
             default:
                 return nil
@@ -54,16 +59,24 @@ extension UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    func buy(_ sender: UIBarButtonItem) {
+        print("TODO: This goes to a google search for the productname")
+    }
+    
     func toggleProductFavorite() {
         guard let product = ResultStore.sharedInstance.product else { return }
         FirebaseManager.shared.toggleProductFavorite(product)
-        self.navigationController?.popViewController(animated: true)
+        toggleHeartButton()
+    }
+    
+    func toggleHeartButton() {
+        //TODO: Set heart button depending on if product is favorite
     }
     
 }
 
 
 enum ButtonType: String {
-    case mirror, back, favorite
+    case mirror, back, favorite, notFavorite, buy
 }
 

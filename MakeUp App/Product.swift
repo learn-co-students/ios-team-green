@@ -36,7 +36,7 @@ class Product {
         weight = dict["weight"] as? String ?? ""
         currency = dict["currency"] as? String ?? ""
         imageURL = dict["image"] as? String ?? ""
-        
+
     }
     
     func toDict()->[String:Any] {

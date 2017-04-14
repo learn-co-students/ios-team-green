@@ -41,10 +41,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         setupLabels()
         setupCollectionViews()
         databaseMethods()
-        
-    
+
     }
-    
     
     //MARK: - UI SetUp
     func setupLabels() {
@@ -179,7 +177,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         if collectionView == self.myProducts {
             let cell = collectionView.cellForItem(at: indexPath) as! ProductViewCell
             ResultStore.sharedInstance.product = cell.product
-            self.navigationController?.pushViewController(ResultsViewController(), animated: true)
+            self.navigationController?.pushViewController(ProductViewController(), animated: true)
         } else {
             let destinationVC = YouTubePlayerViewViewController()
             let cell = displayMedia[indexPath.item]

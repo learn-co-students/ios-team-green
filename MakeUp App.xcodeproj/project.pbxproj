@@ -12,11 +12,13 @@
 		40771F811E9D292F00872379 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40771F801E9D292F00872379 /* ProductCell.swift */; };
 		40771F831E9D5DF700872379 /* ProductAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40771F821E9D5DF700872379 /* ProductAPIClient.swift */; };
 		40B7F6C21E9BE6EA00B3D447 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B7F6C11E9BE6EA00B3D447 /* SearchTableViewController.swift */; };
+		B503D05A1EA01F05004D73E8 /* YouTubeVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503D0591EA01F05004D73E8 /* YouTubeVideoController.swift */; };
+		B503D05C1EA03275004D73E8 /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503D05B1EA03275004D73E8 /* CircularButton.swift */; };
 		B508FB251E9BB7BA0049B424 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB241E9BB7BA0049B424 /* Secrets.swift */; };
 		B508FB271E9BCC640049B424 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB261E9BCC640049B424 /* FirebaseManager.swift */; };
 		B508FB291E9D71A20049B424 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB281E9D71A20049B424 /* UserStore.swift */; };
 		B50E4C0F1E940F3C0004D8F7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C0E1E940F3C0004D8F7 /* TabBarController.swift */; };
-		B50E4C111E940F660004D8F7 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C101E940F660004D8F7 /* ResultsViewController.swift */; };
+		B50E4C111E940F660004D8F7 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C101E940F660004D8F7 /* ProductViewController.swift */; };
 		B50E4C131E940F790004D8F7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C121E940F790004D8F7 /* SearchViewController.swift */; };
 		B50E4C161E9410660004D8F7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C151E9410660004D8F7 /* Colors.swift */; };
 		B50E4C181E9411EF0004D8F7 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C171E9411EF0004D8F7 /* Fonts.swift */; };
@@ -74,11 +76,13 @@
 		40B7F6C11E9BE6EA00B3D447 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		6C97B014205069603AF2B928 /* Pods-MakeUp App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakeUp App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MakeUp App/Pods-MakeUp App.debug.xcconfig"; sourceTree = "<group>"; };
 		A61DC710A697C9092B6EB698 /* Pods_MakeUp_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MakeUp_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B503D0591EA01F05004D73E8 /* YouTubeVideoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeVideoController.swift; sourceTree = "<group>"; };
+		B503D05B1EA03275004D73E8 /* CircularButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
 		B508FB241E9BB7BA0049B424 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		B508FB261E9BCC640049B424 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		B508FB281E9D71A20049B424 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		B50E4C0E1E940F3C0004D8F7 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		B50E4C101E940F660004D8F7 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		B50E4C101E940F660004D8F7 /* ProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		B50E4C121E940F790004D8F7 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B50E4C151E9410660004D8F7 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		B50E4C171E9411EF0004D8F7 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -159,13 +163,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B503D0581EA01EC8004D73E8 /* ProductFlow */ = {
+			isa = PBXGroup;
+			children = (
+				B50E4C101E940F660004D8F7 /* ProductViewController.swift */,
+				B503D0591EA01F05004D73E8 /* YouTubeVideoController.swift */,
+			);
+			name = ProductFlow;
+			sourceTree = "<group>";
+		};
 		B50E4C0C1E940EF90004D8F7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B503D0581EA01EC8004D73E8 /* ProductFlow */,
 				B50E4C421E942DB80004D8F7 /* SignUp */,
 				B50E4C0E1E940F3C0004D8F7 /* TabBarController.swift */,
 				D35D674E1E96E7FD00B8AB03 /* YouTubePlayerViewViewController.swift */,
-				B50E4C101E940F660004D8F7 /* ResultsViewController.swift */,
 				B50E4C121E940F790004D8F7 /* SearchViewController.swift */,
 				40B7F6C11E9BE6EA00B3D447 /* SearchTableViewController.swift */,
 				B53E9BBB1E953AF00017E3E9 /* HomeViewController.swift */,
@@ -200,8 +213,10 @@
 		B50E4C3E1E9426F50004D8F7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D3DBC6591E96C80100D0F711 /* ProductDisplayView.swift */,
 				B5D3A5501E9596FD00D808B7 /* Cells */,
 				B50E4C3F1E94270C0004D8F7 /* SignInButton.swift */,
+				B503D05B1EA03275004D73E8 /* CircularButton.swift */,
 				B53E9BBD1E9546F80017E3E9 /* NavBar.swift */,
 				B5D3A54E1E9596FA00D808B7 /* MediaCollectionView.swift */,
 				B54F1C2F1E96A53F00360CB3 /* HorizontalRule.swift */,
@@ -225,7 +240,6 @@
 				40771F801E9D292F00872379 /* ProductCell.swift */,
 				B5D3A5551E95A56300D808B7 /* MediaViewCell.swift */,
 				D32E5F481E96885D0025D613 /* YoutubePreviewCell.swift */,
-				D3DBC6591E96C80100D0F711 /* ProductDisplayView.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -370,7 +384,7 @@
 				TargetAttributes = {
 					D33B08121E93FB650046E986 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 3J6EPP8283;
+						DevelopmentTeam = SRFS2YY3XR;
 						ProvisioningStyle = Automatic;
 					};
 					D33B08291E93FB650046E986 = {
@@ -497,6 +511,7 @@
 				D33B08521E9542D00046E986 /* ResultStore.swift in Sources */,
 				D3DBC65A1E96C80100D0F711 /* ProductDisplayView.swift in Sources */,
 				4056D7D41E96E26800AF6727 /* Product.swift in Sources */,
+				B503D05C1EA03275004D73E8 /* CircularButton.swift in Sources */,
 				40771F831E9D5DF700872379 /* ProductAPIClient.swift in Sources */,
 				D33B08501E9537AC0046E986 /* Youtube.swift in Sources */,
 				D3AABBA01E96CD9D00590E96 /* ImageAPIClient.swift in Sources */,
@@ -511,12 +526,13 @@
 				B53E9BBC1E953AF00017E3E9 /* HomeViewController.swift in Sources */,
 				B5D3A5561E95A56300D808B7 /* MediaViewCell.swift in Sources */,
 				40771F811E9D292F00872379 /* ProductCell.swift in Sources */,
-				B50E4C111E940F660004D8F7 /* ResultsViewController.swift in Sources */,
+				B50E4C111E940F660004D8F7 /* ProductViewController.swift in Sources */,
 				D35D674F1E96E7FD00B8AB03 /* YouTubePlayerViewViewController.swift in Sources */,
 				B508FB251E9BB7BA0049B424 /* Secrets.swift in Sources */,
 				B53E9BBE1E9546F80017E3E9 /* NavBar.swift in Sources */,
 				B50E4C401E94270C0004D8F7 /* SignInButton.swift in Sources */,
 				D32E5F491E96885D0025D613 /* YoutubePreviewCell.swift in Sources */,
+				B503D05A1EA01F05004D73E8 /* YouTubeVideoController.swift in Sources */,
 				B54F1C301E96A53F00360CB3 /* HorizontalRule.swift in Sources */,
 				D33B08171E93FB650046E986 /* AppDelegate.swift in Sources */,
 				40B7F6C21E9BE6EA00B3D447 /* SearchTableViewController.swift in Sources */,
@@ -664,10 +680,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3J6EPP8283;
+				DEVELOPMENT_TEAM = SRFS2YY3XR;
 				INFOPLIST_FILE = "MakeUp App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ItemScanner.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ItemScanner4.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -680,10 +696,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3J6EPP8283;
+				DEVELOPMENT_TEAM = SRFS2YY3XR;
 				INFOPLIST_FILE = "MakeUp App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ItemScanner.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ItemScanner4.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
