@@ -14,6 +14,7 @@
 		40B7F6C21E9BE6EA00B3D447 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B7F6C11E9BE6EA00B3D447 /* SearchTableViewController.swift */; };
 		B503D05A1EA01F05004D73E8 /* TutorialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503D0591EA01F05004D73E8 /* TutorialsViewController.swift */; };
 		B503D05C1EA03275004D73E8 /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503D05B1EA03275004D73E8 /* CircularButton.swift */; };
+		B506E6CD1EA1190500BC87C4 /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B506E6CC1EA1190500BC87C4 /* ReviewsViewController.swift */; };
 		B508FB251E9BB7BA0049B424 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB241E9BB7BA0049B424 /* Secrets.swift */; };
 		B508FB271E9BCC640049B424 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB261E9BCC640049B424 /* FirebaseManager.swift */; };
 		B508FB291E9D71A20049B424 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB281E9D71A20049B424 /* UserStore.swift */; };
@@ -78,6 +79,7 @@
 		A61DC710A697C9092B6EB698 /* Pods_MakeUp_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MakeUp_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B503D0591EA01F05004D73E8 /* TutorialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialsViewController.swift; sourceTree = "<group>"; };
 		B503D05B1EA03275004D73E8 /* CircularButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
+		B506E6CC1EA1190500BC87C4 /* ReviewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
 		B508FB241E9BB7BA0049B424 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		B508FB261E9BCC640049B424 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		B508FB281E9D71A20049B424 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			children = (
 				B50E4C101E940F660004D8F7 /* ProductViewController.swift */,
 				B503D0591EA01F05004D73E8 /* TutorialsViewController.swift */,
+				B506E6CC1EA1190500BC87C4 /* ReviewsViewController.swift */,
 			);
 			name = ProductFlow;
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 				B50E4C401E94270C0004D8F7 /* SignInButton.swift in Sources */,
 				D32E5F491E96885D0025D613 /* YoutubePreviewCell.swift in Sources */,
 				B503D05A1EA01F05004D73E8 /* TutorialsViewController.swift in Sources */,
+				B506E6CD1EA1190500BC87C4 /* ReviewsViewController.swift in Sources */,
 				B54F1C301E96A53F00360CB3 /* HorizontalRule.swift in Sources */,
 				D33B08171E93FB650046E986 /* AppDelegate.swift in Sources */,
 				40B7F6C21E9BE6EA00B3D447 /* SearchTableViewController.swift in Sources */,

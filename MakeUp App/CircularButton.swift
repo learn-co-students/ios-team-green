@@ -8,13 +8,18 @@
 
 import UIKit
 
+protocol CircularButtonDelegate {
+    func buttonTapped(sender: CircularButton)
+}
+
 class CircularButton: UIView {
     
-    var text: String
+    var title: String
+    var delegate: CircularButtonDelegate?
     
-    init(image: UIImage, text: String, size: CGFloat) {
+    init(image: UIImage, title: String, size: CGFloat) {
         
-        self.text = text
+        self.title = title
         
         super.init(frame: CGRect())
         
@@ -23,7 +28,6 @@ class CircularButton: UIView {
         
         self.layer.cornerRadius = self.frame.width * 0.6
         self.clipsToBounds = true
-        print("layercorner", self.layer.cornerRadius)
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(buttonTapped))
         self.addGestureRecognizer(gestureRecognizer)
@@ -49,13 +53,13 @@ class CircularButton: UIView {
         
         textView.font = Fonts.Playfair(withStyle: .blackItalic, sizeLiteral: 16)
         textView.textColor = Palette.white.color
-        textView.text = text
+        textView.text = title
         textView.textAlignment = .center
     
     }
     
     func buttonTapped() {
-        print(text, "button tapped")
+        delegate?.buttonTapped(sender: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
