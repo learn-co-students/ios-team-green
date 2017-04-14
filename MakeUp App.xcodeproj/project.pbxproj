@@ -13,7 +13,7 @@
 		40771F831E9D5DF700872379 /* ProductAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40771F821E9D5DF700872379 /* ProductAPIClient.swift */; };
 		40B7F6C21E9BE6EA00B3D447 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B7F6C11E9BE6EA00B3D447 /* SearchTableViewController.swift */; };
 		B503D05A1EA01F05004D73E8 /* TutorialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503D0591EA01F05004D73E8 /* TutorialsViewController.swift */; };
-		B503D05C1EA03275004D73E8 /* CircularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503D05B1EA03275004D73E8 /* CircularView.swift */; };
+		B503D05C1EA03275004D73E8 /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503D05B1EA03275004D73E8 /* CircularButton.swift */; };
 		B508FB251E9BB7BA0049B424 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB241E9BB7BA0049B424 /* Secrets.swift */; };
 		B508FB271E9BCC640049B424 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB261E9BCC640049B424 /* FirebaseManager.swift */; };
 		B508FB291E9D71A20049B424 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB281E9D71A20049B424 /* UserStore.swift */; };
@@ -77,7 +77,7 @@
 		6C97B014205069603AF2B928 /* Pods-MakeUp App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakeUp App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MakeUp App/Pods-MakeUp App.debug.xcconfig"; sourceTree = "<group>"; };
 		A61DC710A697C9092B6EB698 /* Pods_MakeUp_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MakeUp_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B503D0591EA01F05004D73E8 /* TutorialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialsViewController.swift; sourceTree = "<group>"; };
-		B503D05B1EA03275004D73E8 /* CircularView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularView.swift; sourceTree = "<group>"; };
+		B503D05B1EA03275004D73E8 /* CircularButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
 		B508FB241E9BB7BA0049B424 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		B508FB261E9BCC640049B424 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		B508FB281E9D71A20049B424 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
@@ -216,7 +216,7 @@
 				D3DBC6591E96C80100D0F711 /* ProductDisplayView.swift */,
 				B5D3A5501E9596FD00D808B7 /* Cells */,
 				B50E4C3F1E94270C0004D8F7 /* SignInButton.swift */,
-				B503D05B1EA03275004D73E8 /* CircularView.swift */,
+				B503D05B1EA03275004D73E8 /* CircularButton.swift */,
 				B53E9BBD1E9546F80017E3E9 /* NavBar.swift */,
 				B5D3A54E1E9596FA00D808B7 /* MediaCollectionView.swift */,
 				B54F1C2F1E96A53F00360CB3 /* HorizontalRule.swift */,
@@ -511,7 +511,7 @@
 				D33B08521E9542D00046E986 /* ResultStore.swift in Sources */,
 				D3DBC65A1E96C80100D0F711 /* ProductDisplayView.swift in Sources */,
 				4056D7D41E96E26800AF6727 /* Product.swift in Sources */,
-				B503D05C1EA03275004D73E8 /* CircularView.swift in Sources */,
+				B503D05C1EA03275004D73E8 /* CircularButton.swift in Sources */,
 				40771F831E9D5DF700872379 /* ProductAPIClient.swift in Sources */,
 				D33B08501E9537AC0046E986 /* Youtube.swift in Sources */,
 				D3AABBA01E96CD9D00590E96 /* ImageAPIClient.swift in Sources */,
