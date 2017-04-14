@@ -16,8 +16,8 @@ class ProductViewController: UIViewController {
     
     let productImage = UIImageView()
     
-    let tutorialsButton = CircularView(image: #imageLiteral(resourceName: "Cosmetic Brush_100"), text: "Tutorials")
-    let reviewsButton = CircularView(image: #imageLiteral(resourceName: "Lip Gloss_100"), text: "Reviews")
+    let tutorialsButton = CircularButton(image: #imageLiteral(resourceName: "Cosmetic Brush_100"), text: "Tutorials", size: 100)
+    let reviewsButton = CircularButton(image: #imageLiteral(resourceName: "Lip Gloss_100"), text: "Reviews", size: 100)
 
     
     override func viewDidLoad() {
