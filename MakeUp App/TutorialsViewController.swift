@@ -19,7 +19,6 @@ class TutorialsViewController: UITableViewController {
         tableView.dataSource = self
         
         navBar(title: "Tutorials", leftButton: .back, rightButton: .buy)
-        
     }
 
     //MARK: - Table View Methods
@@ -43,10 +42,9 @@ class TutorialsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 500
+        return 300
     }
     
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let destinationVC = YouTubePlayerViewViewController()
         let cell = tutorials[indexPath.item]

@@ -16,6 +16,7 @@ class ImageAPIClient {
             nil).validate().responseJSON { (response) in
             if let data = response.data {
                 if let image = UIImage(data: data) {
+                    print("returned an image")
                     completion(image)
                 }
             }

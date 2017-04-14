@@ -26,7 +26,7 @@ class CircularButton: UIView {
         self.backgroundColor = Palette.beige.color
         self.frame = CGRect(x: 0, y: 0, width: size, height: size)
         
-        self.layer.cornerRadius = self.frame.width * 0.6
+        self.layer.cornerRadius = self.frame.width * 0.55
         self.clipsToBounds = true
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(buttonTapped))
