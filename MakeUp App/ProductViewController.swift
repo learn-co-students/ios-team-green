@@ -19,14 +19,27 @@ class ProductViewController: UIViewController {
     let tutorialsButton = CircularButton(image: #imageLiteral(resourceName: "Cosmetic Brush_100"), text: "Tutorials", size: 100)
     let reviewsButton = CircularButton(image: #imageLiteral(resourceName: "Lip Gloss_100"), text: "Reviews", size: 100)
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
         
         guard let product = resultStore.product else { return }
+        
+        // determine if product is already favorite
+        let isFavorite = UserStore.sharedInstance.favoriteProducts.contains(where: { (diffProduct) -> Bool in
+            return product.title == diffProduct.title
+        })
+        
+        //determine leftButton Type
+        var leftButton: ButtonType
+        
+        if isFavorite {
+            leftButton = ButtonType.favorite
+        } else {
+            leftButton = ButtonType.notFavorite
+        }
 
-        navBar(title: truncateStringAfterNumberofWords(string: product.title, words: 3), leftButton: .favorite, rightButton: .buy)
+        navBar(title: truncateStringAfterNumberofWords(string: product.title, words: 3), leftButton: leftButton, rightButton: .buy)
         
         ImageAPIClient.getProductImage(with: product.imageURL) { (productImage) in
             DispatchQueue.main.async {
@@ -35,9 +48,8 @@ class ProductViewController: UIViewController {
                 })
             }
         }
-
         setUpLabels()
-
+        
     }
 
     func setUpLabels() {
@@ -58,7 +70,6 @@ class ProductViewController: UIViewController {
             $0.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3).isActive = true
             $0.heightAnchor.constraint(equalTo: $0.widthAnchor).isActive = true
             $0.topAnchor.constraint(equalTo: productImage.bottomAnchor, constant: 20).isActive = true
-            
         }
         
         tutorialsButton.rightAnchor.constraint(equalTo: view.centerXAnchor, constant: -20).isActive = true
