@@ -10,7 +10,7 @@ import UIKit
 
 class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
     
-    lazy var viewControllerList: [UIViewController] = {
+     var viewControllerList: [UIViewController] = {
         let homeView = HomeViewController()
         let homeNav = UINavigationController(rootViewController: homeView)
         let searchView = SearchViewController()
@@ -23,7 +23,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.blue
+        view.backgroundColor = Palette.white.color
         
         dataSource = self
         
@@ -35,7 +35,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
     
 
     
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let vcIndex = viewControllerList.index(of: viewController) else {return nil}
         
         let previousIndex = vcIndex - 1
@@ -48,7 +48,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
     }
 
     
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         guard let vcIndex = viewControllerList.index(of: viewController) else {return nil}
 

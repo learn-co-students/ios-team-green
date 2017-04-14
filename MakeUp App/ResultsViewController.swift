@@ -21,9 +21,11 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
     let youtubeTutorialLabel = UILabel()
     let youtubeTutorialVideos = MediaCollectionView(frame: CGRect.zero)
     
+    let bottomBar = BottomBarView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Palette.white.color
+        view.backgroundColor = UIColor.clear
         
         guard let product = resultStore.product else { return }
 
@@ -46,6 +48,7 @@ class ResultsViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         setUpLabels()
         setUpCollectionViews()
+        BottomBarView.constrainBottomBarToEdges(viewController: self, bottomBar: bottomBar)
     }
     
     override func viewWillAppear(_ animated: Bool) {

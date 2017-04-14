@@ -85,8 +85,7 @@ class EmailUpViewController: UIViewController {
         guard (emailField.text != nil) && (nameField.text != nil) && (passwordField.text != nil) else { return }
         //present tabbarcontroller ...
         print("submitted sign in button")
-        let tabBarController = TabBarController()
-        present(tabBarController, animated: true, completion: nil)
+        present(PageViewController(), animated: true, completion: nil)
     }
 
 }

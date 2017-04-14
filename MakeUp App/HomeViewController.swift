@@ -14,6 +14,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var myProducts = MediaCollectionView(frame: CGRect.zero)
     var myProductsSearch = UITextField()
     var horizontalRuleMyProducts = HorizontalRule()
+    var bottomBar = BottomBarView()
     
     var allProducts = [Product]()
     var displayProducts = [Product]() {
@@ -40,10 +41,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         navBar(title: username, leftButton: nil, rightButton: nil)
         setupLabels()
         setupCollectionViews()
+        BottomBarView.constrainBottomBarToEdges(viewController: self, bottomBar: bottomBar)
         databaseMethods()
-        
     
     }
+    
+  
     
     
     //MARK: - UI SetUp
@@ -59,6 +62,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         view.addSubview(myMediaSearch)
         view.addSubview(horizontalRuleMyMedia)
         view.addSubview(myMedia)
+
         
         myProductsSearch.attributedPlaceholder = NSAttributedString(string: "My Products", attributes: [NSForegroundColorAttributeName: Palette.darkGrey.color])
         myProductsSearch.textColor = Palette.darkGrey.color
