@@ -44,13 +44,22 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
             if let product = resultStore.product {
                 self.resultStore.getYouTubeVideos(search: product.title, videoType: .tutorial) {
                     DispatchQueue.main.async {
-                        self.navigationController?.pushViewController(TutorialsViewController(), animated: true)                    }
+                        let TutorialsVC = YouTubeViewController()
+                        TutorialsVC.type = "Tutorials"
+                        self.navigationController?.pushViewController(TutorialsVC, animated: true)
+                    }
                 }
-                
             }
-            
         default:
-            print("hello")
+            if let product = resultStore.product {
+                self.resultStore.getYouTubeVideos(search: product.title, videoType: .review) {
+                    DispatchQueue.main.async {
+                        let ReviewsVC = YouTubeViewController()
+                        ReviewsVC.type = "Reviews"
+                        self.navigationController?.pushViewController(ReviewsVC, animated: true)
+                    }
+                }
+            }
             
         }
     }
