@@ -47,7 +47,7 @@ class ProductViewController: UIViewController {
         productImage.translatesAutoresizingMaskIntoConstraints = false
         productImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
         productImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        productImage.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4).isActive = true
+        productImage.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true
         productImage.contentMode = UIViewContentMode.scaleAspectFit
         
         let buttons = [tutorialsButton, reviewsButton]
