@@ -17,13 +17,13 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
     
     let tutorialsButton = CircularButton(image: #imageLiteral(resourceName: "Cosmetic Brush_100"), title: "Tutorials", size: 100)
     let reviewsButton = CircularButton(image: #imageLiteral(resourceName: "Lip Gloss_100"), title: "Reviews", size: 100)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
         
         guard let product = resultStore.product else { return }
-      
+        
         navBar(title: truncateStringAfterNumberofWords(string: product.title, words: 3), leftButton: determineFavoriteButton(), rightButton: .buy)
         
         ImageAPIClient.getProductImage(with: product.imageURL) { (productImage) in
@@ -34,19 +34,31 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
             }
         }
         setUpLabels()
-        
     }
     
     // Circular Button Delegate Method
     
     func buttonTapped(sender: CircularButton) {
-        print(sender.title)
+        switch sender.title {
+        case "Tutorials":
+            if let product = resultStore.product {
+                self.resultStore.getYouTubeVideos(search: product.title, videoType: .tutorial) {
+                    DispatchQueue.main.async {
+                        self.navigationController?.pushViewController(TutorialsViewController(), animated: true)                    }
+                }
+                
+            }
+            
+        default:
+            print("hello")
+            
+        }
     }
-
+    
     func setUpLabels() {
-
+        
         view.addSubview(productImage)
-
+        
         productImage.translatesAutoresizingMaskIntoConstraints = false
         productImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
         productImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -66,7 +78,7 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
         
         tutorialsButton.rightAnchor.constraint(equalTo: view.centerXAnchor, constant: -20).isActive = true
         reviewsButton.leftAnchor.constraint(equalTo: view.centerXAnchor, constant: 20).isActive = true
-
+        
         
     }
     
@@ -84,7 +96,7 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
         }
     }
     
-
+    
     
     
 }
