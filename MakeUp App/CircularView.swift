@@ -25,7 +25,7 @@ class CircularButton: UIView {
         self.clipsToBounds = true
         print("layercorner", self.layer.cornerRadius)
         
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(screenSwitch))
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(buttonTapped))
         self.addGestureRecognizer(gestureRecognizer)
 
         let imageView = UIImageView()
@@ -54,8 +54,8 @@ class CircularButton: UIView {
     
     }
     
-    func screenSwitch() {
-        print("switch views from", text)
+    func buttonTapped() {
+        print(text, "button tapped")
     }
     
     required init?(coder aDecoder: NSCoder) {
