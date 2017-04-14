@@ -17,7 +17,6 @@
 		B508FB251E9BB7BA0049B424 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB241E9BB7BA0049B424 /* Secrets.swift */; };
 		B508FB271E9BCC640049B424 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB261E9BCC640049B424 /* FirebaseManager.swift */; };
 		B508FB291E9D71A20049B424 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB281E9D71A20049B424 /* UserStore.swift */; };
-		B50E4C0F1E940F3C0004D8F7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C0E1E940F3C0004D8F7 /* TabBarController.swift */; };
 		B50E4C111E940F660004D8F7 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C101E940F660004D8F7 /* ProductViewController.swift */; };
 		B50E4C131E940F790004D8F7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C121E940F790004D8F7 /* SearchViewController.swift */; };
 		B50E4C161E9410660004D8F7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C151E9410660004D8F7 /* Colors.swift */; };
@@ -44,9 +43,11 @@
 		D33B084E1E942DCF0046E986 /* YoutubeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */; };
 		D33B08501E9537AC0046E986 /* Youtube.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B084F1E9537AC0046E986 /* Youtube.swift */; };
 		D33B08521E9542D00046E986 /* ResultStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08511E9542D00046E986 /* ResultStore.swift */; };
+		D34537AF1EA0199F00D993B9 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34537AE1EA0199F00D993B9 /* PageViewController.swift */; };
 		D35D674F1E96E7FD00B8AB03 /* YouTubePlayerViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35D674E1E96E7FD00B8AB03 /* YouTubePlayerViewViewController.swift */; };
 		D39C583E1E95898C0078298B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08181E93FB650046E986 /* SignUpViewController.swift */; };
 		D3AABBA01E96CD9D00590E96 /* ImageAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AABB9F1E96CD9D00590E96 /* ImageAPIClient.swift */; };
+		D3C475251EA1195300DFBF0A /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C475241EA1195300DFBF0A /* BottomBarView.swift */; };
 		D3DBC65A1E96C80100D0F711 /* ProductDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DBC6591E96C80100D0F711 /* ProductDisplayView.swift */; };
 		DA9339222F13F5231FCFD54E /* Pods_MakeUp_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A61DC710A697C9092B6EB698 /* Pods_MakeUp_App.framework */; };
 /* End PBXBuildFile section */
@@ -81,7 +82,6 @@
 		B508FB241E9BB7BA0049B424 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		B508FB261E9BCC640049B424 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		B508FB281E9D71A20049B424 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
-		B50E4C0E1E940F3C0004D8F7 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		B50E4C101E940F660004D8F7 /* ProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		B50E4C121E940F790004D8F7 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B50E4C151E9410660004D8F7 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -115,8 +115,10 @@
 		D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeAPIClient.swift; sourceTree = "<group>"; };
 		D33B084F1E9537AC0046E986 /* Youtube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Youtube.swift; sourceTree = "<group>"; };
 		D33B08511E9542D00046E986 /* ResultStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultStore.swift; sourceTree = "<group>"; };
+		D34537AE1EA0199F00D993B9 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		D35D674E1E96E7FD00B8AB03 /* YouTubePlayerViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubePlayerViewViewController.swift; sourceTree = "<group>"; };
 		D3AABB9F1E96CD9D00590E96 /* ImageAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAPIClient.swift; sourceTree = "<group>"; };
+		D3C475241EA1195300DFBF0A /* BottomBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
 		D3DBC6591E96C80100D0F711 /* ProductDisplayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDisplayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,7 +179,7 @@
 			children = (
 				B503D0581EA01EC8004D73E8 /* ProductFlow */,
 				B50E4C421E942DB80004D8F7 /* SignUp */,
-				B50E4C0E1E940F3C0004D8F7 /* TabBarController.swift */,
+				D34537AE1EA0199F00D993B9 /* PageViewController.swift */,
 				D35D674E1E96E7FD00B8AB03 /* YouTubePlayerViewViewController.swift */,
 				B50E4C121E940F790004D8F7 /* SearchViewController.swift */,
 				40B7F6C11E9BE6EA00B3D447 /* SearchTableViewController.swift */,
@@ -218,6 +220,7 @@
 				B50E4C3F1E94270C0004D8F7 /* SignInButton.swift */,
 				B503D05B1EA03275004D73E8 /* CircularButton.swift */,
 				B53E9BBD1E9546F80017E3E9 /* NavBar.swift */,
+				D3C475241EA1195300DFBF0A /* BottomBarView.swift */,
 				B5D3A54E1E9596FA00D808B7 /* MediaCollectionView.swift */,
 				B54F1C2F1E96A53F00360CB3 /* HorizontalRule.swift */,
 			);
@@ -384,7 +387,7 @@
 				TargetAttributes = {
 					D33B08121E93FB650046E986 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = SRFS2YY3XR;
+						DevelopmentTeam = 56S3PA4JK8;
 						ProvisioningStyle = Automatic;
 					};
 					D33B08291E93FB650046E986 = {
@@ -482,7 +485,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C4F979A0AD0DC37D96DD7B2D /* [CP] Embed Pods Frameworks */ = {
@@ -522,19 +525,20 @@
 				B50E4C161E9410660004D8F7 /* Colors.swift in Sources */,
 				B5D3A54F1E9596FA00D808B7 /* MediaCollectionView.swift in Sources */,
 				B508FB291E9D71A20049B424 /* UserStore.swift in Sources */,
-				B50E4C0F1E940F3C0004D8F7 /* TabBarController.swift in Sources */,
 				B53E9BBC1E953AF00017E3E9 /* HomeViewController.swift in Sources */,
 				B5D3A5561E95A56300D808B7 /* MediaViewCell.swift in Sources */,
 				40771F811E9D292F00872379 /* ProductCell.swift in Sources */,
 				B50E4C111E940F660004D8F7 /* ProductViewController.swift in Sources */,
 				D35D674F1E96E7FD00B8AB03 /* YouTubePlayerViewViewController.swift in Sources */,
 				B508FB251E9BB7BA0049B424 /* Secrets.swift in Sources */,
+				D34537AF1EA0199F00D993B9 /* PageViewController.swift in Sources */,
 				B53E9BBE1E9546F80017E3E9 /* NavBar.swift in Sources */,
 				B50E4C401E94270C0004D8F7 /* SignInButton.swift in Sources */,
 				D32E5F491E96885D0025D613 /* YoutubePreviewCell.swift in Sources */,
 				B503D05A1EA01F05004D73E8 /* YouTubeVideoController.swift in Sources */,
 				B54F1C301E96A53F00360CB3 /* HorizontalRule.swift in Sources */,
 				D33B08171E93FB650046E986 /* AppDelegate.swift in Sources */,
+				D3C475251EA1195300DFBF0A /* BottomBarView.swift in Sources */,
 				40B7F6C21E9BE6EA00B3D447 /* SearchTableViewController.swift in Sources */,
 				D39C583E1E95898C0078298B /* SignUpViewController.swift in Sources */,
 				B50E4C441E942DC20004D8F7 /* EmailSignUp.swift in Sources */,
@@ -680,7 +684,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = SRFS2YY3XR;
+
+				DEVELOPMENT_TEAM = 56S3PA4JK8;
+
 				INFOPLIST_FILE = "MakeUp App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ItemScanner4.ios;
@@ -696,7 +702,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = SRFS2YY3XR;
+                DEVELOPMENT_TEAM = 56S3PA4JK8;
 				INFOPLIST_FILE = "MakeUp App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ItemScanner4.ios;

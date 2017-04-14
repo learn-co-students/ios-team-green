@@ -35,8 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             guard let userID = user else { return false } // make sure user exists
             FirebaseManager.shared.loadUser(userID, completion: { () in
-                let tabBarViewController = TabBarController()
-                self.setupWindow(with: tabBarViewController)
+                let pageViewController = PageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+                self.setupWindow(with: pageViewController)
             })
         }
        

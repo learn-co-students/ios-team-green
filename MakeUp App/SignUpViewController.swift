@@ -104,7 +104,7 @@ extension FacebookLoginManager {
                 FirebaseManager.shared.createOrUpdate(user)
                 
                 // go to Home View
-                self.present(TabBarController(), animated: true, completion: nil)
+                self.present(PageViewController(), animated: true, completion: nil)
             } else {
                 print("LoginVC -> error validating login")
             }

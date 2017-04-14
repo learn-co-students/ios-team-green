@@ -13,6 +13,7 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
     
     var product: Product?
     
+    let bottomBar = BottomBarView()
     let productImage = UIImageView()
     
     let tutorialsButton = CircularButton(image: #imageLiteral(resourceName: "Cosmetic Brush_100"), title: "Tutorials", size: 100)
@@ -25,6 +26,8 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
         guard let product = resultStore.product else { return }
         
         navBar(title: truncateStringAfterNumberofWords(string: product.title, words: 3), leftButton: determineFavoriteButton(), rightButton: .buy)
+        BottomBarView.constrainBottomBarToEdges(viewController: self, bottomBar: bottomBar)
+
         
         ImageAPIClient.getProductImage(with: product.imageURL) { (productImage) in
             DispatchQueue.main.async {

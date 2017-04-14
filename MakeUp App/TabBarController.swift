@@ -42,13 +42,15 @@ extension ViewControllersInitializer {
         
         let searchVC = UINavigationController(rootViewController: searchView())
         
-        self.viewControllers = [homeVC, searchVC]
+        let resultVC = UINavigationController(rootViewController: resultView())
+        
+        self.viewControllers = [homeVC, searchVC, resultVC]
     }
     
     func homeView() -> HomeViewController {
         let VC = HomeViewController()
         
-        let homeBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "Home").withRenderingMode(.alwaysOriginal), selectedImage: nil)
+        let homeBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "BeautyGirl").withRenderingMode(.alwaysOriginal), selectedImage: nil)
         
         VC.tabBarItem = homeBarItem
         return VC
@@ -59,6 +61,13 @@ extension ViewControllersInitializer {
         let searchBarItem = UITabBarItem(title: "Search", image: #imageLiteral(resourceName: "Search").withRenderingMode(.alwaysOriginal), selectedImage: nil)
         VC.tabBarItem = searchBarItem
         return VC
+    }
+    
+    func resultView() -> ResultsViewController {
+        let vC = ResultsViewController()
+        let resultBarItem = UITabBarItem(title: "Product", image: #imageLiteral(resourceName: "Home").withRenderingMode(.alwaysOriginal), selectedImage: nil)
+        vC.tabBarItem = resultBarItem
+        return vC
     }
     
     

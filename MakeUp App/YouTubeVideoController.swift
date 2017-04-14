@@ -10,10 +10,12 @@ class YouTubeViewController: UITableViewController {
     
     var videos = [Youtube]()
     var type: String?
+    let bottomBar = BottomBarView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
+        
         
         if type == "Tutorials" {
             videos = ResultStore.sharedInstance.youtubeTutorialVideos
@@ -28,6 +30,7 @@ class YouTubeViewController: UITableViewController {
         if let type = type {
             navBar(title: type, leftButton: .back, rightButton: .buy)
         }
+        BottomBarView.constrainBottomBarToEdges(viewController: self, bottomBar: bottomBar)
     }
     
     //MARK: - Table View Methods
