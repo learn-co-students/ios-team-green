@@ -11,8 +11,11 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
     
     let resultStore = ResultStore.sharedInstance
     
-    var product: Product?
-    
+    var product: Product? {
+        didSet {
+            setUpProduct()
+        }
+    }
     let bottomBar = BottomBarView()
     let productImage = UIImageView()
     
@@ -22,23 +25,15 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
-        
-        guard let product = resultStore.product else { return }
-        
-        navBar(title: truncateStringAfterNumberofWords(string: product.title, words: 3), leftButton: determineFavoriteButton(), rightButton: .buy)
-        BottomBarView.constrainBottomBarToEdges(viewController: self, bottomBar: bottomBar)
+        setUpProduct()
 
-        
-        ImageAPIClient.getProductImage(with: product.imageURL) { (productImage) in
-            DispatchQueue.main.async {
-                UIView.animate(withDuration: 0.2, animations: {
-                    self.productImage.image = productImage
-                })
-            }
-        }
-        setUpLabels()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.product = resultStore.product
+    }
+
     // Circular Button Delegate Method
     
     func buttonTapped(sender: CircularButton) {
@@ -65,6 +60,25 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
             }
             
         }
+    }
+    
+    func setUpProduct() {
+        
+        guard let product = resultStore.product else { return }
+
+        navBar(title: truncateStringAfterNumberofWords(string: product.title, words: 3), leftButton: determineFavoriteButton(), rightButton: .buy)
+        BottomBarView.constrainBottomBarToEdges(viewController: self, bottomBar: bottomBar)
+        
+        
+        ImageAPIClient.getProductImage(with: product.imageURL) { (productImage) in
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.productImage.image = productImage
+                })
+            }
+        }
+        
+        setUpLabels()
     }
     
     func setUpLabels() {

@@ -83,9 +83,8 @@ class EmailUpViewController: UIViewController {
     
     func submit() {
         guard (emailField.text != nil) && (nameField.text != nil) && (passwordField.text != nil) else { return }
-        //present tabbarcontroller ...
-        print("submitted sign in button")
-        present(PageViewController(), animated: true, completion: nil)
+        let pageViewController = PageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        present(pageViewController, animated: true, completion: nil)
     }
 
 }

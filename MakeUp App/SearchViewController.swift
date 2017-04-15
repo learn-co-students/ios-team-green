@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import FirebaseDatabase
 
-class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDelegate, UISearchBarDelegate {
+class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDelegate, UISearchBarDelegate  {
     
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
@@ -35,7 +35,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                               AVMetadataObjectTypeEAN13Code,
                               AVMetadataObjectTypeAztecCode,
                               AVMetadataObjectTypePDF417Code /*,
-                              AVMetadataObjectTypeQRCode*/]
+         AVMetadataObjectTypeQRCode*/]
     
     //SearchBar
     var searchBar:UISearchBar!
@@ -50,6 +50,8 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // delegate method
         
         navBar(title: "Search or Scan", leftButton: nil, rightButton: nil)
         
@@ -108,7 +110,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
             return
         }
         
-
+        
         configureSearchController()
         
         
@@ -120,12 +122,12 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     }
     
     func configureSearchController() {
-
+        
         searchBar = UISearchBar()
         searchBar.delegate = self
         searchBar.frame.size = CGSize(width: (navigationController?.navigationBar.frame.width)!, height: (navigationController?.navigationBar.frame.height)!)
         
-
+        
         view.addSubview(searchBar)
         print("In configureSearchController:x:\(searchBar.frame.debugDescription)")
     }
@@ -139,9 +141,9 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-       searchBar.showsCancelButton = true
+        searchBar.showsCancelButton = true
     }
-
+    
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
@@ -175,7 +177,6 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                 if lastBarCodevalue == barCodeValue { return } else {
                     lastBarCodevalue = barCodeValue
                 }
-                //let index = barCodeValue.index(barCodeValue.startIndex, offsetBy: 0)
                 let startIndex = barCodeValue.startIndex
                 var newBarCodeValue:String
                 if barCodeValue[startIndex] == "0" {
@@ -191,32 +192,19 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                     if val != nil {
                         print("Value found in DB")
                         self.resultStore.product = Product(dict: val!)
-                        DispatchQueue.main.async {
-                            // switch pages to product view in the list
-                            // populate that view controller, with the result store
-                            
-                            
-                            self.navigationController?.pushViewController(ProductViewController(), animated: true)
-                        }
+                        NotificationCenter.default.post(name: .productVC, object: nil)
                     }
-
-                    else /*if self.finishedSearch == false*/ {
-                        //self.finishedSearch = true
+                    else {
                         print("Searching barcode on internet")
-                        self.barCodeSearch(barCode: newBarCodeValue, completion: { (Product) in
-                            self.resultStore.product = Product
-                            DispatchQueue.main.async {
-                                self.resultStore.product = Product
-                                self.navigationController?.pushViewController(ProductViewController(), animated: true)
-                            }
-                            
+                        self.barCodeSearch(barCode: newBarCodeValue, completion: { (product) in
+                            self.resultStore.product = product
+                            self.resultStore.product = product
+                            NotificationCenter.default.post(name: .productVC, object: nil)
                         }
                         )}
-                    /*else {
-                        print("Not searching")
-                    }*/
+                    
                 }
-            } //if let barCodeValue = metadataObj.stringValue
+            }
             else {
                 print("Scanned barcode value is nil")
             }
@@ -274,7 +262,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         
     } // func searchDB
     
-   
+    
     
 }
 

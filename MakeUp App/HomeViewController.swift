@@ -179,14 +179,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         if collectionView == self.myProducts {
             let cell = collectionView.cellForItem(at: indexPath) as! ProductViewCell
             ResultStore.sharedInstance.product = cell.product
-            self.navigationController?.pushViewController(ProductViewController(), animated: true)
+            NotificationCenter.default.post(name: .productVC, object: nil)
         } else {
-            let destinationVC = YouTubePlayerViewViewController()
+            let youTubeVC = YouTubePlayerViewViewController()
             let cell = displayMedia[indexPath.item]
-            destinationVC.youtubeID = cell.videoID
-            destinationVC.modalPresentationStyle = .overCurrentContext
-            destinationVC.modalTransitionStyle = .crossDissolve
-            present(destinationVC, animated: true, completion: nil )
+            youTubeVC.youtubeID = cell.videoID
+            youTubeVC.modalPresentationStyle = .overCurrentContext
+            youTubeVC.modalTransitionStyle = .crossDissolve
+            present(youTubeVC, animated: true, completion: nil )
         }
         
     }

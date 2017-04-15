@@ -16,7 +16,7 @@ class SignUpViewController: UIViewController {
 
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Contour"
+        label.text = "Glow"
         label.textColor = Palette.darkGrey.color
         label.font = Fonts.Playfair(withStyle: .italic, sizeLiteral: 60)
         label.textAlignment = .center
@@ -102,9 +102,10 @@ extension FacebookLoginManager {
             } else if let user = user {
                 UserDefaults.standard.set(user.uid, forKey: "userID")
                 FirebaseManager.shared.createOrUpdate(user)
-                
+
                 // go to Home View
-                self.present(PageViewController(), animated: true, completion: nil)
+                let pageViewController = PageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+                self.present(pageViewController, animated: true, completion: nil)
             } else {
                 print("LoginVC -> error validating login")
             }
