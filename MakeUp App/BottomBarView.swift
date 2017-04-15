@@ -13,11 +13,9 @@ class BottomBarView: UIView {
     
     var homeButton = UIButton(type: .custom)
     var searchButton = UIButton(type: .custom)
-    var resultButton = UIButton(type: .custom)
+    var productButton = UIButton(type: .custom)
     var horizontalBar = HorizontalRule()
-    
-    
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = Palette.white.color.withAlphaComponent(0.2)
@@ -27,34 +25,47 @@ class BottomBarView: UIView {
     
     
     func setUpButtons() {
-        homeButton.setBackgroundImage(#imageLiteral(resourceName: "BeautyGirl"), for: .normal)
-        searchButton.setBackgroundImage(#imageLiteral(resourceName: "Search"), for: .normal)
-        resultButton.setBackgroundImage(#imageLiteral(resourceName: "Home"), for: .normal)
-
+        homeButton.setImage(#imageLiteral(resourceName: "BeautyGirl"), for: .normal)
+        searchButton.setImage(#imageLiteral(resourceName: "Search"), for: .normal)
+        productButton.setImage(#imageLiteral(resourceName: "Home"), for: .normal)
         
         self.addSubview(homeButton)
         self.addSubview(searchButton)
-        self.addSubview(resultButton)
+        self.addSubview(productButton)
         
     }
     
     func setUpButtonConstraints() {
-        let buttons = [homeButton, searchButton, resultButton]
-        buttons.forEach{$0.translatesAutoresizingMaskIntoConstraints = false}
+        let buttons = [homeButton, searchButton, productButton]
+        buttons.forEach{
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.addTarget(self, action: #selector(switchView), for: .touchUpInside)
+        }
         
         homeButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 50).isActive = true
         homeButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        //homeButton.widthAnchor.constraint(equalToConstant: 56).isActive = true
-        //homeButton.heightAnchor.constraint(equalToConstant: 68).isActive = true
-       
+        homeButton.tag = 0
         
         searchButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         searchButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        searchButton.tag = 1
         
-        resultButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        resultButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -50).isActive = true
+        productButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        productButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -50).isActive = true
+        productButton.tag = 2
         
         
+    }
+    
+    func switchView(sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            NotificationCenter.default.post(name: .homeVC, object: nil)
+        case 1:
+            NotificationCenter.default.post(name: .searchVC, object: nil)
+        default:
+            NotificationCenter.default.post(name: .productVC, object: nil)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

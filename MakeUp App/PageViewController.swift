@@ -10,6 +10,7 @@ import UIKit
 
 class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
     
+      var currentIndex = 0
       var viewControllerList: [UIViewController] = {
         let homeView = HomeViewController()
         let homeNav = UINavigationController(rootViewController: homeView)
@@ -17,8 +18,16 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         let searchNav = UINavigationController(rootViewController: searchView)
         let productView = ProductViewController()
         let productNav = UINavigationController(rootViewController: productView)
+        
+        let tutorialsView = YouTubeViewController()
+        tutorialsView.type = "Tutorials"
+        let tutorialsNav = UINavigationController(rootViewController: tutorialsView)
+        
+        let reviewsView = YouTubeViewController()
+        reviewsView.type = "Reviews"
+        let reviewsNav = UINavigationController(rootViewController: reviewsView)
   
-        return [homeNav, searchNav, productNav]
+        return [homeNav, searchNav, productNav, tutorialsNav, reviewsNav]
     }()
 
     override func viewDidLoad() {
@@ -72,6 +81,11 @@ extension NotificationObservers {
     func addNotificationObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .productVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .searchVC, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .homeVC, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .tutorialsVC, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .reviewsVC, object: nil)
+
+
     }
     
     func switchViewController(with notification: Notification) {
@@ -80,6 +94,12 @@ extension NotificationObservers {
             switchToViewController(named: "Product")
         case Notification.Name.searchVC:
             switchToViewController(named: "Search")
+        case Notification.Name.homeVC:
+            switchToViewController(named: "Home")
+        case Notification.Name.tutorialsVC:
+            switchToViewController(named: "Tutorials")
+        case Notification.Name.reviewsVC:
+            switchToViewController(named: "Reviews")
         default:
             fatalError("\(#function) - Unable to match notification name.")
         }
@@ -87,12 +107,30 @@ extension NotificationObservers {
     
     private func switchToViewController(named: String) {
         switch named {
+        case "Home":
+            setViewControllers([viewControllerList[0]], direction: determineScrollDirection(currentIndex, 0), animated: true, completion: nil)
+            currentIndex = 0
+        case "Search":
+            setViewControllers([viewControllerList[1]], direction: determineScrollDirection(currentIndex, 1), animated: true, completion: nil)
+            currentIndex = 1
         case "Product":
-            setViewControllers([viewControllerList[2]], direction: .forward, animated: true, completion: nil)
+            setViewControllers([viewControllerList[2]], direction: determineScrollDirection(currentIndex, 2), animated: true, completion: nil)
+            currentIndex = 2
+        case "Tutorials":
+            setViewControllers([viewControllerList[3]], direction: determineScrollDirection(currentIndex, 3), animated: true, completion: nil)
+            currentIndex = 3
+        default :
+            setViewControllers([viewControllerList[4]], direction: determineScrollDirection(currentIndex, 4), animated: true, completion: nil)
+            currentIndex = 4
 
-        default:
-            setViewControllers([viewControllerList[1]], direction: .forward, animated: true, completion: nil)
-
+        }
+    }
+    
+    private func determineScrollDirection(_ currentIndex: Int, _ desiredIndex: Int) -> UIPageViewControllerNavigationDirection {
+        if currentIndex < desiredIndex {
+            return .forward
+        } else {
+            return .reverse
         }
     }
 }
@@ -100,6 +138,10 @@ extension NotificationObservers {
 extension Notification.Name {
     static let productVC = Notification.Name("switch-to-product-vc")
     static let searchVC = Notification.Name("switch-to-search-vc")
+    static let homeVC = Notification.Name("switch-to-home-vc")
+    static let tutorialsVC = Notification.Name("switch-to-home-vc")
+    static let reviewsVC = Notification.Name("switch-to-home-vc")
+
 
 }
 

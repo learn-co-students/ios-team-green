@@ -16,9 +16,17 @@ class YouTubeViewController: UITableViewController {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
         
-        
         if type == "Tutorials" {
-            videos = ResultStore.sharedInstance.youtubeTutorialVideos
+            print("tutorials 21")
+            if let product = ResultStore.sharedInstance.product {
+                ResultStore.sharedInstance.getYouTubeVideos(search: product.title, videoType: .tutorial, completion: {
+                    print("results")
+                    self.videos = ResultStore.sharedInstance.youtubeTutorialVideos
+                    print("self.videos is", self.videos.count)
+                    self.tableView.reloadData()
+                })
+            }
+            
         } else {
             videos = ResultStore.sharedInstance.youtubeReviewVideos
         }
@@ -50,6 +58,7 @@ class YouTubeViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("number of rows as video count is", videos.count)
         return videos.count
     }
     

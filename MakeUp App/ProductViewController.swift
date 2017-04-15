@@ -39,25 +39,20 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
     func buttonTapped(sender: CircularButton) {
         switch sender.title {
         case "Tutorials":
-            if let product = resultStore.product {
-                self.resultStore.getYouTubeVideos(search: product.title, videoType: .tutorial) {
-                    DispatchQueue.main.async {
-                        let TutorialsVC = YouTubeViewController()
-                        TutorialsVC.type = "Tutorials"
-                        self.navigationController?.pushViewController(TutorialsVC, animated: true)
-                    }
-                }
-            }
+            NotificationCenter.default.post(name: .tutorialsVC, object: nil)
+      
         default:
-            if let product = resultStore.product {
-                self.resultStore.getYouTubeVideos(search: product.title, videoType: .review) {
-                    DispatchQueue.main.async {
-                        let ReviewsVC = YouTubeViewController()
-                        ReviewsVC.type = "Reviews"
-                        self.navigationController?.pushViewController(ReviewsVC, animated: true)
-                    }
-                }
-            }
+            NotificationCenter.default.post(name: .reviewsVC, object: nil)
+//
+//            if let product = resultStore.product {
+//                self.resultStore.getYouTubeVideos(search: product.title, videoType: .review) {
+//                    DispatchQueue.main.async {
+//                        let ReviewsVC = YouTubeViewController()
+//                        ReviewsVC.type = "Reviews"
+//                        self.navigationController?.pushViewController(ReviewsVC, animated: true)
+//                    }
+//                }
+//            }
             
         }
     }
