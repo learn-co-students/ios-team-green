@@ -61,9 +61,9 @@ extension UIViewController {
         NotificationCenter.default.post(name: .productVC, object: nil)
     }
     
-    func buy(_ sender: UIBarButtonItem) {        
-        if let validTitle = ResultStore.sharedInstance.product?.title.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-            if let url = URL(string: "https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=\(validTitle)") {
+    func buy(_ sender: UIBarButtonItem) {
+        if let validTitle = ResultStore.sharedInstance.product?.title.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {    
+            if let url = URL(string: "https://www.google.com/search?hl=en&output=search&tbm=shop&q=\(validTitle)") {
                 UIApplication.shared.open(url, options: [:])
             }
         }
