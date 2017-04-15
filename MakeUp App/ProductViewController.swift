@@ -16,7 +16,6 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
             setUpProduct()
         }
     }
-    let bottomBar = BottomBarView()
     let productImage = UIImageView()
     let titleLabel = UILabel()
     
@@ -26,6 +25,8 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
+        
+        NotificationCenter.default.post(name: .productVC, object: nil)
 
     }
     
@@ -50,7 +51,6 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
         guard let product = resultStore.product else { return }
 
         navBar(title: truncateStringAfterNumberofWords(string: product.brand, words: 3), leftButton: determineFavoriteButton(), rightButton: .buy)
-        BottomBarView.constrainBottomBarToEdges(viewController: self, bottomBar: bottomBar)
 
         ImageAPIClient.getProductImage(with: product.imageURL) { (productImage) in
             DispatchQueue.main.async {

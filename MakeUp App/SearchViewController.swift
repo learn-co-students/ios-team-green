@@ -16,7 +16,6 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
     
-    let bottomBar = BottomBarView()
     let resultStore = ResultStore.sharedInstance
     
     var lastBarCodevalue:String?
@@ -59,10 +58,6 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         
         view.backgroundColor = Palette.white.color
         print("search view")
-        
-        BottomBarView.constrainBottomBarToEdges(viewController: self, bottomBar: bottomBar)
-        
-        bottomBar.layer.zPosition = 1000
         
         let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         

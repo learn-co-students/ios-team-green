@@ -14,7 +14,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var myProducts = MediaCollectionView(frame: CGRect.zero)
     var myProductsSearch = UITextField()
     var horizontalRuleMyProducts = HorizontalRule()
-    var bottomBar = BottomBarView()
     
     var allProducts = [Product]()
     var displayProducts = [Product]() {
@@ -41,8 +40,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         navBar(title: username, leftButton: nil, rightButton: nil)
         setupLabels()
         setupCollectionViews()
-        BottomBarView.constrainBottomBarToEdges(viewController: self, bottomBar: bottomBar)
         databaseMethods()
+        
+        NotificationCenter.default.post(name: .homeVC, object: nil)
+
     }
 
     //MARK: - UI SetUp

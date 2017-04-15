@@ -12,7 +12,6 @@ class YouTubeViewController: UITableViewController {
 
     var videos = [Youtube]()
     var type: String?
-    let bottomBar = BottomBarView()
     var product = ResultStore.sharedInstance.product {
         didSet {
             getVideos()
@@ -34,10 +33,6 @@ class YouTubeViewController: UITableViewController {
         tableView.dataSource = self
         
         navBar(title: type, leftButton: .back, rightButton: .buy)
-        BottomBarView.constrainBottomBarToEdges(viewController: self, bottomBar: bottomBar)
-        
-        // TODO reached type controller so it can update its current index
-        NotificationCenter.default.post(name: <#T##NSNotification.Name#>, object: nil)
         
         super.viewWillAppear(true)
         self.product = resultStore.product
@@ -57,8 +52,10 @@ class YouTubeViewController: UITableViewController {
     func determineType(type: String) -> YoutubeSearch {
         switch type {
         case "Tutorials":
+            NotificationCenter.default.post(name: .tutorialsVC, object: nil)
             return .tutorial
         default:
+            NotificationCenter.default.post(name: .reviewsVC, object: nil)
             return .review
         }
     }

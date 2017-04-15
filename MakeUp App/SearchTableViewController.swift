@@ -16,6 +16,9 @@ class SearchTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 80
+        
+        NotificationCenter.default.post(name: .searchVC, object: nil)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

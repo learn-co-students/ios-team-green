@@ -167,13 +167,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		B503D0581EA01EC8004D73E8 /* ProductFlow */ = {
+		B503D0581EA01EC8004D73E8 /* Product Flow */ = {
 			isa = PBXGroup;
 			children = (
 				B50E4C101E940F660004D8F7 /* ProductViewController.swift */,
 				B503D0591EA01F05004D73E8 /* YouTubeVideoController.swift */,
 			);
-			name = ProductFlow;
+			name = "Product Flow";
 			sourceTree = "<group>";
 		};
 		B50850061EA1C42A00A9A07B /* Utility */ = {
@@ -187,13 +187,11 @@
 		B50E4C0C1E940EF90004D8F7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B503D0581EA01EC8004D73E8 /* ProductFlow */,
-				B50E4C421E942DB80004D8F7 /* SignUp */,
-				D34537AE1EA0199F00D993B9 /* PageViewController.swift */,
+				B5BB425D1EA27E8E00C61A99 /* Main Controllers */,
+				B5BB425C1EA27E6D00C61A99 /* Index Controllers */,
+				B503D0581EA01EC8004D73E8 /* Product Flow */,
+				B50E4C421E942DB80004D8F7 /* SignUp Flow */,
 				D35D674E1E96E7FD00B8AB03 /* YouTubePlayerViewViewController.swift */,
-				B50E4C121E940F790004D8F7 /* SearchViewController.swift */,
-				40B7F6C11E9BE6EA00B3D447 /* SearchTableViewController.swift */,
-				B53E9BBB1E953AF00017E3E9 /* HomeViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -210,6 +208,8 @@
 		B50E4C141E9410280004D8F7 /* Styling */ = {
 			isa = PBXGroup;
 			children = (
+				D33B08221E93FB650046E986 /* LaunchScreen.storyboard */,
+				D33B08201E93FB650046E986 /* Assets.xcassets */,
 				B50E4C151E9410660004D8F7 /* Colors.swift */,
 				B50E4C171E9411EF0004D8F7 /* Fonts.swift */,
 				B5D3A53F1E9585E800D808B7 /* PlayfairDisplay-Black.ttf */,
@@ -238,13 +238,31 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		B50E4C421E942DB80004D8F7 /* SignUp */ = {
+		B50E4C421E942DB80004D8F7 /* SignUp Flow */ = {
 			isa = PBXGroup;
 			children = (
 				D33B08181E93FB650046E986 /* SignUpViewController.swift */,
 				B50E4C431E942DC20004D8F7 /* EmailSignUp.swift */,
 			);
-			name = SignUp;
+			name = "SignUp Flow";
+			sourceTree = "<group>";
+		};
+		B5BB425C1EA27E6D00C61A99 /* Index Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D34537AE1EA0199F00D993B9 /* PageViewController.swift */,
+			);
+			name = "Index Controllers";
+			sourceTree = "<group>";
+		};
+		B5BB425D1EA27E8E00C61A99 /* Main Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				40B7F6C11E9BE6EA00B3D447 /* SearchTableViewController.swift */,
+				B53E9BBB1E953AF00017E3E9 /* HomeViewController.swift */,
+				B50E4C121E940F790004D8F7 /* SearchViewController.swift */,
+			);
+			name = "Main Controllers";
 			sourceTree = "<group>";
 		};
 		B5D3A5501E9596FD00D808B7 /* Cells */ = {
@@ -289,8 +307,6 @@
 				B50E4C0C1E940EF90004D8F7 /* Controllers */,
 				B50E4C141E9410280004D8F7 /* Styling */,
 				D33B08161E93FB650046E986 /* AppDelegate.swift */,
-				D33B08201E93FB650046E986 /* Assets.xcassets */,
-				D33B08221E93FB650046E986 /* LaunchScreen.storyboard */,
 				4056D7D51E96E2BA00AF6727 /* GoogleService-Info.plist */,
 				D33B08251E93FB650046E986 /* Info.plist */,
 			);

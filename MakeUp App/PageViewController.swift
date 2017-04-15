@@ -10,6 +10,8 @@ import UIKit
 
 class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
     
+    var bottomBar = BottomBarView()
+
       var currentIndex = 0
       var viewControllerList: [UIViewController] = {
         let homeView = HomeViewController()
@@ -35,7 +37,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         addNotificationObservers()
         
         view.backgroundColor = Palette.white.color
-        
+        BottomBarView.constrainBottomBarToEdges(viewController: self, bottomBar: bottomBar)
         dataSource = self
         
         if let firstVC = viewControllerList.first {
@@ -83,6 +85,7 @@ extension NotificationObservers {
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .homeVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .tutorialsVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .reviewsVC, object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(updateIndex()), name: .updateIndex, object: nil)
 
     }
     
@@ -103,33 +106,46 @@ extension NotificationObservers {
         }
     }
     
+    func updateIndex(with notification: Notification) {
+        // this is from the selector
+        // update current index of this VC
+    }
+    
     private func switchToViewController(named: String) {
         switch named {
         case "Home":
-            setViewControllers([viewControllerList[0]], direction: determineScrollDirection(currentIndex, 0), animated: true, completion: nil)
+            setViewControllers([viewControllerList[0]], direction: determineScrollDirection(from: currentIndex, to: 0), animated: true, completion: nil)
             currentIndex = 0
         case "Search":
-            setViewControllers([viewControllerList[1]], direction: determineScrollDirection(currentIndex, 1), animated: true, completion: nil)
+            setViewControllers([viewControllerList[1]], direction: determineScrollDirection(from: currentIndex, to: 1), animated: true, completion: nil)
             currentIndex = 1
         case "Product":
-            setViewControllers([viewControllerList[2]], direction: determineScrollDirection(currentIndex, 2), animated: true, completion: nil)
+            setViewControllers([viewControllerList[2]], direction: determineScrollDirection(from: currentIndex, to: 2), animated: true, completion: nil)
             currentIndex = 2
         case "Tutorials":
-            setViewControllers([viewControllerList[3]], direction: determineScrollDirection(currentIndex, 3), animated: true, completion: nil)
+            setViewControllers([viewControllerList[3]], direction: determineScrollDirection(from: currentIndex, to: 3), animated: true, completion: nil)
             currentIndex = 3
         default :
-            setViewControllers([viewControllerList[4]], direction: determineScrollDirection(currentIndex, 4), animated: true, completion: nil)
+            setViewControllers([viewControllerList[4]], direction: determineScrollDirection(from: currentIndex, to: 4), animated: true, completion: nil)
             currentIndex = 4
 
         }
     }
     
-    private func determineScrollDirection(_ currentIndex: Int, _ desiredIndex: Int) -> UIPageViewControllerNavigationDirection {
+    private func updateIndex() {
+        
+    }
+    
+    // on view will appear, notify page view controller of index
+    
+    // make sure the animation plays properly depending on where user is in our 'virtual' flow
+    private func determineScrollDirection(from currentIndex: Int, to desiredIndex: Int) -> UIPageViewControllerNavigationDirection {
         if currentIndex < desiredIndex {
             return .forward
         } else {
             return .reverse
         }
+        
     }
 }
 
@@ -139,6 +155,8 @@ extension Notification.Name {
     static let homeVC = Notification.Name("switch-to-home-vc")
     static let tutorialsVC = Notification.Name("switch-to-tutorials-vc")
     static let reviewsVC = Notification.Name("switch-to-reviews-vc")
+    static let updateIndex = Notification.Name("switch-to-reviews-vc")
+
 
 
 }
