@@ -22,8 +22,7 @@ class YouTubeViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
-        
-       
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +35,9 @@ class YouTubeViewController: UITableViewController {
         
         navBar(title: type, leftButton: .back, rightButton: .buy)
         BottomBarView.constrainBottomBarToEdges(viewController: self, bottomBar: bottomBar)
+        
+        // TODO reached type controller so it can update its current index
+        NotificationCenter.default.post(name: <#T##NSNotification.Name#>, object: nil)
         
         super.viewWillAppear(true)
         self.product = resultStore.product
