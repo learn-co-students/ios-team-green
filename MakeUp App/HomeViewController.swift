@@ -36,12 +36,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
-        guard let username = FirebaseManager.shared.currentUser?.displayName else { print("loaded home view controller but dang, there's no username"); return }
+        guard let username = FirebaseManager.shared.currentUser?.displayName else { print("loaded home view controller but something went wrong because there's no username"); return }
         navBar(title: username, leftButton: nil, rightButton: nil)
         setupLabels()
         setupCollectionViews()
         databaseMethods()
-        
         NotificationCenter.default.post(name: .homeVC, object: nil)
 
     }

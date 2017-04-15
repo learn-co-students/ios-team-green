@@ -3,7 +3,7 @@
 //  MakeUp App
 //
 //  Created by Benjamin Bernstein on 4/10/17.
-//  Copyright © 2017 Raquel Rahmey. All rights reserved.
+//  Copyright © 2017 Benjamin Bernstein. All rights reserved.
 //
 
 import Foundation
@@ -43,7 +43,6 @@ final class FirebaseManager {
     /// App Functions //
     
     func toggleProductFavorite(_ product: Product) {
-        print("line 46")
         guard let user = currentUser else { print("no user"); return }
         let productID = product.upc
         let productRecord = currentUserNode.child(user.uid).child("favorites").child("products")

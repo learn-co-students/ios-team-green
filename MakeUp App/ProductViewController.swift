@@ -26,12 +26,14 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
         
-        NotificationCenter.default.post(name: .productVC, object: nil)
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        NotificationCenter.default.post(name: .productVC, object: nil)
+
         self.product = resultStore.product
         setUpProduct()
     }

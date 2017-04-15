@@ -36,7 +36,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         super.viewDidLoad()
         addNotificationObservers()
         
-        view.backgroundColor = Palette.white.color
+        view.backgroundColor = Palette.beige.color
         BottomBarView.constrainBottomBarToEdges(viewController: self, bottomBar: bottomBar)
         dataSource = self
         

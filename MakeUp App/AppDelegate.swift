@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize Facebook SDK and login User on the basis of persisted data
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        //MARK: - Initial View Determine and Present
+        //MARK: - Determine Initial View and Setup Window
         if user == nil {
             let signupViewController = SignUpViewController()
             setupWindow(with: UINavigationController(rootViewController: signupViewController))
@@ -40,6 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         }
        
+        //MARK: - Global Navigation and Button Styling
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Fonts.Playfair(withStyle: .regular, sizeLiteral: 10)], for: .normal)
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: Fonts.Playfair(withStyle: .black, sizeLiteral: 16), NSForegroundColorAttributeName: Palette.black.color], for: .normal)
         UIApplication.shared.statusBarStyle = .lightContent
         

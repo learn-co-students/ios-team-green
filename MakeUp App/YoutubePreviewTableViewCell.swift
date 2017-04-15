@@ -28,7 +28,7 @@ class YoutubePreviewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.backgroundColor = Palette.black.color
+        self.backgroundColor = Palette.white.color
         setupConstraints()
     }
     

@@ -29,6 +29,7 @@ class YouTubeViewController: UITableViewController {
         guard let type = type else { print("no type registered"); return }
         
         tableView.register(YoutubePreviewCell.self, forCellReuseIdentifier: "tutorialCell")
+        tableView.separatorColor = Palette.beige.color
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -77,10 +78,9 @@ class YouTubeViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("number of rows as video count is", videos.count)
         return videos.count
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 300
     }

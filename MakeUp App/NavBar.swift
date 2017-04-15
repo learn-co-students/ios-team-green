@@ -14,10 +14,7 @@ extension UIViewController {
     func navBar(title: String, leftButton: ButtonType?, rightButton: ButtonType?) {
         
         self.title = title
-        
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Fonts.Playfair(withStyle: .regular, sizeLiteral: 10)], for: .normal)
-        
-    
+  
         if let leftButton = leftButton {
             self.navigationItem.leftBarButtonItem = determineButton(type: leftButton)
         }
@@ -31,8 +28,7 @@ extension UIViewController {
         let navigationTitleFont = Fonts.Playfair(withStyle: .black, sizeLiteral: 18)
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: navigationTitleFont, NSForegroundColorAttributeName: Palette.white.color]
         navigationController?.navigationBar.barTintColor = Palette.beige.color
-        
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: Fonts.Playfair(withStyle: .black, sizeLiteral: 16), NSForegroundColorAttributeName: Palette.black.color], for: .normal)
+  
         
         navigationController?.navigationBar.tintColor = Palette.beige.color
         navigationController?.navigationBar.isTranslucent = false
