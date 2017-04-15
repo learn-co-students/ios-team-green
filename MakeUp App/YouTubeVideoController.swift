@@ -23,17 +23,20 @@ class YouTubeViewController: UITableViewController {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
         
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
         guard let type = type else { print("no type registered"); return }
-
+        
         tableView.register(YoutubePreviewCell.self, forCellReuseIdentifier: "tutorialCell")
         tableView.delegate = self
         tableView.dataSource = self
         
         navBar(title: type, leftButton: .back, rightButton: .buy)
         BottomBarView.constrainBottomBarToEdges(viewController: self, bottomBar: bottomBar)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(true)
         self.product = resultStore.product
     }

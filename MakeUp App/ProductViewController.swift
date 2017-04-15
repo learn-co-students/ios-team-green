@@ -26,12 +26,13 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
-        setUpProduct()
+        
 
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.product = resultStore.product
+        setUpProduct()
     }
 
     // Circular Button Delegate Method

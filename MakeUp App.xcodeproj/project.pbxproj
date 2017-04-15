@@ -14,6 +14,7 @@
 		40B7F6C21E9BE6EA00B3D447 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B7F6C11E9BE6EA00B3D447 /* SearchTableViewController.swift */; };
 		B503D05A1EA01F05004D73E8 /* YouTubeVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503D0591EA01F05004D73E8 /* YouTubeVideoController.swift */; };
 		B503D05C1EA03275004D73E8 /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503D05B1EA03275004D73E8 /* CircularButton.swift */; };
+		B50850051EA1C42600A9A07B /* KeyBoardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50850041EA1C42600A9A07B /* KeyBoardExtension.swift */; };
 		B508FB251E9BB7BA0049B424 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB241E9BB7BA0049B424 /* Secrets.swift */; };
 		B508FB271E9BCC640049B424 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB261E9BCC640049B424 /* FirebaseManager.swift */; };
 		B508FB291E9D71A20049B424 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B508FB281E9D71A20049B424 /* UserStore.swift */; };
@@ -79,6 +80,7 @@
 		A61DC710A697C9092B6EB698 /* Pods_MakeUp_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MakeUp_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B503D0591EA01F05004D73E8 /* YouTubeVideoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeVideoController.swift; sourceTree = "<group>"; };
 		B503D05B1EA03275004D73E8 /* CircularButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
+		B50850041EA1C42600A9A07B /* KeyBoardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBoardExtension.swift; sourceTree = "<group>"; };
 		B508FB241E9BB7BA0049B424 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		B508FB261E9BCC640049B424 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		B508FB281E9D71A20049B424 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
@@ -174,6 +176,14 @@
 			name = ProductFlow;
 			sourceTree = "<group>";
 		};
+		B50850061EA1C42A00A9A07B /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				B50850041EA1C42600A9A07B /* KeyBoardExtension.swift */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		B50E4C0C1E940EF90004D8F7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +225,7 @@
 		B50E4C3E1E9426F50004D8F7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B50850061EA1C42A00A9A07B /* Utility */,
 				D3DBC6591E96C80100D0F711 /* ProductDisplayView.swift */,
 				B5D3A5501E9596FD00D808B7 /* Cells */,
 				B50E4C3F1E94270C0004D8F7 /* SignInButton.swift */,
@@ -511,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B508FB271E9BCC640049B424 /* FirebaseManager.swift in Sources */,
+				B50850051EA1C42600A9A07B /* KeyBoardExtension.swift in Sources */,
 				D33B08521E9542D00046E986 /* ResultStore.swift in Sources */,
 				D3DBC65A1E96C80100D0F711 /* ProductDisplayView.swift in Sources */,
 				4056D7D41E96E26800AF6727 /* Product.swift in Sources */,
