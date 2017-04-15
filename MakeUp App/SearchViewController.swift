@@ -133,7 +133,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("In searchBarSearchButtonClicked:text:\(searchBar.text)")
+        print("In searchBarSearchButtonClicked:text:\(String(describing: searchBar.text))")
         // push to new view controller
         searchTableView.searchString = searchBar.text
         self.navigationController?.pushViewController(searchTableView, animated: true)

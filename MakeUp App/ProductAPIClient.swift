@@ -19,7 +19,7 @@ class ProductAPIClient {
         print("**In ProductAPIClient:stringSearch string: \(searchString) escapedSearchString:\(escapedSearchString)")
 
         let url = URL(string: "https://api.upcitemdb.com/prod/trial/search?s=\(escapedSearchString)&match_mode=0&type=product")
-        guard let unwrappedUrl = url else { print("Invalid Url \(url?.absoluteString)"); return }
+        guard let unwrappedUrl = url else { print("Invalid Url \(String(describing: url?.absoluteString))"); return }
         let task = URLSession.shared.dataTask(with: unwrappedUrl) { (data, response, error) in
             if let unwrappedData = data {
                 do {

@@ -84,7 +84,6 @@ extension NotificationObservers {
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .tutorialsVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .reviewsVC, object: nil)
 
-
     }
     
     func switchViewController(with notification: Notification) {

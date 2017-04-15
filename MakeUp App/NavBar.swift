@@ -17,25 +17,6 @@ extension UIViewController {
         
         UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Fonts.Playfair(withStyle: .regular, sizeLiteral: 10)], for: .normal)
         
-        func determineButton(type: ButtonType) -> UIBarButtonItem? {
-            switch type.rawValue {
-            case "mirror":
-                return UIBarButtonItem(title: "Mirror", style: .plain, target: self, action: nil)
-            case "back":
-                return UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backToProduct(_:)))
-            case "buy":
-                return UIBarButtonItem(title: "Buy", style: .plain, target: self, action: #selector(buy(_:)))
-            case "favorite":
-                let heartImage = #imageLiteral(resourceName: "Heart").withRenderingMode(.alwaysOriginal)
-                return UIBarButtonItem(image: heartImage, landscapeImagePhone: heartImage, style: .plain, target: self, action: #selector(toggleProductFavorite))
-            case "notFavorite":
-                let heartImage = #imageLiteral(resourceName: "Empty-Heart").withRenderingMode(.alwaysOriginal)
-                return UIBarButtonItem(image: heartImage, landscapeImagePhone: heartImage, style: .plain, target: self, action: #selector(toggleProductFavorite))
-            default:
-                return nil
-            }
-       
-        }
     
         if let leftButton = leftButton {
             self.navigationItem.leftBarButtonItem = determineButton(type: leftButton)
@@ -57,30 +38,58 @@ extension UIViewController {
         navigationController?.navigationBar.isTranslucent = false
     }
     
+    func determineButton(type: ButtonType) -> UIBarButtonItem? {
+        switch type.rawValue {
+        case "mirror":
+            return UIBarButtonItem(title: "Mirror", style: .plain, target: self, action: nil)
+        case "back":
+            return UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backToProduct(_:)))
+        case "buy":
+            return UIBarButtonItem(title: "Buy", style: .plain, target: self, action: #selector(buy(_:)))
+        case "favorite":
+            let heartImage = #imageLiteral(resourceName: "Heart").withRenderingMode(.alwaysOriginal)
+            let button = UIBarButtonItem(image: heartImage, landscapeImagePhone: heartImage, style: .plain, target: self, action: #selector(toggleProductFavorite))
+            button.tag = 0
+            return button
+        case "notFavorite":
+            let heartImage = #imageLiteral(resourceName: "Empty-Heart").withRenderingMode(.alwaysOriginal)
+            let button = UIBarButtonItem(image: heartImage, landscapeImagePhone: heartImage, style: .plain, target: self, action: #selector(toggleProductFavorite))
+            button.tag = 1
+            return UIBarButtonItem(image: heartImage, landscapeImagePhone: heartImage, style: .plain, target: self, action: #selector(toggleProductFavorite))
+        default:
+            return nil
+        }
+        
+    }
     func backToProduct(_ sender: UIBarButtonItem) {
         NotificationCenter.default.post(name: .productVC, object: nil)
     }
     
     func buy(_ sender: UIBarButtonItem) {
-        if let validTitle = ResultStore.sharedInstance.product?.title.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {    
+        if let validTitle = ResultStore.sharedInstance.product?.title.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             if let url = URL(string: "https://www.google.com/search?hl=en&output=search&tbm=shop&q=\(validTitle)") {
                 UIApplication.shared.open(url, options: [:])
             }
         }
-        
-
-        
     }
     
-    func toggleProductFavorite() {
+    func toggleProductFavorite(_ sender: UIBarButtonItem) {
         guard let product = ResultStore.sharedInstance.product else { return }
         FirebaseManager.shared.toggleProductFavorite(product)
-        toggleHeartButton()
+        switch sender.tag {
+        case 1:
+            let heartImage = #imageLiteral(resourceName: "Heart").withRenderingMode(.alwaysOriginal)
+            let button = UIBarButtonItem(image: heartImage, landscapeImagePhone: heartImage, style: .plain, target: self, action: #selector(toggleProductFavorite))
+            button.tag = 0
+             self.navigationItem.leftBarButtonItem = button
+        default:
+            let heartImage = #imageLiteral(resourceName: "Empty-Heart").withRenderingMode(.alwaysOriginal)
+            let button = UIBarButtonItem(image: heartImage, landscapeImagePhone: heartImage, style: .plain, target: self, action: #selector(toggleProductFavorite))
+            button.tag = 1
+           self.navigationItem.leftBarButtonItem = button
+        }
     }
-    
-    func toggleHeartButton() {
-        //TODO: Set heart button depending on if product is favorite
-    }
+
     
 }
 

@@ -76,7 +76,7 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
         guard let product = resultStore.product else { return }
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: productImage.bottomAnchor, constant: 30).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: productImage.bottomAnchor, constant: 20).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: productImage.centerXAnchor).isActive = true
         titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         titleLabel.text = product.title
@@ -97,8 +97,7 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
         
         tutorialsButton.rightAnchor.constraint(equalTo: view.centerXAnchor, constant: -20).isActive = true
         reviewsButton.leftAnchor.constraint(equalTo: view.centerXAnchor, constant: 20).isActive = true
-        
-        
+
     }
     
     func determineFavoriteButton() -> ButtonType {
