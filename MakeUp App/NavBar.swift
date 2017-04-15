@@ -13,6 +13,8 @@ extension UIViewController {
     
     func navBar(title: String, leftButton: ButtonType?, rightButton: ButtonType?) {
         
+        self.title = title
+        
         UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: Fonts.Playfair(withStyle: .regular, sizeLiteral: 10)], for: .normal)
         
         func determineButton(type: ButtonType) -> UIBarButtonItem? {
@@ -20,7 +22,7 @@ extension UIViewController {
             case "mirror":
                 return UIBarButtonItem(title: "Mirror", style: .plain, target: self, action: nil)
             case "back":
-                return UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(popLast(_:)))
+                return UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backToProduct(_:)))
             case "buy":
                 return UIBarButtonItem(title: "Buy", style: .plain, target: self, action: #selector(buy(_:)))
             case "favorite":
@@ -55,12 +57,19 @@ extension UIViewController {
         navigationController?.navigationBar.isTranslucent = false
     }
     
-    func popLast(_ sender: UIBarButtonItem) {
-        self.navigationController?.popViewController(animated: true)
+    func backToProduct(_ sender: UIBarButtonItem) {
+        NotificationCenter.default.post(name: .productVC, object: nil)
     }
     
-    func buy(_ sender: UIBarButtonItem) {
-        print("TODO: This goes to a google search for the productname")
+    func buy(_ sender: UIBarButtonItem) {        
+        if let validTitle = ResultStore.sharedInstance.product?.title.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            if let url = URL(string: "https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=\(validTitle)") {
+                UIApplication.shared.open(url, options: [:])
+            }
+        }
+        
+
+        
     }
     
     func toggleProductFavorite() {

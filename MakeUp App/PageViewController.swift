@@ -138,8 +138,8 @@ extension Notification.Name {
     static let productVC = Notification.Name("switch-to-product-vc")
     static let searchVC = Notification.Name("switch-to-search-vc")
     static let homeVC = Notification.Name("switch-to-home-vc")
-    static let tutorialsVC = Notification.Name("switch-to-home-vc")
-    static let reviewsVC = Notification.Name("switch-to-home-vc")
+    static let tutorialsVC = Notification.Name("switch-to-tutorials-vc")
+    static let reviewsVC = Notification.Name("switch-to-reviews-vc")
 
 
 }

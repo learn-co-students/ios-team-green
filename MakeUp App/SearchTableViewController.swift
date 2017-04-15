@@ -10,9 +10,7 @@ import UIKit
 
 class SearchTableViewController: UITableViewController {
 
-    //var tableView = UITableView()
     var searchString:String?
-    //var productAPIClient:ProductAPIClient!
     var productArray:[Product] = []
     
     override func viewDidLoad() {
@@ -23,7 +21,7 @@ class SearchTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     
-        print("In SearchTableViewController:viewWillAppear:searchString:\(searchString)")
+        print("In SearchTableViewController:viewWillAppear:searchString:\(String(describing: searchString))")
         
         navBar(title: "Search Results", leftButton: ButtonType(rawValue: "back"), rightButton: nil)
        
@@ -45,21 +43,7 @@ class SearchTableViewController: UITableViewController {
         }
         
         
-    } // func viewDidLoad()
-
-    /*func didReceiveMemoryWarning() {
-        //super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }*/
-
-    // MARK: - Table view data source
-
-    
-
-    /*override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }*/
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -70,23 +54,12 @@ class SearchTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myProductCell", for: indexPath) as! ProductCell
         
-        // Configure the cell...
-        //cell.myImageView = productArray[indexPath.row].
+
         
         cell.product = productArray[indexPath.row]
         print("In SearchTableViewController:tableView:row \(indexPath.row):\(String(describing: cell.product?.description)) ")
         return cell
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
