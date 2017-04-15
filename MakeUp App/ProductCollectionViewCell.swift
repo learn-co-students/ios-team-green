@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-class MediaViewCell: UICollectionViewCell {
-    static let reuseIdentifier = "mediaCell"
+class ProductViewCell: UICollectionViewCell {
+    static let reuseIdentifier = "productCell"
     
     var favoriteButton = UIButton()
     var imageView = UIImageView()
     var titleView = UILabel()
     
-    var youtube: Youtube? {
+    var product: Product? {
         didSet {
             setUpCell()
         }
@@ -29,21 +29,23 @@ class MediaViewCell: UICollectionViewCell {
     }
     
     func setUpCell() {
-        guard let youtube = youtube else {print("could not get youtube"); return}
-        titleView.text = truncateStringAfterNumberofWords(string: youtube.title, words: 5)
-        ImageAPIClient.getProductImage(with: youtube.thumbnailURL) { (image) in
+        guard let myProduct = product else { print("could not get product"); return  }
+        titleView.text = truncateStringAfterNumberofWords(string: myProduct.title, words: 3)
+        ImageAPIClient.getProductImage(with: myProduct.imageURL) { (productImage) in
             DispatchQueue.main.async {
-                self.imageView.image = image
+                UIView.animate(withDuration: 0.2, animations: { 
+                    self.imageView.image = productImage
+                })
             }
         }
+
     }
     
     func setupConstraints() {
         titleView = UILabel()
-        titleView.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 14)
+        titleView.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 16)
         titleView.numberOfLines = 2
         titleView.textAlignment = .left
-        titleView.text = "No Title"
         titleView.textColor = Palette.darkGrey.color
         
         let items = [imageView]
@@ -51,22 +53,21 @@ class MediaViewCell: UICollectionViewCell {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.contentView.addSubview($0)
         }
-
+        
+        contentView.addSubview(favoriteButton)
+       
         imageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8).isActive = true
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
         
         favoriteButton.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(favoriteButton)
-        
         favoriteButton.setImage(#imageLiteral(resourceName: "Heart"), for: .normal)
         favoriteButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         favoriteButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
         favoriteButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.15).isActive = true
         favoriteButton.heightAnchor.constraint(equalTo: favoriteButton.widthAnchor).isActive = true
-        favoriteButton.addTarget(self, action: #selector(toggleMediaFavorite), for: .touchUpInside)
-
+        favoriteButton.addTarget(self, action: #selector(toggleProductFavorite), for: .touchUpInside)
         
         titleView.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(titleView)
@@ -76,10 +77,15 @@ class MediaViewCell: UICollectionViewCell {
         titleView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 10).isActive = true
         
     }
-
-    func toggleMediaFavorite() {
-        guard let youtube = youtube else { return }
-        FirebaseManager.shared.toggleMediaFavorite(youtube)
+    
+    override func prepareForReuse() {
+        self.imageView.image = nil
+        self.titleView.text = nil
+    }
+    
+    func toggleProductFavorite() {
+        guard let product = product else { return }
+        FirebaseManager.shared.toggleProductFavorite(product)
     }
     
     

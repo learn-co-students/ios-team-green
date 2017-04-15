@@ -53,10 +53,10 @@ final class FirebaseManager {
                 if let favoriteRecord = snapshot.value as? [String:Any] {
                     if favoriteRecord[productID] as? Bool == false {
                         productRecord.updateChildValues([productID: true])
-                        print("added favorite")
+                        print("User added favorite")
                     } else  {
                         productRecord.updateChildValues([productID: false])
-                        print("removed favorite")
+                        print("User removed favorite")
                     }
                 } else {
                     productRecord.updateChildValues([productID: true])
