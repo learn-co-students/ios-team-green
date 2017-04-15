@@ -9,9 +9,7 @@
 import Foundation
 
 class ProductAPIClient {
-   
-    //var targetData:[String:Any] = [:]
-    
+       
     func stringSearch(searchString:String, completion:@escaping ([Product])->()) {
         var result:[Product] = []
         let escapedSearchString = searchString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "Url string conversion failed"
@@ -26,7 +24,6 @@ class ProductAPIClient {
                     guard let json = try JSONSerialization.jsonObject(with: unwrappedData, options: []) as? [String:Any] else {
                         print("Invalid JSONSerialization"); return
                     }
-                    //print("json=\(json)")
                     guard let itemsData = json["items"] as? [[String:Any]] else {
                         print("Cannot convert json to dictionary array"); return
                     }
@@ -38,7 +35,6 @@ class ProductAPIClient {
                         targetData = item
                         print("item[images]:", item["images"] ?? "No Image")
                         let imageArray = item["images"] as? [String] ?? ["No Image"]
-                        //let image = imageArray[0]
                         if !(imageArray.isEmpty) {
                             targetData["image"] = imageArray[0]
                         } else {
@@ -58,6 +54,6 @@ class ProductAPIClient {
         }
         task.resume()
  
-    } //func stringSearch
+    }
     
 }

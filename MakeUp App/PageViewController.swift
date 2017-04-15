@@ -10,6 +10,7 @@ import UIKit
 
 class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
     
+    let resultsStore = ResultStore.sharedInstance
     var bottomBar = BottomBarView()
 
       var currentIndex = 0
@@ -69,6 +70,9 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         
         guard viewControllerList.count > nextIndex else {return nil}
         
+        // Don't go to results or tutorials if there's no product
+        if nextIndex > 2 { guard resultsStore.product != nil else { return nil } }
+        
         return viewControllerList[nextIndex]
 
     }
@@ -85,7 +89,6 @@ extension NotificationObservers {
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .homeVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .tutorialsVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .reviewsVC, object: nil)
-        //NotificationCenter.default.addObserver(self, selector: #selector(updateIndex()), name: .updateIndex, object: nil)
 
     }
     
@@ -132,12 +135,6 @@ extension NotificationObservers {
         }
     }
     
-    private func updateIndex() {
-        
-    }
-    
-    // on view will appear, notify page view controller of index
-    
     // make sure the animation plays properly depending on where user is in our 'virtual' flow
     private func determineScrollDirection(from currentIndex: Int, to desiredIndex: Int) -> UIPageViewControllerNavigationDirection {
         if currentIndex < desiredIndex {
@@ -155,9 +152,6 @@ extension Notification.Name {
     static let homeVC = Notification.Name("switch-to-home-vc")
     static let tutorialsVC = Notification.Name("switch-to-tutorials-vc")
     static let reviewsVC = Notification.Name("switch-to-reviews-vc")
-    static let updateIndex = Notification.Name("switch-to-reviews-vc")
-
-
 
 }
 

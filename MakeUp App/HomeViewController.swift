@@ -41,8 +41,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         setupLabels()
         setupCollectionViews()
         databaseMethods()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         NotificationCenter.default.post(name: .homeVC, object: nil)
-
     }
 
     //MARK: - UI SetUp

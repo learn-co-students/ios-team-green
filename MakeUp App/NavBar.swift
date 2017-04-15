@@ -51,7 +51,7 @@ extension UIViewController {
             let heartImage = #imageLiteral(resourceName: "Empty-Heart").withRenderingMode(.alwaysOriginal)
             let button = UIBarButtonItem(image: heartImage, landscapeImagePhone: heartImage, style: .plain, target: self, action: #selector(toggleProductFavorite))
             button.tag = 1
-            return UIBarButtonItem(image: heartImage, landscapeImagePhone: heartImage, style: .plain, target: self, action: #selector(toggleProductFavorite))
+            return button
         default:
             return nil
         }
@@ -77,7 +77,7 @@ extension UIViewController {
             let heartImage = #imageLiteral(resourceName: "Heart").withRenderingMode(.alwaysOriginal)
             let button = UIBarButtonItem(image: heartImage, landscapeImagePhone: heartImage, style: .plain, target: self, action: #selector(toggleProductFavorite))
             button.tag = 0
-             self.navigationItem.leftBarButtonItem = button
+            self.navigationItem.leftBarButtonItem = button
         default:
             let heartImage = #imageLiteral(resourceName: "Empty-Heart").withRenderingMode(.alwaysOriginal)
             let button = UIBarButtonItem(image: heartImage, landscapeImagePhone: heartImage, style: .plain, target: self, action: #selector(toggleProductFavorite))
