@@ -8,37 +8,54 @@ import UIKit
 
 class YouTubeViewController: UITableViewController {
     
+    let resultStore = ResultStore.sharedInstance
+
     var videos = [Youtube]()
     var type: String?
     let bottomBar = BottomBarView()
+    var product = ResultStore.sharedInstance.product {
+        didSet {
+            getVideos()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
         
-        if type == "Tutorials" {
-            print("tutorials 21")
-            if let product = ResultStore.sharedInstance.product {
-                ResultStore.sharedInstance.getYouTubeVideos(search: product.title, videoType: .tutorial, completion: {
-                    print("results")
-                    self.videos = ResultStore.sharedInstance.youtubeTutorialVideos
-                    print("self.videos is", self.videos.count)
-                    self.tableView.reloadData()
-                })
-            }
-            
-        } else {
-            videos = ResultStore.sharedInstance.youtubeReviewVideos
-        }
-        
+        guard let type = type else { print("no type registered"); return }
+
         tableView.register(YoutubePreviewCell.self, forCellReuseIdentifier: "tutorialCell")
         tableView.delegate = self
         tableView.dataSource = self
         
-        if let type = type {
-            navBar(title: type, leftButton: .back, rightButton: .buy)
-        }
+        navBar(title: type, leftButton: .back, rightButton: .buy)
         BottomBarView.constrainBottomBarToEdges(viewController: self, bottomBar: bottomBar)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.product = resultStore.product
+    }
+    
+    func getVideos() {
+        if let product = ResultStore.sharedInstance.product {
+            guard let type = type else { print("no type registered"); return }
+            ResultStore.sharedInstance.getYouTubeVideos(search: product.title, videoType: determineType(type: type), completion: {
+                self.videos = ResultStore.sharedInstance.youtubeTutorialVideos
+                self.tableView.reloadData()
+            })
+        }
+        
+    }
+    
+    func determineType(type: String) -> YoutubeSearch {
+        switch type {
+        case "Tutorials":
+            return .tutorial
+        default:
+            return .review
+        }
     }
     
     //MARK: - Table View Methods

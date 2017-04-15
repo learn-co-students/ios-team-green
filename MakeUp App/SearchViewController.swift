@@ -198,7 +198,6 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                         print("Searching barcode on internet")
                         self.barCodeSearch(barCode: newBarCodeValue, completion: { (product) in
                             self.resultStore.product = product
-                            self.resultStore.product = product
                             NotificationCenter.default.post(name: .productVC, object: nil)
                         }
                         )}

@@ -34,7 +34,6 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         super.viewDidLoad()
         addNotificationObservers()
         
-        
         view.backgroundColor = Palette.white.color
         
         dataSource = self

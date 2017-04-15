@@ -40,20 +40,8 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
         switch sender.title {
         case "Tutorials":
             NotificationCenter.default.post(name: .tutorialsVC, object: nil)
-      
         default:
-            NotificationCenter.default.post(name: .reviewsVC, object: nil)
-//
-//            if let product = resultStore.product {
-//                self.resultStore.getYouTubeVideos(search: product.title, videoType: .review) {
-//                    DispatchQueue.main.async {
-//                        let ReviewsVC = YouTubeViewController()
-//                        ReviewsVC.type = "Reviews"
-//                        self.navigationController?.pushViewController(ReviewsVC, animated: true)
-//                    }
-//                }
-//            }
-            
+            NotificationCenter.default.post(name: .reviewsVC, object: nil)            
         }
     }
     
