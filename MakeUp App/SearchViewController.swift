@@ -102,7 +102,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
             print(error)
             return
         }
-        
+    
 
         configureSearchController()
         
@@ -140,6 +140,10 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
+        searchBar.endEditing(true)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         searchBar.endEditing(true)
     }
     
@@ -235,7 +239,15 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                     self.apiData = targetdata[0]
                     
                     let imageArray = self.apiData["images"] as? [String] ?? ["No image"]
-                    let imageUrl = imageArray[0]
+                    //let image = imageArray[0]
+                    var imageUrl = "No Image"
+                    if !(imageArray.isEmpty) {
+                        imageUrl = imageArray[0]
+                    } else {
+                        imageUrl = "No Image" ;
+                        print("imageArray is empty")
+                    }
+                    
                     self.apiData["image"] = imageUrl
                     let product = Product(dict:self.apiData)
                     self.addToDB(product)
