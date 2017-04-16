@@ -24,7 +24,15 @@ class SignUpViewController: UIViewController {
         return label
     }()
     
-    let googleButton: UIButton = {
+    let emailSignIn: UITextField = {
+        return UITextField()
+    }
+    
+    let passwordSignIn: UITextField = {
+        
+    }
+    
+    let signInButton: UIButton = {
         return SignInButton(image: #imageLiteral(resourceName: "Google"), text: "\tGoogle Sign In")
     }()
     
@@ -33,7 +41,7 @@ class SignUpViewController: UIViewController {
         
     }()
     
-    let emailButton: UIButton = {
+    let signUpButton: UIButton = {
         return SignInButton(image: #imageLiteral(resourceName: "Message"), text: "\tEmail Sign In")
     }()
     
@@ -102,7 +110,6 @@ extension FacebookLoginManager {
             } else if let user = user {
                 UserDefaults.standard.set(user.uid, forKey: "userID")
                 FirebaseManager.shared.createOrUpdate(user)
-
                 // go to Home View
                 let pageViewController = PageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
                 self.present(pageViewController, animated: true, completion: nil)

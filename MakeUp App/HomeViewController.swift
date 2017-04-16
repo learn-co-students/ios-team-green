@@ -48,7 +48,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         NotificationCenter.default.post(name: .homeVC, object: nil)
     }
 
-    //MARK: - UI SetUp
+    //MARK: - UI Setup
     func setupLabels() {
         
         myProductsSearch.delegate = self

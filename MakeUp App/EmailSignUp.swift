@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseAuth
 
 import UIKit
 
@@ -82,9 +84,30 @@ class EmailUpViewController: UIViewController {
     }
     
     func submit() {
-        guard (emailField.text != nil) && (nameField.text != nil) && (passwordField.text != nil) else { return }
-        let pageViewController = PageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-        present(pageViewController, animated: true, completion: nil)
+        guard let email = emailField.text, let name = nameField.text, let password = passwordField.text else { return }
+        
+        if password.characters.count < 6 {
+            passwordField.text = "Password too short, try again!"
+            return
+        }
+        
+        if !email.contains("@") {
+            emailField.text = "Invalid email, try again"
+        }
+        
+        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+            if error != nil {
+                print("Error with email / password submit:", error as Any)
+            } else if let user = user {
+                UserDefaults.standard.set(user.uid, forKey: "userID")
+                FirebaseManager.shared.createOrUpdate(user)
+                let pageViewController = PageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+                self.present(pageViewController, animated: true, completion: nil)
+            } else {
+                print("EmailSignUpVC -> error validating login")
+            }
+        })
+        
     }
 
 }

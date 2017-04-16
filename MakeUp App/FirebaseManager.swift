@@ -40,6 +40,20 @@ final class FirebaseManager {
         currentUser = user
     }
     
+//    func createUserWithEmailAndPassword(email: String, password: String) {
+//        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+//            currentUserNode.child(user.ui)
+//        })
+//    }
+    
+//    func signInUserWithEmailAndPassword(email: String, password: String) {
+//            FIRAuth.auth()?.signIn(withEmail: email, password: String, completion: { (user, error) in
+//                <#code#>
+//            })
+//    }
+    
+//    }
+    
     /// App Functions //
     
     func toggleProductFavorite(_ product: Product) {
