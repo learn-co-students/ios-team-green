@@ -2,7 +2,7 @@
 //  SearchTableViewController.swift
 //  MakeUp App
 //
-//  Created by ac on 4/10/17.
+//  Created by amit chadha on 4/10/17.
 //  Copyright © 2017 Raquel Rahmey. All rights reserved.
 //
 
@@ -63,6 +63,12 @@ class SearchTableViewController: UITableViewController {
         print("In SearchTableViewController:tableView:row \(indexPath.row):\(String(describing: cell.product?.description)) ")
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        ResultStore.sharedInstance.product = productArray[indexPath.row]
+        navigationController?.pushViewController(ProductViewController(), animated: true)
+    }
+    
 
 
 }

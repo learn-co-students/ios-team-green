@@ -22,13 +22,26 @@ class ProductCell: UITableViewCell {
 
     func setUpCell() {
         guard let myProduct = product else { print("could not get product"); return  }
-        titleLabel.text = myProduct.description
         print("product desp: \(myProduct.description) imageURL: \(myProduct.imageURL)")
-        ImageAPIClient.getProductImage(with: myProduct.imageURL) { (productImage) in
+        if myProduct.description != "" {
+            titleLabel.text = myProduct.description
+        } else {
+            titleLabel.text = myProduct.title
+        }
+
+        if myProduct.imageURL != "No Image" {
+            ImageAPIClient.getProductImage(with: myProduct.imageURL) { (productImage) in
+                DispatchQueue.main.async {
+                    print("product is", myProduct.title, myProduct.imageURL)
+                    self.productImageView.image = productImage
+                }
+            }
+        } else {
             DispatchQueue.main.async {
                 print("product is", myProduct.title, myProduct.imageURL)
-                self.productImageView.image = productImage
+                self.productImageView.image = #imageLiteral(resourceName: "No-Image")
             }
+            
         }
         
     }
@@ -67,7 +80,7 @@ class ProductCell: UITableViewCell {
         //productImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         productImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 2).isActive = true
         productImageView.widthAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 1).isActive = true
-        productImageView.heightAnchor.constraint(equalTo: productImageView.widthAnchor).isActive = true
+        //productImageView.heightAnchor.constraint(equalTo: productImageView.widthAnchor).isActive = true
         
         productImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor , constant: -2).isActive = true
         

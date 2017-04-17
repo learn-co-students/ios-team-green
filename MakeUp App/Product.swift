@@ -26,7 +26,7 @@ class Product {
     init(dict:[String:Any]) {
         ean = dict["ean"] as? String ?? ""
         title = dict["title"] as? String ?? ""
-        description = dict["description"] as? String ?? ""
+        description = dict["description"] as? String ?? (dict["title"] as? String) ?? ""
         upc = dict["upc"] as? String ?? ""
         brand = dict["brand"] as? String ?? ""
         model = dict["model"] as? String ?? ""
