@@ -25,7 +25,7 @@ class ProductAPIClient {
                         print("Invalid JSONSerialization"); return
                     }
                     guard let itemsData = json["items"] as? [[String:Any]] else {
-                        print("Cannot convert json to dictionary array"); return
+                        print("json=",json,"\nCannot convert json to dictionary array."); return
                     }
              
                     for item in itemsData {
@@ -42,7 +42,7 @@ class ProductAPIClient {
                             print("imageArray is empty")
                         }
                         
-                        print("THE DICITONARY IMAGE IS", targetData["image"] ?? "No Image" )
+                        //print("THE DICITONARY IMAGE IS", targetData["image"] ?? "No Image" )
                         let product = Product(dict:targetData)
                         result.append(product)
                     }
