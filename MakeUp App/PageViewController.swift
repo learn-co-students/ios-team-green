@@ -76,8 +76,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         return viewControllerList[nextIndex]
 
     }
-    
-    
+   
 }
 
 typealias NotificationObservers = PageViewController
@@ -107,11 +106,6 @@ extension NotificationObservers {
         default:
             fatalError("\(#function) - Unable to match notification name.")
         }
-    }
-    
-    func updateIndex(with notification: Notification) {
-        // this is from the selector
-        // update current index of this VC
     }
     
     private func switchToViewController(named: String) {
