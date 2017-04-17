@@ -86,7 +86,7 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
         titleLabel.centerXAnchor.constraint(equalTo: productImage.centerXAnchor).isActive = true
         titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         if let product = resultStore.product  {
-            titleLabel.text = product.title
+            titleLabel.text = product.title + "\n$" + String(product.price)
         }
         titleLabel.textAlignment = .center
         titleLabel.font = Fonts.Playfair(withStyle: .italic, sizeLiteral: 20)

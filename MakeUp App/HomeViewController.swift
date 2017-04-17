@@ -18,7 +18,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var allProducts = [Product]()
     var displayProducts = [Product]() {
         didSet {
-            displayProducts.sort { $0.0.title < $0.1.title }
+            displayProducts.sort { $0.0.savedAt > $0.1.savedAt }
         }
     }
 
@@ -29,7 +29,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var allMedia = [Youtube]()
     var displayMedia = [Youtube]() {
         didSet {
-            displayMedia.sort { $0.0.title < $0.1.title }
+            displayMedia.sort { $0.0.savedAt > $0.1.savedAt }
         }
     }
     

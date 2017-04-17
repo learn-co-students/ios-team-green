@@ -20,6 +20,7 @@ class Youtube {
     var thumbnailHeight: Int
     var videoType: String
     var publishedAt: String
+    var savedAt: String
 
     
     init(dictionary:JSON, videoType:String) {
@@ -39,6 +40,8 @@ class Youtube {
         thumbnailHeight = dictionary["snippet"]["thumbnails"]["default"]["height"].intValue
         publishedAt = dictionary["snippet"]["publishedAt"].stringValue
         self.videoType = videoType
+        
+        savedAt = "Never Saved"
     }
     
     
