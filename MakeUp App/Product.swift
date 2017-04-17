@@ -22,6 +22,7 @@ class Product {
     let weight: String
     let currency: String
     let imageURL: String
+    var savedAt: String
     
     init(dict:[String:Any]) {
         ean = dict["ean"] as? String ?? ""
@@ -36,6 +37,7 @@ class Product {
         weight = dict["weight"] as? String ?? ""
         currency = dict["currency"] as? String ?? ""
         imageURL = dict["image"] as? String ?? ""
+        savedAt = "Never Saved"
     }
     
     func toDict()->[String:Any] {

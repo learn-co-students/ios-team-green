@@ -56,6 +56,7 @@ class MediaViewCell: UICollectionViewCell {
         imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8).isActive = true
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
+        imageView.contentMode = UIViewContentMode.scaleAspectFit
         
         favoriteButton.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(favoriteButton)
