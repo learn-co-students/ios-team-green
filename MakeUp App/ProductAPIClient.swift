@@ -42,7 +42,6 @@ class ProductAPIClient {
                             print("imageArray is empty")
                         }
                         
-                        //print("THE DICITONARY IMAGE IS", targetData["image"] ?? "No Image" )
                         let product = Product(dict:targetData)
                         result.append(product)
                     }

@@ -32,7 +32,7 @@ class YouTubeViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        navBar(title: type, leftButton: .back, rightButton: .buy)
+        navBar(title: type, leftButton: .backToProduct, rightButton: .buy)
         
         super.viewWillAppear(true)
         self.product = resultStore.product

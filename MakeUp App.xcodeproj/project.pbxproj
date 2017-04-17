@@ -414,7 +414,7 @@
 				TargetAttributes = {
 					D33B08121E93FB650046E986 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 3J6EPP8283;
+						DevelopmentTeam = SRFS2YY3XR;
 						ProvisioningStyle = Automatic;
 					};
 					D33B08291E93FB650046E986 = {
@@ -712,7 +712,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3J6EPP8283;
+				DEVELOPMENT_TEAM = SRFS2YY3XR;
 				INFOPLIST_FILE = "MakeUp App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ItemScanner.ios;
@@ -728,7 +728,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3J6EPP8283;
+				DEVELOPMENT_TEAM = SRFS2YY3XR;
 				INFOPLIST_FILE = "MakeUp App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ItemScanner.ios;

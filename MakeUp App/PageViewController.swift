@@ -15,10 +15,13 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
 
       var currentIndex = 0
       var viewControllerList: [UIViewController] = {
+        
         let homeView = HomeViewController()
         let homeNav = UINavigationController(rootViewController: homeView)
+        
         let searchView = SearchViewController()
         let searchNav = UINavigationController(rootViewController: searchView)
+        
         let productView = ProductViewController()
         let productNav = UINavigationController(rootViewController: productView)
         
@@ -32,7 +35,8 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
   
         let searchTableView = SearchTableViewController()
         let searchTableViewNav = UINavigationController(rootViewController: searchTableView)
-        return [homeNav, searchNav, productNav, tutorialsNav, searchTableViewNav, reviewsNav]
+        
+        return [homeNav, searchNav, productNav, tutorialsNav, reviewsNav,  searchTableViewNav]
     }()
 
     override func viewDidLoad() {
