@@ -217,16 +217,23 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                     guard let json = try JSONSerialization.jsonObject(with: unwrappedData, options: []) as? [String:Any] else {
                         print("Invalid JSONSerialization"); return
                     }
-                    //print("json=\(json)")
                     guard let targetdata = json["items"] as? [[String:Any]] else {
                         print("Cannot convert json to dictionary array"); return
                     }
-                    print("targetdata=\(targetdata[0])")
                     self.apiData = targetdata[0]
                     
                     let imageArray = self.apiData["images"] as? [String] ?? ["No image"]
                     let imageUrl = imageArray[0]
+                    
+                    let offersArray = self.apiData["offers"] as? [Any] ?? ["No Offers"]
+                    print("offersArray is", offersArray)
+
+                    let firstOffer = offersArray[0] as? [String:Any] ?? [:]
+                    let price = firstOffer["price"]
+                                        
                     self.apiData["image"] = imageUrl
+                    self.apiData["price"] = price
+                    
                     let product = Product(dict:self.apiData)
                     self.addToDB(product)
                     completion(product)
@@ -236,7 +243,8 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         }
         task.resume()
         
-    } //func barCodeSearch
+    }
+    
     
     //add dictionary item to DB
     func addToDB(_ itemDet:Product) {
@@ -253,7 +261,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
             completion(value)
         })
         
-    } // func searchDB
+    }
     
     
     

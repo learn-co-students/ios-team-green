@@ -77,7 +77,7 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
         productImage.translatesAutoresizingMaskIntoConstraints = false
         productImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
         productImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        productImage.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4).isActive = true
+        productImage.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true
         productImage.widthAnchor.constraint(lessThanOrEqualTo: view.widthAnchor, multiplier: 0.9).isActive = true
         productImage.contentMode = UIViewContentMode.scaleAspectFit
         
@@ -86,7 +86,7 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
         titleLabel.centerXAnchor.constraint(equalTo: productImage.centerXAnchor).isActive = true
         titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         if let product = resultStore.product  {
-            titleLabel.text = product.title
+            titleLabel.text = product.title + "\n$" + String(product.price)
         }
         titleLabel.textAlignment = .center
         titleLabel.font = Fonts.Playfair(withStyle: .italic, sizeLiteral: 20)

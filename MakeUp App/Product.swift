@@ -22,6 +22,7 @@ class Product {
     let weight: String
     let currency: String
     let imageURL: String
+    let price: Double
     var savedAt: String
     
     init(dict:[String:Any]) {
@@ -37,6 +38,7 @@ class Product {
         weight = dict["weight"] as? String ?? ""
         currency = dict["currency"] as? String ?? ""
         imageURL = dict["image"] as? String ?? ""
+        price = dict["price"] as? Double ?? 0
         savedAt = "Never Saved"
     }
     
@@ -55,6 +57,7 @@ class Product {
         dict["weight"] = self.weight
         dict["currency"] = self.currency
         dict["image"] = self.imageURL
+        dict["price"] = self.price
     
         return dict
     }

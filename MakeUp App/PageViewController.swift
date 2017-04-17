@@ -115,6 +115,9 @@ extension NotificationObservers {
             currentIndex = 0
         case "Search":
             setViewControllers([viewControllerList[1]], direction: determineScrollDirection(from: currentIndex, to: 1), animated: true, completion: nil)
+            viewControllerList[1].navigationController?.popViewController(animated: true)
+            
+            // remove anything on top of me, which would be the TVC
             currentIndex = 1
         case "Product":
             setViewControllers([viewControllerList[2]], direction: determineScrollDirection(from: currentIndex, to: 2), animated: true, completion: nil)
