@@ -46,6 +46,9 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         lastBarCodevalue = nil
+        
+        NotificationCenter.default.post(name: .searchVC, object: nil)
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,6 +111,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         configureSearchController()
         
         
+        
     } //func viewDidLoad()
     
     override func didReceiveMemoryWarning() {
@@ -130,13 +134,13 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         print("In searchBarSearchButtonClicked:text:\(String(describing: searchBar.text))")
         // push to new view controller
         searchTableView.searchString = searchBar.text
-        self.navigationController?.pushViewController(searchTableView, animated: true)
+        NotificationCenter.default.post(name: .searchTVC, object: nil)
         
     }
     
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    /*func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
-    }
+    }*/
     
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

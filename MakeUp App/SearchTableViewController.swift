@@ -16,14 +16,12 @@ class SearchTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 80
-        
-        NotificationCenter.default.post(name: .searchVC, object: nil)
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
+            
         print("In SearchTableViewController:viewWillAppear:searchString:\(String(describing: searchString))")
         
         navBar(title: "Search Results", leftButton: ButtonType(rawValue: "back"), rightButton: nil)
