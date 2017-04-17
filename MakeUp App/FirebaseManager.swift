@@ -56,7 +56,7 @@ final class FirebaseManager {
         let productRecord = currentUserNode.child(user.uid).child("favorites").child("products")
         
         productRecord.observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let favoriteRecord = snapshot.value as? [String:Any] else { print("couldn't get product favorite record"); return }
+            guard let favoriteRecord = snapshot.value as? [String:Any] else { productRecord.updateChildValues([productID: [ "isFavorite": true, "timestamp": self.time]]); return }
                 if let product = favoriteRecord[productID] as? [String:Any]  {
                     if product["isFavorite"] as? Bool == false {
                         productRecord.updateChildValues([productID: [ "isFavorite": true, "timestamp": self.time]])
@@ -66,7 +66,7 @@ final class FirebaseManager {
                         print("User removed favorite")
                     }
                 } else {
-                productRecord.updateChildValues([productID: [ "isFavorite": true, "timestamp": self.time]])
+                    
             }
         })
     }
@@ -80,7 +80,7 @@ final class FirebaseManager {
         let videoID = youtube.videoID
         
         mediaRecord.observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let favoriteRecord = snapshot.value as? [String:Any] else { print("couldn't get mediafavorite record"); return }
+            guard let favoriteRecord = snapshot.value as? [String:Any] else { mediaRecord.updateChildValues([videoID: [ "isFavorite": true, "timestamp": self.time]]); return }
             if let media = favoriteRecord[videoID] as? [String:Any]  {
                 if media["isFavorite"] as? Bool == false {
                     mediaRecord.updateChildValues([videoID: [ "isFavorite": true, "timestamp": self.time]])
@@ -89,8 +89,6 @@ final class FirebaseManager {
                     mediaRecord.updateChildValues([videoID: [ "isFavorite": false, "timestamp": self.time]])
                     print("User removed media favorite")
                 }
-            } else {
-                mediaRecord.updateChildValues([videoID: [ "isFavorite": true, "timestamp": self.time]])
             }
         })
     }
