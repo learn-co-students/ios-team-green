@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     var user: String? {
+        UserDefaults.standard.set("7wETgHKfefaQzL8155WWbI3lkuj2", forKey: "userID")
         return UserDefaults.standard.string(forKey: "userID")
     }
 

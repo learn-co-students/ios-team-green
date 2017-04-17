@@ -22,7 +22,14 @@ final class FirebaseManager {
         return ref.child("Users")
     }
     
-    private init() {}
+    let dateFormatter = DateFormatter()
+    let time: String
+    private init() {
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        time = dateFormatter.string(from: Date())
+        
+        
+    }
     
     static private let ref = FIRDatabase.database().reference()
     
@@ -46,21 +53,20 @@ final class FirebaseManager {
         guard let user = currentUser else { print("no user"); return }
         let productID = product.upc
         let productRecord = currentUserNode.child(user.uid).child("favorites").child("products")
-        
-        
-            productRecord.observeSingleEvent(of: .value, with: { (snapshot) in
-                if let favoriteRecord = snapshot.value as? [String:Any] {
-                    if favoriteRecord[productID] as? Bool == false {
-                        productRecord.updateChildValues([productID: true])
-                        print("User added favorite")
-                    } else  {
-                        productRecord.updateChildValues([productID: false])
-                        print("User removed favorite")
-                    }
-                } else {
-                    productRecord.updateChildValues([productID: true])
+        productRecord.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let favoriteRecord = snapshot.value as? [String:Any] {
+                guard let product = favoriteRecord[productID] as? [String:Any] else { return }
+                if product["isFavorite"] as? Bool == false {
+                    productRecord.updateChildValues([productID: [ "isFavorite": true, "timestamp": self.time]])
+                    print("User added favorite")
+                } else  {
+                    productRecord.updateChildValues([productID: [ "isFavorite": false, "timestamp": self.time]])
+                    print("User removed favorite")
                 }
-           
+            } else {
+                productRecord.updateChildValues([productID: [ "isFavorite": true, "timestamp": self.time]])
+            }
+            
         })
     }
     
@@ -84,11 +90,18 @@ final class FirebaseManager {
         guard let user = currentUser else { print("no user"); return }
         let userFavorites = currentUserNode.child(user.uid).child("favorites").child("products")
         userFavorites.observe(.value, with: { (snapshot) in
-            guard let favoriteRecord = snapshot.value as? [String:Any] else { print("the user has no favorites"); return }
+            
             var idsToRetrieve = [String]()
-            for key in favoriteRecord.keys {
-                if favoriteRecord[key] as? Bool == true {
-                    idsToRetrieve.append(key)
+            snapshot.children.forEach {
+                let snapShotValue = $0 as? FIRDataSnapshot
+                guard let ID = snapShotValue?.key else { print("couldn't get ID from snapshot"); return }
+                
+                let product = snapShotValue?.value as? [String:Any]
+                
+                if let isFavorite = product?["isFavorite"]  {
+                    if isFavorite as? Bool == true {
+                        idsToRetrieve.append(ID)
+                    }
                 }
             }
             var products = [Product]()
@@ -100,10 +113,11 @@ final class FirebaseManager {
                     completion(products)
                 })
             })
-            // get here if there are no products...
+            //get here if there are no products...
             completion(products)
         })
     }
+    
     
     func fetchUserMedia(completion: @escaping ([Youtube]) -> Void) {
         guard let user = currentUser else { print("no user"); return }
