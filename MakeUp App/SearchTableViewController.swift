@@ -16,7 +16,6 @@ class SearchTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 80
-        
         NotificationCenter.default.post(name: .searchVC, object: nil)
 
     }
@@ -26,7 +25,7 @@ class SearchTableViewController: UITableViewController {
     
         print("In SearchTableViewController:viewWillAppear:searchString:\(String(describing: searchString))")
         
-        navBar(title: "Search Results", leftButton: ButtonType(rawValue: "back"), rightButton: nil)
+        navBar(title: "Search Results", leftButton: .popLast, rightButton: nil)
        
         tableView.register(ProductCell.self, forCellReuseIdentifier: "myProductCell")
         
@@ -34,7 +33,6 @@ class SearchTableViewController: UITableViewController {
             ProductAPIClient().stringSearch(searchString: searchStr) { (products) in
                 
                 DispatchQueue.main.async {
-                    
                     self.productArray = products
                     print("In SearchTableViewController:viewWillAppear: productCount:\(self.productArray.count)")
                     self.tableView.reloadData()
