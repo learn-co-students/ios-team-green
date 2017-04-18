@@ -95,6 +95,12 @@ final class FirebaseManager {
         })
     }
     
+    func addProductToDatabase(_ product: Product) {
+      FIRDatabase.database().reference(withPath: "Products").child(product.upc).setValue(product.toDict())
+    }
+    
+
+    
     func fetchUserProducts(completion: @escaping ([Product]) -> Void) {
         guard let user = currentUser else { print("no user"); return }
         let userFavorites = currentUserNode.child(user.uid).child("favorites").child("products")

@@ -7,11 +7,9 @@
 //
 
 import UIKit
-import Firebase
 
 class SearchTableViewController: UITableViewController {
 
-    var ref: FIRDatabaseReference!
     var productArray = [Product]()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +39,6 @@ class SearchTableViewController: UITableViewController {
         return productArray.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myProductCell", for: indexPath) as! ProductCell
         cell.product = productArray[indexPath.row]
@@ -49,7 +46,9 @@ class SearchTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        addToDB(productArray[indexPath.row])
+        let product = productArray[indexPath.row]
+        FirebaseManager.shared.addProductToDatabase(product)
+        ResultStore.sharedInstance.product = product
         NotificationCenter.default.post(name: .productVC, object: nil)
     }
     
@@ -57,11 +56,6 @@ class SearchTableViewController: UITableViewController {
         return 150
     }
     
-    func addToDB(_ product: Product) {
-        let itemRef = self.ref.child(product.upc)
-        itemRef.setValue(product.toDict())
-    }
-    
-
+ 
 
 }

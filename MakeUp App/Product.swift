@@ -42,9 +42,9 @@ class Product {
         savedAt = "Never Saved"
     }
     
-    func toDict()->[String:Any] {
-        var dict:[String:Any] = [:]
-
+    func toDict() -> [String:Any] {
+        var dict = [String:Any]()
+        
         dict["ean"] = self.ean
         dict["title"] = self.title
         dict["description"] = self.description

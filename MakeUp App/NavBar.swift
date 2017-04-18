@@ -23,12 +23,12 @@ extension UIViewController {
             self.navigationItem.rightBarButtonItem = determineButton(type: rightButton)
         }
         
+    
         navigationItem.title = title
         
         let navigationTitleFont = Fonts.Playfair(withStyle: .black, sizeLiteral: 18)
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: navigationTitleFont, NSForegroundColorAttributeName: Palette.white.color]
         navigationController?.navigationBar.barTintColor = Palette.beige.color
-  
         
         navigationController?.navigationBar.tintColor = Palette.beige.color
         navigationController?.navigationBar.isTranslucent = false
