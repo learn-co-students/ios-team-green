@@ -50,23 +50,23 @@ final class FirebaseManager {
     func toggleProductFavorite(_ product: Product) {
         
         time = dateFormatter.string(from: Date())
-
+        
         guard let user = currentUser else { print("no user"); return }
-        let productID = product.upc
+        let productID = product.identifier
         let productRecord = currentUserNode.child(user.uid).child("favorites").child("products")
         
         productRecord.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let favoriteRecord = snapshot.value as? [String:Any] else { return }
-                if let product = favoriteRecord[productID] as? [String:Any]  {
-                    if product["isFavorite"] as? Bool == false {
-                        productRecord.updateChildValues([productID: [ "isFavorite": true, "timestamp": self.time]])
-                        print("User added product favorite")
-                    } else   {
-                        productRecord.updateChildValues([productID: [ "isFavorite": false, "timestamp": self.time]])
-                        print("User removed favorite")
-                    }
-                } else {
+            if let product = favoriteRecord[productID] as? [String:Any]  {
+                if product["isFavorite"] as? Bool == false {
                     productRecord.updateChildValues([productID: [ "isFavorite": true, "timestamp": self.time]])
+                    print("User added product favorite")
+                } else   {
+                    productRecord.updateChildValues([productID: [ "isFavorite": false, "timestamp": self.time]])
+                    print("User removed favorite")
+                }
+            } else {
+                productRecord.updateChildValues([productID: [ "isFavorite": true, "timestamp": self.time]])
             }
         })
     }
@@ -74,7 +74,7 @@ final class FirebaseManager {
     func toggleMediaFavorite(_ youtube: Youtube) {
         
         time = dateFormatter.string(from: Date())
-
+        
         guard let user = currentUser else { print("no user"); return }
         let mediaRecord = currentUserNode.child(user.uid).child("favorites").child("media")
         let videoID = youtube.videoID
@@ -96,10 +96,16 @@ final class FirebaseManager {
     }
     
     func addProductToDatabase(_ product: Product) {
-      FIRDatabase.database().reference(withPath: "Products").child(product.upc).setValue(product.toDict())
+        
+        FIRDatabase.database().reference(withPath: "Products").child(product.identifier).setValue(product.toDict()) { (error, ref) in
+            if error != nil {
+                print("error adding to database", error as Any)
+            } else {
+                print ("added to database, ref is", ref)
+            }
+        }
+        
     }
-    
-
     
     func fetchUserProducts(completion: @escaping ([Product]) -> Void) {
         guard let user = currentUser else { print("no user"); return }

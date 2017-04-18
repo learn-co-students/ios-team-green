@@ -12,7 +12,7 @@ import Foundation
 class Product {
     let upc: String
     let ean: String
-    let title: String
+    var title: String
     let description: String
     let brand: String
     let model: String
@@ -24,6 +24,9 @@ class Product {
     let imageURL: String
     let price: Double
     var savedAt: String
+    var identifier: String {
+        return upc != "" ? upc : ean
+    }
     
     init(dict:[String:Any]) {
         ean = dict["ean"] as? String ?? ""
@@ -61,5 +64,7 @@ class Product {
     
         return dict
     }
+    
+    
     
 }

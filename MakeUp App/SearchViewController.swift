@@ -4,7 +4,6 @@
 //
 //  Created by Amit Chadha on 4/4/17.
 //  Copyright © 2017 Raquel Rahmey. All rights reserved.
-//
 
 import UIKit
 import AVFoundation
@@ -41,7 +40,6 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         lastBarCodevalue = nil
-        
         NotificationCenter.default.post(name: .searchVC, object: nil)
         
     }
@@ -83,8 +81,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
             }
             
         } catch {
-            print(error)
-            return
+            print(error); return
         }
     
         configureSearchController()
@@ -92,7 +89,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     }
     
     func configureSearchController() {
-        
+    
         searchBar = UISearchBar()
         searchBar.delegate = self
         searchBar.frame.size = CGSize(width: (navigationController?.navigationBar.frame.width)!, height: (navigationController?.navigationBar.frame.height)!)
@@ -110,11 +107,6 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
 
     }
  
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = false
-        searchBar.endEditing(true)
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         searchBar.endEditing(true)
     }
@@ -124,7 +116,6 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         // Check if the metadataObjects array is not nil and it contains at least one object.
         if metadataObjects == nil || metadataObjects.count == 0 {
             qrCodeFrameView?.frame = CGRect.zero
-            //messageLabel.text = "No barcode is detected"
             print("No barcode is detected")
             return
         }
@@ -133,7 +124,6 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         guard let metadataObj = metadataObjects[0] as? AVMetadataMachineReadableCodeObject else { print("Cannot get metadataObj"); return   }
         
         if supportedCodeTypes.contains(metadataObj.type) {
-            // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
             if let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj) {
                 qrCodeFrameView?.frame = barCodeObject.bounds
             } else {
@@ -238,7 +228,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     func searchDB(barCode:String, completion:@escaping ([String:Any]?)->()) {
         
         self.ref.child(barCode).observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? [String:Any] //else {print("Cannot convert snapshot to [String:Any]"); return  }
+            let value = snapshot.value as? [String:Any]
             completion(value)
         })
         

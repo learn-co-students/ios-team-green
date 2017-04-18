@@ -22,19 +22,3 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
-//
-//extension UICollectionViewCell {
-//    
-//    func hideKeyboard() {
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer (
-//            target: self,
-//            action: #selector(self.dismissKeyboard))
-//        
-//        self.contentView.addGestureRecognizer(tap)
-//    }
-//    
-//    func dismissKeyboard() {
-//        print("table view dismiss")
-//        self.contentView.endEditing(true)
-//    }
-//}

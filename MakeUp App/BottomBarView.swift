@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-class BottomBarView: UIView {
+class BottomBarView: UIView, PageSelectedDelegate {
+    
     
     var homeView = UIView()
     var searchView = UIView()
@@ -29,7 +30,7 @@ class BottomBarView: UIView {
     
     
     func setUpButtonImages() {
-        homeButton.setImage(#imageLiteral(resourceName: "BeautyGirl"), for: .normal)
+        homeButton.setImage(#imageLiteral(resourceName: "Face"), for: .normal)
         searchButton.setImage(#imageLiteral(resourceName: "Search"), for: .normal)
         productButton.setImage(#imageLiteral(resourceName: "Home"), for: .normal)
 
@@ -96,6 +97,24 @@ class BottomBarView: UIView {
         NotificationCenter.default.post(name: .productVC, object: nil)
     }
     
+    func changeImage(at index: Int) {
+        switch index {
+        case 0:
+            homeButton.setImage(#imageLiteral(resourceName: "Heart"), for: .normal)
+            searchButton.setImage(#imageLiteral(resourceName: "Search"), for: .normal)
+            productButton.setImage(#imageLiteral(resourceName: "Home"), for: .normal)
+        case 1:
+            homeButton.setImage(#imageLiteral(resourceName: "Face"), for: .normal)
+            searchButton.setImage(#imageLiteral(resourceName: "Heart"), for: .normal)
+            productButton.setImage(#imageLiteral(resourceName: "Home"), for: .normal)
+        default:
+            homeButton.setImage(#imageLiteral(resourceName: "Face"), for: .normal)
+            searchButton.setImage(#imageLiteral(resourceName: "Search"), for: .normal)
+            productButton.setImage(#imageLiteral(resourceName: "Heart"), for: .normal)
+        }
+        
+      
+    }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
