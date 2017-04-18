@@ -38,10 +38,10 @@ extension UIViewController {
         switch type.rawValue {
         case "mirror":
             return UIBarButtonItem(title: "Mirror", style: .plain, target: self, action: nil)
-        case "back":
+        case "backToProduct":
             return UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backToProduct(_:)))
-        case "popLast":
-            return UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(popLast(_:)))
+        case "backToSearch":
+            return UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backToSearch(_:)))
         case "buy":
             return UIBarButtonItem(title: "Buy", style: .plain, target: self, action: #selector(buy(_:)))
         case "favorite":
@@ -63,8 +63,11 @@ extension UIViewController {
         NotificationCenter.default.post(name: .productVC, object: nil)
     }
     
-    func popLast(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
+
+    func backToSearch(_ sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
+        NotificationCenter.default.post(name: .searchVC, object: nil)
+
     }
     
     func buy(_ sender: UIBarButtonItem) {
@@ -97,6 +100,6 @@ extension UIViewController {
 
 
 enum ButtonType: String {
-    case mirror, back, popLast, favorite, notFavorite, buy
+    case mirror, backToSearch, backToProduct, favorite, notFavorite, buy
 }
 

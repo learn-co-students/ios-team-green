@@ -15,10 +15,13 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
 
       var currentIndex = 0
       var viewControllerList: [UIViewController] = {
+        
         let homeView = HomeViewController()
         let homeNav = UINavigationController(rootViewController: homeView)
+        
         let searchView = SearchViewController()
         let searchNav = UINavigationController(rootViewController: searchView)
+        
         let productView = ProductViewController()
         let productNav = UINavigationController(rootViewController: productView)
         
@@ -30,7 +33,10 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         reviewsView.type = "Reviews"
         let reviewsNav = UINavigationController(rootViewController: reviewsView)
   
-        return [homeNav, searchNav, productNav, tutorialsNav, reviewsNav]
+        let searchTableView = SearchTableViewController()
+        let searchTableViewNav = UINavigationController(rootViewController: searchTableView)
+        
+        return [homeNav, searchNav, productNav, tutorialsNav, reviewsNav,  searchTableViewNav]
     }()
 
     override func viewDidLoad() {
@@ -88,7 +94,7 @@ extension NotificationObservers {
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .homeVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .tutorialsVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .reviewsVC, object: nil)
-
+        NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .searchTVC, object: nil)
     }
     
     func switchViewController(with notification: Notification) {
@@ -103,6 +109,8 @@ extension NotificationObservers {
             switchToViewController(named: "Tutorials")
         case Notification.Name.reviewsVC:
             switchToViewController(named: "Reviews")
+        case Notification.Name.searchTVC:
+            switchToViewController(named: "SearchTableView")
         default:
             fatalError("\(#function) - Unable to match notification name.")
         }
@@ -125,9 +133,12 @@ extension NotificationObservers {
         case "Tutorials":
             setViewControllers([viewControllerList[3]], direction: determineScrollDirection(from: currentIndex, to: 3), animated: true, completion: nil)
             currentIndex = 3
-        default :
+        case "SearchTableView":
             setViewControllers([viewControllerList[4]], direction: determineScrollDirection(from: currentIndex, to: 4), animated: true, completion: nil)
             currentIndex = 4
+        default :
+            setViewControllers([viewControllerList[5]], direction: determineScrollDirection(from: currentIndex, to: 5), animated: true, completion: nil)
+            currentIndex = 5
 
         }
     }
@@ -149,7 +160,7 @@ extension Notification.Name {
     static let homeVC = Notification.Name("switch-to-home-vc")
     static let tutorialsVC = Notification.Name("switch-to-tutorials-vc")
     static let reviewsVC = Notification.Name("switch-to-reviews-vc")
-
+    static let searchTVC = Notification.Name("switch-to-search-tvc")
 }
 
 

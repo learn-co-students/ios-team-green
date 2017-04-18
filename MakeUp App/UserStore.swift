@@ -14,6 +14,7 @@ final class UserStore {
     
     // This should eventually be realm. Right now this should be only used to check user favorites against data from another product ....
 
+    var searchQuery = ""
     var favoriteProducts = [Product]()
     var favoriteMedia = [Youtube]()
     

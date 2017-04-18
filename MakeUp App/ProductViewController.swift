@@ -13,6 +13,7 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
     
     var product: Product? {
         didSet {
+            resultStore.product = product
             setUpProduct()
         }
     }
