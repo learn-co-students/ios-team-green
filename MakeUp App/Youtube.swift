@@ -8,22 +8,24 @@
 
 import Foundation
 import SwiftyJSON
+import RealmSwift
 
-class Youtube {
-    var eTag: String
-    var videoID: String
-    var channelID: String
-    var channelTitle: String
-    var title: String
-    var thumbnailURL: String
-    var thumbnailWidth: Int
-    var thumbnailHeight: Int
-    var videoType: String
-    var publishedAt: String
-    var savedAt: String
+class Youtube: Object {
+    dynamic var eTag: String = ""
+    dynamic var videoID: String = ""
+    dynamic var channelID: String = ""
+    dynamic var channelTitle: String = ""
+    dynamic var title: String = ""
+    dynamic var thumbnailURL: String = ""
+    dynamic var thumbnailWidth: Int = 0
+    dynamic var thumbnailHeight: Int = 0
+    dynamic var videoType: String = ""
+    dynamic var publishedAt: String = ""
+    dynamic var savedAt: String = "Never Saved"    
 
     
-    init(dictionary:JSON, videoType:String) {
+    convenience init(dictionary:JSON, videoType:String) {
+        self.init()
         eTag = dictionary["etag"].stringValue
         
         // account for two methods of retrieving youtube, maybe there's a better way to do this but probably not
@@ -40,10 +42,7 @@ class Youtube {
         thumbnailHeight = dictionary["snippet"]["thumbnails"]["default"]["height"].intValue
         publishedAt = dictionary["snippet"]["publishedAt"].stringValue
         self.videoType = videoType
-        
-        savedAt = "Never Saved"
     }
-    
     
     
 }

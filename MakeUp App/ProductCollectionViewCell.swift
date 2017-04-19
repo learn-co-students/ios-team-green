@@ -86,6 +86,8 @@ class ProductViewCell: UICollectionViewCell {
     func toggleProductFavorite() {
         guard let product = product else { return }
         FirebaseManager.shared.toggleProductFavorite(product)
+        RealmManager.shared.deleteProductFromFavorite(product: product)
+
     }
     
     

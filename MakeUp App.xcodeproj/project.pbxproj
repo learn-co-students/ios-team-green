@@ -37,6 +37,7 @@
 		B5D3A54F1E9596FA00D808B7 /* MediaCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3A54E1E9596FA00D808B7 /* MediaCollectionView.swift */; };
 		B5D3A5561E95A56300D808B7 /* MediaViewCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D3A5551E95A56300D808B7 /* MediaViewCollectionCell.swift */; };
 		B5FB96E71EA5183D008689A5 /* NoVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FB96E61EA5183D008689A5 /* NoVideoCell.swift */; };
+		D32760701EA7CF120051423C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D327606F1EA7CF120051423C /* RealmManager.swift */; };
 		D32E5F491E96885D0025D613 /* YoutubePreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E5F481E96885D0025D613 /* YoutubePreviewTableViewCell.swift */; };
 		D33B08171E93FB650046E986 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08161E93FB650046E986 /* AppDelegate.swift */; };
 		D33B08211E93FB650046E986 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D33B08201E93FB650046E986 /* Assets.xcassets */; };
@@ -104,6 +105,7 @@
 		B5D3A5551E95A56300D808B7 /* MediaViewCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewCollectionCell.swift; sourceTree = "<group>"; };
 		B5FB96E61EA5183D008689A5 /* NoVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoVideoCell.swift; sourceTree = "<group>"; };
 		BDFBEC101FECBE8E53105C3A /* Pods-MakeUp App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakeUp App.release.xcconfig"; path = "Pods/Target Support Files/Pods-MakeUp App/Pods-MakeUp App.release.xcconfig"; sourceTree = "<group>"; };
+		D327606F1EA7CF120051423C /* RealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		D32E5F481E96885D0025D613 /* YoutubePreviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubePreviewTableViewCell.swift; sourceTree = "<group>"; };
 		D33B08131E93FB650046E986 /* MakeUp App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MakeUp App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33B08161E93FB650046E986 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				D33B084D1E942DCF0046E986 /* YoutubeAPIClient.swift */,
 				D3AABB9F1E96CD9D00590E96 /* ImageAPIClient.swift */,
 				B508FB261E9BCC640049B424 /* FirebaseManager.swift */,
+				D327606F1EA7CF120051423C /* RealmManager.swift */,
 				40771F821E9D5DF700872379 /* ProductAPIClient.swift */,
 				B5210EEC1EA400D300D88C58 /* Secrets.swift */,
 			);
@@ -414,7 +417,7 @@
 				TargetAttributes = {
 					D33B08121E93FB650046E986 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = R2Y4F8J6CR;
+						DevelopmentTeam = 56S3PA4JK8;
 						ProvisioningStyle = Automatic;
 					};
 					D33B08291E93FB650046E986 = {
@@ -560,6 +563,7 @@
 				B50E4C111E940F660004D8F7 /* ProductViewController.swift in Sources */,
 				D35D674F1E96E7FD00B8AB03 /* YouTubePlayerViewViewController.swift in Sources */,
 				D34537AF1EA0199F00D993B9 /* PageViewController.swift in Sources */,
+				D32760701EA7CF120051423C /* RealmManager.swift in Sources */,
 				B53E9BBE1E9546F80017E3E9 /* NavBar.swift in Sources */,
 				B50E4C401E94270C0004D8F7 /* SignInButton.swift in Sources */,
 				D32E5F491E96885D0025D613 /* YoutubePreviewTableViewCell.swift in Sources */,
@@ -712,10 +716,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = R2Y4F8J6CR;
+				DEVELOPMENT_TEAM = 56S3PA4JK8;
 				INFOPLIST_FILE = "MakeUp App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.itemscanner44.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.itemscanner3.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -728,10 +732,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = R2Y4F8J6CR;
+				DEVELOPMENT_TEAM = 56S3PA4JK8;
 				INFOPLIST_FILE = "MakeUp App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.itemscanner44.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.itemscanner3.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;

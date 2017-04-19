@@ -41,6 +41,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         setupLabels()
         setupCollectionViews()
         databaseMethods()
+        RealmManager.shared.retrieveVideos()
     }
     
     override func viewWillAppear(_ animated: Bool) {

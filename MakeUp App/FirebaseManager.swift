@@ -47,25 +47,29 @@ final class FirebaseManager {
     
     /// App Functions //
     
-    func toggleProductFavorite(_ product: Product) {
+    func toggleProductFavorite(_ localProduct: Product) {
         
         time = dateFormatter.string(from: Date())
         
         guard let user = currentUser else { print("no user"); return }
-        let productID = product.identifier
+        let productID = localProduct.identifier
         let productRecord = currentUserNode.child(user.uid).child("favorites").child("products")
-        
+                
         productRecord.observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let favoriteRecord = snapshot.value as? [String:Any] else { return }
-            if let product = favoriteRecord[productID] as? [String:Any]  {
-                if product["isFavorite"] as? Bool == false {
-                    productRecord.updateChildValues([productID: [ "isFavorite": true, "timestamp": self.time]])
-                    print("User added product favorite")
-                } else   {
-                    productRecord.updateChildValues([productID: [ "isFavorite": false, "timestamp": self.time]])
-                    print("User removed favorite")
+            if let favoriteRecord = snapshot.value as? [String:Any] {
+                if let product = favoriteRecord[productID] as? [String:Any]  {
+                    if product["isFavorite"] as? Bool == false {
+                        RealmManager.shared.saveProductToRealm(product: localProduct)
+                        productRecord.updateChildValues([productID: [ "isFavorite": true, "timestamp": self.time]])
+                        print("User added product favorite")
+                    } else   {
+                        productRecord.updateChildValues([productID: [ "isFavorite": false, "timestamp": self.time]])
+                        RealmManager.shared.deleteProductFromFavorite(product: localProduct)
+                        print("User removed favorite")
+                    }
                 }
             } else {
+                print("adding a record that isn't there")
                 productRecord.updateChildValues([productID: [ "isFavorite": true, "timestamp": self.time]])
             }
         })
@@ -80,7 +84,7 @@ final class FirebaseManager {
         let videoID = youtube.videoID
         
         mediaRecord.observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let favoriteRecord = snapshot.value as? [String:Any] else { return }
+        if let favoriteRecord = snapshot.value as? [String:Any] {
             if let media = favoriteRecord[videoID] as? [String:Any]  {
                 if media["isFavorite"] as? Bool == false {
                     mediaRecord.updateChildValues([videoID: [ "isFavorite": true, "timestamp": self.time]])
@@ -89,7 +93,8 @@ final class FirebaseManager {
                     mediaRecord.updateChildValues([videoID: [ "isFavorite": false, "timestamp": self.time]])
                     print("User removed media favorite")
                 }
-            } else {
+            }
+        } else {
                 mediaRecord.updateChildValues([videoID: [ "isFavorite": true, "timestamp": self.time]])
             }
         })

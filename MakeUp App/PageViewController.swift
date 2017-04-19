@@ -60,10 +60,6 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         
     }
     
-    func buttonTapped(_ button: UIButton) {
-        button
-    }
-    
      func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let vcIndex = viewControllerList.index(of: viewController) else {return nil}
         

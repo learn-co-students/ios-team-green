@@ -7,31 +7,37 @@
 //
 
 import Foundation
+import RealmSwift
 
 
-class Product {
-    let upc: String
-    let ean: String
-    var title: String
-    let description: String
-    let brand: String
-    let model: String
-    let color: String
-    let size: String
-    let dimension: String
-    let weight: String
-    let currency: String
-    let imageURL: String
-    let price: Double
-    var savedAt: String
+class Product: Object  {
+    dynamic var upc: String = ""
+    dynamic var ean: String = ""
+    dynamic var title: String = ""
+    dynamic var productDescription: String = ""
+    dynamic var brand: String = ""
+    dynamic var model: String = ""
+    dynamic var color: String = ""
+    dynamic var size: String = ""
+    dynamic var dimension: String = ""
+    dynamic var weight: String = ""
+    dynamic var currency: String = ""
+    dynamic var imageURL: String = ""
+    dynamic var price: Double = 0.0
+    dynamic var savedAt: String = "Never Saved"
     var identifier: String {
-        return upc != "" ? upc : ean
+        if upc != "" {
+            return upc
+        } else {
+            return ean
+        }
     }
     
-    init(dict:[String:Any]) {
+    convenience init(dict:[String:Any]) {
+        self.init()
         ean = dict["ean"] as? String ?? ""
         title = dict["title"] as? String ?? ""
-        description = dict["description"] as? String ?? (dict["title"] as? String) ?? ""
+        productDescription = dict["description"] as? String ?? (dict["title"] as? String) ?? ""
         upc = dict["upc"] as? String ?? ""
         brand = dict["brand"] as? String ?? ""
         model = dict["model"] as? String ?? ""
@@ -42,7 +48,6 @@ class Product {
         currency = dict["currency"] as? String ?? ""
         imageURL = dict["image"] as? String ?? ""
         price = dict["price"] as? Double ?? 0
-        savedAt = "Never Saved"
     }
     
     func toDict() -> [String:Any] {
@@ -50,7 +55,7 @@ class Product {
         
         dict["ean"] = self.ean
         dict["title"] = self.title
-        dict["description"] = self.description
+        dict["description"] = self.productDescription
         dict["upc"] = self.upc
         dict["brand"] = self.brand
         dict["model"] = self.model

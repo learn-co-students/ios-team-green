@@ -50,6 +50,11 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.9)
+  - Realm (2.5.1):
+    - Realm/Headers (= 2.5.1)
+  - Realm/Headers (2.5.1)
+  - RealmSwift (2.5.1):
+    - Realm (= 2.5.1)
   - SwiftyJSON (3.1.4)
   - youtube-ios-player-helper (0.1.6)
 
@@ -62,6 +67,7 @@ DEPENDENCIES:
   - Firebase
   - FirebaseAuth
   - FirebaseDatabase
+  - RealmSwift
   - SwiftyJSON
   - youtube-ios-player-helper (~> 0.1.4)
 
@@ -81,9 +87,11 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
+  Realm: 32f86104d37c8521f864d4274050b38ba6190733
+  RealmSwift: f719e7511c902b8908593e8f143f59e47931bdb6
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 16262284993026c0df459e733f08f4c143403303
+PODFILE CHECKSUM: f5d21ea0cd09b26c2534a41d83540b319f30809e
 
 COCOAPODS: 1.2.1

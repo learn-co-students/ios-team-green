@@ -96,16 +96,18 @@ class YoutubePreviewCell: UITableViewCell {
     }
     
     func toggleMediaFavorite() {
+        guard let youtube = youtube else { return }
         if !isFavorite {
             favoriteButton.setImage(#imageLiteral(resourceName: "Heart"), for: .normal)
             isFavorite = true
+            RealmManager.shared.saveVideoToRealm(youtube: youtube)
         } else {
             favoriteButton.setImage(#imageLiteral(resourceName: "Empty-Heart"), for: .normal)
             isFavorite = false
-
+            RealmManager.shared.deleteVideoFromFavorite(youtube: youtube)
         }
-        guard let youtube = youtube else { return }
         FirebaseManager.shared.toggleMediaFavorite(youtube)
+
     }
     
     override func prepareForReuse() {
