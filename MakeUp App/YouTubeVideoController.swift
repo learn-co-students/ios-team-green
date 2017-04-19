@@ -21,7 +21,6 @@ class YouTubeViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,7 +32,7 @@ class YouTubeViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        navBar(title: type, leftButton: .back, rightButton: .buy)
+        navBar(title: type, leftButton: .backToProduct, rightButton: .buy)
         
         super.viewWillAppear(true)
         self.product = resultStore.product
@@ -64,6 +63,8 @@ class YouTubeViewController: UITableViewController {
     //MARK: - Table View Methods
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard videos.count > 0 else  { return NoVideoCell() }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "tutorialCell", for: indexPath) as! YoutubePreviewCell
         cell.youtube = videos[indexPath.item]
         
@@ -78,6 +79,7 @@ class YouTubeViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard videos.count > 0 else  { return 1 }
         return videos.count
     }
 
@@ -86,12 +88,14 @@ class YouTubeViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let destinationVC = YouTubePlayerViewViewController()
+        guard videos.count > 0 else  { NotificationCenter.default.post(name: .searchVC, object: nil);  return  }
+        
+        let youTubePlayerVC = YouTubePlayerViewViewController()
         let cell = videos[indexPath.item]
-        destinationVC.youtubeID = cell.videoID
-        destinationVC.modalPresentationStyle = .overCurrentContext
-        destinationVC.modalTransitionStyle = .crossDissolve
-        present(destinationVC, animated: true, completion: {
+        youTubePlayerVC.youtubeID = cell.videoID
+        youTubePlayerVC.modalPresentationStyle = .overCurrentContext
+        youTubePlayerVC.modalTransitionStyle = .crossDissolve
+        present(youTubePlayerVC, animated: true, completion: {
         })
     }
     

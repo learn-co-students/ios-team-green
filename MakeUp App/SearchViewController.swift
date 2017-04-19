@@ -4,7 +4,6 @@
 //
 //  Created by Amit Chadha on 4/4/17.
 //  Copyright © 2017 Raquel Rahmey. All rights reserved.
-//
 
 import UIKit
 import AVFoundation
@@ -12,18 +11,19 @@ import FirebaseDatabase
 
 class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDelegate, UISearchBarDelegate  {
     
-    var captureSession:AVCaptureSession?
-    var videoPreviewLayer:AVCaptureVideoPreviewLayer?
-    var qrCodeFrameView:UIView?
+    var captureSession: AVCaptureSession?
+    var videoPreviewLayer: AVCaptureVideoPreviewLayer?
+    var qrCodeFrameView: UIView?
     
     let resultStore = ResultStore.sharedInstance
     
-    var lastBarCodevalue:String?
+    var lastBarCodevalue: String?
     
     //for barCodeDetails & DB addition
-    var apiData:[String:Any] = [:]
-    var outPutStr = String()
-    var ref:FIRDatabaseReference!
+    var apiData = [String:Any]()
+    var ref: FIRDatabaseReference {
+        return FIRDatabase.database().reference(withPath: "Products")
+    }
     
     let supportedCodeTypes = [AVMetadataObjectTypeUPCECode,
                               AVMetadataObjectTypeCode39Code,
@@ -33,63 +33,44 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                               AVMetadataObjectTypeEAN8Code,
                               AVMetadataObjectTypeEAN13Code,
                               AVMetadataObjectTypeAztecCode,
-                              AVMetadataObjectTypePDF417Code /*,
-         AVMetadataObjectTypeQRCode*/]
+                              AVMetadataObjectTypePDF417Code]
     
-    //SearchBar
     var searchBar:UISearchBar!
-    
-    //SearchTableView
-    let searchTableView = SearchTableViewController()
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         lastBarCodevalue = nil
+        NotificationCenter.default.post(name: .searchVC, object: nil)
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // delegate method
-        
         navBar(title: "Search or Scan", leftButton: nil, rightButton: nil)
-        
-        ref = FIRDatabase.database().reference(withPath: "Products")
-        
+
         view.backgroundColor = Palette.white.color
-        print("search view")
         
         let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         
         do {
-            // Get an instance of the AVCaptureDeviceInput class using the previous device object.
             let input = try AVCaptureDeviceInput(device: captureDevice)
             
-            // Initialize the captureSession object.
             captureSession = AVCaptureSession()
-            
-            // Set the input device on the capture session.
             captureSession?.addInput(input)
             
-            // Initialize a AVCaptureMetadataOutput object and set it as the output device to the capture session.
             let captureMetadataOutput = AVCaptureMetadataOutput()
             captureSession?.addOutput(captureMetadataOutput)
             
-            // Set delegate and use the default dispatch queue to execute the call back
             captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             captureMetadataOutput.metadataObjectTypes = supportedCodeTypes
             
-            // Initialize the video preview layer and add it as a sublayer to the viewPreview view's layer.
             videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
             videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
             videoPreviewLayer?.frame = view.layer.bounds
             view.layer.addSublayer(videoPreviewLayer!)  // videoPreviewLayer used earlier
             
-            // Start video capture.
             captureSession?.startRunning()
             
-            
-            // Initialize QR Code Frame to highlight the QR code
             qrCodeFrameView = UIView()
             
             if let qrCodeFrameView = qrCodeFrameView {
@@ -100,48 +81,33 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
             }
             
         } catch {
-            // If any error occurs, simply print it out and don't continue any more.
-            print(error)
-            return
+            print(error); return
         }
-        
-        
-        configureSearchController()
-        
-        
-    } //func viewDidLoad()
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        configureSearchController()
+   
     }
     
     func configureSearchController() {
-        
+    
         searchBar = UISearchBar()
         searchBar.delegate = self
         searchBar.frame.size = CGSize(width: (navigationController?.navigationBar.frame.width)!, height: (navigationController?.navigationBar.frame.height)!)
-        
-        
+    
         view.addSubview(searchBar)
-        print("In configureSearchController:x:\(searchBar.frame.debugDescription)")
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("In searchBarSearchButtonClicked:text:\(String(describing: searchBar.text))")
-        // push to new view controller
-        searchTableView.searchString = searchBar.text
-        self.navigationController?.pushViewController(searchTableView, animated: true)
-        
+        if let searchQuery = searchBar.text {
+            UserStore.sharedInstance.searchQuery = searchQuery
+            
+            let searchTableView = SearchTableViewController()
+            self.navigationController?.pushViewController(searchTableView, animated: true)
+        }
+
     }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = true
-    }
-    
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = false
+ 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         searchBar.endEditing(true)
     }
     
@@ -150,7 +116,6 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         // Check if the metadataObjects array is not nil and it contains at least one object.
         if metadataObjects == nil || metadataObjects.count == 0 {
             qrCodeFrameView?.frame = CGRect.zero
-            //messageLabel.text = "No barcode is detected"
             print("No barcode is detected")
             return
         }
@@ -159,7 +124,6 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         guard let metadataObj = metadataObjects[0] as? AVMetadataMachineReadableCodeObject else { print("Cannot get metadataObj"); return   }
         
         if supportedCodeTypes.contains(metadataObj.type) {
-            // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
             if let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj) {
                 qrCodeFrameView?.frame = barCodeObject.bounds
             } else {
@@ -217,16 +181,30 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                     guard let json = try JSONSerialization.jsonObject(with: unwrappedData, options: []) as? [String:Any] else {
                         print("Invalid JSONSerialization"); return
                     }
-                    //print("json=\(json)")
                     guard let targetdata = json["items"] as? [[String:Any]] else {
                         print("Cannot convert json to dictionary array"); return
                     }
-                    print("targetdata=\(targetdata[0])")
                     self.apiData = targetdata[0]
                     
                     let imageArray = self.apiData["images"] as? [String] ?? ["No image"]
-                    let imageUrl = imageArray[0]
+
+                    var imageUrl = "No Image"
+                    if !(imageArray.isEmpty) {
+                        imageUrl = imageArray[0]
+                    } else {
+                        imageUrl = "No Image" ;
+                        print("imageArray is empty")
+                    }
+                    
+                    let offersArray = self.apiData["offers"] as? [Any] ?? ["No Offers"]
+                    print("offersArray is", offersArray)
+
+                    let firstOffer = offersArray[0] as? [String:Any] ?? [:]
+                    let price = firstOffer["price"]
+                                        
                     self.apiData["image"] = imageUrl
+                    self.apiData["price"] = price
+                    
                     let product = Product(dict:self.apiData)
                     self.addToDB(product)
                     completion(product)
@@ -236,7 +214,8 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         }
         task.resume()
         
-    } //func barCodeSearch
+    }
+    
     
     //add dictionary item to DB
     func addToDB(_ itemDet:Product) {
@@ -249,11 +228,11 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     func searchDB(barCode:String, completion:@escaping ([String:Any]?)->()) {
         
         self.ref.child(barCode).observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? [String:Any] //else {print("Cannot convert snapshot to [String:Any]"); return  }
+            let value = snapshot.value as? [String:Any]
             completion(value)
         })
         
-    } // func searchDB
+    }
     
     
     

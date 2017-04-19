@@ -15,11 +15,7 @@ final class ResultStore {
     
     var youtubeReviewVideos:[Youtube] = []
     var youtubeTutorialVideos:[Youtube] = []
-    var product: Product? {
-        didSet {
-        }
-    }
-
+    var product: Product? 
     func getYouTubeVideos(search: String, videoType: YoutubeSearch, completion: @escaping () -> ()) {
         YoutubeAPIClient.searchYoutubeVideos(search: search, type: videoType) { (youtubeVideosDictionary, typeString) in
             if typeString == "review" {

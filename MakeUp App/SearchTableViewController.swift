@@ -2,7 +2,7 @@
 //  SearchTableViewController.swift
 //  MakeUp App
 //
-//  Created by ac on 4/10/17.
+//  Created by amit chadha on 4/10/17.
 //  Copyright © 2017 Raquel Rahmey. All rights reserved.
 //
 
@@ -10,59 +10,52 @@ import UIKit
 
 class SearchTableViewController: UITableViewController {
 
-    var searchString:String?
-    var productArray:[Product] = []
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.tableView.rowHeight = 80
-        
-        NotificationCenter.default.post(name: .searchVC, object: nil)
-
-    }
+    var productArray = [Product]()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     
-        print("In SearchTableViewController:viewWillAppear:searchString:\(String(describing: searchString))")
-        
-        navBar(title: "Search Results", leftButton: ButtonType(rawValue: "back"), rightButton: nil)
+        navBar(title: "Search Results", leftButton: .backToSearch, rightButton: nil)
        
         tableView.register(ProductCell.self, forCellReuseIdentifier: "myProductCell")
         
-        if let searchStr = searchString {
-            ProductAPIClient().stringSearch(searchString: searchStr) { (products) in
-                
+        let searchString = UserStore.sharedInstance.searchQuery
+            ProductAPIClient().stringSearch(searchString: searchString) { (products) in
                 DispatchQueue.main.async {
-                    
                     self.productArray = products
-                    print("In SearchTableViewController:viewWillAppear: productCount:\(self.productArray.count)")
                     self.tableView.reloadData()
                 }
-            }
-        } else
-        {
-            print("Invalid search string")
         }
         
-        
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return productArray.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myProductCell", for: indexPath) as! ProductCell
-        
-
-        
         cell.product = productArray[indexPath.row]
-        print("In SearchTableViewController:tableView:row \(indexPath.row):\(String(describing: cell.product?.description)) ")
         return cell
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let product = productArray[indexPath.row]
+        FirebaseManager.shared.addProductToDatabase(product)
+        ResultStore.sharedInstance.product = product
+        NotificationCenter.default.post(name: .productVC, object: nil)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
+    
+ 
 
 }

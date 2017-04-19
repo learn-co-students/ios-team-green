@@ -12,7 +12,7 @@ import Foundation
 class Product {
     let upc: String
     let ean: String
-    let title: String
+    var title: String
     let description: String
     let brand: String
     let model: String
@@ -22,11 +22,16 @@ class Product {
     let weight: String
     let currency: String
     let imageURL: String
+    let price: Double
+    var savedAt: String
+    var identifier: String {
+        return upc != "" ? upc : ean
+    }
     
     init(dict:[String:Any]) {
         ean = dict["ean"] as? String ?? ""
         title = dict["title"] as? String ?? ""
-        description = dict["description"] as? String ?? ""
+        description = dict["description"] as? String ?? (dict["title"] as? String) ?? ""
         upc = dict["upc"] as? String ?? ""
         brand = dict["brand"] as? String ?? ""
         model = dict["model"] as? String ?? ""
@@ -36,11 +41,13 @@ class Product {
         weight = dict["weight"] as? String ?? ""
         currency = dict["currency"] as? String ?? ""
         imageURL = dict["image"] as? String ?? ""
+        price = dict["price"] as? Double ?? 0
+        savedAt = "Never Saved"
     }
     
-    func toDict()->[String:Any] {
-        var dict:[String:Any] = [:]
-
+    func toDict() -> [String:Any] {
+        var dict = [String:Any]()
+        
         dict["ean"] = self.ean
         dict["title"] = self.title
         dict["description"] = self.description
@@ -53,8 +60,11 @@ class Product {
         dict["weight"] = self.weight
         dict["currency"] = self.currency
         dict["image"] = self.imageURL
+        dict["price"] = self.price
     
         return dict
     }
+    
+    
     
 }

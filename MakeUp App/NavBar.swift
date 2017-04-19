@@ -23,12 +23,12 @@ extension UIViewController {
             self.navigationItem.rightBarButtonItem = determineButton(type: rightButton)
         }
         
+    
         navigationItem.title = title
         
         let navigationTitleFont = Fonts.Playfair(withStyle: .black, sizeLiteral: 18)
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: navigationTitleFont, NSForegroundColorAttributeName: Palette.white.color]
         navigationController?.navigationBar.barTintColor = Palette.beige.color
-  
         
         navigationController?.navigationBar.tintColor = Palette.beige.color
         navigationController?.navigationBar.isTranslucent = false
@@ -38,8 +38,10 @@ extension UIViewController {
         switch type.rawValue {
         case "mirror":
             return UIBarButtonItem(title: "Mirror", style: .plain, target: self, action: nil)
-        case "back":
+        case "backToProduct":
             return UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backToProduct(_:)))
+        case "backToSearch":
+            return UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backToSearch(_:)))
         case "buy":
             return UIBarButtonItem(title: "Buy", style: .plain, target: self, action: #selector(buy(_:)))
         case "favorite":
@@ -59,6 +61,13 @@ extension UIViewController {
     }
     func backToProduct(_ sender: UIBarButtonItem) {
         NotificationCenter.default.post(name: .productVC, object: nil)
+    }
+    
+
+    func backToSearch(_ sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
+        NotificationCenter.default.post(name: .searchVC, object: nil)
+
     }
     
     func buy(_ sender: UIBarButtonItem) {
@@ -91,6 +100,6 @@ extension UIViewController {
 
 
 enum ButtonType: String {
-    case mirror, back, favorite, notFavorite, buy
+    case mirror, backToSearch, backToProduct, favorite, notFavorite, buy
 }
 
