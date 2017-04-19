@@ -40,8 +40,12 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         lastBarCodevalue = nil
-        NotificationCenter.default.post(name: .searchVC, object: nil)
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        NotificationCenter.default.post(name: .searchVC, object: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()

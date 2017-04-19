@@ -13,7 +13,6 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
     
     var product: Product? {
         didSet {
-            print("sett product in productview, product name is", product?.title)
             setUpProduct()
         }
     }
@@ -27,6 +26,10 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         NotificationCenter.default.post(name: .productVC, object: nil)
     }
     

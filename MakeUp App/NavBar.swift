@@ -79,10 +79,8 @@ extension UIViewController {
     }
     
     func toggleProductFavorite(_ sender: UIBarButtonItem) {
-        print(#function)
 
         guard let product = ResultStore.sharedInstance.product else { return }
-        print("line 86 after product gaurd", product.title)
 
         FirebaseManager.shared.toggleProductFavorite(product)
         switch sender.tag {

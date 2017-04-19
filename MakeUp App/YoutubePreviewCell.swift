@@ -35,11 +35,17 @@ class YoutubePreviewCell: UITableViewCell {
     func setUpCell() {
         self.layoutIfNeeded()
         contentView.backgroundColor = Palette.white.color
+        let whiteBackgroundView = UIView()
+        whiteBackgroundView.backgroundColor = Palette.white.color
+        self.selectedBackgroundView = whiteBackgroundView
+        
         guard let youtube = youtube else { return }
         titleView.text = truncateStringAfterNumberofWords(string: youtube.title, words: 8)
         ImageAPIClient.getProductImage(with: (youtube.thumbnailURL)) { (thumbnailImage) in
             DispatchQueue.main.async {
-                self.thumbnailView.image = thumbnailImage
+                UIView.animate(withDuration: 0.2, animations: { 
+                    self.thumbnailView.image = thumbnailImage
+                })
                 self.setNeedsLayout()
                 self.layoutIfNeeded()
             }
@@ -57,7 +63,7 @@ class YoutubePreviewCell: UITableViewCell {
 
         titleView.textAlignment = .left
         titleView.text = youtube?.title
-        titleView.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 14)
+        titleView.font = Fonts.Playfair(withStyle: .italic, sizeLiteral: 18)
         titleView.textColor = Palette.darkGrey.color
         titleView.numberOfLines = 0
         self.contentView.addSubview(titleView)
@@ -81,10 +87,9 @@ class YoutubePreviewCell: UITableViewCell {
         favoriteButton.heightAnchor.constraint(equalTo: favoriteButton.widthAnchor).isActive = true
         favoriteButton.addTarget(self, action: #selector(toggleMediaFavorite), for: .touchUpInside)
 
-        titleView.topAnchor.constraint(equalTo: thumbnailView.bottomAnchor, constant:5).isActive = true
+        titleView.topAnchor.constraint(equalTo: thumbnailView.bottomAnchor, constant: 5).isActive = true
         titleView.leftAnchor.constraint(equalTo: favoriteButton.rightAnchor, constant: 5).isActive = true
-        titleView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.7).isActive = true
-        titleView.heightAnchor.constraint(greaterThanOrEqualTo: favoriteButton.heightAnchor, multiplier: 1.0).isActive = true
+        titleView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 5).isActive = true
     }
     
     func determineFavorite() {
