@@ -55,7 +55,7 @@ class YouTubeViewController: UITableViewController {
     }
     
     func determineTypeAndNotify() {
-        type == .review ? NotificationCenter.default.post(name: .reviewsVC, object: nil) : NotificationCenter.default.post(name: .tutorialsVC, object: nil)
+        type == .review ? NotificationCenter.default.post(name: .reviewsIndex, object: nil) : NotificationCenter.default.post(name: .tutorialsIndex, object: nil)
     }
     
     func tableViewSetup() {

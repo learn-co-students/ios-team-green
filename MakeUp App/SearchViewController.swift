@@ -45,7 +45,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        NotificationCenter.default.post(name: .searchVC, object: nil)
+        NotificationCenter.default.post(name: .searchIndex, object: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()

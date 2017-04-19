@@ -30,7 +30,7 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        NotificationCenter.default.post(name: .productVC, object: nil)
+        NotificationCenter.default.post(name: .productIndex, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {

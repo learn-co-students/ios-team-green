@@ -12,9 +12,9 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
     
     let resultsStore = ResultStore.sharedInstance
     var bottomBar = BottomBarView()
-
+    
     weak var pageDelegate: PageSelectedDelegate?
-
+    
     var currentIndex = 0 {
         didSet  {
             print("current index is now", currentIndex)
@@ -43,8 +43,8 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         
         return [homeNav, searchNav, productNav, tutorialsNav, reviewsNav]
     }()
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,12 +57,12 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         dataSource = self
         
         if let firstVC = viewControllerList.first {
-        setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
+            setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
         
     }
- 
-     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let vcIndex = viewControllerList.index(of: viewController) else {return nil}
         
         let previousIndex = vcIndex - 1
@@ -71,27 +71,37 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         
         guard viewControllerList.count > previousIndex else { return nil}
         
+        if previousIndex < 0 || previousIndex > viewControllerList.count {
+            return viewControllerList[previousIndex]
+        }
+        
         return viewControllerList[previousIndex]
     }
-
     
-     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+    
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         guard let vcIndex = viewControllerList.index(of: viewController) else {return nil}
-
+        
         let nextIndex = vcIndex + 1
         
         guard viewControllerList.count != nextIndex else {return nil}
         
         guard viewControllerList.count > nextIndex else {return nil}
         
+        
         // Don't go to results or tutorials if there's no product
         if nextIndex > 2 { guard resultsStore.product != nil else { return nil } }
         
+        if nextIndex < 0 || nextIndex > viewControllerList.count {
+            return viewControllerList[vcIndex]
+        }
+        
         return viewControllerList[nextIndex]
-
+        
     }
-   
+    
 }
 
 typealias NotificationObservers = PageViewController
@@ -103,6 +113,30 @@ extension NotificationObservers {
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .homeVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .tutorialsVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .reviewsVC, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateIndex(with:)), name: .homeIndex, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateIndex(with:)), name: .searchIndex, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateIndex(with:)), name: .productIndex, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateIndex(with:)), name: .tutorialsIndex, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateIndex(with:)), name: .reviewsIndex, object: nil)
+        
+    }
+    
+    func updateIndex(with notification: Notification) {
+        switch notification.name {
+        case Notification.Name.homeIndex:
+            currentIndex = 0
+        case Notification.Name.searchIndex:
+            currentIndex = 1
+        case Notification.Name.productIndex:
+            currentIndex = 2
+        case Notification.Name.tutorialsIndex:
+            currentIndex = 3
+        case Notification.Name.reviewsIndex:
+            currentIndex = 4
+        default:
+            currentIndex = 0
+        }
     }
     
     func switchViewController(with notification: Notification) {
@@ -125,28 +159,30 @@ extension NotificationObservers {
     private func switchToViewController(named: String) {
         switch named {
         case "Home":
-            setViewControllers([viewControllerList[0]], direction: determineScrollDirection(from: currentIndex, to: 0), animated: true, completion: nil)
-            currentIndex = 0
+            setView(viewController: 0)
             pageDelegate?.changeImage(at: currentIndex)
         case "Search":
-            setViewControllers([viewControllerList[1]], direction: determineScrollDirection(from: currentIndex, to: 1), animated: true, completion: nil)
-            currentIndex = 1
+            setView(viewController: 1)
             pageDelegate?.changeImage(at: currentIndex)
         case "Product":
-            setViewControllers([viewControllerList[2]], direction: determineScrollDirection(from: currentIndex, to: 2), animated: true, completion: nil)
-            currentIndex = 2
+            setView(viewController: 2)
             pageDelegate?.changeImage(at: currentIndex)
         case "Tutorials":
-            setViewControllers([viewControllerList[3]], direction: determineScrollDirection(from: currentIndex, to: 3), animated: true, completion: nil)
-            currentIndex = 3
+            setView(viewController: 3)
         case "Reviews":
-            setViewControllers([viewControllerList[4]], direction: determineScrollDirection(from: currentIndex, to: 4), animated: true, completion: nil)
-            currentIndex = 4
+            setView(viewController: 4)
         default :
-            setViewControllers([viewControllerList[5]], direction: determineScrollDirection(from: currentIndex, to: 5), animated: true, completion: nil)
-            currentIndex = 5
+            setView(viewController: 0)
         }
     }
+    
+    func setView(viewController Index: Int) {
+        DispatchQueue.main.async {
+            self.setViewControllers([self.viewControllerList[Index]], direction: self.determineScrollDirection(from: self.currentIndex, to: Index), animated: true, completion: nil)
+        }
+
+    }
+    
     
     // make sure the animation plays properly depending on where user is in our 'virtual' flow
     private func determineScrollDirection(from currentIndex: Int, to desiredIndex: Int) -> UIPageViewControllerNavigationDirection {
@@ -169,7 +205,14 @@ extension Notification.Name {
     static let homeVC = Notification.Name("switch-to-home-vc")
     static let tutorialsVC = Notification.Name("switch-to-tutorials-vc")
     static let reviewsVC = Notification.Name("switch-to-reviews-vc")
-    static let productSet = Notification.Name("productSet")
+    
+    static let homeIndex = Notification.Name("homeIndex")
+    static let searchIndex = Notification.Name("searchIndex")
+    static let productIndex = Notification.Name("productIndex")
+    static let tutorialsIndex = Notification.Name("tutorialsIndex")
+    static let reviewsIndex = Notification.Name("reviewsIndex")
+    
+    
 }
 
 

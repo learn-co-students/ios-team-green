@@ -45,7 +45,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        NotificationCenter.default.post(name: .homeVC, object: nil)
+        NotificationCenter.default.post(name: .homeIndex, object: nil)
     }
 
     //MARK: - UI SetUp
