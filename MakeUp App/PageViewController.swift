@@ -15,7 +15,12 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
 
     weak var pageDelegate: PageSelectedDelegate?
 
-    var currentIndex = 0
+    var currentIndex = 0 {
+        didSet  {
+            print("current index is now", currentIndex)
+        }
+        
+    }
     
     var viewControllerList: [UIViewController] = {
         
@@ -29,19 +34,16 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         let productNav = UINavigationController(rootViewController: productView)
         
         let tutorialsView = YouTubeViewController()
-        tutorialsView.type = "Tutorials"
+        tutorialsView.type = YoutubeSearch(rawValue: "Tutorials")
         let tutorialsNav = UINavigationController(rootViewController: tutorialsView)
         
         let reviewsView = YouTubeViewController()
-        reviewsView.type = "Reviews"
+        reviewsView.type = YoutubeSearch(rawValue: "Reviews")
         let reviewsNav = UINavigationController(rootViewController: reviewsView)
         
         return [homeNav, searchNav, productNav, tutorialsNav, reviewsNav]
     }()
-    
-    func printCurrentIndex() {
-        print("currentindex is", currentIndex)
-    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,11 +61,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         }
         
     }
-    
-    func buttonTapped(_ button: UIButton) {
-        button
-    }
-    
+ 
      func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let vcIndex = viewControllerList.index(of: viewController) else {return nil}
         
@@ -171,6 +169,7 @@ extension Notification.Name {
     static let homeVC = Notification.Name("switch-to-home-vc")
     static let tutorialsVC = Notification.Name("switch-to-tutorials-vc")
     static let reviewsVC = Notification.Name("switch-to-reviews-vc")
+    static let productSet = Notification.Name("productSet")
 }
 
 

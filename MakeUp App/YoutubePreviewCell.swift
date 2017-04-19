@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class YoutubePreviewCell: UITableViewCell {
-    
+        
     var favoriteButton = UIButton()
     var titleView = UILabel()
     var thumbnailView = UIImageView()
@@ -35,7 +35,7 @@ class YoutubePreviewCell: UITableViewCell {
     func setUpCell() {
         self.layoutIfNeeded()
         contentView.backgroundColor = Palette.white.color
-        guard let youtube = youtube else { print("could not get youtube"); return }
+        guard let youtube = youtube else { return }
         titleView.text = truncateStringAfterNumberofWords(string: youtube.title, words: 8)
         ImageAPIClient.getProductImage(with: (youtube.thumbnailURL)) { (thumbnailImage) in
             DispatchQueue.main.async {

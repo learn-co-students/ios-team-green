@@ -9,10 +9,22 @@ import UIKit
 class YouTubeViewController: UITableViewController {
     
     let resultStore = ResultStore.sharedInstance
-
-    var videos = [Youtube]()
-    var type: String?
-    var product = ResultStore.sharedInstance.product {
+    var videos = [Youtube]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    var videosFound: Bool = true {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    
+    var type: YoutubeSearch?
+    var product: Product? {
         didSet {
             getVideos()
         }
@@ -24,32 +36,61 @@ class YouTubeViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        updateProductIfNeeded()
+        determineViewControllerType()
+        registerTableViewMethods()
         
         guard let type = type else { print("no type registered"); return }
         
+        navBar(title: type.rawValue, leftButton: .backToProduct, rightButton: .buy)
+    }
+    
+    func updateProductIfNeeded() {
+        videos.removeAll()
+        if self.product?.title != resultStore.product?.title {
+            self.product = resultStore.product
+        }
+    }
+    
+    func determineViewControllerType() {
+        type == .review ? NotificationCenter.default.post(name: .reviewsVC, object: nil) : NotificationCenter.default.post(name: .tutorialsVC, object: nil)
+    }
+    
+    func registerTableViewMethods() {
         tableView.register(YoutubePreviewCell.self, forCellReuseIdentifier: "tutorialCell")
         tableView.separatorColor = Palette.beige.color
         tableView.delegate = self
         tableView.dataSource = self
         
-        navBar(title: type, leftButton: .backToProduct, rightButton: .buy)
-        
-        super.viewWillAppear(true)
-        self.product = resultStore.product
     }
     
     func getVideos() {
+        print("called getvideos")
         if let product = ResultStore.sharedInstance.product {
-            guard let type = type else { print("no type registered"); return }
-            ResultStore.sharedInstance.getYouTubeVideos(search: product.title, videoType: determineType(type: type), completion: {
-                self.videos = ResultStore.sharedInstance.youtubeTutorialVideos
-                self.tableView.reloadData()
+            print("product at 51 is now", product.title)
+            guard let type = type else { print("no type registered at 60"); return }
+            print("type at 70 is", type)
+            ResultStore.sharedInstance.getYouTubeVideos(search: product.title, completion: {
+                print("\ncompleted a youtube search", "\nyoutubetutorialvideos # is", self.resultStore.youtubeTutorialVideos.count, "# youtubereviewvideos is", self.resultStore.youtubeReviewVideos.count)
+                switch type {
+                case .tutorial :
+                    self.videos = self.resultStore.youtubeTutorialVideos
+                default:
+                    self.videos = self.resultStore.youtubeReviewVideos
+                }
+                if self.videos.isEmpty {
+                    self.tableView.numberOfRows(inSection: 1)
+                    self.videosFound = false
+                }
+                
             })
         }
         
     }
     
-    func determineType(type: String) -> YoutubeSearch {
+    private func determineType(type: String) -> YoutubeSearch {
         switch type {
         case "Tutorials":
             NotificationCenter.default.post(name: .tutorialsVC, object: nil)
@@ -63,8 +104,9 @@ class YouTubeViewController: UITableViewController {
     //MARK: - Table View Methods
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard videos.count > 0 else  { return NoVideoCell() }
         
+        if !videosFound { return NoVideoCell() }
+                    
         let cell = tableView.dequeueReusableCell(withIdentifier: "tutorialCell", for: indexPath) as! YoutubePreviewCell
         cell.youtube = videos[indexPath.item]
         
@@ -79,16 +121,15 @@ class YouTubeViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard videos.count > 0 else  { return 1 }
+        //guard videos.count > 0 else  { return 1 }
         return videos.count
     }
-
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 300
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard videos.count > 0 else  { NotificationCenter.default.post(name: .searchVC, object: nil);  return  }
         
         let youTubePlayerVC = YouTubePlayerViewViewController()
         let cell = videos[indexPath.item]

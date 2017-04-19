@@ -15,7 +15,7 @@ final class YoutubeAPIClient {
     class func searchYoutubeVideos(search: String, type: YoutubeSearch, completion: @escaping ([JSON], String) -> ()) {
         let baseUrl = "https://www.googleapis.com/youtube/v3/search?key=\(Secrets.youTubeKey)&part=snippet&type=video&maxResults=50&q="
         
-        let checkedSearch = truncateStringAfterNumberofWords(string: search, words: 4)
+        let checkedSearch = truncateStringAfterNumberofWords(string: search, words: 6)
         
         let combinedSearch = checkedSearch + " " + type.rawValue
         let validSearch = combinedSearch.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
@@ -72,6 +72,7 @@ func truncateStringAfterNumberofWords(string: String, words: Int) -> String {
 
 enum YoutubeSearch: String {
     
-    case review, tutorial
+    case review = "Reviews"
+    case tutorial = "Tutorials"
     
 }
