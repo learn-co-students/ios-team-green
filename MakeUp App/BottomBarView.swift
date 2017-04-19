@@ -11,7 +11,6 @@ import UIKit
 
 class BottomBarView: UIView, PageSelectedDelegate {
     
-    
     var homeView = UIView()
     var searchView = UIView()
     var productView = UIView()
@@ -28,14 +27,12 @@ class BottomBarView: UIView, PageSelectedDelegate {
         setUpConstraints()
     }
     
-    
     func setUpButtonImages() {
         homeButton.setImage(#imageLiteral(resourceName: "Face"), for: .normal)
         searchButton.setImage(#imageLiteral(resourceName: "Search"), for: .normal)
         productButton.setImage(#imageLiteral(resourceName: "Home"), for: .normal)
 
         self.addSubview(horizontalBar)
-        
     }
     
     func setUpConstraints() {
@@ -112,8 +109,6 @@ class BottomBarView: UIView, PageSelectedDelegate {
             searchButton.setImage(#imageLiteral(resourceName: "Search"), for: .normal)
             productButton.setImage(#imageLiteral(resourceName: "Heart"), for: .normal)
         }
-        
-      
     }
 
     required init?(coder aDecoder: NSCoder) {

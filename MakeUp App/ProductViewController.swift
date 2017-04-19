@@ -13,7 +13,7 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
     
     var product: Product? {
         didSet {
-            resultStore.product = product
+            print("sett product in productview, product name is", product?.title)
             setUpProduct()
         }
     }
@@ -27,11 +27,11 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Palette.white.color
+        NotificationCenter.default.post(name: .productVC, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        NotificationCenter.default.post(name: .productVC, object: nil)
         self.product = resultStore.product
         if product == nil {
             setUpNoProduct()
@@ -115,7 +115,7 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
         
     }
     
-    func determineFavoriteButton() -> ButtonType {
+    private func determineFavoriteButton() -> ButtonType {
         
         let isFavorite = UserStore.sharedInstance.favoriteProducts.contains(where: { (diffProduct) -> Bool in
             guard let product = resultStore.product else { return false }

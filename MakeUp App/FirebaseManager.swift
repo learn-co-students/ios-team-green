@@ -48,25 +48,32 @@ final class FirebaseManager {
     /// App Functions //
     
     func toggleProductFavorite(_ product: Product) {
-        
+        print("line 51, product name is", product.title)
         time = dateFormatter.string(from: Date())
         
         guard let user = currentUser else { print("no user"); return }
         let productID = product.identifier
         let productRecord = currentUserNode.child(user.uid).child("favorites").child("products")
-        
+        print("line 57")
         productRecord.observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let favoriteRecord = snapshot.value as? [String:Any] else { return }
-            if let product = favoriteRecord[productID] as? [String:Any]  {
-                if product["isFavorite"] as? Bool == false {
-                    productRecord.updateChildValues([productID: [ "isFavorite": true, "timestamp": self.time]])
-                    print("User added product favorite")
-                } else   {
-                    productRecord.updateChildValues([productID: [ "isFavorite": false, "timestamp": self.time]])
-                    print("User removed favorite")
+            print("line 59 snapshot is", snapshot)
+            if let favoriteRecord = snapshot.value as? [String:Any] {
+                print("line 61 favorite record is", favoriteRecord)
+                // it's failing here ...
+                if let product = favoriteRecord[productID] as? [String:Any]  {
+                    print("line 63 product is", product)
+                    if product["isFavorite"] as? Bool == false {
+                        productRecord.updateChildValues([productID: [ "isFavorite": true, "timestamp": self.time]])
+                        print("User added product favorite")
+                    } else   {
+                        productRecord.updateChildValues([productID: [ "isFavorite": false, "timestamp": self.time]])
+                        print("User removed favorite")
+                    }
                 }
-            } else {
-                productRecord.updateChildValues([productID: [ "isFavorite": true, "timestamp": self.time]])
+                else {
+                    print("adding a product record that wasn't there")
+                    productRecord.updateChildValues([productID: [ "isFavorite": true, "timestamp": self.time]])
+                }
             }
         })
     }
@@ -80,17 +87,20 @@ final class FirebaseManager {
         let videoID = youtube.videoID
         
         mediaRecord.observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let favoriteRecord = snapshot.value as? [String:Any] else { return }
-            if let media = favoriteRecord[videoID] as? [String:Any]  {
-                if media["isFavorite"] as? Bool == false {
-                    mediaRecord.updateChildValues([videoID: [ "isFavorite": true, "timestamp": self.time]])
-                    print("User added media favorite")
-                } else {
-                    mediaRecord.updateChildValues([videoID: [ "isFavorite": false, "timestamp": self.time]])
-                    print("User removed media favorite")
+            if let favoriteRecord = snapshot.value as? [String:Any] {
+                if let media = favoriteRecord[videoID] as? [String:Any]  {
+                    if media["isFavorite"] as? Bool == false {
+                        mediaRecord.updateChildValues([videoID: [ "isFavorite": true, "timestamp": self.time]])
+                        print("User added media favorite")
+                    } else {
+                        mediaRecord.updateChildValues([videoID: [ "isFavorite": false, "timestamp": self.time]])
+                        print("User removed media favorite")
+                    }
                 }
-            } else {
-                mediaRecord.updateChildValues([videoID: [ "isFavorite": true, "timestamp": self.time]])
+                else {
+                    print("adding a media record that wasn't there")
+                    mediaRecord.updateChildValues([videoID: [ "isFavorite": true, "timestamp": self.time]])
+                }
             }
         })
     }
