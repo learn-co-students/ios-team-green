@@ -48,20 +48,14 @@ final class FirebaseManager {
     /// App Functions //
     
     func toggleProductFavorite(_ product: Product) {
-        print("line 51, product name is", product.title)
         time = dateFormatter.string(from: Date())
         
         guard let user = currentUser else { print("no user"); return }
         let productID = product.identifier
         let productRecord = currentUserNode.child(user.uid).child("favorites").child("products")
-        print("line 57")
         productRecord.observeSingleEvent(of: .value, with: { (snapshot) in
-            print("line 59 snapshot is", snapshot)
             if let favoriteRecord = snapshot.value as? [String:Any] {
-                print("line 61 favorite record is", favoriteRecord)
-                // it's failing here ...
                 if let product = favoriteRecord[productID] as? [String:Any]  {
-                    print("line 63 product is", product)
                     if product["isFavorite"] as? Bool == false {
                         productRecord.updateChildValues([productID: [ "isFavorite": true, "timestamp": self.time]])
                         print("User added product favorite")
@@ -74,6 +68,9 @@ final class FirebaseManager {
                     print("adding a product record that wasn't there")
                     productRecord.updateChildValues([productID: [ "isFavorite": true, "timestamp": self.time]])
                 }
+            } else {
+                print("adding a product record that wasn't there, and favorites products wasn't there yet either")
+                productRecord.updateChildValues([productID: [ "isFavorite": true, "timestamp": self.time]])
             }
         })
     }
@@ -101,6 +98,9 @@ final class FirebaseManager {
                     print("adding a media record that wasn't there")
                     mediaRecord.updateChildValues([videoID: [ "isFavorite": true, "timestamp": self.time]])
                 }
+            } else {
+                print("adding a media record that wasn't there, and favorites media wasn't there yet either")
+                mediaRecord.updateChildValues([videoID: [ "isFavorite": true, "timestamp": self.time]])
             }
         })
     }
@@ -111,7 +111,7 @@ final class FirebaseManager {
             if error != nil {
                 print("error adding to database", error as Any)
             } else {
-                print ("added to database, ref is", ref)
+                print ("added to database, the reference is", ref)
             }
         }
         
