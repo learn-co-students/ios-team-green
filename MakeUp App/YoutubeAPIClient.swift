@@ -18,13 +18,17 @@ final class YoutubeAPIClient {
         let checkedSearch = truncateStringAfterNumberofWords(string: search, words: 6)
         
         let combinedSearch = checkedSearch + " " + type.rawValue
+        print("the combined search is", combinedSearch)
         let validSearch = combinedSearch.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        print("the valid search is", validSearch)
                 
         let url = baseUrl + validSearch!
+        print("url is", url)
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).validate().responseJSON { (response) in
             if let data = response.data {
                 let json = JSON(data: data)
                 let itemsArray = json["items"].arrayValue
+                print("items array is", itemsArray)
                 completion(itemsArray, type.rawValue)
             }
         }

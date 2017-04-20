@@ -189,7 +189,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             youTubeVC.youtubeID = cell.videoID
             youTubeVC.modalPresentationStyle = .overCurrentContext
             youTubeVC.modalTransitionStyle = .crossDissolve
-            present(youTubeVC, animated: true, completion: nil )
+            youTubeVC.youtubeTitle = cell.title
+            self.navigationController?.pushViewController(youTubeVC, animated: true)
         }
         
     }

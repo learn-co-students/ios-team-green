@@ -13,23 +13,25 @@ class YouTubePlayerViewViewController: UIViewController {
     
     let playerView = YTPlayerView()
     var youtubeID = ""
+    var youtubeTitle = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let blurEffect = UIBlurEffect(style: .extraLight)
-//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//        blurEffectView.frame = view.bounds
-//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        view.addSubview(blurEffectView)
         view.backgroundColor = UIColor.black.withAlphaComponent(0.85)
         setUpGestureRecognizer()
         self.playerView.load(withVideoId: youtubeID)
         setUpConstraints()
-    }
+        setUpSwipeGestureRecognizer()
+        self.navigationItem.hidesBackButton = true
+        self.navigationItem.title = truncateStringAfterNumberofWords(string: youtubeTitle, words: 4)
+        NotificationCenter.default.post(name: .toggleNav, object: nil)
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.post(name: .toggleNav , object: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func setUpConstraints() {
@@ -47,8 +49,21 @@ class YouTubePlayerViewViewController: UIViewController {
         view.addGestureRecognizer(gestureRecog)
     }
     
-    func dismissView(tap: UITapGestureRecognizer) {
-        self.dismiss(animated: true, completion: nil)
+    func setUpSwipeGestureRecognizer(){
+        let gestureRecog = UISwipeGestureRecognizer(target: self, action: #selector(dismissView(tap:)))
+        gestureRecog.direction = UISwipeGestureRecognizerDirection.left
+        gestureRecog.direction = UISwipeGestureRecognizerDirection.right
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(gestureRecog)
     }
+    
+    
+    
+    func dismissView(tap: UITapGestureRecognizer) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
+
 
 }

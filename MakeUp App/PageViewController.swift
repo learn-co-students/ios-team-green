@@ -12,6 +12,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
     
     let resultsStore = ResultStore.sharedInstance
     var bottomBar = BottomBarView()
+    var youtubeOpen = false
     
     weak var pageDelegate: PageSelectedDelegate?
     
@@ -49,6 +50,9 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         super.viewDidLoad()
         
         self.pageDelegate = bottomBar
+        
+        
+       
         
         addNotificationObservers()
         
@@ -114,11 +118,35 @@ extension NotificationObservers {
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .tutorialsVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .reviewsVC, object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(toggleNavigation(with:)), name: .toggleNav, object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(updateIndex(with:)), name: .homeIndex, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateIndex(with:)), name: .searchIndex, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateIndex(with:)), name: .productIndex, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateIndex(with:)), name: .tutorialsIndex, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateIndex(with:)), name: .reviewsIndex, object: nil)
+        
+    }
+    func checkIfYoutubeOpen() {
+        if youtubeOpen == false {
+            youtubeOpen = true
+        } else {
+            youtubeOpen = false
+        }
+        print("youtube open variable is ", youtubeOpen)
+    }
+    
+    
+    func toggleNavigation(with: Notification) {
+        checkIfYoutubeOpen()
+        if youtubeOpen == true {
+            bottomBar.isHidden = true
+            self.dataSource = nil
+        } else if youtubeOpen == false {
+            self.dataSource = self
+            setView(viewController: currentIndex)
+            bottomBar.isHidden = false
+        }
         
     }
     
@@ -199,6 +227,8 @@ protocol PageSelectedDelegate: class {
     func changeImage(at index: Int)
 }
 
+
+
 extension Notification.Name {
     static let productVC = Notification.Name("switch-to-product-vc")
     static let searchVC = Notification.Name("switch-to-search-vc")
@@ -211,6 +241,7 @@ extension Notification.Name {
     static let productIndex = Notification.Name("productIndex")
     static let tutorialsIndex = Notification.Name("tutorialsIndex")
     static let reviewsIndex = Notification.Name("reviewsIndex")
+    static let toggleNav = Notification.Name("toggleNav")
     
     
 }

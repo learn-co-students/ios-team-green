@@ -23,7 +23,6 @@
 		B50E4C181E9411EF0004D8F7 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C171E9411EF0004D8F7 /* Fonts.swift */; };
 		B50E4C401E94270C0004D8F7 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C3F1E94270C0004D8F7 /* SignInButton.swift */; };
 		B50E4C441E942DC20004D8F7 /* EmailSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E4C431E942DC20004D8F7 /* EmailSignUp.swift */; };
-		B5210EED1EA400D300D88C58 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5210EEC1EA400D300D88C58 /* Secrets.swift */; };
 		B53E9BBC1E953AF00017E3E9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E9BBB1E953AF00017E3E9 /* HomeViewController.swift */; };
 		B53E9BBE1E9546F80017E3E9 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E9BBD1E9546F80017E3E9 /* NavBar.swift */; };
 		B54F1C301E96A53F00360CB3 /* HorizontalRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F1C2F1E96A53F00360CB3 /* HorizontalRule.swift */; };
@@ -47,6 +46,7 @@
 		D33B08521E9542D00046E986 /* ResultStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08511E9542D00046E986 /* ResultStore.swift */; };
 		D34537AF1EA0199F00D993B9 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34537AE1EA0199F00D993B9 /* PageViewController.swift */; };
 		D35D674F1E96E7FD00B8AB03 /* YouTubePlayerViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35D674E1E96E7FD00B8AB03 /* YouTubePlayerViewViewController.swift */; };
+		D39320E31EA8FA02001CFDED /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39320E21EA8FA02001CFDED /* Secrets.swift */; };
 		D39C583E1E95898C0078298B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33B08181E93FB650046E986 /* SignUpViewController.swift */; };
 		D3AABBA01E96CD9D00590E96 /* ImageAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AABB9F1E96CD9D00590E96 /* ImageAPIClient.swift */; };
 		D3C475251EA1195300DFBF0A /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C475241EA1195300DFBF0A /* BottomBarView.swift */; };
@@ -89,7 +89,6 @@
 		B50E4C171E9411EF0004D8F7 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		B50E4C3F1E94270C0004D8F7 /* SignInButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
 		B50E4C431E942DC20004D8F7 /* EmailSignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignUp.swift; sourceTree = "<group>"; };
-		B5210EEC1EA400D300D88C58 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		B53E9BBB1E953AF00017E3E9 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B53E9BBD1E9546F80017E3E9 /* NavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		B54F1C2F1E96A53F00360CB3 /* HorizontalRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalRule.swift; sourceTree = "<group>"; };
@@ -120,6 +119,7 @@
 		D33B08511E9542D00046E986 /* ResultStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultStore.swift; sourceTree = "<group>"; };
 		D34537AE1EA0199F00D993B9 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		D35D674E1E96E7FD00B8AB03 /* YouTubePlayerViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubePlayerViewViewController.swift; sourceTree = "<group>"; };
+		D39320E21EA8FA02001CFDED /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		D3AABB9F1E96CD9D00590E96 /* ImageAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAPIClient.swift; sourceTree = "<group>"; };
 		D3C475241EA1195300DFBF0A /* BottomBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -329,7 +329,7 @@
 				D3AABB9F1E96CD9D00590E96 /* ImageAPIClient.swift */,
 				B508FB261E9BCC640049B424 /* FirebaseManager.swift */,
 				40771F821E9D5DF700872379 /* ProductAPIClient.swift */,
-				B5210EEC1EA400D300D88C58 /* Secrets.swift */,
+				D39320E21EA8FA02001CFDED /* Secrets.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -414,7 +414,7 @@
 				TargetAttributes = {
 					D33B08121E93FB650046E986 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = R2Y4F8J6CR;
+						DevelopmentTeam = 56S3PA4JK8;
 						ProvisioningStyle = Automatic;
 					};
 					D33B08291E93FB650046E986 = {
@@ -512,7 +512,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C4F979A0AD0DC37D96DD7B2D /* [CP] Embed Pods Frameworks */ = {
@@ -547,7 +547,7 @@
 				D3AABBA01E96CD9D00590E96 /* ImageAPIClient.swift in Sources */,
 				D33B084E1E942DCF0046E986 /* YoutubeAPIClient.swift in Sources */,
 				B50E4C181E9411EF0004D8F7 /* Fonts.swift in Sources */,
-				B5210EED1EA400D300D88C58 /* Secrets.swift in Sources */,
+				D39320E31EA8FA02001CFDED /* Secrets.swift in Sources */,
 				B50E4C131E940F790004D8F7 /* SearchViewController.swift in Sources */,
 				B5D3A54D1E958ADF00D808B7 /* ProductCollectionViewCell.swift in Sources */,
 				B50E4C161E9410660004D8F7 /* Colors.swift in Sources */,
@@ -712,10 +712,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = R2Y4F8J6CR;
+				DEVELOPMENT_TEAM = 56S3PA4JK8;
 				INFOPLIST_FILE = "MakeUp App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.itemscanner44.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.itemscanner3.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -728,10 +728,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = R2Y4F8J6CR;
+				DEVELOPMENT_TEAM = 56S3PA4JK8;
 				INFOPLIST_FILE = "MakeUp App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.itemscanner44.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.itemscanner3.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;

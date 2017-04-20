@@ -134,10 +134,11 @@ class YouTubeViewController: UITableViewController {
         let youTubePlayerVC = YouTubePlayerViewViewController()
         let cell = videos[indexPath.item]
         youTubePlayerVC.youtubeID = cell.videoID
+        youTubePlayerVC.youtubeTitle = cell.title
         youTubePlayerVC.modalPresentationStyle = .overCurrentContext
         youTubePlayerVC.modalTransitionStyle = .crossDissolve
-        present(youTubePlayerVC, animated: true, completion: {
-        })
+        self.navigationController?.pushViewController(youTubePlayerVC, animated: true)
+        
     }
     
     
