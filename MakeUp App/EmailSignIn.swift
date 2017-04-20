@@ -1,5 +1,5 @@
 //
-//  EmailSignUp.swift
+//  EmailSignIn.swift
 //  MakeUp App
 //
 //  Created by Benjamin Bernstein on 4/4/17.
@@ -10,8 +10,7 @@ import Foundation
 
 import UIKit
 
-class EmailUpViewController: UIViewController {
-    
+class EmailSignInViewController: UIViewController {
 
     let emailField: UITextField = {
         let field = UITextField()
@@ -23,7 +22,7 @@ class EmailUpViewController: UIViewController {
         return field
     }()
     
-    let nameField: UITextField = {
+    /*let nameField: UITextField = {
         let field = UITextField()
         field.placeholder = "   Name"
         field.textAlignment = .left
@@ -31,7 +30,7 @@ class EmailUpViewController: UIViewController {
         field.backgroundColor = Palette.beige.color
         field.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 16)
         return field
-    }()
+    }() */
     
     let passwordField: UITextField = {
         let field = UITextField()
@@ -61,7 +60,7 @@ class EmailUpViewController: UIViewController {
     }
 
     func setupComponents() {
-        let components = [emailField, nameField, passwordField, goButton]
+        let components = [emailField, passwordField, goButton]
         components.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
@@ -71,8 +70,8 @@ class EmailUpViewController: UIViewController {
         }
         
         emailField.topAnchor.constraint(equalTo: view.topAnchor, constant: 120).isActive = true
-        nameField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 40).isActive = true
-        passwordField.topAnchor.constraint(equalTo: nameField.bottomAnchor, constant: 40).isActive = true
+        //nameField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 40).isActive = true
+        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 40).isActive = true
         goButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 40).isActive = true
         
         goButton.addTarget(self, action: #selector(submit), for: .touchUpInside)
@@ -83,20 +82,20 @@ class EmailUpViewController: UIViewController {
     }
     
     func submit() {
-        guard (emailField.text != nil) && (nameField.text != nil) && (passwordField.text != nil) else { return }
-        FirebaseManager.shared.createUser(email: emailField.text!, password: passwordField.text!, name: nameField.text!) { (error) in
+        guard (emailField.text != nil) && (passwordField.text != nil) else { return }
+        FirebaseManager.shared.signInUser(email: emailField.text!, password: passwordField.text!) { (error) in
             if error != nil {
                 //fatalError(error!.localizedDescription)
-                print("Failed to ccreate user")
+                print("Failed to sign in user: \(self.emailField.text)" )
                 
             } else {
-                print("In submit:createUser")
+                print("In submit:signInUser")
                 let pageViewController = PageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
                 self.present(pageViewController, animated: true, completion: nil)
                 
             }
             
-        } //createUser
+        } //SignInUser
     }
 
 }

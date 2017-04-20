@@ -35,12 +35,30 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var username :String?
         view.backgroundColor = Palette.white.color
-        guard let username = FirebaseManager.shared.currentUser?.displayName else { print("loaded home view controller but something went wrong because there's no username"); return }
-        navBar(title: username, leftButton: nil, rightButton: nil)
-        setupLabels()
-        setupCollectionViews()
-        databaseMethods()
+        if FirebaseManager.shared.loginType == "facebook" {
+            username = FirebaseManager.shared.currentUser?.displayName
+            if username == nil { print("loaded home view controller but something went wrong because there's no username"); return } else {
+                self.initialize(username: username!)
+            }
+
+        } else
+        if FirebaseManager.shared.loginType == "email" {
+            if let emailId = FirebaseManager.shared.emailId {
+                print("In viewDidLoad:emailId:\(emailId)")
+                FirebaseManager.shared.ref.child("Users/\(emailId)").observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let userData = snapshot.value as? [String: Any] {
+                        username = userData["name"] as? String
+                    }
+                    if username == nil { print("loaded home view controller but something went wrong because there's no username"); return } else {
+                        self.initialize(username: username!)
+                    }
+
+                })
+            } //if let emailId        
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +66,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         NotificationCenter.default.post(name: .homeVC, object: nil)
     }
 
+    func initialize(username: String) {
+        navBar(title: username, leftButton: nil, rightButton: nil)
+        setupLabels()
+        setupCollectionViews()
+        databaseMethods()
+       
+    }
+    
     //MARK: - UI SetUp
     func setupLabels() {
         

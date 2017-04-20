@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SignUpViewController.swift
 //  MakeUp App
 //
 //  Created by Raquel Rahmey on 4/4/17.
@@ -12,7 +12,7 @@ import FBSDKLoginKit
 import FacebookLogin
 import FirebaseAuth
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UIGestureRecognizerDelegate {
 
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -37,6 +37,8 @@ class SignUpViewController: UIViewController {
         return SignInButton(image: #imageLiteral(resourceName: "Message"), text: "\tEmail Sign In")
     }()
     
+    var textView = UITextView()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -47,13 +49,31 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
+        setSignUpLink()
         setupComponents()
 
         
     }
     
+    func setSignUpLink() {
+        
+        let signUpStr = NSMutableAttributedString(string: "Don't have an account? Sign Up!")
+        
+        signUpStr.addAttribute(NSFontAttributeName, value: Fonts.Playfair(withStyle: .italic, sizeLiteral: 12), range: NSMakeRange(0, 22))
+        signUpStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.blue, range: NSMakeRange(23, 8))
+        textView.attributedText = signUpStr
+        let tap = UITapGestureRecognizer(target: self, action: #selector(signUpUser(_ :)))
+        tap.delegate = self
+        textView.addGestureRecognizer(tap)
+    }
+    
+    func signUpUser(_ sender: UITapGestureRecognizer) {
+        let emailSignUpViewController = EmailUpViewController()
+        self.navigationController?.pushViewController(emailSignUpViewController, animated: true)
+    }
+    
     func setupComponents() {
-        let components = [googleButton, facebookButtton, emailButton, titleLabel]
+        let components = [/*googleButton,*/ facebookButtton, emailButton, titleLabel, textView]
         components.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
@@ -66,15 +86,17 @@ class SignUpViewController: UIViewController {
     
     func setupUniqueConstraints() {
         
-        facebookButtton.centerYAnchor.constraint(equalTo: googleButton.centerYAnchor, constant: -80).isActive = true
+        facebookButtton.centerYAnchor.constraint(equalTo: emailButton.centerYAnchor, constant: -80).isActive = true
         facebookButtton.addTarget(self, action: #selector(facebookLogin(_:didCompleteWith:error:)), for: .touchUpInside)
         
-        googleButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        googleButton.addTarget(self, action: #selector(googleSignUp), for: .touchUpInside)
+        /*googleButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        googleButton.addTarget(self, action: #selector(googleSignUp), for: .touchUpInside)*/
         
-        emailButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 80).isActive = true
-        emailButton.addTarget(self, action: #selector(emailSignUp), for: .touchUpInside)
-        
+        emailButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
+        emailButton.addTarget(self, action: #selector(emailSignIn), for: .touchUpInside)
+
+        textView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 80).isActive = true
+
         titleLabel.bottomAnchor.constraint(equalTo: facebookButtton.topAnchor, constant: -40).isActive = true
         
     }
@@ -83,10 +105,10 @@ class SignUpViewController: UIViewController {
         print("TODO: FIREBASE google sign up")
     }
     
-    func emailSignUp() {
-        print("TODO: email sign up")
-        let emailSignUpViewController = EmailUpViewController()
-        self.navigationController?.pushViewController(emailSignUpViewController, animated: true)
+    func emailSignIn() {
+        //print("TODO: email sign up")
+        let emailSignInViewController = EmailSignInViewController()
+        self.navigationController?.pushViewController(emailSignInViewController, animated: true)
     }
     
 }
@@ -102,7 +124,7 @@ extension FacebookLoginManager {
             } else if let user = user {
                 UserDefaults.standard.set(user.uid, forKey: "userID")
                 FirebaseManager.shared.createOrUpdate(user)
-
+                FirebaseManager.shared.loginType = "facebook"
                 // go to Home View
                 let pageViewController = PageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
                 self.present(pageViewController, animated: true, completion: nil)
