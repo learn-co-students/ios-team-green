@@ -85,6 +85,7 @@ final class FirebaseManager {
                 self.currentUser = user
                 FirebaseManager.shared.loginType = "email"
                 self.emailId = cu_email.replacingOccurrences(of: ".", with: "-", options: .literal, range: nil)
+                handler(nil)
             }
         } //FIRAuth.auth()?.signIn
     }
