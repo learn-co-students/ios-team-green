@@ -63,12 +63,12 @@ class EmailUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Palette.white.color
-        emailField.setLeftPaddingPoints(5)
-        emailField.setRightPaddingPoints(5)
-        nameField.setRightPaddingPoints(5)
-        nameField.setLeftPaddingPoints(5)
-        passwordField.setLeftPaddingPoints(5)
-        passwordField.setRightPaddingPoints(5)
+        emailField.setLeftPaddingPoints(10)
+        emailField.setRightPaddingPoints(10)
+        nameField.setRightPaddingPoints(10)
+        nameField.setLeftPaddingPoints(10)
+        passwordField.setLeftPaddingPoints(10)
+        passwordField.setRightPaddingPoints(10)
         
        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(dismissVC))
@@ -98,6 +98,12 @@ class EmailUpViewController: UIViewController {
     
     func dismissVC() {
         self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        emailField.endEditing(true)
+        nameField.endEditing(true)
+        passwordField.endEditing(true)
     }
     
     func submit() {
