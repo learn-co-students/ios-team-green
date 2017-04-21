@@ -17,6 +17,8 @@ final class FirebaseManager {
     var ref = FIRDatabase.database().reference()
     
     var currentUser: FIRUser?
+    var loginType: String?
+    var emailId: String?
     
     var currentUserNode: FIRDatabaseReference {
         return ref.child("Users")
@@ -24,6 +26,8 @@ final class FirebaseManager {
     
     let dateFormatter = DateFormatter()
     var time: String
+    
+    
     private init() {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         time = dateFormatter.string(from: Date())
@@ -31,7 +35,7 @@ final class FirebaseManager {
     
     static private let ref = FIRDatabase.database().reference()
     
-    /// User Functions ///
+    /// User Functions FB signIn///
     
     func loadUser(_ userID: String, completion: @escaping () -> ()) {
         _ = FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
@@ -45,7 +49,60 @@ final class FirebaseManager {
         currentUser = user
     }
     
+    /// Email SignUp
+    func createUser(email cu_email: String, password cu_password: String, name cu_name: String, handler: @escaping (Error?)->()) {
+        FIRAuth.auth()?.createUser(withEmail: cu_email, password: cu_password, completion: { (user, error) in
+            if let error = error {
+               handler(error)
+            } else {
+                FIRAuth.auth()?.signIn(withEmail: cu_email, password: cu_password, completion: { (user, error) in
+                    print("In createUser:signIn: email:\(cu_email) pass:\(cu_password) name:\(cu_name)")
+                    if let user = user {
+                        self.currentUser = user
+                        FirebaseManager.shared.loginType = "email"
+                        self.emailId = cu_email.replacingOccurrences(of: ".", with: "-", options: .literal, range: nil) 
+                        
+                        if let emailId = self.emailId {
+                            self.currentUserNode.updateChildValues([ "/\(emailId)/name" : cu_name])
+                        }
+                        //print("user:",user.debugDescription)
+                        handler(nil)
+                    } else  {
+                        handler(error)
+                    }
+                    
+                })
+            }
+            
+        })
+    }
+    
+    func signInUser(email cu_email: String, password cu_password: String, handler: @escaping (Error?)->()) {
+        FIRAuth.auth()?.signIn(withEmail: cu_email, password: cu_password) { (user, error) in
+            if let error = error {
+                handler(error)
+            } else {
+                self.currentUser = user
+                FirebaseManager.shared.loginType = "email"
+                self.emailId = cu_email.replacingOccurrences(of: ".", with: "-", options: .literal, range: nil)
+                handler(nil)
+            }
+        } //FIRAuth.auth()?.signIn
+    }
+    
+    //Password Reset email
+    func resetPassword(email: String , handler: @escaping (Error?)->()) {
+        FIRAuth.auth()?.sendPasswordReset(withEmail: email) { (error) in
+            if let error = error {
+                handler(error)
+            } else {
+                handler(nil)
+            }
+        }
+    }
+    
     /// App Functions //
+    
     
     func toggleProductFavorite(_ product: Product) {
         time = dateFormatter.string(from: Date())
