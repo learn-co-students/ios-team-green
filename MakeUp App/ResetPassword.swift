@@ -44,7 +44,8 @@ class ResetPasswordViewController: UIViewController, UIGestureRecognizerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Palette.white.color
-
+        emailField.setLeftPaddingPoints(10)
+        emailField.setRightPaddingPoints(10)
        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(dismissVC))
         setupComponents()
@@ -72,6 +73,9 @@ class ResetPasswordViewController: UIViewController, UIGestureRecognizerDelegate
         
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        emailField.endEditing(true)
+    }
     
     func dismissVC() {
         _ = self.navigationController?.popViewController(animated: true)
