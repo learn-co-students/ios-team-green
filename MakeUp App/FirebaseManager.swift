@@ -58,11 +58,13 @@ final class FirebaseManager {
                 FIRAuth.auth()?.signIn(withEmail: cu_email, password: cu_password, completion: { (user, error) in
                     print("In createUser:signIn: email:\(cu_email) pass:\(cu_password) name:\(cu_name)")
                     if let user = user {
+                        
                         self.currentUser = user
                         FirebaseManager.shared.loginType = "email"
                         self.emailId = cu_email.replacingOccurrences(of: ".", with: "-", options: .literal, range: nil) 
                         
                         if let emailId = self.emailId {
+                            UserDefaults.standard.set(emailId, forKey: "userID")
                             self.currentUserNode.updateChildValues([ "/\(emailId)/name" : cu_name])
                         }
                         //print("user:",user.debugDescription)
@@ -85,6 +87,9 @@ final class FirebaseManager {
                 self.currentUser = user
                 FirebaseManager.shared.loginType = "email"
                 self.emailId = cu_email.replacingOccurrences(of: ".", with: "-", options: .literal, range: nil)
+                if let emailId = self.emailId {
+                    UserDefaults.standard.set(emailId, forKey: "userID")
+                }                
                 handler(nil)
             }
         } //FIRAuth.auth()?.signIn
