@@ -78,7 +78,7 @@ class EmailSignInViewController: UIViewController, UIGestureRecognizerDelegate {
 
     
     func setupComponents() {
-        let components = [emailField, passwordField, goButton, textLabel, resetTextView]
+        let components = [emailField, passwordField, goButton, textLabel]
         components.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
@@ -87,16 +87,24 @@ class EmailSignInViewController: UIViewController, UIGestureRecognizerDelegate {
             $0.heightAnchor.constraint(equalToConstant: 60).isActive = true
         }
         
-        emailField.topAnchor.constraint(equalTo: view.topAnchor, constant: 120).isActive = true
-        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 40).isActive = true
-        goButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 40).isActive = true
+        resetTextView.translatesAutoresizingMaskIntoConstraints = false
+        
+        emailField.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        
+        passwordField.isSecureTextEntry = true
+        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 35).isActive = true
+        goButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 35).isActive = true
         
         goButton.addTarget(self, action: #selector(submit), for: .touchUpInside)
         
         textLabel.topAnchor.constraint(equalTo: goButton.bottomAnchor, constant: 40).isActive = true
         
-        resetTextView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 20).isActive = true
-        
+        view.addSubview(resetTextView)
+        resetTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        resetTextView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
+        resetTextView.topAnchor.constraint(equalTo: goButton.bottomAnchor, constant: 5).isActive = true
+        resetTextView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        setResetLink()
     }
     
     func resetPassword(_ sender: UITapGestureRecognizer) {
@@ -108,6 +116,10 @@ class EmailSignInViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func submit() {
+        if emailField.text == nil  || passwordField.text == nil {
+            textLabel.text = "Please enter email & password"
+            return
+        }
         guard (emailField.text != nil) && (passwordField.text != nil) else { return }
         FirebaseManager.shared.signInUser(email: emailField.text!, password: passwordField.text!) { (error) in
             if error != nil {
@@ -115,9 +127,8 @@ class EmailSignInViewController: UIViewController, UIGestureRecognizerDelegate {
                 print("**SignIn failed. error: \(error!) \n**error.debugDescription: \(error.debugDescription)" )
                 //print("**error appEventParameterValue: \(error!._code.appEventParameterValue) NSError: \(NSError.userInfoValueProvider(forDomain: "FIRAuthErrorDomain"))")
                 
-                self.textLabel.text = error!.localizedDescription
+                self.textLabel.text = "Uh Oh! It seems like you entered an incorrect email or password!"
                 
-                self.setResetLink()
                 
             } else {
                 print("In submit:signInUser")
