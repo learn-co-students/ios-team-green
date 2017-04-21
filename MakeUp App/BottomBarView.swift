@@ -22,7 +22,7 @@ class BottomBarView: UIView, PageSelectedDelegate {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = Palette.white.color.withAlphaComponent(0.2)
+        self.backgroundColor = UIColor.clear
         setUpButtonImages()
         setUpConstraints()
     }
