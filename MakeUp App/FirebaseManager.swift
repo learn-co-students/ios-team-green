@@ -90,6 +90,17 @@ final class FirebaseManager {
         } //FIRAuth.auth()?.signIn
     }
     
+    //Password Reset email
+    func resetPassword(email: String , handler: @escaping (Error?)->()) {
+        FIRAuth.auth()?.sendPasswordReset(withEmail: email) { (error) in
+            if let error = error {
+                handler(error)
+            } else {
+                handler(nil)
+            }
+        }
+    }
+    
     /// App Functions //
     
     

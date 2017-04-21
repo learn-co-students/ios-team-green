@@ -10,7 +10,7 @@ import Foundation
 
 import UIKit
 
-class EmailSignInViewController: UIViewController {
+class EmailSignInViewController: UIViewController, UIGestureRecognizerDelegate {
 
     let emailField: UITextField = {
         let field = UITextField()
@@ -22,16 +22,6 @@ class EmailSignInViewController: UIViewController {
         return field
     }()
     
-    /*let nameField: UITextField = {
-        let field = UITextField()
-        field.placeholder = "   Name"
-        field.textAlignment = .left
-        field.textColor = Palette.white.color
-        field.backgroundColor = Palette.beige.color
-        field.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 16)
-        return field
-    }() */
-    
     let passwordField: UITextField = {
         let field = UITextField()
         field.placeholder = "   Password"
@@ -41,6 +31,7 @@ class EmailSignInViewController: UIViewController {
         field.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 16)
         return field
     }()
+
     
     let goButton: UIButton = {
         let button = UIButton()
@@ -49,6 +40,17 @@ class EmailSignInViewController: UIViewController {
         button.backgroundColor = Palette.beige.color
         return button
     }()
+    
+    let textLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.textColor = Palette.black.color
+        label.numberOfLines = 4
+        label.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 16)
+        return label
+    }()
+
+    var resetTextView = UITextView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,8 +61,21 @@ class EmailSignInViewController: UIViewController {
         setupComponents()
     }
 
+    func setResetLink() {
+        
+        let resetStr = NSMutableAttributedString(string: "Forgot your password? Reset password!")
+        
+        resetStr.addAttribute(NSFontAttributeName, value: Fonts.Playfair(withStyle: .italic, sizeLiteral: 16), range: NSMakeRange(0, 21))
+        resetStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.blue, range: NSMakeRange(22, 15))
+        resetTextView.attributedText = resetStr
+        let tap = UITapGestureRecognizer(target: self, action: #selector(resetPassword(_ :)))
+        tap.delegate = self
+        resetTextView.addGestureRecognizer(tap)
+    }
+
+    
     func setupComponents() {
-        let components = [emailField, passwordField, goButton]
+        let components = [emailField, passwordField, goButton, textLabel, resetTextView]
         components.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
@@ -70,15 +85,23 @@ class EmailSignInViewController: UIViewController {
         }
         
         emailField.topAnchor.constraint(equalTo: view.topAnchor, constant: 120).isActive = true
-        //nameField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 40).isActive = true
         passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 40).isActive = true
         goButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 40).isActive = true
         
         goButton.addTarget(self, action: #selector(submit), for: .touchUpInside)
+        
+        textLabel.topAnchor.constraint(equalTo: goButton.bottomAnchor, constant: 40).isActive = true
+        
+        resetTextView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 20).isActive = true
+        
+    }
+    
+    func resetPassword(_ sender: UITapGestureRecognizer) {
+        navigationController?.pushViewController(ResetPasswordViewController(), animated: true)
     }
     
     func dismissVC() {
-        self.navigationController?.popToRootViewController(animated: true)
+        _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
     func submit() {
@@ -86,7 +109,12 @@ class EmailSignInViewController: UIViewController {
         FirebaseManager.shared.signInUser(email: emailField.text!, password: passwordField.text!) { (error) in
             if error != nil {
                 //fatalError(error!.localizedDescription)
-                print("Failed to sign in user: \(self.emailField.text)" )
+                print("**SignIn failed. error: \(error!) \n**error.debugDescription: \(error.debugDescription)" )
+                //print("**error appEventParameterValue: \(error!._code.appEventParameterValue) NSError: \(NSError.userInfoValueProvider(forDomain: "FIRAuthErrorDomain"))")
+                
+                self.textLabel.text = error!.localizedDescription
+                
+                self.setResetLink()
                 
             } else {
                 print("In submit:signInUser")

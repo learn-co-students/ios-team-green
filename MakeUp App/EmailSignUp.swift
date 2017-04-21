@@ -51,6 +51,15 @@ class EmailUpViewController: UIViewController {
         return button
     }()
     
+    let textLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.textColor = Palette.black.color
+        label.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 12)
+        label.numberOfLines = 4
+        return label
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Palette.white.color
@@ -61,7 +70,7 @@ class EmailUpViewController: UIViewController {
     }
 
     func setupComponents() {
-        let components = [emailField, nameField, passwordField, goButton]
+        let components = [emailField, nameField, passwordField, goButton, textLabel]
         components.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
@@ -76,6 +85,9 @@ class EmailUpViewController: UIViewController {
         goButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 40).isActive = true
         
         goButton.addTarget(self, action: #selector(submit), for: .touchUpInside)
+        
+        textLabel.topAnchor.constraint(equalTo: goButton.bottomAnchor, constant: 20).isActive = true
+
     }
     
     func dismissVC() {
@@ -87,8 +99,8 @@ class EmailUpViewController: UIViewController {
         FirebaseManager.shared.createUser(email: emailField.text!, password: passwordField.text!, name: nameField.text!) { (error) in
             if error != nil {
                 //fatalError(error!.localizedDescription)
-                print("Failed to ccreate user")
-                
+                print("Failed to create user \(error.debugDescription)")
+                self.textLabel.text = error?.localizedDescription
             } else {
                 print("In submit:createUser")
                 let pageViewController = PageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)

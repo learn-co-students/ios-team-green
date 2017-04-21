@@ -67,10 +67,6 @@ class SignUpViewController: UIViewController, UIGestureRecognizerDelegate {
         textView.addGestureRecognizer(tap)
     }
     
-    func signUpUser(_ sender: UITapGestureRecognizer) {
-        let emailSignUpViewController = EmailUpViewController()
-        self.navigationController?.pushViewController(emailSignUpViewController, animated: true)
-    }
     
     func setupComponents() {
         let components = [/*googleButton,*/ facebookButtton, emailButton, titleLabel, textView]
@@ -104,11 +100,16 @@ class SignUpViewController: UIViewController, UIGestureRecognizerDelegate {
     func googleSignUp() {
         print("TODO: FIREBASE google sign up")
     }
-    
+        
+    //Email signIn
     func emailSignIn() {
-        //print("TODO: email sign up")
         let emailSignInViewController = EmailSignInViewController()
         self.navigationController?.pushViewController(emailSignInViewController, animated: true)
+    }
+
+    func signUpUser(_ sender: UITapGestureRecognizer) {
+        let emailSignUpViewController = EmailUpViewController()
+        self.navigationController?.pushViewController(emailSignUpViewController, animated: true)
     }
     
 }
