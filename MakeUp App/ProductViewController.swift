@@ -85,7 +85,7 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
         view.addSubview(titleLabel)
         
         productImage.translatesAutoresizingMaskIntoConstraints = false
-        productImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
+        productImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 8).isActive = true
         productImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         productImage.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true
         productImage.widthAnchor.constraint(lessThanOrEqualTo: view.widthAnchor, multiplier: 0.9).isActive = true

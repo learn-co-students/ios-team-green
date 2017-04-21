@@ -44,6 +44,7 @@ class ProductViewCell: UICollectionViewCell {
                 }
             }
         }
+        
 
     }
     
