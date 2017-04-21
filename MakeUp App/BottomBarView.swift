@@ -78,8 +78,6 @@ class BottomBarView: UIView, PageSelectedDelegate {
         horizontalBar.bottomAnchor.constraint(equalTo: productButton.topAnchor, constant: -15).isActive = true
         horizontalBar.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
         horizontalBar.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        
-        
     }
     
     func switchToHome(sender: UITapGestureRecognizer) {
@@ -97,17 +95,17 @@ class BottomBarView: UIView, PageSelectedDelegate {
     func changeImage(at index: Int) {
         switch index {
         case 0:
-            homeButton.setImage(#imageLiteral(resourceName: "Heart"), for: .normal)
+            homeButton.setImage(#imageLiteral(resourceName: "Face-Selected"), for: .normal)
             searchButton.setImage(#imageLiteral(resourceName: "Search"), for: .normal)
             productButton.setImage(#imageLiteral(resourceName: "Home"), for: .normal)
         case 1:
             homeButton.setImage(#imageLiteral(resourceName: "Face"), for: .normal)
-            searchButton.setImage(#imageLiteral(resourceName: "Heart"), for: .normal)
+            searchButton.setImage(#imageLiteral(resourceName: "Search-Selected"), for: .normal)
             productButton.setImage(#imageLiteral(resourceName: "Home"), for: .normal)
         default:
             homeButton.setImage(#imageLiteral(resourceName: "Face"), for: .normal)
             searchButton.setImage(#imageLiteral(resourceName: "Search"), for: .normal)
-            productButton.setImage(#imageLiteral(resourceName: "Heart"), for: .normal)
+            productButton.setImage(#imageLiteral(resourceName: "Home-Selected"), for: .normal)
         }
     }
 

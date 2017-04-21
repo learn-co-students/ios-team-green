@@ -16,7 +16,7 @@ class SignUpViewController: UIViewController {
 
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Glow"
+        label.text = "Tada!"
         label.textColor = Palette.darkGrey.color
         label.font = Fonts.Playfair(withStyle: .italic, sizeLiteral: 60)
         label.textAlignment = .center
