@@ -69,8 +69,8 @@ class EmailUpViewController: UIViewController {
         nameField.setLeftPaddingPoints(10)
         passwordField.setLeftPaddingPoints(10)
         passwordField.setRightPaddingPoints(10)
-        
-       
+        passwordField.isSecureTextEntry = true
+        emailField.autocapitalizationType = UITextAutocapitalizationType.none
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(dismissVC))
         setupComponents()
     }
