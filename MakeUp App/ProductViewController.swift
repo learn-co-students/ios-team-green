@@ -93,7 +93,7 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
             if product.price == 0 {
                 titleLabel.text = product.title
             } else {
-                titleLabel.text = product.title + "\n$" + String(product.price)
+                titleLabel.text = product.title + "\n$" + String(product.price) + "0"
             }
         }
         titleLabel.textAlignment = .center
