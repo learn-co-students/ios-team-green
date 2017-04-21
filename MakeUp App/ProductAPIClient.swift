@@ -10,13 +10,13 @@ import Foundation
 
 class ProductAPIClient {
        
-    func stringSearch(searchString:String, completion:@escaping ([Product])->()) {
-        var result:[Product] = []
+    func stringSearch(searchString:String, offset: Int, completion: @escaping ([Product]) -> ()) {
+        var result = [Product]()
         let escapedSearchString = searchString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "Url string conversion failed"
         
         print("**In ProductAPIClient:stringSearch string: \(searchString) escapedSearchString:\(escapedSearchString)")
 
-        let url = URL(string: "https://api.upcitemdb.com/prod/trial/search?s=\(escapedSearchString)&match_mode=0&type=product")
+        let url = URL(string: "https://api.upcitemdb.com/prod/trial/search?s=\(escapedSearchString)&offset=\(offset)&match_mode=0&type=product")
         guard let unwrappedUrl = url else { print("Invalid Url \(String(describing: url?.absoluteString))"); return }
         let task = URLSession.shared.dataTask(with: unwrappedUrl) { (data, response, error) in
             if let unwrappedData = data {
@@ -24,12 +24,13 @@ class ProductAPIClient {
                     guard let json = try JSONSerialization.jsonObject(with: unwrappedData, options: []) as? [String:Any] else {
                         print("Invalid JSONSerialization"); return
                     }
+                    print("json is", json)
                     guard let itemsData = json["items"] as? [[String:Any]] else {
                         print("json=",json,"\nCannot convert json to dictionary array."); return
                     }
-             
+                    print("itemsData.count is", itemsData.count)
                     for item in itemsData {
-                        print("**item=\(item)")
+                        print("**item=\(item["title"])")
                         var targetData:[String:Any]
                         
                         targetData = item
