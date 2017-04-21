@@ -247,8 +247,8 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     }
     
     func productNotFoundAlert() {
-        let alertController = UIAlertController(title: "Oopsy!", message: "It seems like we can't find that product! Let's try something else!", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Let me scan something new!", style: .default) { (action) in
+        let alertController = UIAlertController(title: "Oopsy!", message: "We don't have that product!", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Let's scan something new", style: .default) { (action) in
             alertController.dismiss(animated: true, completion: nil)
         }
         alertController.addAction(okAction)
