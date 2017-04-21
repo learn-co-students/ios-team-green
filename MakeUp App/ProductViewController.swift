@@ -62,11 +62,17 @@ class ProductViewController: UIViewController, CircularButtonDelegate {
     func setUpProduct() {
         guard let product = resultStore.product else { return }
         navBar(title: truncateStringAfterNumberofWords(string: product.brand, words: 3), leftButton: determineFavoriteButton(), rightButton: .buy)
-        ImageAPIClient.getProductImage(with: product.imageURL) { (productImage) in
-            DispatchQueue.main.async {
-                UIView.animate(withDuration: 0.2, animations: {
-                    self.productImage.image = productImage
-                })
+        if product.imageURL == "No Image" {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.productImage.image = #imageLiteral(resourceName: "Placeholder")
+            })
+        } else {
+            ImageAPIClient.getProductImage(with: product.imageURL) { (productImage) in
+                DispatchQueue.main.async {
+                    UIView.animate(withDuration: 0.2, animations: {
+                        self.productImage.image = productImage
+                    })
+                }
             }
         }
         setUpLabels()

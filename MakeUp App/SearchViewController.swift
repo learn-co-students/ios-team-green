@@ -187,6 +187,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                     guard let json = try JSONSerialization.jsonObject(with: unwrappedData, options: []) as? [String:Any] else {
                         print("Invalid JSONSerialization"); return
                     }
+                    print("the response is", json)
                     if let total = json["total"] as? Int {
                         if total == 0 {
                             self.productNotFoundAlert()
@@ -211,13 +212,16 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                         print("imageArray is empty")
                     }
                     
-                    let offersArray = self.apiData["offers"] as? [Any] ?? ["No Offers"]
-
-                    let firstOffer = offersArray[0] as? [String:Any] ?? [:]
-                    let price = firstOffer["price"]
-                                        
+                    
+                    if let offersArray = self.apiData["offers"] as? [Any]  {
+                        if !offersArray.isEmpty {
+                            let firstOffer = offersArray[0] as? [String:Any] ?? ["price": 0]
+                            let price = firstOffer["price"] ?? "000"
+                            self.apiData["price"] = price
+                        }
+                    }
+                
                     self.apiData["image"] = imageUrl
-                    self.apiData["price"] = price
                     
                     let product = Product(dict:self.apiData)
                     self.addToDB(product)

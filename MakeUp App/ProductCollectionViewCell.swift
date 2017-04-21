@@ -31,11 +31,17 @@ class ProductViewCell: UICollectionViewCell {
     func setUpCell() {
         guard let myProduct = product else { print("could not get product"); return  }
         titleView.text = truncateStringAfterNumberofWords(string: myProduct.title, words: 3)
-        ImageAPIClient.getProductImage(with: myProduct.imageURL) { (productImage) in
-            DispatchQueue.main.async {
-                UIView.animate(withDuration: 0.2, animations: { 
-                    self.imageView.image = productImage
-                })
+        if myProduct.imageURL == "No Image" {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.imageView.image = #imageLiteral(resourceName: "No-Image")
+            })
+        } else {
+            ImageAPIClient.getProductImage(with: myProduct.imageURL) { (productImage) in
+                DispatchQueue.main.async {
+                    UIView.animate(withDuration: 0.2, animations: {
+                        self.imageView.image = productImage
+                    })
+                }
             }
         }
 

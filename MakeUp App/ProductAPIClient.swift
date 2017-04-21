@@ -38,7 +38,7 @@ class ProductAPIClient {
                         if !(imageArray.isEmpty) {
                             targetData["image"] = imageArray[0]
                         } else {
-                            targetData["image"] = "No Image" ;
+                            targetData["image"] = "No Image"
                             print("imageArray is empty")
                         }
                         

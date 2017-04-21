@@ -47,7 +47,7 @@ class Product {
         imageURL = dict["image"] as? String ?? ""
         price = dict["price"] as? Double ?? 0
         savedAt = "Never Saved"
-        print("I am in initializer", upc)
+        print("I am in initializer", imageURL)
     }
     
     func toDict() -> [String:Any] {
