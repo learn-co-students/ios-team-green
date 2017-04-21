@@ -55,10 +55,10 @@ class EmailSignInViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Palette.white.color
-        emailField.setLeftPaddingPoints(5)
-        emailField.setRightPaddingPoints(5)
-        passwordField.setLeftPaddingPoints(5)
-        passwordField.setRightPaddingPoints(5)
+        emailField.setLeftPaddingPoints(10)
+        emailField.setRightPaddingPoints(10)
+        passwordField.setLeftPaddingPoints(10)
+        passwordField.setRightPaddingPoints(10)
        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(dismissVC))
         setupComponents()
@@ -105,6 +105,11 @@ class EmailSignInViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func dismissVC() {
         _ = self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        emailField.endEditing(true)
+        passwordField.endEditing(true)
     }
     
     func submit() {
