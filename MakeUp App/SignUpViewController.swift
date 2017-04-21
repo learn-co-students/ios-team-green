@@ -59,8 +59,8 @@ class SignUpViewController: UIViewController, UIGestureRecognizerDelegate {
         
         let signUpStr = NSMutableAttributedString(string: "Don't have an account? Sign Up!")
         
-        signUpStr.addAttribute(NSFontAttributeName, value: Fonts.Playfair(withStyle: .italic, sizeLiteral: 12), range: NSMakeRange(0, 22))
-        signUpStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.blue, range: NSMakeRange(23, 8))
+        signUpStr.addAttribute(NSFontAttributeName, value: Fonts.Playfair(withStyle: .italic, sizeLiteral: 16), range: NSMakeRange(0, 31))
+        signUpStr.addAttributes([NSForegroundColorAttributeName: Palette.beige.color, NSFontAttributeName: Fonts.Playfair(withStyle: .blackItalic, sizeLiteral: 16)], range: NSMakeRange(23, 8))
         textView.attributedText = signUpStr
         let tap = UITapGestureRecognizer(target: self, action: #selector(signUpUser(_ :)))
         tap.delegate = self
@@ -92,6 +92,8 @@ class SignUpViewController: UIViewController, UIGestureRecognizerDelegate {
         emailButton.addTarget(self, action: #selector(emailSignIn), for: .touchUpInside)
 
         textView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 80).isActive = true
+        textView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        textView.textAlignment = .center
 
         titleLabel.bottomAnchor.constraint(equalTo: facebookButtton.topAnchor, constant: -40).isActive = true
         
