@@ -63,7 +63,13 @@ class EmailUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Palette.white.color
-
+        emailField.setLeftPaddingPoints(5)
+        emailField.setRightPaddingPoints(5)
+        nameField.setRightPaddingPoints(5)
+        nameField.setLeftPaddingPoints(5)
+        passwordField.setLeftPaddingPoints(5)
+        passwordField.setRightPaddingPoints(5)
+        
        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(dismissVC))
         setupComponents()
