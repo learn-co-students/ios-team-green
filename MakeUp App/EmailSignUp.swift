@@ -94,17 +94,8 @@ class EmailUpViewController: UIViewController {
     }
     
     func submit() {
-        if nameField.text == "" {
-            UIView.animate(withDuration: 0.2, animations: {
-                let alertController = UIAlertController(title: "Uh Oh!", message: "Please enter your name", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "Got it!", style: .default, handler: { (action) in
-                    alertController.dismiss(animated: true, completion: nil)
-                })
-                alertController.addAction(okAction)
-                self.present(alertController, animated: true, completion: nil)
-            })
-            return}
-        else if emailField.text == "" {
+        guard let emailText = emailField.text else {return}
+        if emailField.text == "" {
             UIView.animate(withDuration: 0.2, animations: {
                 let alertController = UIAlertController(title: "Uh Oh!", message: "Please enter your email", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "Got it!", style: .default, handler: { (action) in
@@ -113,7 +104,29 @@ class EmailUpViewController: UIViewController {
                 alertController.addAction(okAction)
                 self.present(alertController, animated: true, completion: nil)
             })
-            return}
+        }
+            
+            /*else if !emailText.contains("@") && !emailText.contains(".com") {
+             UIView.animate(withDuration: 0.2, animations: {
+             let alertController = UIAlertController(title: "Uh Oh!", message: "That email address is not valid", preferredStyle: .alert)
+             let okAction = UIAlertAction(title: "Got it!", style: .default, handler: { (action) in
+             alertController.dismiss(animated: true, completion: nil)
+             })
+             alertController.addAction(okAction)
+             self.present(alertController, animated: true, completion: nil)
+             })
+             }*/
+        else if nameField.text == "" {
+            UIView.animate(withDuration: 0.2, animations: {
+                let alertController = UIAlertController(title: "Uh Oh!", message: "Please enter your name", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Got it!", style: .default, handler: { (action) in
+                    alertController.dismiss(animated: true, completion: nil)
+                })
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            })
+        }
+            
         else if passwordField.text == "" {
             UIView.animate(withDuration: 0.2, animations: {
                 let alertController = UIAlertController(title: "Uh Oh!", message: "Please enter your password", preferredStyle: .alert)
@@ -123,7 +136,7 @@ class EmailUpViewController: UIViewController {
                 alertController.addAction(okAction)
                 self.present(alertController, animated: true, completion: nil)
             })
-            return}
+        }
             
         else if let passwordCharacters = passwordField.text?.characters{
             if passwordCharacters.count < 6 {
@@ -136,13 +149,24 @@ class EmailUpViewController: UIViewController {
                     self.present(alertController, animated: true, completion: nil)
                 })
             }
-            return}
+        }
         print("got to here")
         guard (emailField.text != nil) && (nameField.text != nil) && (passwordField.text != nil) else { return }
         FirebaseManager.shared.createUser(email: emailField.text!, password: passwordField.text!, name: nameField.text!) { (error) in
             if error != nil {
                 //fatalError(error!.localizedDescription)
                 print("Failed to create user \(error.debugDescription)")
+                guard let errorDescript = error?.localizedDescription else {return}
+                if errorDescript == "The email address is badly formatted." {
+                    UIView.animate(withDuration: 0.2, animations: {
+                        let alertController = UIAlertController(title: "Uh Oh!", message: "Please enter a valid email", preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "Got it!", style: .default, handler: { (action) in
+                            alertController.dismiss(animated: true, completion: nil)
+                        })
+                        alertController.addAction(okAction)
+                        self.present(alertController, animated: true, completion: nil)
+                    })
+                }
             } else {
                 print("In submit:createUser")
                 let pageViewController = PageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
