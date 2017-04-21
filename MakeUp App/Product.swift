@@ -10,7 +10,7 @@ import Foundation
 
 
 class Product {
-    let upc: String
+    let upc: String?
     let ean: String
     var title: String
     let description: String
@@ -25,14 +25,18 @@ class Product {
     let price: Double
     var savedAt: String
     var identifier: String {
-        return upc != "" ? upc : ean
+        if let validUPC = upc {
+            return validUPC
+        } else {
+            return ean
+        }
     }
     
     init(dict:[String:Any]) {
         ean = dict["ean"] as? String ?? ""
         title = dict["title"] as? String ?? ""
         description = dict["description"] as? String ?? (dict["title"] as? String) ?? ""
-        upc = dict["upc"] as? String ?? ""
+        upc = dict["upc"] as? String ?? nil
         brand = dict["brand"] as? String ?? ""
         model = dict["model"] as? String ?? ""
         color = dict["color"] as? String ?? ""
@@ -43,6 +47,7 @@ class Product {
         imageURL = dict["image"] as? String ?? ""
         price = dict["price"] as? Double ?? 0
         savedAt = "Never Saved"
+        print("I am in initializer", upc)
     }
     
     func toDict() -> [String:Any] {

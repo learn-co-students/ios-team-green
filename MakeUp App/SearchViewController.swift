@@ -185,9 +185,18 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                     guard let json = try JSONSerialization.jsonObject(with: unwrappedData, options: []) as? [String:Any] else {
                         print("Invalid JSONSerialization"); return
                     }
+                    if let total = json["total"] as? Int {
+                        if total == 0 {
+                            self.productNotFoundAlert()
+                            return
+                        }
+                    }
+                    
                     guard let targetdata = json["items"] as? [[String:Any]] else {
                         print("Cannot convert json to dictionary array"); return
                     }
+                    
+                    print("the target data is", targetdata)
                     self.apiData = targetdata[0]
                     
                     let imageArray = self.apiData["images"] as? [String] ?? ["No image"]
@@ -201,7 +210,6 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                     }
                     
                     let offersArray = self.apiData["offers"] as? [Any] ?? ["No Offers"]
-                    print("offersArray is", offersArray)
 
                     let firstOffer = offersArray[0] as? [String:Any] ?? [:]
                     let price = firstOffer["price"]
@@ -223,7 +231,7 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     
     //add dictionary item to DB
     func addToDB(_ itemDet:Product) {
-        let itemRef = self.ref.child(itemDet.upc)
+        let itemRef = self.ref.child(itemDet.identifier)
         itemRef.setValue(itemDet.toDict())   //convert to desired dict obj
         
     }
@@ -238,8 +246,19 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         
     }
     
+    func productNotFoundAlert() {
+        let alertController = UIAlertController(title: "Oopsy!", message: "It seems like we can't find that product! Let's try something else!", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Let me scan something new!", style: .default) { (action) in
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     
     
 }
+
+
 
 

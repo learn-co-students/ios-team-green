@@ -106,7 +106,7 @@ final class FirebaseManager {
     }
     
     func addProductToDatabase(_ product: Product) {
-        
+        print("I am in add product to database")
         FIRDatabase.database().reference(withPath: "Products").child(product.identifier).setValue(product.toDict()) { (error, ref) in
             if error != nil {
                 print("error adding to database", error as Any)

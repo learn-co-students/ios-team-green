@@ -28,7 +28,6 @@ final class YoutubeAPIClient {
             if let data = response.data {
                 let json = JSON(data: data)
                 let itemsArray = json["items"].arrayValue
-                print("items array is", itemsArray)
                 completion(itemsArray, type.rawValue)
             }
         }
