@@ -35,17 +35,19 @@ class SearchViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                               AVMetadataObjectTypeAztecCode,
                               AVMetadataObjectTypePDF417Code]
     
-    var searchBar:UISearchBar!
+    var searchBar: UISearchBar!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         lastBarCodevalue = nil
-        
+        guard searchBar != nil else { return }
+        searchBar.text = ""
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         NotificationCenter.default.post(name: .searchIndex, object: nil)
+      
     }
     override func viewDidLoad() {
         super.viewDidLoad()

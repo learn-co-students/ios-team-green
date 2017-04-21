@@ -16,13 +16,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
     
     weak var pageDelegate: PageSelectedDelegate?
     
-    var currentIndex = 0 {
-        didSet  {
-            print("current index is now", currentIndex)
-        }
-        
-    }
-    
+    var currentIndex = 0
     var viewControllerList: [UIViewController] = {
         
         let homeView = HomeViewController()
@@ -50,10 +44,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         super.viewDidLoad()
         
         self.pageDelegate = bottomBar
-        
-        
-       
-        
+
         addNotificationObservers()
         
         view.backgroundColor = Palette.beige.color
@@ -154,10 +145,13 @@ extension NotificationObservers {
         switch notification.name {
         case Notification.Name.homeIndex:
             currentIndex = 0
+            pageDelegate?.changeImage(at: currentIndex)
         case Notification.Name.searchIndex:
             currentIndex = 1
+            pageDelegate?.changeImage(at: currentIndex)
         case Notification.Name.productIndex:
             currentIndex = 2
+            pageDelegate?.changeImage(at: currentIndex)
         case Notification.Name.tutorialsIndex:
             currentIndex = 3
         case Notification.Name.reviewsIndex:
@@ -188,7 +182,6 @@ extension NotificationObservers {
         switch named {
         case "Home":
             setView(viewController: 0)
-            pageDelegate?.changeImage(at: currentIndex)
         case "Search":
             setView(viewController: 1)
             pageDelegate?.changeImage(at: currentIndex)
