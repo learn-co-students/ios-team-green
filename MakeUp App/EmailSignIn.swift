@@ -41,14 +41,6 @@ class EmailSignInViewController: UIViewController, UIGestureRecognizerDelegate {
         return button
     }()
     
-    let textLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.textColor = Palette.black.color
-        label.numberOfLines = 4
-        label.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 16)
-        return label
-    }()
     
     var resetTextView = UITextView()
     
@@ -78,7 +70,7 @@ class EmailSignInViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     func setupComponents() {
-        let components = [emailField, passwordField, goButton, textLabel]
+        let components = [emailField, passwordField, goButton]
         components.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
@@ -97,7 +89,7 @@ class EmailSignInViewController: UIViewController, UIGestureRecognizerDelegate {
         
         goButton.addTarget(self, action: #selector(submit), for: .touchUpInside)
         
-        textLabel.topAnchor.constraint(equalTo: goButton.bottomAnchor, constant: 40).isActive = true
+
         
         view.addSubview(resetTextView)
         resetTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
