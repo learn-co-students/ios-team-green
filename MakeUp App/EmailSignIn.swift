@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 
 class EmailSignInViewController: UIViewController, UIGestureRecognizerDelegate {
-
+    
     let emailField: UITextField = {
         let field = UITextField()
         field.placeholder = "   Email"
@@ -31,7 +31,7 @@ class EmailSignInViewController: UIViewController, UIGestureRecognizerDelegate {
         field.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 16)
         return field
     }()
-
+    
     
     let goButton: UIButton = {
         let button = UIButton()
@@ -41,15 +41,7 @@ class EmailSignInViewController: UIViewController, UIGestureRecognizerDelegate {
         return button
     }()
     
-    let textLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.textColor = Palette.black.color
-        label.numberOfLines = 4
-        label.font = Fonts.Playfair(withStyle: .black, sizeLiteral: 16)
-        return label
-    }()
-
+    
     var resetTextView = UITextView()
     
     override func viewDidLoad() {
@@ -61,10 +53,11 @@ class EmailSignInViewController: UIViewController, UIGestureRecognizerDelegate {
         passwordField.setRightPaddingPoints(10)
         passwordField.isSecureTextEntry = true
         emailField.autocapitalizationType = UITextAutocapitalizationType.none
+
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(dismissVC))
         setupComponents()
     }
-
+    
     func setResetLink() {
         
         let resetStr = NSMutableAttributedString(string: "Forgot your password? Reset password!")
@@ -76,10 +69,10 @@ class EmailSignInViewController: UIViewController, UIGestureRecognizerDelegate {
         tap.delegate = self
         resetTextView.addGestureRecognizer(tap)
     }
-
+    
     
     func setupComponents() {
-        let components = [emailField, passwordField, goButton, textLabel, resetTextView]
+        let components = [emailField, passwordField, goButton]
         components.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
@@ -88,16 +81,24 @@ class EmailSignInViewController: UIViewController, UIGestureRecognizerDelegate {
             $0.heightAnchor.constraint(equalToConstant: 60).isActive = true
         }
         
-        emailField.topAnchor.constraint(equalTo: view.topAnchor, constant: 120).isActive = true
-        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 40).isActive = true
-        goButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 40).isActive = true
+        resetTextView.translatesAutoresizingMaskIntoConstraints = false
+        
+        emailField.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        
+        passwordField.isSecureTextEntry = true
+        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 35).isActive = true
+        goButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 35).isActive = true
         
         goButton.addTarget(self, action: #selector(submit), for: .touchUpInside)
         
-        textLabel.topAnchor.constraint(equalTo: goButton.bottomAnchor, constant: 40).isActive = true
+
         
-        resetTextView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 20).isActive = true
-        
+        view.addSubview(resetTextView)
+        resetTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        resetTextView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
+        resetTextView.topAnchor.constraint(equalTo: goButton.bottomAnchor, constant: 5).isActive = true
+        resetTextView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        setResetLink()
     }
     
     func resetPassword(_ sender: UITapGestureRecognizer) {
@@ -114,18 +115,54 @@ class EmailSignInViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func submit() {
-        guard (emailField.text != nil) && (passwordField.text != nil) else { return }
+        
+        if emailField.text == "" && passwordField.text == "" {
+            UIView.animate(withDuration: 0.2, animations: {
+                let alertController = UIAlertController(title: "Uh Oh!", message: "Please enter your email and password", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Got it!", style: .default, handler: { (action) in
+                    alertController.dismiss(animated: true, completion: nil)
+                })
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            })
+            return}
+        else if emailField.text == "" {
+            UIView.animate(withDuration: 0.2, animations: {
+                let alertController = UIAlertController(title: "Uh Oh!", message: "Please enter your email", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Got it!", style: .default, handler: { (action) in
+                    alertController.dismiss(animated: true, completion: nil)
+                })
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            })
+            return}
+        else if passwordField.text == "" {
+            UIView.animate(withDuration: 0.2, animations: {
+                let alertController = UIAlertController(title: "Uh Oh!", message: "Please enter your password", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Got it!", style: .default, handler: { (action) in
+                    alertController.dismiss(animated: true, completion: nil)
+                })
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            })
+            return}
+        
+        guard (emailField.text != "") && (passwordField.text != "") else { print("returning email password"); return }
         FirebaseManager.shared.signInUser(email: emailField.text!, password: passwordField.text!) { (error) in
             if error != nil {
                 //fatalError(error!.localizedDescription)
                 print("**SignIn failed. error: \(error!) \n**error.debugDescription: \(error.debugDescription)" )
                 //print("**error appEventParameterValue: \(error!._code.appEventParameterValue) NSError: \(NSError.userInfoValueProvider(forDomain: "FIRAuthErrorDomain"))")
-                
-                self.textLabel.text = error!.localizedDescription
-                
-                self.setResetLink()
-                
-            } else {
+                UIView.animate(withDuration: 0.2, animations: {
+                    let alertController = UIAlertController(title: "Uh Oh!", message: "Seems like you've entered an incorrect email or password", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Got it!", style: .default, handler: { (action) in
+                        alertController.dismiss(animated: true, completion: nil)
+                    })
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                })
+                return}
+            else {
                 print("In submit:signInUser")
                 let pageViewController = PageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
                 self.present(pageViewController, animated: true, completion: nil)
@@ -134,5 +171,5 @@ class EmailSignInViewController: UIViewController, UIGestureRecognizerDelegate {
             
         } //SignInUser
     }
-
+    
 }
