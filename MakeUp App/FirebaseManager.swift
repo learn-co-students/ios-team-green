@@ -40,6 +40,7 @@ final class FirebaseManager {
     func loadUser(_ userID: String, completion: @escaping () -> ()) {
         _ = FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
             self.currentUser = user
+            print("**In loadUser:currentUser: name:\(self.currentUser?.displayName), email:\(self.currentUser?.email) uid:\(self.currentUser?.uid)")
             completion()
         })
     }
@@ -56,18 +57,12 @@ final class FirebaseManager {
                handler(error)
             } else {
                 FIRAuth.auth()?.signIn(withEmail: cu_email, password: cu_password, completion: { (user, error) in
-                    print("In createUser:signIn: email:\(cu_email) pass:\(cu_password) name:\(cu_name)")
+                    print("In createUser:signIn: uid: \(user?.uid) email:\(cu_email) name:\(cu_name)")
                     if let user = user {
                         
                         self.currentUser = user
-                        FirebaseManager.shared.loginType = "email"
-                        self.emailId = cu_email.replacingOccurrences(of: ".", with: "-", options: .literal, range: nil) 
-                        
-                        if let emailId = self.emailId {
-                            UserDefaults.standard.set(emailId, forKey: "userID")
-                            self.currentUserNode.updateChildValues([ "/\(emailId)/name" : cu_name])
-                        }
-                        //print("user:",user.debugDescription)
+                        UserDefaults.standard.set(user.uid, forKey: "userID")
+                        self.currentUserNode.updateChildValues([ "/\(user.uid)/name" : cu_name])
                         handler(nil)
                     } else  {
                         handler(error)
@@ -85,14 +80,20 @@ final class FirebaseManager {
                 handler(error)
             } else {
                 self.currentUser = user
-                FirebaseManager.shared.loginType = "email"
-                self.emailId = cu_email.replacingOccurrences(of: ".", with: "-", options: .literal, range: nil)
-                if let emailId = self.emailId {
-                    UserDefaults.standard.set(emailId, forKey: "userID")
-                }                
+                UserDefaults.standard.set(user?.uid, forKey: "userID")
                 handler(nil)
             }
         } //FIRAuth.auth()?.signIn
+    }
+    
+    func getUserName(uid: String , handler:@escaping (String?)-> ()) {
+        var username :String?
+        FirebaseManager.shared.ref.child("Users/\(uid)").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let userData = snapshot.value as? [String: Any] {
+                username = userData["name"] as? String
+            }
+           handler(username)
+        })        
     }
     
     //Password Reset email
