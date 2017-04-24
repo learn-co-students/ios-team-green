@@ -14,7 +14,7 @@ class YouTubePlayerViewViewController: UIViewController {
     let playerView = YTPlayerView()
     var youtubeID = ""
     var youtubeTitle = ""
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.85)
@@ -22,8 +22,7 @@ class YouTubePlayerViewViewController: UIViewController {
         self.playerView.load(withVideoId: youtubeID)
         setUpConstraints()
         setUpSwipeGestureRecognizer()
-        self.navigationItem.hidesBackButton = true
-        self.navigationItem.title = truncateStringAfterNumberofWords(string: youtubeTitle, words: 4)
+        setUpNavBar()
         NotificationCenter.default.post(name: .toggleNav, object: nil)
 
     }
@@ -34,6 +33,10 @@ class YouTubePlayerViewViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    func exitScreen() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     func setUpConstraints() {
         self.view.addSubview(playerView)
         playerView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,6 +44,16 @@ class YouTubePlayerViewViewController: UIViewController {
         playerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         playerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
         playerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true
+        
+    }
+    
+    func setUpNavBar() {
+        self.navigationItem.hidesBackButton = true
+        let barButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(exitScreen))
+        let font = Fonts.Playfair(withStyle: .bold, sizeLiteral: 22)
+        barButtonItem.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.white], for: .normal)
+        self.navigationItem.setLeftBarButton(barButtonItem, animated: true)
+
     }
 
     func setUpGestureRecognizer() {
@@ -51,10 +64,12 @@ class YouTubePlayerViewViewController: UIViewController {
     
     func setUpSwipeGestureRecognizer(){
         let gestureRecog = UISwipeGestureRecognizer(target: self, action: #selector(dismissView(tap:)))
-        gestureRecog.direction = UISwipeGestureRecognizerDirection.left
         gestureRecog.direction = UISwipeGestureRecognizerDirection.right
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(gestureRecog)
+        let gestureRecogTwo = UISwipeGestureRecognizer(target: self, action: #selector(dismissView(tap:)))
+        gestureRecogTwo.direction = UISwipeGestureRecognizerDirection.down
+        view.addGestureRecognizer(gestureRecogTwo)
     }
     
     
