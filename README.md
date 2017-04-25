@@ -1,6 +1,6 @@
 # ios-team-green
 
-Makeup App
+Voila App
 
 Video Demo ;D 
 
